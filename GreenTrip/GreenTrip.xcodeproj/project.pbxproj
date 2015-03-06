@@ -48,10 +48,6 @@
 		18B3413E1AA6D6C800B19ED4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18B3413D1AA6D6C800B19ED4 /* Security.framework */; };
 		18B341401AA6D76200B19ED4 /* AMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18B341271AA6D66600B19ED4 /* AMapSearchKit.framework */; };
 		18B341421AA6D7CE00B19ED4 /* AMap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18B341411AA6D7CE00B19ED4 /* AMap.bundle */; };
-		18B341541AA6D81A00B19ED4 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B341441AA6D81900B19ED4 /* 1.png */; };
-		18B341551AA6D81A00B19ED4 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B341451AA6D81900B19ED4 /* 2.png */; };
-		18B341561AA6D81A00B19ED4 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B341461AA6D81900B19ED4 /* 3.png */; };
-		18B341571AA6D81A00B19ED4 /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B341471AA6D81900B19ED4 /* 4.png */; };
 		18B341581AA6D81A00B19ED4 /* bikeIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B341481AA6D81900B19ED4 /* bikeIcon.png */; };
 		18B341591AA6D81A00B19ED4 /* busIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B341491AA6D81900B19ED4 /* busIcon.png */; };
 		18B3415A1AA6D81A00B19ED4 /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B3414A1AA6D81900B19ED4 /* checkmark.png */; };
@@ -64,6 +60,10 @@
 		18B341611AA6D81A00B19ED4 /* walkingIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B341511AA6D81A00B19ED4 /* walkingIcon.png */; };
 		18B341621AA6D81A00B19ED4 /* 出发按钮160x160px.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B341521AA6D81A00B19ED4 /* 出发按钮160x160px.png */; };
 		18B341631AA6D81A00B19ED4 /* 向下选择18x10px.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B341531AA6D81A00B19ED4 /* 向下选择18x10px.png */; };
+		18BCABA41AA9EA1E00827C66 /* tabBar1.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BCABA01AA9EA1E00827C66 /* tabBar1.png */; };
+		18BCABA51AA9EA1E00827C66 /* tabBar2.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BCABA11AA9EA1E00827C66 /* tabBar2.png */; };
+		18BCABA61AA9EA1E00827C66 /* tabBar3.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BCABA21AA9EA1E00827C66 /* tabBar3.png */; };
+		18BCABA71AA9EA1E00827C66 /* tabBar4.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BCABA31AA9EA1E00827C66 /* tabBar4.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,10 +145,6 @@
 		18B3413B1AA6D6C000B19ED4 /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
 		18B3413D1AA6D6C800B19ED4 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		18B341411AA6D7CE00B19ED4 /* AMap.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AMap.bundle; sourceTree = "<group>"; };
-		18B341441AA6D81900B19ED4 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
-		18B341451AA6D81900B19ED4 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
-		18B341461AA6D81900B19ED4 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
-		18B341471AA6D81900B19ED4 /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
 		18B341481AA6D81900B19ED4 /* bikeIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bikeIcon.png; sourceTree = "<group>"; };
 		18B341491AA6D81900B19ED4 /* busIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = busIcon.png; sourceTree = "<group>"; };
 		18B3414A1AA6D81900B19ED4 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
@@ -161,6 +157,10 @@
 		18B341511AA6D81A00B19ED4 /* walkingIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walkingIcon.png; sourceTree = "<group>"; };
 		18B341521AA6D81A00B19ED4 /* 出发按钮160x160px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "出发按钮160x160px.png"; sourceTree = "<group>"; };
 		18B341531AA6D81A00B19ED4 /* 向下选择18x10px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "向下选择18x10px.png"; sourceTree = "<group>"; };
+		18BCABA01AA9EA1E00827C66 /* tabBar1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabBar1.png; sourceTree = "<group>"; };
+		18BCABA11AA9EA1E00827C66 /* tabBar2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabBar2.png; sourceTree = "<group>"; };
+		18BCABA21AA9EA1E00827C66 /* tabBar3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabBar3.png; sourceTree = "<group>"; };
+		18BCABA31AA9EA1E00827C66 /* tabBar4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabBar4.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -365,10 +365,10 @@
 		18B341431AA6D81900B19ED4 /* picResource */ = {
 			isa = PBXGroup;
 			children = (
-				18B341441AA6D81900B19ED4 /* 1.png */,
-				18B341451AA6D81900B19ED4 /* 2.png */,
-				18B341461AA6D81900B19ED4 /* 3.png */,
-				18B341471AA6D81900B19ED4 /* 4.png */,
+				18BCABA01AA9EA1E00827C66 /* tabBar1.png */,
+				18BCABA11AA9EA1E00827C66 /* tabBar2.png */,
+				18BCABA21AA9EA1E00827C66 /* tabBar3.png */,
+				18BCABA31AA9EA1E00827C66 /* tabBar4.png */,
 				18B341481AA6D81900B19ED4 /* bikeIcon.png */,
 				18B341491AA6D81900B19ED4 /* busIcon.png */,
 				18B3414A1AA6D81900B19ED4 /* checkmark.png */,
@@ -486,24 +486,24 @@
 			files = (
 				18B3415E1AA6D81A00B19ED4 /* expandableImage.png in Resources */,
 				18B341581AA6D81A00B19ED4 /* bikeIcon.png in Resources */,
+				18BCABA51AA9EA1E00827C66 /* tabBar2.png in Resources */,
 				18B341591AA6D81A00B19ED4 /* busIcon.png in Resources */,
-				18B341551AA6D81A00B19ED4 /* 2.png in Resources */,
 				18B340D71AA6D55700B19ED4 /* Main.storyboard in Resources */,
 				18B340C11AA6D4CC00B19ED4 /* LaunchScreen.xib in Resources */,
+				18BCABA71AA9EA1E00827C66 /* tabBar4.png in Resources */,
 				18B341631AA6D81A00B19ED4 /* 向下选择18x10px.png in Resources */,
 				18B341421AA6D7CE00B19ED4 /* AMap.bundle in Resources */,
 				18B3415C1AA6D81A00B19ED4 /* disclosure_arrow.png in Resources */,
-				18B341571AA6D81A00B19ED4 /* 4.png in Resources */,
 				18B341601AA6D81A00B19ED4 /* truck.png in Resources */,
 				18B341611AA6D81A00B19ED4 /* walkingIcon.png in Resources */,
 				18B340BE1AA6D4CC00B19ED4 /* Images.xcassets in Resources */,
 				18B3415F1AA6D81A00B19ED4 /* expandableImage@2x.png in Resources */,
 				18B3415B1AA6D81A00B19ED4 /* compassArrow.png in Resources */,
+				18BCABA41AA9EA1E00827C66 /* tabBar1.png in Resources */,
 				18B3415A1AA6D81A00B19ED4 /* checkmark.png in Resources */,
-				18B341561AA6D81A00B19ED4 /* 3.png in Resources */,
 				18B341621AA6D81A00B19ED4 /* 出发按钮160x160px.png in Resources */,
+				18BCABA61AA9EA1E00827C66 /* tabBar3.png in Resources */,
 				18B3415D1AA6D81A00B19ED4 /* disclosure_arrow_180.png in Resources */,
-				18B341541AA6D81A00B19ED4 /* 1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -743,6 +743,7 @@
 				18B340D21AA6D4CC00B19ED4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		18B340D31AA6D4CC00B19ED4 /* Build configuration list for PBXNativeTarget "GreenTripTests" */ = {
 			isa = XCConfigurationList;
@@ -751,6 +752,7 @@
 				18B340D51AA6D4CC00B19ED4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

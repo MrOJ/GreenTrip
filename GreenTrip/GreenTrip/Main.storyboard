@@ -18,14 +18,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ZM-UD-uHF">
-                                <rect key="frame" x="106" y="404" width="108" height="78"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ZM-UD-uHF">
+                                <rect key="frame" x="101" y="377" width="119" height="121"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="78" id="wgg-Vt-PpP"/>
+                                    <constraint firstAttribute="height" constant="121" id="0o8-gM-eZw"/>
+                                    <constraint firstAttribute="width" constant="119" id="pfI-z2-2K0"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="出发GO！">
-                                    <color key="titleColor" red="0.46666666670000001" green="0.72549019609999998" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="出发按钮160x160px.png">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -33,17 +33,17 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qd0-a6-hWB">
-                                <rect key="frame" x="16" y="80" width="288" height="288"/>
+                                <rect key="frame" x="16" y="84" width="288" height="253"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="qd0-a6-hWB" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="16" id="0xL-mb-lN3"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="8ZM-UD-uHF" secondAttribute="bottom" constant="37" id="LCh-DF-R7a"/>
-                            <constraint firstItem="qd0-a6-hWB" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="NDi-Jb-oNr"/>
-                            <constraint firstItem="8ZM-UD-uHF" firstAttribute="top" secondItem="qd0-a6-hWB" secondAttribute="bottom" constant="36" id="VGk-sU-GBQ"/>
-                            <constraint firstItem="qd0-a6-hWB" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="VTc-xf-bLf"/>
-                            <constraint firstItem="qd0-a6-hWB" firstAttribute="centerX" secondItem="8ZM-UD-uHF" secondAttribute="centerX" id="ah0-eN-ihk"/>
+                            <constraint firstItem="qd0-a6-hWB" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="7zn-9f-WKa"/>
+                            <constraint firstItem="qd0-a6-hWB" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="20" id="9Kz-fY-HFo"/>
+                            <constraint firstItem="8ZM-UD-uHF" firstAttribute="top" secondItem="qd0-a6-hWB" secondAttribute="bottom" constant="40" id="DsI-0B-pye"/>
+                            <constraint firstItem="qd0-a6-hWB" firstAttribute="centerX" secondItem="8ZM-UD-uHF" secondAttribute="centerX" id="JRN-gk-fft"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="8ZM-UD-uHF" secondAttribute="bottom" constant="21" id="ZsP-sz-YgN"/>
+                            <constraint firstItem="qd0-a6-hWB" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="bcF-SR-3nM"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="出行" id="8Pa-Ni-5yq">
@@ -65,7 +65,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="997.60000000000002" y="-477.12"/>
+            <point key="canvasLocation" x="997" y="-478"/>
         </scene>
         <!--Search Routes View Controller-->
         <scene sceneID="2OE-Zf-WfA">
@@ -244,7 +244,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="设置" image="4.png" id="eM1-Wk-la6"/>
+                    <tabBarItem key="tabBarItem" title="设置" image="tabBar4.png" id="eM1-Wk-la6"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qXl-xU-hZQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -261,7 +261,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="color" keyPath="tabBar.selectedImageTintColor">
+                        <userDefinedRuntimeAttribute type="color" keyPath="tabBar.tintColor">
                             <color key="value" red="0.46666666666666667" green="0.72549019607843135" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
@@ -280,7 +280,7 @@
         <scene sceneID="zFM-RX-Dfb">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CiO-5B-R1z" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="出行" image="1.png" id="S05-6k-Vdc"/>
+                    <tabBarItem key="tabBarItem" title="出行" image="tabBar1.png" id="S05-6k-Vdc"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rt7-hS-ok7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -308,7 +308,7 @@
         <scene sceneID="FJP-U1-GPv">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AqC-Fj-msr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="发现" image="2.png" id="eLl-Bb-Fts"/>
+                    <tabBarItem key="tabBarItem" title="发现" image="tabBar2.png" id="eLl-Bb-Fts"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bTw-T2-Ptw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -333,7 +333,7 @@
         <scene sceneID="odo-Ln-f9G">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nbv-qR-D6R" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我的" image="3.png" id="h2B-5g-ChJ"/>
+                    <tabBarItem key="tabBarItem" title="我的" image="tabBar3.png" id="h2B-5g-ChJ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="y5g-Jf-E2a">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -356,10 +356,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="1.png" width="30" height="20"/>
-        <image name="2.png" width="30" height="20"/>
-        <image name="3.png" width="30" height="20"/>
-        <image name="4.png" width="30" height="20"/>
+        <image name="tabBar1.png" width="30" height="20"/>
+        <image name="tabBar2.png" width="30" height="20"/>
+        <image name="tabBar3.png" width="30" height="20"/>
+        <image name="tabBar4.png" width="30" height="20"/>
+        <image name="出发按钮160x160px.png" width="161" height="160"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
