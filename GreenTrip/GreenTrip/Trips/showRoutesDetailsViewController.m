@@ -9,6 +9,7 @@
 #import "showRoutesDetailsViewController.h"
 
 #define iosBlue [UIColor colorWithRed:28.0 / 255.0f green:98 / 255.0f blue:255.0 / 255.0f alpha:1.0f]
+#define myColor [UIColor colorWithRed:119.0 / 255.0f green:185.0 / 255.0f blue:67.0 / 255.0f alpha:1.0f]
 
 @interface showRoutesDetailsViewController ()
 
@@ -44,7 +45,7 @@
     
     if (wayFlag == 1) {
         self.navigationItem.title = @"公交路线";
-        textDetailsScrollView = [[textRoutesDetailsScrollView alloc] initWithFrame:CGRectMake(-1, myMapView.bounds.size.height - 74, myMapView.bounds.size.width + 2, self.view.bounds.size.height - 64 + 1)];
+        textDetailsScrollView = [[textRoutesDetailsScrollView alloc] initWithFrame:CGRectMake(-1, myMapView.bounds.size.height - 134, myMapView.bounds.size.width + 2, self.view.bounds.size.height - 64 + 1)];
         
         textDetailsScrollView.contentSize = CGSizeMake((myMapView.bounds.size.width) * allRoutes.transits.count, 1);
         textDetailsScrollView.dragEnable = YES;
@@ -73,7 +74,7 @@
         [self loadScrollView:textDetailsScrollView withPage:index];
     } else if (wayFlag == 2) {                //步行线路
         self.navigationItem.title = @"步行路线";
-        textWRDView = [[textWalkingRoutesDetailsView alloc] initWithFrame:CGRectMake(-1, myMapView.bounds.size.height - 74, myMapView.bounds.size.width + 2, self.view.bounds.size.height - 64 + 1)];
+        textWRDView = [[textWalkingRoutesDetailsView alloc] initWithFrame:CGRectMake(-1, myMapView.bounds.size.height - 134, myMapView.bounds.size.width + 2, self.view.bounds.size.height - 64 + 1)];
         textWRDView.dragEnable = YES;
         textWRDView.walkingRoute = allRoutes;
         textWRDView.startName = startName;
@@ -84,7 +85,7 @@
                                                                                      
     } else if (wayFlag == 3) {                //自行车线路
         self.navigationItem.title = @"自行车路线";
-        textWRDView = [[textWalkingRoutesDetailsView alloc] initWithFrame:CGRectMake(-1, myMapView.bounds.size.height - 74, myMapView.bounds.size.width + 2, self.view.bounds.size.height - 64 + 1)];
+        textWRDView = [[textWalkingRoutesDetailsView alloc] initWithFrame:CGRectMake(-1, myMapView.bounds.size.height - 134, myMapView.bounds.size.width + 2, self.view.bounds.size.height - 64 + 1)];
         textWRDView.dragEnable = YES;
         textWRDView.walkingRoute = allRoutes;
         textWRDView.startName = startName;
@@ -99,7 +100,7 @@
     pageControl.numberOfPages = allRoutes.transits.count;
     pageControl.hidesForSinglePage = YES;
     pageControl.currentPage = index;
-    pageControl.currentPageIndicatorTintColor = iosBlue;
+    pageControl.currentPageIndicatorTintColor = myColor;
     pageControl.pageIndicatorTintColor = [UIColor grayColor];
     
     [pageControl addTarget:self action:@selector(changePage:) forControlEvents:UIControlEventValueChanged];

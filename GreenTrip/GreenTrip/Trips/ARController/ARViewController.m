@@ -13,6 +13,8 @@
 #define kFilteringFactor                0.1
 #define kEraseAccelerationThreshold        2.0
 
+#define myColor [UIColor colorWithRed:119.0 / 255.0f green:185.0 / 255.0f blue:67.0 / 255.0f alpha:1.0f]
+
 @interface ARViewController ()
 
 @end
@@ -47,7 +49,7 @@
     
     UIButton *exitButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 25, 50, 30)];
     [exitButton setTitle:@"返回" forState:UIControlStateNormal];
-    [exitButton.titleLabel setTextColor:iosBlue];
+    [exitButton.titleLabel setTextColor:myColor];
     [exitButton  addTarget:self action:@selector(exit:) forControlEvents:UIControlEventTouchUpInside];
     [navigationBar addSubview:exitButton];
     

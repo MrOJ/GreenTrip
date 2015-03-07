@@ -10,6 +10,7 @@
 #define TOEDGELEFT 60
 #define MyKey "f57ba48c60c524724d3beff7f7063af9"
 #define iosBlue [UIColor colorWithRed:28.0 / 255.0f green:98 / 255.0f blue:255.0 / 255.0f alpha:1.0f]
+#define myColor [UIColor colorWithRed:119.0 / 255.0f green:185.0 / 255.0f blue:67.0 / 255.0f alpha:1.0f]
 
 @interface SearchRoutesViewController ()
 
@@ -695,6 +696,8 @@ updatingLocation:(BOOL)updatingLocation
     withBikeTransViewController *withBikeTransVC = [[withBikeTransViewController alloc] init];
     withBikeTransVC.startPoint = start;
     withBikeTransVC.endPoint   = end;
+    withBikeTransVC.startName  = startTextView.text;
+    withBikeTransVC.endName    = endTextView.text;
     withBikeTransVC.navigationItem.title = @"混合模式换乘结果";
     
     [self.navigationController pushViewController:withBikeTransVC animated:NO];

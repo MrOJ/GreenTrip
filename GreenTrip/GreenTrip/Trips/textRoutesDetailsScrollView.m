@@ -74,7 +74,7 @@
     CGPoint current = CGPointMake(self.center.x, self.center.y + offsetY);
     
     //防止其他区域滑动
-    if (current.y < initPoint.y && current.y > self.superview.center.y + 64 / 2) {
+    if (current.y < initPoint.y && current.y > self.superview.center.y) {
         self.center = CGPointMake(self.center.x, self.center.y + offsetY);
     }
     
@@ -93,7 +93,7 @@
     
     if (isUp == TRUE) {
         [UIView animateWithDuration:0.6 animations:^{
-            self.center = CGPointMake(self.center.x, self.superview.center.y + 64 / 2);
+            self.center = CGPointMake(self.center.x, self.superview.center.y);
             
         }];
         
@@ -116,7 +116,7 @@
 {
     if (self.center.y == initPoint.y) {
         [UIView animateWithDuration:0.6 animations:^{
-            self.center = CGPointMake(self.center.x, self.superview.center.y + 64 / 2);
+            self.center = CGPointMake(self.center.x, self.superview.center.y);
         }];
         
         UIImageView *currentIamgeView = [arrowImageViewArray objectAtIndex:currentIndex];
@@ -179,7 +179,7 @@
         [briefView addSubview:busNameLabel];
         
         UIButton *setoutchButton = [[UIButton alloc] initWithFrame:CGRectMake([self superview].bounds.size.width - 20 - 80 + [self superview].bounds.size.width * i, 20, 80, 40)];
-        setoutchButton.backgroundColor = iosBlue;
+        setoutchButton.backgroundColor = myColor;
         [setoutchButton setTitle:@"AR导航" forState:UIControlStateNormal];
         [setoutchButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [setoutchButton addTarget:self action:@selector(go:) forControlEvents:UIControlEventTouchUpInside];
@@ -461,7 +461,7 @@
             [detailsButton addSubview:detailsLabel];
             
             UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(50, 0 + 20 * i, 2, 20)];
-            lineView.backgroundColor = iosBlue;
+            lineView.backgroundColor = myColor;
             [detailsButton addSubview:lineView];
         }
         
@@ -598,12 +598,12 @@
     [cell addSubview:titleButton];
     
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(50, 30, 2, 95 - 30)];
-    lineView.backgroundColor = iosBlue;
+    lineView.backgroundColor = myColor;
     [cell addSubview:lineView];
     
     UILabel *strategyLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 40, 200, 30)];
     strategyLabel.text = [strategyArray objectAtIndex:row];
-    strategyLabel.textColor = iosBlue;
+    strategyLabel.textColor = myColor;
     [cell addSubview:strategyLabel];
     
     UILabel *strDetailsLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 72, 200, 12)];
@@ -633,12 +633,12 @@
     
     UIButton *collectButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, ([self superview].bounds.size.width - 10 * 2) / 2, 40)];
     [collectButton setTitle:@"收藏" forState:UIControlStateNormal];
-    [collectButton setTitleColor:iosBlue forState:UIControlStateNormal];
+    [collectButton setTitleColor:myColor forState:UIControlStateNormal];
     collectButton.layer.borderWidth = 0.5;
     [exView addSubview:collectButton];
     UIButton *shareButton = [[UIButton alloc] initWithFrame:CGRectMake(10 + ([self superview].bounds.size.width - 10 * 2) / 2, 10, ([self superview].bounds.size.width - 10 * 2) / 2, 40)];
     [shareButton setTitle:@"分享" forState:UIControlStateNormal];
-    [shareButton setTitleColor:iosBlue forState:UIControlStateNormal];
+    [shareButton setTitleColor:myColor forState:UIControlStateNormal];
     shareButton.layer.borderWidth = 0.5;
     [exView addSubview:shareButton];
 }

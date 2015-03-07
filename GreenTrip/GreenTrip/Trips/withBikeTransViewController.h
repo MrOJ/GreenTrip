@@ -43,6 +43,9 @@
     NSInteger poiNum;
     NSInteger POIIndex;
     
+    NSString *startBikeStopName;
+    NSString *endBikeStopName;
+    
     AMapPOI *bicycleStationPOI;
     
     AMapGeoPoint *bikeStartPoint;
@@ -59,6 +62,9 @@
 
 @property(nonatomic, strong) AMapGeoPoint *startPoint;
 @property(nonatomic, strong) AMapGeoPoint *endPoint;
+
+@property(nonatomic, strong) NSString *startName;
+@property(nonatomic, strong) NSString *endName;
 
 @property(nonatomic, strong) AMapPOI *bicyclePOI;
 

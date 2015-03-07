@@ -18,7 +18,6 @@
 		18B341081AA6D58300B19ED4 /* ARCoordinate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B340DF1AA6D58300B19ED4 /* ARCoordinate.m */; };
 		18B341091AA6D58300B19ED4 /* ARGeoCoordinate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B340E11AA6D58300B19ED4 /* ARGeoCoordinate.m */; };
 		18B3410A1AA6D58300B19ED4 /* ARViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B340E31AA6D58300B19ED4 /* ARViewController.m */; };
-		18B3410B1AA6D58300B19ED4 /* bikeSearchRoutesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B340E51AA6D58300B19ED4 /* bikeSearchRoutesViewController.m */; };
 		18B3410C1AA6D58300B19ED4 /* choosePreferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B340E71AA6D58300B19ED4 /* choosePreferViewController.m */; };
 		18B3410D1AA6D58300B19ED4 /* customActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B340E91AA6D58300B19ED4 /* customActionSheet.m */; };
 		18B3410E1AA6D58300B19ED4 /* ExtensibleTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B340EC1AA6D58300B19ED4 /* ExtensibleTableView.m */; };
@@ -98,8 +97,6 @@
 		18B340E11AA6D58300B19ED4 /* ARGeoCoordinate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARGeoCoordinate.m; sourceTree = "<group>"; };
 		18B340E21AA6D58300B19ED4 /* ARViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARViewController.h; sourceTree = "<group>"; };
 		18B340E31AA6D58300B19ED4 /* ARViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARViewController.m; sourceTree = "<group>"; };
-		18B340E41AA6D58300B19ED4 /* bikeSearchRoutesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bikeSearchRoutesViewController.h; sourceTree = "<group>"; };
-		18B340E51AA6D58300B19ED4 /* bikeSearchRoutesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bikeSearchRoutesViewController.m; sourceTree = "<group>"; };
 		18B340E61AA6D58300B19ED4 /* choosePreferViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = choosePreferViewController.h; sourceTree = "<group>"; };
 		18B340E71AA6D58300B19ED4 /* choosePreferViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = choosePreferViewController.m; sourceTree = "<group>"; };
 		18B340E81AA6D58300B19ED4 /* customActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = customActionSheet.h; path = ../customActionSheet.h; sourceTree = "<group>"; };
@@ -266,8 +263,6 @@
 				18B341651AA6D8E500B19ED4 /* ExtensibleTableView */,
 				18B340FD1AA6D58300B19ED4 /* Utility */,
 				18B340D91AA6D58300B19ED4 /* ARController */,
-				18B340E41AA6D58300B19ED4 /* bikeSearchRoutesViewController.h */,
-				18B340E51AA6D58300B19ED4 /* bikeSearchRoutesViewController.m */,
 				18B340EF1AA6D58300B19ED4 /* SearchRoutesViewController.h */,
 				18B340F01AA6D58300B19ED4 /* SearchRoutesViewController.m */,
 				18B340E61AA6D58300B19ED4 /* choosePreferViewController.h */,
@@ -529,7 +524,6 @@
 				18B341091AA6D58300B19ED4 /* ARGeoCoordinate.m in Sources */,
 				18B341151AA6D58300B19ED4 /* textWithBikeTransDetailsView.m in Sources */,
 				18B341071AA6D58300B19ED4 /* ARController.m in Sources */,
-				18B3410B1AA6D58300B19ED4 /* bikeSearchRoutesViewController.m in Sources */,
 				18B341141AA6D58300B19ED4 /* textWalkingRoutesDetailsView.m in Sources */,
 				18B340B31AA6D4CC00B19ED4 /* AppDelegate.m in Sources */,
 				18B341181AA6D58300B19ED4 /* LineDashPolyline.m in Sources */,

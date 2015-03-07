@@ -15,7 +15,7 @@
 
 @implementation withBikeTransViewController
 
-@synthesize startPoint,endPoint,bicyclePOI;
+@synthesize startPoint,endPoint,bicyclePOI,startName,endName;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -59,8 +59,10 @@
     //发起路径搜索
     [search AMapNavigationSearch: naviRequest];
     
-    textWithBikeTransDV = [[textWithBikeTransDetailsView alloc] initWithFrame:CGRectMake(-1, myMapView.bounds.size.height - 74, myMapView.bounds.size.width + 2, self.view.bounds.size.height - 64 + 1)];
+    textWithBikeTransDV = [[textWithBikeTransDetailsView alloc] initWithFrame:CGRectMake(-1, myMapView.bounds.size.height - 134, myMapView.bounds.size.width + 2, self.view.bounds.size.height - 64 + 1)];
     textWithBikeTransDV.dragEnable = YES;
+    textWithBikeTransDV.startName = startName;
+    textWithBikeTransDV.endName = endName;
     [myMapView addSubview:textWithBikeTransDV];
 }
 
@@ -255,7 +257,7 @@
                     
                     AMapPOI *findPOI = [bicyclePOIArray objectAtIndex:poiNum];
                     NSLog(@"the bicyce station is:%@",findPOI.name);
-                    
+                    endBikeStopName = findPOI.name;
                     isFind = YES;
                     POIIndex = poiNum;
                     bicyclePOI = findPOI;
@@ -282,7 +284,7 @@
                     
                     AMapPOI *findPOI = [bicyclePOIArray objectAtIndex:poiNum];
                     NSLog(@"the bicyce station is:%@",findPOI.name);
-                    
+                    endBikeStopName = findPOI.name;
                     isFind = YES;
                     POIIndex = poiNum;
                     
@@ -326,6 +328,8 @@
                     AMapPOI *findPOI = [bicyclePOIArray objectAtIndex:poiNum];
                     NSLog(@"the bicyce station is:%@",findPOI.name);
                     
+                    endBikeStopName = findPOI.name;
+                    
                     bicyclePOI = findPOI;
                     
                     busRoute = response.route;
@@ -354,6 +358,7 @@
                     
                     AMapPOI *findPOI = [bicyclePOIArray objectAtIndex:poiNum];
                     NSLog(@"the bicyce station is:%@",findPOI.name);
+                    endBikeStopName = findPOI.name;
                     bicyclePOI = findPOI;
                     busRoute = response.route;
                     NSLog(@"find bike Point = %@",findPOI.location);
@@ -401,8 +406,10 @@
             
             [allRoutesDictionary setObject:response.route forKey:@"bike"];
             
-            textWithBikeTransDV.flag = flag;
-            textWithBikeTransDV.busName = busName;
+            textWithBikeTransDV.flag                = flag;
+            textWithBikeTransDV.busName             = busName;
+            textWithBikeTransDV.startBikeStopName   = startBikeStopName;
+            textWithBikeTransDV.endBikeStopName     = endBikeStopName;
             textWithBikeTransDV.allRoutesDictionary = allRoutesDictionary;
             [textWithBikeTransDV buildingView];
         }
@@ -430,7 +437,7 @@
                 AMapPOI *poi = response.pois[0];
                 
                 bikeStartPoint = poi.location;
-                
+                startBikeStopName = poi.name;
                 //NSLog(@"bikeStartPoint = %@")
                 
                 [self callBicyclePOI:poi.location rasius:3000];

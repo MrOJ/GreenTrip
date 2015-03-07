@@ -12,6 +12,7 @@
 #import "ExtensibleTableView.h"
 
 #define iosBlue [UIColor colorWithRed:28.0 / 255.0f green:98 / 255.0f blue:255.0 / 255.0f alpha:1.0f]
+#define myColor [UIColor colorWithRed:119.0 / 255.0f green:185.0 / 255.0f blue:67.0 / 255.0f alpha:1.0f]
 
 @interface textWalkingRoutesDetailsView : UIView<UIGestureRecognizerDelegate,UITableViewDataSource,UITableViewDelegate>
 {
