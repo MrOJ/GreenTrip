@@ -238,6 +238,9 @@
                     [self drawAnnotationAndOverlay];
                     
                     textWithBikeTransDV.flag = flag;
+                    textWithBikeTransDV.busName             = busName;
+                    textWithBikeTransDV.startBikeStopName   = startBikeStopName;
+                    textWithBikeTransDV.endBikeStopName     = endBikeStopName;
                     textWithBikeTransDV.busName = [self processBusResultData:response];
                     textWithBikeTransDV.allRoutesDictionary = allRoutesDictionary;
                     [textWithBikeTransDV buildingView];
@@ -297,7 +300,8 @@
                     busName = [self processBusResultData:response];
                     
                     //最后查找自行车线路
-                    search = [[AMapSearchAPI alloc] initWithSearchKey:@"f57ba48c60c524724d3beff7f7063af9" Delegate:self];
+                    
+                    //search = [[AMapSearchAPI alloc] initWithSearchKey:@"f57ba48c60c524724d3beff7f7063af9" Delegate:self];
                     
                     AMapNavigationSearchRequest *naviRequest= [[AMapNavigationSearchRequest alloc] init];
                     naviRequest.searchType = AMapSearchType_NaviWalking;
@@ -307,6 +311,8 @@
                     naviRequest.city = @"杭州";
                     //发起路径搜索
                     [search AMapNavigationSearch: naviRequest];
+                    
+                    //NSLog(@"bike request = %@",naviRequest);
                 }
                 
                 //NSLog(@"poiNum = %ld",(long)poiNum);
@@ -365,8 +371,9 @@
                     [allRoutesDictionary setObject:response.route forKey:@"bus"];
                     busName = [self processBusResultData:response];
                     
+                    
                     //最后查找自行车线路
-                    search = [[AMapSearchAPI alloc] initWithSearchKey:@"f57ba48c60c524724d3beff7f7063af9" Delegate:self];
+                    //search = [[AMapSearchAPI alloc] initWithSearchKey:@"f57ba48c60c524724d3beff7f7063af9" Delegate:self];
                     AMapNavigationSearchRequest *naviRequest= [[AMapNavigationSearchRequest alloc] init];
                     naviRequest.searchType = AMapSearchType_NaviWalking;
                     //naviRequest.requireExtension = YES;
@@ -375,6 +382,7 @@
                     naviRequest.city = @"杭州";
                     //发起路径搜索
                     [search AMapNavigationSearch: naviRequest];
+                    
                 }
                 
             }
@@ -395,10 +403,11 @@
                 [findFromDesArray removeAllObjects];
                 NSLog(@"Not Found");
             }
-        } else if (isFind == YES && isBreak == NO) {
-            NSLog(@"bike route result");
+        } else if (isFind == YES && isBreak == NO && request.searchType == 17) {
+            //NSLog(@"bike route result");
             //NSLog(@"bike route = %@",response.route);
-            isBreak = YES;
+            //NSLog(@"request = %@",request);
+            //isBreak = YES;
             
             bikeRoute = response.route;
             
@@ -620,7 +629,7 @@
     }
     
     //添加标注
-    /*
+    
     AMapGeoPoint *walkOrigin = walkingRoute.origin;
     MAPointAnnotation *walkOriginAnnotation = [[MAPointAnnotation alloc] init];
     walkOriginAnnotation.coordinate = CLLocationCoordinate2DMake(walkOrigin.latitude, walkOrigin.longitude);
@@ -650,8 +659,8 @@
     MAPointAnnotation *busDesAnnotation = [[MAPointAnnotation alloc] init];
     busDesAnnotation.coordinate = CLLocationCoordinate2DMake(busDes.latitude, busDes.longitude);
     [pointAnnotationArray addObject:busDesAnnotation];
-    */
     
+    /*
     AMapGeoPoint *busOrigin = startPoint;
     MAPointAnnotation *busOriginAnnotation = [[MAPointAnnotation alloc] init];
     busOriginAnnotation.coordinate = CLLocationCoordinate2DMake(busOrigin.latitude, busOrigin.longitude);
@@ -661,6 +670,7 @@
     MAPointAnnotation *busDesAnnotation = [[MAPointAnnotation alloc] init];
     busDesAnnotation.coordinate = CLLocationCoordinate2DMake(busDes.latitude, busDes.longitude);
     [pointAnnotationArray addObject:busDesAnnotation];
+    */
     
     [myMapView addOverlays:walkingPolylineArray];
     [myMapView addOverlays:bikePolylineArray];
@@ -669,7 +679,7 @@
     [myMapView addAnnotations:pointAnnotationArray];
 
     myMapView.visibleMapRect = [CommonUtility minMapRectForAnnotations:pointAnnotationArray];
-
+    
 }
 
 //实现标注代理
@@ -808,6 +818,15 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+/*
+#ifdef _FOR_DEBUG_
+-(BOOL) respondsToSelector:(SEL)aSelector {
+    printf("SELECTOR: %s\n", [NSStringFromSelector(aSelector) UTF8String]);
+    return [super respondsToSelector:aSelector];
+}
+#endif
+*/
 
 /*
 #pragma mark - Navigation

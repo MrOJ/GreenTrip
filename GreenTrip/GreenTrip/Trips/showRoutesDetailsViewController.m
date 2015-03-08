@@ -79,6 +79,7 @@
         textWRDView.walkingRoute = allRoutes;
         textWRDView.startName = startName;
         textWRDView.endName = endName;
+        textWRDView.wayFlag = wayFlag;
         
         [myMapView addSubview:textWRDView];
         [textWRDView buildingView];
@@ -87,6 +88,7 @@
         self.navigationItem.title = @"自行车路线";
         textWRDView = [[textWalkingRoutesDetailsView alloc] initWithFrame:CGRectMake(-1, myMapView.bounds.size.height - 134, myMapView.bounds.size.width + 2, self.view.bounds.size.height - 64 + 1)];
         textWRDView.dragEnable = YES;
+        textWRDView.wayFlag = wayFlag;
         textWRDView.walkingRoute = allRoutes;
         textWRDView.startName = startName;
         textWRDView.endName = endName;

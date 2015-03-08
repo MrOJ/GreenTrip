@@ -58,6 +58,8 @@
     
     NSMutableDictionary *allRoutesDictionary;     //存放所有线路
     NSString *busName;
+    
+    //AMapNavigationSearchRequest *naviBikeRequest;
 }
 
 @property(nonatomic, strong) AMapGeoPoint *startPoint;

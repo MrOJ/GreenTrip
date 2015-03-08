@@ -29,6 +29,7 @@
 }
 
 @property (nonatomic) BOOL dragEnable;
+@property (nonatomic) NSInteger wayFlag;
 @property (nonatomic,strong) AMapRoute *walkingRoute;
 
 @property (nonatomic, strong) NSString *startName;                //起点名称

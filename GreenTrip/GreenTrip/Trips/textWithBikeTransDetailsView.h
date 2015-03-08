@@ -38,8 +38,10 @@
     NSMutableArray *detailWaysArray;   //记录具体的行走指示或者途径公交站点，点击后显示详细信息
     NSMutableArray *flagArray;         //用于标记是步行0还是公交1还是终点2
     
-    NSArray *bikePaths;
+    NSArray *bikeSteps;
     NSString *bikeStr;
+    
+    ExtensibleTableView *listTableView;
 }
 
 @property (nonatomic) BOOL dragEnable;

@@ -154,7 +154,8 @@
     detailWaysArray = [[NSMutableArray alloc] init];
     flagArray       = [[NSMutableArray alloc] init];
     
-    bikePaths = [[NSArray alloc] init];
+    bikeSteps = [[NSArray alloc] init];
+    
     
     UIView * briefView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [self superview].bounds.size.width, 84)];
     briefView.backgroundColor = [UIColor clearColor];
@@ -173,22 +174,25 @@
     
     [self getRoutesDetails:allRoutesDictionary];
     
+    
     UILabel *detailsLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 42, 320, 20)];
+    //detailsLabel.text = @"test";
     detailsLabel.text = [NSString stringWithFormat:@"共%@ | 步行%@ | 骑行%@ | 约%@",
                           [self distanceFormatted:totalDistance],
                           [self distanceFormatted:totalWalkingDistance],
                           [self distanceFormatted:totalBikeDistance],
                           [self timeFormatted:totalDuration]];;
+
     detailsLabel.textColor = [UIColor grayColor];
-    detailsLabel.font = [UIFont fontWithName:@"Heiti SC" size:12.0f];
+    detailsLabel.font = [UIFont fontWithName:@"Heiti SC" size:10.0f];
     [briefView addSubview:detailsLabel];
+    
     
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(10, 84, [self superview].bounds.size.width - 10 * 2, 0.5)];
     line.backgroundColor = [UIColor lightGrayColor];
     [self addSubview:line];
     
-    
-    ExtensibleTableView *listTableView = [[ExtensibleTableView alloc] initWithFrame:CGRectMake(0, 95, [self superview].bounds.size.width, [self superview].bounds.size.height - 159)];
+    listTableView = [[ExtensibleTableView alloc] initWithFrame:CGRectMake(0, 95, [self superview].bounds.size.width, [self superview].bounds.size.height - 99)];
     listTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     listTableView.showsHorizontalScrollIndicator = NO;
     listTableView.showsVerticalScrollIndicator   = NO;
@@ -209,6 +213,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    //若当前行被选中，则返回展开的cell
+    if([listTableView isEqualToSelectedIndexPath:indexPath])
+    {
+        return [self tableView:tableView extendedCellForRowAtIndexPath:indexPath];
+    }
+    
     //当前行数
     NSUInteger row=[indexPath row];
     
@@ -330,12 +340,34 @@
             [detailsButton addSubview:detailsLabel];
             
             UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(50, 0 + 20 * i, 2, 20)];
-            lineView.backgroundColor = myColor;
+            lineView.backgroundColor = iosBlue;
             [detailsButton addSubview:lineView];
         }
         
     } else if ([[flagArray objectAtIndex:row] isEqualToString:@"3"]) {   //自行车
+        [self creatBikeCell:cell inTheRow:row];
         
+        //添加具体的路段信息(自行车)
+        NSArray *stepsArray = [[NSArray alloc] init];
+        stepsArray = [detailWaysArray objectAtIndex:row];
+        UIButton *detailsButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 80, [self superview].bounds.size.width, 20 * stepsArray.count)];
+        //detailsButton.backgroundColor = [UIColor redColor];
+        [detailsButton addTarget:self action:@selector(showOnMap:) forControlEvents:UIControlEventTouchUpInside];
+        detailsButton.tag = row;
+        [cell addSubview:detailsButton];
+        
+        for (int i = 0; i < stepsArray.count; i ++) {
+            AMapStep *s = (AMapStep *)stepsArray[i];
+            UILabel *detailsLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 0 + 20 * i, 200, 12)];
+            detailsLabel.text = [s.instruction stringByReplacingOccurrencesOfString:@"步行" withString:@"骑行"];
+            detailsLabel.textColor = [UIColor blackColor];
+            detailsLabel.font = [UIFont fontWithName:@"Heiti SC" size:12.0f];
+            [detailsButton addSubview:detailsLabel];
+            
+            UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(50, 0 + 20 * i, 2, 20)];
+            lineView.backgroundColor = myColor;
+            [detailsButton addSubview:lineView];
+        }
     } else {                                                               //终点
         //创建额外的CellView
         [self createxCell:cell inTheRow:row];
@@ -357,7 +389,7 @@
     } else if ([[flagArray objectAtIndex:row] isEqualToString:@"2"]) {    //公交
         return 95 + 20 * detailsArray.count;
     } else if ([[flagArray objectAtIndex:row] isEqualToString:@"3"]) {    //自行车
-        return 95 + 20 * detailsArray.count;
+        return 80 + 20 * detailsArray.count;
     } else {                                                              //终点
         return 90;
     }
@@ -368,6 +400,10 @@
 //起始cell的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if([listTableView isEqualToSelectedIndexPath:indexPath])
+    {
+        return [self tableView:tableView extendedHeightForRowAtIndexPath:indexPath];
+    }
     
     NSInteger row = indexPath.row;
     
@@ -376,7 +412,7 @@
     } else if ([[flagArray objectAtIndex:row] isEqualToString:@"2"]) {    //公交
         return 95;
     } else if ([[flagArray objectAtIndex:row] isEqualToString:@"3"]){     //自行车
-        return 95;
+        return 80;
     } else {                                                   //终点
         return 90;
     }
@@ -389,7 +425,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    if ([listTableView isEqualToSelectedIndexPath:indexPath]) {
+        [listTableView shrinkCellWithAnimated:YES];
+    } else {
+        [listTableView extendCellAtIndexPath:indexPath animated:YES goToTop:NO];
+    }
 }
 
 
@@ -438,8 +478,18 @@
                 totalDuration += p.duration;
             }
             
+            //处理paths
+            NSMutableArray *temArray = [[NSMutableArray alloc] init];
+            for(AMapPath *p in route.paths) {
+                for (AMapStep *s in p.steps) {
+                    [temArray addObject:s];
+                }
+            }
+            NSArray *walkArray = [[NSArray alloc] init];
+            walkArray = [temArray copy];
+            
             [strategyArray addObject:[NSString stringWithFormat:@"步行%@",[self distanceFormatted:walkingDis]]];
-            [detailWaysArray addObject:route.paths];     //统一储存steps
+            [detailWaysArray addObject:walkArray];     //统一储存steps
             [strDetailsArray addObject:@""];
             [flagArray addObject:@"0"];              //0表示纯粹步行
         } else if ([key isEqualToString:@"bike"]) {
@@ -451,8 +501,18 @@
                 totalDuration += p.duration / 2.5 ;    //自行车的速度接近步行的2.5倍
             }
             
+            //处理paths
+            NSMutableArray *temArray = [[NSMutableArray alloc] init];
+            for(AMapPath *p in route.paths) {
+                for (AMapStep *s in p.steps) {
+                    [temArray addObject:s];
+                }
+            }
+
+            bikeSteps = [temArray copy];
+            
             bikeStr = [NSString stringWithFormat:@"骑行%@",[self distanceFormatted:bikeDis]];
-            bikePaths = route.paths;
+            //bikePaths = route.paths;
             //[stopArray addObject:startBikeStopName];
             //[stopArray addObject:endBikeStopName];
             
@@ -475,10 +535,10 @@
                     [stopArray addObject:s.busline.departureStop.name];
                     [stopArray addObject:s.busline.arrivalStop.name];
                     
-                    [strategyArray addObject:[NSString stringWithFormat:@"%@方向 | %ld站",[self getBusDirection:s.busline.name],(long)s.busline.busStopsNum]];
+                    [strategyArray addObject:[NSString stringWithFormat:@"乘坐%@",[self busNameTrans:s.busline.name]]];
                     
                     [detailWaysArray addObject:s.busline.busStops];
-                    [strDetailsArray addObject:@""];
+                    [strDetailsArray addObject:[NSString stringWithFormat:@"%@方向 | %ld站",[self getBusDirection:s.busline.name],(long)s.busline.busStopsNum]];
                     [flagArray addObject:@"2"];      //2表示公交
                 }
             }
@@ -490,7 +550,7 @@
         [stopArray insertObject:startBikeStopName atIndex:1];
         
         [strategyArray insertObject:bikeStr atIndex:1];
-        [detailWaysArray insertObject:bikePaths atIndex:1];
+        [detailWaysArray insertObject:bikeSteps atIndex:1];
         [strDetailsArray insertObject:@"" atIndex:1];
         [flagArray insertObject:@"3" atIndex:1];                    //3表示骑自行车
         
@@ -499,7 +559,7 @@
         [stopArray addObject:endBikeStopName];
         
         [strategyArray addObject:bikeStr];
-        [detailWaysArray addObject:bikePaths];
+        [detailWaysArray addObject:bikeSteps];
         [strDetailsArray addObject:@""];
         [flagArray addObject:@"3"];                                //3表示骑自行车
     }
@@ -555,7 +615,7 @@
 - (void)creatBikeCell:(UITableViewCell *)cell inTheRow:(NSInteger)row
 {
     
-    UIButton *titleButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, [self superview].bounds.size.width - 10 *2, 30)];
+    UIButton *titleButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, [self superview].bounds.size.width, 30)];
     titleButton.backgroundColor = [UIColor groupTableViewBackgroundColor];
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 0, 200, 30)];
     titleLabel.text = [stopArray objectAtIndex:row];
@@ -571,6 +631,10 @@
     strategyLabel.textColor = myColor;
     [cell addSubview:strategyLabel];
     
+    UIImageView *iconImg = [[UIImageView alloc] initWithFrame:CGRectMake(20, 45, 20, 20)];
+    iconImg.image = [UIImage imageNamed:@"bikeIcon"];
+    [cell addSubview:iconImg];
+    
 }
 
 //构建公交车的cell
@@ -578,7 +642,7 @@
 {
     UIButton *titleButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, [self superview].bounds.size.width - 10 *2, 30)];
     titleButton.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 0, 200, 30)];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 0, 320, 30)];
     titleLabel.text = [stopArray objectAtIndex:row];
     [titleButton addSubview:titleLabel];
     [cell addSubview:titleButton];
@@ -589,7 +653,7 @@
     
     UILabel *strategyLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 40, 200, 30)];
     strategyLabel.text = [strategyArray objectAtIndex:row];
-    strategyLabel.textColor = myColor;
+    strategyLabel.textColor = iosBlue;
     [cell addSubview:strategyLabel];
     
     UILabel *strDetailsLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 72, 200, 12)];
@@ -692,6 +756,18 @@
     NSString *result2 = [result substringToIndex:range2.location];
     return result2;
 }
+
+//线路名称处理函数
+- (NSString *)busNameTrans:(NSString *)originName
+{
+    NSRange subRange = [originName rangeOfString:@"("];
+    if (subRange.length == 0 && subRange.location == 0) {
+        return originName;
+    } else {
+        return [originName substringToIndex:subRange.location];
+    }
+}
+
 /*
  // Only override drawRect: if you perform custom drawing.
  // An empty implementation adversely affects performance during animation.

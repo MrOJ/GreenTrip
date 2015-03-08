@@ -10,7 +10,7 @@
 
 @implementation textWalkingRoutesDetailsView
 
-@synthesize dragEnable,walkingRoute,startName,endName;
+@synthesize dragEnable,walkingRoute,startName,endName,wayFlag;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -293,7 +293,11 @@
     for (AMapPath *p in route.paths) {
         for (AMapStep *s in p.steps) {
             //NSLog(@"instruction = %@",s.instruction);
-            [stepArray addObject:s.instruction];
+            if (wayFlag == 2) {
+                [stepArray addObject:s.instruction];
+            } else {
+                [stepArray addObject:[s.instruction stringByReplacingOccurrencesOfString:@"步行" withString:@"骑行"]];
+            }
             //NSLog(@"polyline = %@",s.polyline);
             [originPonitArray addObject:[self getAnnotationFromString:s.polyline][0]];
         }
