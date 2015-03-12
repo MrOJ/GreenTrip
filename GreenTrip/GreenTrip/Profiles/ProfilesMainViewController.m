@@ -21,6 +21,8 @@
     // Do any additional setup after loading the view.
     self.portraitImgView.layer.cornerRadius = self.portraitImgView.frame.size.width / 2;
     self.portraitImgView.clipsToBounds = YES;
+    self.portraitImgView.layer.borderWidth = 3.0f;
+    self.portraitImgView.layer.borderColor = [UIColor whiteColor].CGColor;
 }
 
 - (void)didReceiveMemoryWarning {
