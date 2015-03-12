@@ -19,9 +19,20 @@
 
 @synthesize index,allRoutes,buslineArray,totalDisArray,walkDisArray,durationArray,startName,endName,wayFlag;
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    //NSLog(@"hello@@");
+    self.navigationController.navigationBarHidden = NO;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //self.navigationController.navigationBarHidden = NO;
+    
+    //NSLog(@"Hello@");
+    
     NSString *myKey = @"f57ba48c60c524724d3beff7f7063af9";
     [MAMapServices sharedServices].apiKey = myKey;
     search = [[AMapSearchAPI alloc] initWithSearchKey:myKey Delegate:self];

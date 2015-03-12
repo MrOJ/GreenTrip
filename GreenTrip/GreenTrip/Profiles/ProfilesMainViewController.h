@@ -10,4 +10,6 @@
 
 @interface ProfilesMainViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UIImageView *portraitImgView;
+
 @end

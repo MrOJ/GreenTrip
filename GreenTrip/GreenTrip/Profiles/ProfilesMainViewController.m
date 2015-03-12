@@ -14,9 +14,13 @@
 
 @implementation ProfilesMainViewController
 
+@synthesize portraitImgView;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.portraitImgView.layer.cornerRadius = self.portraitImgView.frame.size.width / 2;
+    self.portraitImgView.clipsToBounds = YES;
 }
 
 - (void)didReceiveMemoryWarning {

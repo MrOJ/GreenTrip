@@ -70,14 +70,13 @@
     self.pickerController.navigationBar.hidden = NO;
 	self.pickerController.cameraOverlayView = _hudView;
     
-    
     noticeView = [[UIView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 50, [UIScreen mainScreen].bounds.size.width, 50)];
     noticeView.layer.cornerRadius = 5.0;
     noticeView.layer.masksToBounds = YES;
     //设置背景透明度
     [noticeView setBackgroundColor:[UIColor whiteColor]];
     
-    descLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 15, [UIScreen mainScreen].bounds.size.height, 20)];
+    descLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 15, [UIScreen mainScreen].bounds.size.width, 20)];
     descLabel.text = @"正在查找目标站点...";
     [descLabel setTextColor:[UIColor blackColor]];
     [noticeView addSubview:descLabel];

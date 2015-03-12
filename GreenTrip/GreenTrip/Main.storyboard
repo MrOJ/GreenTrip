@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="FYR-EA-tLT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="FYR-EA-tLT">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -97,7 +97,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="mbB-oQ-UmN" secondAttribute="bottom" constant="13" id="8Pc-Vt-ouG"/>
                                             <constraint firstItem="nI9-tw-WTV" firstAttribute="leading" secondItem="Tpj-Rp-gjr" secondAttribute="leading" constant="60" id="C53-oc-OXW"/>
@@ -215,7 +215,7 @@
         <!--ProfilesMainViewController-->
         <scene sceneID="SOo-Pu-peg">
             <objects>
-                <viewController title="ProfilesMainViewController" id="BwU-YD-Aj3" sceneMemberID="viewController">
+                <viewController title="ProfilesMainViewController" id="BwU-YD-Aj3" customClass="ProfilesMainViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mG0-SC-bNU"/>
                         <viewControllerLayoutGuide type="bottom" id="Gg0-yY-1o2"/>
@@ -223,13 +223,33 @@
                     <view key="view" contentMode="scaleToFill" id="vrG-O6-vYX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MBx-KL-hdx">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="244"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="个人资料" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TGh-up-d0l">
+                                        <rect key="frame" x="126" y="26" width="68" height="21"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="proxy.png" translatesAutoresizingMaskIntoConstraints="NO" id="oIW-gA-RgV">
+                                        <rect key="frame" x="85" y="62" width="150" height="141"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.46666666670000001" green="0.72549019609999998" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Kxy-M6-dh6"/>
+                    <navigationItem key="navigationItem" title="我的信息" id="Kxy-M6-dh6"/>
+                    <connections>
+                        <outlet property="portraitImgView" destination="oIW-gA-RgV" id="9Jp-fu-AYY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YCT-h5-Igt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="997.86666666666667" y="779.10666666666668"/>
+            <point key="canvasLocation" x="997" y="779"/>
         </scene>
         <!--SettingMainViewController-->
         <scene sceneID="nI4-Y0-W28">
@@ -332,9 +352,10 @@
         <!--我的-->
         <scene sceneID="odo-Ln-f9G">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nbv-qR-D6R" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="nbv-qR-D6R" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="我的" image="tabBar3.png" id="h2B-5g-ChJ"/>
                     <toolbarItems/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="y5g-Jf-E2a">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -356,6 +377,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="proxy.png" width="580" height="515"/>
         <image name="tabBar1.png" width="30" height="20"/>
         <image name="tabBar2.png" width="30" height="20"/>
         <image name="tabBar3.png" width="30" height="20"/>

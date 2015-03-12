@@ -31,7 +31,7 @@
     
     arController.busStopArray = busStopArray;
     
-    //self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationBarHidden = YES;
     
     //[MAMapServices sharedServices].apiKey = @"f57ba48c60c524724d3beff7f7063af9";
     //myMapView = [[MAMapView alloc] init];
@@ -44,7 +44,20 @@
     // Do any additional setup after loading the view.
     [self.arController presentModalARControllerAnimated:NO];
     
+    
     UINavigationBar *navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
+    navigationBar.backgroundColor = myColor;
+    [self.view addSubview:navigationBar];
+    
+    UIButton *exitButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 25, 50, 30)];
+    [exitButton setTitle:@"返回" forState:UIControlStateNormal];
+    [exitButton.titleLabel setTextColor:[UIColor whiteColor]];
+    [exitButton  addTarget:self action:@selector(exit:) forControlEvents:UIControlEventTouchUpInside];
+    [navigationBar addSubview:exitButton];
+    
+    /*
+    UIView *navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, -50, self.view.bounds.size.width, 64)];
+    navigationBar.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [self.view addSubview:navigationBar];
     
     UIButton *exitButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 25, 50, 30)];
@@ -52,6 +65,7 @@
     [exitButton.titleLabel setTextColor:myColor];
     [exitButton  addTarget:self action:@selector(exit:) forControlEvents:UIControlEventTouchUpInside];
     [navigationBar addSubview:exitButton];
+    */
     
     //------------------------------------
     //[self.navigationController setNavigationBarHidden:NO];
@@ -106,7 +120,7 @@ updatingLocation:(BOOL)updatingLocation
     [self.arController dismissModalARController:NO];
     //[self.arController.rootViewController dismissViewControllerAnimated:NO completion:nil];
     //[self.arController.rootViewController.navigationController popToRootViewControllerAnimated:NO];
-    
+    //self.navigationController.navigationBarHidden = NO;
 }
 
 - (void)shakeEvent
