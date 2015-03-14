@@ -64,6 +64,8 @@
 		18BCABA51AA9EA1E00827C66 /* tabBar2.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BCABA11AA9EA1E00827C66 /* tabBar2.png */; };
 		18BCABA61AA9EA1E00827C66 /* tabBar3.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BCABA21AA9EA1E00827C66 /* tabBar3.png */; };
 		18BCABA71AA9EA1E00827C66 /* tabBar4.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BCABA31AA9EA1E00827C66 /* tabBar4.png */; };
+		18F769711AB42C6A00705FBA /* finding_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F769701AB42C6A00705FBA /* finding_logo.png */; };
+		18F769851AB45C8800705FBA /* collectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F769841AB45C8800705FBA /* collectionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +162,9 @@
 		18BCABA11AA9EA1E00827C66 /* tabBar2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabBar2.png; sourceTree = "<group>"; };
 		18BCABA21AA9EA1E00827C66 /* tabBar3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabBar3.png; sourceTree = "<group>"; };
 		18BCABA31AA9EA1E00827C66 /* tabBar4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabBar4.png; sourceTree = "<group>"; };
+		18F769701AB42C6A00705FBA /* finding_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = finding_logo.png; sourceTree = "<group>"; };
+		18F769831AB45C8800705FBA /* collectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = collectionViewController.h; sourceTree = "<group>"; };
+		18F769841AB45C8800705FBA /* collectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = collectionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -318,6 +323,8 @@
 			children = (
 				18B3411C1AA6D5A600B19ED4 /* FindingMainViewController.h */,
 				18B3411D1AA6D5A600B19ED4 /* FindingMainViewController.m */,
+				18F769831AB45C8800705FBA /* collectionViewController.h */,
+				18F769841AB45C8800705FBA /* collectionViewController.m */,
 			);
 			path = Findings;
 			sourceTree = "<group>";
@@ -362,6 +369,7 @@
 		18B341431AA6D81900B19ED4 /* picResource */ = {
 			isa = PBXGroup;
 			children = (
+				18F769701AB42C6A00705FBA /* finding_logo.png */,
 				18AE83281AB1CE4400384C47 /* proxy.png */,
 				18BCABA01AA9EA1E00827C66 /* tabBar1.png */,
 				18BCABA11AA9EA1E00827C66 /* tabBar2.png */,
@@ -486,6 +494,7 @@
 				18B341581AA6D81A00B19ED4 /* bikeIcon.png in Resources */,
 				18BCABA51AA9EA1E00827C66 /* tabBar2.png in Resources */,
 				18B341591AA6D81A00B19ED4 /* busIcon.png in Resources */,
+				18F769711AB42C6A00705FBA /* finding_logo.png in Resources */,
 				18B340D71AA6D55700B19ED4 /* Main.storyboard in Resources */,
 				18B340C11AA6D4CC00B19ED4 /* LaunchScreen.xib in Resources */,
 				18BCABA71AA9EA1E00827C66 /* tabBar4.png in Resources */,
@@ -524,6 +533,7 @@
 				18B341101AA6D58300B19ED4 /* SearchRoutesViewController.m in Sources */,
 				18B3410C1AA6D58300B19ED4 /* choosePreferViewController.m in Sources */,
 				18B341111AA6D58300B19ED4 /* showRoutesDetailsViewController.m in Sources */,
+				18F769851AB45C8800705FBA /* collectionViewController.m in Sources */,
 				18B3411A1AA6D58300B19ED4 /* withBikeTransViewController.m in Sources */,
 				18B341091AA6D58300B19ED4 /* ARGeoCoordinate.m in Sources */,
 				18B341151AA6D58300B19ED4 /* textWithBikeTransDetailsView.m in Sources */,

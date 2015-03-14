@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "collectionViewController.h"
 
-@interface FindingMainViewController : UIViewController
+@interface FindingMainViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+{
+    NSArray *titleArray;
+}
+
+@property (strong, nonatomic) IBOutlet UITableView *findingTableViewController;
 
 @end
