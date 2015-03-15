@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PSCollectionView.h"
+#import "PSBroView.h"
 
-@interface collectionViewController : UIViewController
+@interface collectionViewController : UIViewController <PSCollectionViewDelegate, PSCollectionViewDataSource>
 {
-
+    NSMutableArray *itemsArray;
 }
+
+@property (nonatomic, strong) PSCollectionView *collectionView;
 
 @end
