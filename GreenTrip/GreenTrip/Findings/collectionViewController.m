@@ -23,10 +23,16 @@
     
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
-    self.collectionView = [[PSCollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - self.tabBarController.tabBar.bounds.size.height)];
+    self.collectionView = [[PSCollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 114)];
+    //self.collectionView = [[PSCollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100)];
     [self.view addSubview:self.collectionView];
+    self.collectionView.showsVerticalScrollIndicator = NO;
+    //NSLog(@"%f",self.tabBarController.tabBar.bounds.size.height);
+    
+    /*
     self.collectionView.collectionViewDelegate = self;
     self.collectionView.collectionViewDataSource = self;
+    self.collectionView.showsVerticalScrollIndicator = NO;
     self.collectionView.backgroundColor = [UIColor clearColor];
     self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
@@ -37,14 +43,57 @@
     loadingLabel.text = @"Loading...";
     loadingLabel.textAlignment = NSTextAlignmentCenter;
     self.collectionView.loadingView = loadingLabel;
+    */
+    
+    __weak typeof(self) weakSelf = self;
+    [self.collectionView addLegendHeaderWithRefreshingBlock:^{
+        // 进入刷新状态后会自动调用这个block
+        [weakSelf loadNewData];
+    }];
+    
+    [self.collectionView addLegendFooterWithRefreshingBlock:^{
+        // 下拉刷新
+        [weakSelf loadMoreData];
+    }];
+    
+    
+    // 马上进入刷新状态
+    //[self.collectionView.legendHeader beginRefreshing];
     
     itemsArray = [[NSMutableArray alloc] init];
-    
     for (int i = 1; i < 11; i ++) {
         [itemsArray addObject:[NSString stringWithFormat:@"%d.jpeg",i]];
     }
     
     [self.collectionView reloadData];
+}
+
+- (void)loadNewData {
+    NSLog(@"refresh!");
+    
+    self.collectionView.collectionViewDelegate = self;
+    self.collectionView.collectionViewDataSource = self;
+    self.collectionView.showsVerticalScrollIndicator = NO;
+    self.collectionView.backgroundColor = [UIColor clearColor];
+    self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
+    self.collectionView.numColsPortrait = 2;
+    self.collectionView.numColsLandscape = 3;
+    
+    [self.collectionView reloadData];
+    
+    [self.collectionView.legendHeader endRefreshing];   //结束刷新
+    
+}
+
+- (void)loadMoreData {
+    for (int i = 1; i < 5; i ++) {
+        [itemsArray addObject:[NSString stringWithFormat:@"%d.jpeg",i]];
+    }
+    
+    [self.collectionView reloadData];
+    
+    [self.collectionView.legendFooter endRefreshing];
 }
 
 #pragma mark - PSCollectionViewDelegate and DataSource

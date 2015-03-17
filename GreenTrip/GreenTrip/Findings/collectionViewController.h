@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PSCollectionView.h"
 #import "PSBroView.h"
+#import "MJRefresh.h"
 
 @interface collectionViewController : UIViewController <PSCollectionViewDelegate, PSCollectionViewDataSource>
 {
