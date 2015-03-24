@@ -21,6 +21,18 @@
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"绿出行圈";
     
+    UIView *itemView = [[UIView alloc] initWithFrame:CGRectMake((self.view.bounds.size.width - 100) / 2, 10, 100, 30)];
+    itemView.backgroundColor = [UIColor clearColor];
+    self.navigationItem.titleView = itemView;
+    
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.text = @"绿出行圈";
+    titleLabel.font = [UIFont boldSystemFontOfSize:17.0f];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    [itemView addSubview:titleLabel];
+    
+    
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
     self.collectionView = [[PSCollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 114)];

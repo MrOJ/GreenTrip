@@ -19,6 +19,7 @@
 		184080331AB8449B00E89AB3 /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 184080251AB8449B00E89AB3 /* UIScrollView+MJExtension.m */; };
 		184080341AB8449B00E89AB3 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 184080271AB8449B00E89AB3 /* UIScrollView+MJRefresh.m */; };
 		184080351AB8449B00E89AB3 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 184080291AB8449B00E89AB3 /* UIView+MJExtension.m */; };
+		1846F9251AC18C95006067BA /* 4设置未激活130x80@4x副本.png in Resources */ = {isa = PBXBuildFile; fileRef = 1846F9241AC18C95006067BA /* 4设置未激活130x80@4x副本.png */; };
 		18AE83291AB1CE4400384C47 /* proxy.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AE83281AB1CE4400384C47 /* proxy.png */; };
 		18B340B01AA6D4CC00B19ED4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B340AF1AA6D4CC00B19ED4 /* main.m */; };
 		18B340B31AA6D4CC00B19ED4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B340B21AA6D4CC00B19ED4 /* AppDelegate.m */; };
@@ -128,6 +129,7 @@
 		184080271AB8449B00E89AB3 /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		184080281AB8449B00E89AB3 /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		184080291AB8449B00E89AB3 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
+		1846F9241AC18C95006067BA /* 4设置未激活130x80@4x副本.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "4设置未激活130x80@4x副本.png"; path = "images/4设置未激活130x80@4x副本.png"; sourceTree = "<group>"; };
 		18AE83281AB1CE4400384C47 /* proxy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = proxy.png; sourceTree = "<group>"; };
 		18B340AA1AA6D4CC00B19ED4 /* GreenTrip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GreenTrip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18B340AE1AA6D4CC00B19ED4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -474,6 +476,7 @@
 				18BCABA11AA9EA1E00827C66 /* tabBar2.png */,
 				18BCABA21AA9EA1E00827C66 /* tabBar3.png */,
 				18BCABA31AA9EA1E00827C66 /* tabBar4.png */,
+				1846F9241AC18C95006067BA /* 4设置未激活130x80@4x副本.png */,
 				18B341481AA6D81900B19ED4 /* bikeIcon.png */,
 				18B341491AA6D81900B19ED4 /* busIcon.png */,
 				18B3414A1AA6D81900B19ED4 /* checkmark.png */,
@@ -635,6 +638,7 @@
 				18B341421AA6D7CE00B19ED4 /* AMap.bundle in Resources */,
 				18B3415C1AA6D81A00B19ED4 /* disclosure_arrow.png in Resources */,
 				18F76A1D1AB5BB0B00705FBA /* 3.jpeg in Resources */,
+				1846F9251AC18C95006067BA /* 4设置未激活130x80@4x副本.png in Resources */,
 				18F76A1B1AB5BB0B00705FBA /* 10.jpeg in Resources */,
 				18B341601AA6D81A00B19ED4 /* truck.png in Resources */,
 				18B341611AA6D81A00B19ED4 /* walkingIcon.png in Resources */,

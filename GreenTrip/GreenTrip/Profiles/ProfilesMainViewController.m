@@ -16,6 +16,14 @@
 
 @synthesize portraitImgView;
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    
+    self.navigationController.navigationBarHidden = YES;
+    self.tabBarController.tabBar.hidden = NO;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

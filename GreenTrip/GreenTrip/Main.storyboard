@@ -286,6 +286,19 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z25-GS-7v5">
+                                        <rect key="frame" x="279" y="31" width="33" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="33" id="fNR-6z-vbw"/>
+                                            <constraint firstAttribute="height" constant="20" id="mGI-1T-dPG"/>
+                                        </constraints>
+                                        <state key="normal" image="4设置未激活130x80@4x副本.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="vNM-vA-7t6" kind="push" id="CB0-rg-sHb"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.46666666670000001" green="0.72549019609999998" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -293,8 +306,10 @@
                                     <constraint firstItem="TGh-up-d0l" firstAttribute="centerX" secondItem="MBx-KL-hdx" secondAttribute="centerX" id="7HZ-Rd-ihq"/>
                                     <constraint firstAttribute="bottom" secondItem="I9V-d2-3cX" secondAttribute="bottom" id="9Tw-9Q-YQb"/>
                                     <constraint firstItem="oIW-gA-RgV" firstAttribute="centerX" secondItem="TGh-up-d0l" secondAttribute="centerX" id="CeC-W4-u3h"/>
+                                    <constraint firstItem="z25-GS-7v5" firstAttribute="top" secondItem="MBx-KL-hdx" secondAttribute="top" constant="31" id="Iq0-Q9-s0g"/>
                                     <constraint firstAttribute="bottom" secondItem="xv2-sy-HKy" secondAttribute="bottom" constant="38" id="QLq-fj-br2"/>
                                     <constraint firstItem="I9V-d2-3cX" firstAttribute="leading" secondItem="MBx-KL-hdx" secondAttribute="leading" id="czR-ZB-pgl"/>
+                                    <constraint firstAttribute="trailing" secondItem="z25-GS-7v5" secondAttribute="trailing" constant="8" id="h1E-3B-i2x"/>
                                     <constraint firstItem="oIW-gA-RgV" firstAttribute="centerX" secondItem="xv2-sy-HKy" secondAttribute="centerX" id="haX-ad-moH"/>
                                     <constraint firstItem="oIW-gA-RgV" firstAttribute="top" secondItem="TGh-up-d0l" secondAttribute="bottom" constant="26" id="iuJ-UX-9bP"/>
                                     <constraint firstItem="I9V-d2-3cX" firstAttribute="centerX" secondItem="xv2-sy-HKy" secondAttribute="centerX" id="mWO-pT-TMb"/>
@@ -507,7 +522,9 @@
                             <constraint firstItem="pbP-Fu-9gb" firstAttribute="top" secondItem="MBx-KL-hdx" secondAttribute="bottom" id="pBr-1G-pFo"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="我的信息" id="Kxy-M6-dh6"/>
+                    <navigationItem key="navigationItem" id="Kxy-M6-dh6">
+                        <barButtonItem key="backBarButtonItem" title=" " id="tMg-ml-Dw4"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="portraitImgView" destination="oIW-gA-RgV" id="9Jp-fu-AYY"/>
                     </connections>
@@ -516,24 +533,55 @@
             </objects>
             <point key="canvasLocation" x="997" y="779"/>
         </scene>
-        <!--SettingMainViewController-->
-        <scene sceneID="nI4-Y0-W28">
+        <!--Setting Main View Controller-->
+        <scene sceneID="NZV-G8-K8c">
             <objects>
-                <viewController title="SettingMainViewController" id="1e9-FU-W5r" sceneMemberID="viewController">
+                <viewController id="vNM-vA-7t6" customClass="SettingMainViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="HIX-Hf-REx"/>
-                        <viewControllerLayoutGuide type="bottom" id="kar-3u-0Pi"/>
+                        <viewControllerLayoutGuide type="top" id="GE7-TR-bDV"/>
+                        <viewControllerLayoutGuide type="bottom" id="cQp-2o-Okz"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Vz9-ri-EkO">
+                    <view key="view" contentMode="scaleToFill" id="7wT-Lf-DmX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="vaD-TV-gdB">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="vaD-TV-gdB" firstAttribute="top" secondItem="7wT-Lf-DmX" secondAttribute="top" id="Mjb-Lf-CCv"/>
+                            <constraint firstAttribute="trailing" secondItem="vaD-TV-gdB" secondAttribute="trailing" id="Yz3-OD-9qk"/>
+                            <constraint firstItem="vaD-TV-gdB" firstAttribute="leading" secondItem="7wT-Lf-DmX" secondAttribute="leading" id="fU8-lC-flF"/>
+                            <constraint firstAttribute="bottom" secondItem="vaD-TV-gdB" secondAttribute="bottom" id="ux7-37-ooo"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="设置" image="tabBar4.png" id="eM1-Wk-la6"/>
+                    <navigationItem key="navigationItem" id="Em1-fI-w4D">
+                        <nil key="title"/>
+                        <barButtonItem key="backBarButtonItem" title=" " id="uHL-bN-Pi7"/>
+                        <view key="titleView" contentMode="scaleToFill" id="mLM-mc-TOo">
+                            <rect key="frame" x="96" y="6" width="128" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="设置" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w1B-dg-MU3">
+                                    <rect key="frame" x="47" y="8" width="34" height="21"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </view>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="tableViewController" destination="vaD-TV-gdB" id="Ym2-ml-dCS"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qXl-xU-hZQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h78-a9-tWC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="573" y="1438"/>
+            <point key="canvasLocation" x="1424" y="779"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="tb7-Wv-bOw">
@@ -554,7 +602,6 @@
                         <segue destination="CiO-5B-R1z" kind="relationship" relationship="viewControllers" id="mWL-tB-gcq"/>
                         <segue destination="AqC-Fj-msr" kind="relationship" relationship="viewControllers" id="0iK-3r-K2x"/>
                         <segue destination="nbv-qR-D6R" kind="relationship" relationship="viewControllers" id="S6o-37-oEa"/>
-                        <segue destination="1e9-FU-W5r" kind="relationship" relationship="viewControllers" id="Bhs-B6-rqY"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aA9-Ee-MUf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -621,10 +668,9 @@
         <!--我的-->
         <scene sceneID="odo-Ln-f9G">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="nbv-qR-D6R" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nbv-qR-D6R" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="我的" image="tabBar3.png" id="h2B-5g-ChJ"/>
                     <toolbarItems/>
-                    <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="y5g-Jf-E2a">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -646,13 +692,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="4设置未激活130x80@4x副本.png" width="131" height="81"/>
         <image name="bikeIcon.png" width="45" height="48"/>
         <image name="busIcon.png" width="42" height="51"/>
         <image name="proxy.png" width="434" height="434"/>
         <image name="tabBar1.png" width="30" height="20"/>
         <image name="tabBar2.png" width="30" height="20"/>
         <image name="tabBar3.png" width="30" height="20"/>
-        <image name="tabBar4.png" width="30" height="20"/>
         <image name="出发按钮160x160px.png" width="161" height="160"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

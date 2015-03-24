@@ -67,7 +67,6 @@
     [self.view addSubview:tipsResultTableView];
     tipsResultTableView.hidden = YES;
     
-
 }
 
 - (void)back:(id)sender {
