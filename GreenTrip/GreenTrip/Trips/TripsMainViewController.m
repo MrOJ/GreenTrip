@@ -14,7 +14,7 @@
 
 @implementation TripsMainViewController
 
-@synthesize _mapView,mapView,titleV;
+@synthesize _mapView,mapView,titleV,startButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,7 +37,34 @@
     //titleV.backgroundColor = myColor;
     [self.navigationItem.titleView addSubview:titleV];
     
-    //self.navigationItem.titleView.backgroundColor = myColor;
+    startButton.layer.shadowOffset = CGSizeMake(3, 3);
+    startButton.layer.shadowOpacity = 0.3f;
+
+    /*
+    UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"1出发未激活130x80@4x.png"] highlightedImage:[UIImage imageNamed:@"1出发130x80@4x.png"]];
+    img.frame = CGRectMake(0, 0, 32, 20);
+    img.contentMode = UIViewContentModeScaleToFill;
+    */
+    
+    //UIImage *image = [UIImage imageNamed:@"tabBar1"];
+    
+    //UIImage *newImg = [self reSizeImage:image toSize:CGSizeMake(32, 20)];
+    
+    //self.BarItem.image = image;
+    //self.tabBarController.tabBarItem.image = image;
+    //[self.tabBarController.tabBar insertSubview:img atIndex:1];
+}
+
+- (UIImage *)reSizeImage:(UIImage *)image toSize:(CGSize)reSize
+
+{
+    UIGraphicsBeginImageContext(CGSizeMake(reSize.width, reSize.height));
+    [image drawInRect:CGRectMake(0, 0, reSize.width, reSize.height)];
+    UIImage *reSizeImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    
+    return reSizeImage;
     
 }
 

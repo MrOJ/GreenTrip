@@ -39,7 +39,7 @@
  */
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 3;
 }
 
 /*
@@ -65,9 +65,10 @@
                                       reuseIdentifier:CellIdentifier];
     }
     
-    cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+    
     
     if (indexPath.section == 0) {
+        cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
         cell.textLabel.text = @"修改资料";
         /*
         UIImageView *findingLogoImgView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 12, 20, 20)];
@@ -82,7 +83,8 @@
         [cell addSubview:findingLabel];
         */
         
-    } else {
+    } else if (indexPath.section == 1) {
+        cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
         cell.textLabel.text = @"关于";
         /*
         UILabel *findingLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 5, 200, 30)];
@@ -90,10 +92,14 @@
         
         [cell addSubview:findingLabel];
         */
+    } else if (indexPath.section == 2) {
+        UILabel *deleteLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.bounds.size.width, cell.bounds.size.height)];
+        deleteLabel.text = @"退出登录";
+        deleteLabel.textAlignment = NSTextAlignmentCenter;
+        deleteLabel.textColor = [UIColor redColor];
+        
+        [cell addSubview:deleteLabel];
     }
-    
-    
-    //NSLog(@"section = %ld",(long)indexPath.section);
     
     return cell;
 }
@@ -101,6 +107,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         
+    } else if (indexPath.section == 1) {
+        
+    } else if (indexPath.section == 2) {
+        [self.navigationController popViewControllerAnimated:NO];
+        
+        [YDConfigurationHelper setBoolValueForConfigurationKey:@"isLogout" withValue:YES];
     }
 }
 

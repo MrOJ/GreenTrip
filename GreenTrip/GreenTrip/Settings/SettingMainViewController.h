@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "loginViewController.h"
+#import "YDConfigurationHelper.h"
 
 @interface SettingMainViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 

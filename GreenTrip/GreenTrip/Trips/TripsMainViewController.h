@@ -21,4 +21,5 @@
 
 @property (strong, nonatomic) UIView *titleV;
 
+@property (strong, nonatomic) IBOutlet UIButton *startButton;
 @end
