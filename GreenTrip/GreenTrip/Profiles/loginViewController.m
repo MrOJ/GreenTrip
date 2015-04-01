@@ -15,7 +15,7 @@
 
 @implementation loginViewController
 
-@synthesize profileImageView,loginButton,registerButton,loginVC,registrationVC,LoginningView,afterLoginView;
+@synthesize profileImageView,loginButton,registerButton,loginVC,registrationVC,LoginningView,afterLoginView,logoutImageView;
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -37,15 +37,6 @@
             // you arrive here if either the registration is not required or yet achieved
             if (!bYDLoginRequired)
             {
-                //NSLog(@"bYDLogin is not Required");
-                //self.profilesMainVC= [[ProfilesMainViewController alloc] init];
-                
-                //装载Storyboard中的ProfilesViewController
-                //UIStoryboard *stryBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                //self.profilesMainVC = [stryBoard instantiateViewControllerWithIdentifier: @"myStoryboard"];
-                
-                //self.view.window.rootViewController = profilesMainVC;
-                //[self.navigationController pushViewController:profilesMainVC animated:NO];
                 LoginningView.hidden = YES;
                 afterLoginView.hidden = NO;
                 
@@ -61,6 +52,11 @@
     self.profileImageView.clipsToBounds = YES;
     self.profileImageView.layer.borderWidth = 3.0f;
     self.profileImageView.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    self.logoutImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2;
+    self.logoutImageView.clipsToBounds = YES;
+    self.logoutImageView.layer.borderWidth = 3.0f;
+    self.logoutImageView.layer.borderColor = [UIColor whiteColor].CGColor;
     
 }
 

@@ -14,7 +14,7 @@
 
 @implementation TripsMainViewController
 
-@synthesize _mapView,mapView,titleV,startButton;
+@synthesize _mapView,mapView,titleV,startButton,indicatorButton,scalingButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,7 +27,7 @@
     mapView.delegate = self;
     mapView.layer.cornerRadius = 5;
     mapView.showsUserLocation = YES;
-    //mapView.userTrackingMode = MAUserTrackingModeFollow;
+    mapView.userTrackingMode = MAUserTrackingModeFollow;
     mapView.zoomLevel = 15;
     mapView.showsCompass = NO;
     mapView.showsScale = NO;
@@ -40,19 +40,37 @@
     startButton.layer.shadowOffset = CGSizeMake(3, 3);
     startButton.layer.shadowOpacity = 0.3f;
 
-    /*
-    UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"1出发未激活130x80@4x.png"] highlightedImage:[UIImage imageNamed:@"1出发130x80@4x.png"]];
-    img.frame = CGRectMake(0, 0, 32, 20);
-    img.contentMode = UIViewContentModeScaleToFill;
-    */
+    indicatorButton.layer.shadowOffset = CGSizeMake(1, 1);
+    indicatorButton.layer.shadowOpacity = 0.3f;
+    //[indicatorButton seti]
+    [indicatorButton setImage:[UIImage imageNamed:@"指南140x140选中.png"] forState:UIControlStateSelected];
+    [indicatorButton setImage:[UIImage imageNamed:@"指南140x140.png"] forState:UIControlStateNormal];
+    indicatorTag = 0;
     
-    //UIImage *image = [UIImage imageNamed:@"tabBar1"];
+    scalingButton.layer.shadowOffset = CGSizeMake(1, 1);
+    scalingButton.layer.shadowOpacity = 0.3f;
     
-    //UIImage *newImg = [self reSizeImage:image toSize:CGSizeMake(32, 20)];
+    [mapView addSubview:indicatorButton];
+    [mapView addSubview:scalingButton];
+}
+
+- (IBAction)getIndicator:(id)sender {
     
-    //self.BarItem.image = image;
-    //self.tabBarController.tabBarItem.image = image;
-    //[self.tabBarController.tabBar insertSubview:img atIndex:1];
+    
+    if (indicatorTag == 0) {
+        indicatorButton.selected = YES;
+        indicatorTag = 1;
+        mapView.userTrackingMode = MAUserTrackingModeFollowWithHeading;
+        
+    } else if (indicatorTag == 1) {
+        indicatorButton.selected = NO;
+        indicatorTag = 0;
+        mapView.userTrackingMode = MAUserTrackingModeNone;
+    }
+    
+    //indicatorButton.selected = YES;
+    //NSLog(@"Hello!");
+    
 }
 
 - (UIImage *)reSizeImage:(UIImage *)image toSize:(CGSize)reSize

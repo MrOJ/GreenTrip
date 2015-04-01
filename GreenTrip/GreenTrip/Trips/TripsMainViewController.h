@@ -14,12 +14,17 @@
 @interface TripsMainViewController : UIViewController <MAMapViewDelegate>
 {
     UIView *testView;
+    NSInteger indicatorTag;
 }
 
 @property (strong, nonatomic) MAMapView *mapView;
 @property (retain, nonatomic) IBOutlet UIView *_mapView;
 
+@property (strong, nonatomic) IBOutlet UIButton *indicatorButton;
+@property (strong, nonatomic) IBOutlet UIButton *scalingButton;
 @property (strong, nonatomic) UIView *titleV;
 
 @property (strong, nonatomic) IBOutlet UIButton *startButton;
+
+- (IBAction)getIndicator:(id)sender;
 @end

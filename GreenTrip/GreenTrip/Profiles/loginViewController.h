@@ -18,6 +18,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *profileImageView;
 @property (strong, nonatomic) IBOutlet UIButton *loginButton;
 @property (strong, nonatomic) IBOutlet UIButton *registerButton;
+@property (strong, nonatomic) IBOutlet UIImageView *logoutImageView;
 
 @property (strong, nonatomic) YDLoginViewController *loginVC;
 @property (strong, nonatomic) YDRegistrationViewController *registrationVC;

@@ -185,17 +185,17 @@
         [setoutchButton addTarget:self action:@selector(go:) forControlEvents:UIControlEventTouchUpInside];
         [briefView addSubview:setoutchButton];
         
-        UILabel *detailsLabel = [[UILabel alloc] initWithFrame:CGRectMake(20 + [self superview].bounds.size.width * i, 42, 200, 20)];
+        UILabel *detailsLabel = [[UILabel alloc] initWithFrame:CGRectMake(20 + [self superview].bounds.size.width * i, 46, 200, 20)];
         detailsLabel.text = @"";
         detailsLabel.textColor = [UIColor grayColor];
         detailsLabel.font = [UIFont fontWithName:@"Heiti SC" size:12.0f];
         [briefView addSubview:detailsLabel];
         
-        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(10 + [self superview].bounds.size.width * i, 84, [self superview].bounds.size.width - 10 * 2, 0.5)];
-        line.backgroundColor = [UIColor lightGrayColor];
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake([self superview].bounds.size.width * i, 84, [self superview].bounds.size.width, 10)];
+        line.backgroundColor = [UIColor groupTableViewBackgroundColor];
         [self addSubview:line];
         
-        ExtensibleTableView *exTableView = [[ExtensibleTableView alloc] initWithFrame:CGRectMake(0 + [self superview].bounds.size.width * i, 95, [self superview].bounds.size.width, [self superview].bounds.size.height - 159)];   //159 = 64 + 95
+        ExtensibleTableView *exTableView = [[ExtensibleTableView alloc] initWithFrame:CGRectMake(0 + [self superview].bounds.size.width * i, 105, [self superview].bounds.size.width, [self superview].bounds.size.height - 159)];   //159 = 64 + 95
         //exTableView.delegate = self;
         //exTableView.dataSource = self;
         //exTableView.delegate_extend = self;
@@ -216,6 +216,7 @@
 {
     UILabel *getBusNameLabel = [busNameLabelArray objectAtIndex:i];
     getBusNameLabel.text = [buslineArray objectAtIndex:i];
+    getBusNameLabel.textColor = myColor;
     
     UILabel *getDetailsLabel = [detailsLabelArray objectAtIndex:i];
     NSString *duration = [[NSString alloc] initWithString:[durationArray objectAtIndex:i]];
@@ -365,8 +366,8 @@
         [self creatWalkingCell:cell inTheRow:row];
         
         //添加指示箭头
-        UIImageView *megeImg = [[UIImageView alloc] initWithFrame:CGRectMake([self superview].bounds.size.width - 45, 54, 10, 6)];
-        megeImg.image = [UIImage imageNamed:@"expandableImage"];
+        UIImageView *megeImg = [[UIImageView alloc] initWithFrame:CGRectMake([self superview].bounds.size.width - 45, 64, 15, 8)];
+        megeImg.image = [UIImage imageNamed:@"箭头3-54x30px"];
         [cell addSubview:megeImg];
         
     } else if ([[flagArray objectAtIndex:row] isEqualToString:@"1"]) {    //公交
@@ -374,8 +375,8 @@
         [self creatBuslineCell:cell inTheRow:row];
         
         //添加指示箭头
-        UIImageView *megeImg = [[UIImageView alloc] initWithFrame:CGRectMake([self superview].bounds.size.width - 45, 54, 10, 6)];
-        megeImg.image = [UIImage imageNamed:@"expandableImage"];
+        UIImageView *megeImg = [[UIImageView alloc] initWithFrame:CGRectMake([self superview].bounds.size.width - 45, 64, 15, 8)];
+        megeImg.image = [UIImage imageNamed:@"箭头3-54x30px"];
         [cell addSubview:megeImg];
         
     } else {                                                              //终点
@@ -409,8 +410,8 @@
         [self creatWalkingCell:cell inTheRow:row];
         
         //添加指示箭头
-        UIImageView *megeImg = [[UIImageView alloc] initWithFrame:CGRectMake([self superview].bounds.size.width - 45, 54, 10, 6)];
-        megeImg.image = [UIImage imageNamed:@"expandableImage"];
+        UIImageView *megeImg = [[UIImageView alloc] initWithFrame:CGRectMake([self superview].bounds.size.width - 45, 64, 15, 8)];
+        megeImg.image = [UIImage imageNamed:@"箭头3-54x30px"];
         megeImg.transform = CGAffineTransformMakeRotation(M_PI);
         [cell addSubview:megeImg];
         
@@ -441,8 +442,8 @@
         [self creatBuslineCell:cell inTheRow:row];
         
         //添加指示箭头
-        UIImageView *megeImg = [[UIImageView alloc] initWithFrame:CGRectMake([self superview].bounds.size.width - 45, 54, 10, 6)];
-        megeImg.image = [UIImage imageNamed:@"expandableImage"];
+        UIImageView *megeImg = [[UIImageView alloc] initWithFrame:CGRectMake([self superview].bounds.size.width - 45, 64, 15, 8)];
+        megeImg.image = [UIImage imageNamed:@"箭头3-54x30px"];
         megeImg.transform = CGAffineTransformMakeRotation(M_PI);
         [cell addSubview:megeImg];
         
@@ -567,54 +568,130 @@
 //构建步行cell
 - (void)creatWalkingCell:(UITableViewCell *)cell inTheRow:(NSInteger)row
 {
-    UIButton *titleButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, [self superview].bounds.size.width - 10 *2, 30)];
-    titleButton.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 0, 200, 30)];
+    UIButton *titleButton = [[UIButton alloc] initWithFrame:CGRectMake(52, 0, [self superview].bounds.size.width - 52, 30)];
+    //titleButton.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, 200, 30)];
     titleLabel.text = [stopArray objectAtIndex:row];
+    //titleLabel.textAlignment = NSTextAlignmentLeft;
     [titleButton addSubview:titleLabel];
     [cell addSubview:titleButton];
     
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(50, 30, 2, 80 - 30)];
-    lineView.backgroundColor = [UIColor lightGrayColor];
-    [cell addSubview:lineView];
+    UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 18, 13, 13)];
+    iconImageView.image = [UIImage imageNamed:@"50x50"];
+    [cell addSubview:iconImageView];
     
-    UILabel *strategyLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 40, 200, 30)];
+    UILabel *strategyLabel = [[UILabel alloc] initWithFrame:CGRectMake(52, 50, 200, 30)];
     strategyLabel.text = [strategyArray objectAtIndex:row];
+    strategyLabel.font = [UIFont systemFontOfSize:15.0f];
+    strategyLabel.textColor = [UIColor grayColor];
     [cell addSubview:strategyLabel];
     
-    UIImageView *iconImg = [[UIImageView alloc] initWithFrame:CGRectMake(20, 45, 20, 20)];
-    iconImg.image = [UIImage imageNamed:@"walkingIcon"];
+    UIImageView *iconImg = [[UIImageView alloc] initWithFrame:CGRectMake(20, 55, 12, 21)];
+    iconImg.image = [UIImage imageNamed:@"48x84"];
     [cell addSubview:iconImg];
+    
+    UIView *litteIconView = [[UIView alloc] initWithFrame:CGRectMake(20, 55 - 20, 14, 20)];
+    //litteIconView.backgroundColor = myColor;
+    UIImageView *imgV1 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 3, 3)];
+    imgV1.image = [UIImage imageNamed:@"10x10"];
+    UIImageView *imgV2 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 12, 3, 3)];
+    imgV2.image = [UIImage imageNamed:@"10x10"];
+    [litteIconView addSubview:imgV1];
+    [litteIconView addSubview:imgV2];
+    [cell addSubview:litteIconView];
+    
+    UIView *litteIconView2 = [[UIView alloc] initWithFrame:CGRectMake(20, 55 + 21, 14, 20)];
+    //litteIconView2.backgroundColor = myColor;
+    UIImageView *imgV3 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 3, 3)];
+    imgV3.image = [UIImage imageNamed:@"10x10"];
+    UIImageView *imgV4 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 12, 3, 3)];
+    imgV4.image = [UIImage imageNamed:@"10x10"];
+    [litteIconView2 addSubview:imgV3];
+    [litteIconView2 addSubview:imgV4];
+    [cell addSubview:litteIconView2];
+    
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(52, cell.bounds.size.height - 2, [self superview].bounds.size.width - 52 - 30, 2)];
+    line.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    [cell addSubview:line];
+    
+    UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(52, 88 - 2, [self superview].bounds.size.width - 52 - 30, 2)];
+    line2.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    [cell addSubview:line2];
+    
 }
 
 //构建公交车的cell
 - (void)creatBuslineCell:(UITableViewCell *)cell inTheRow:(NSInteger)row
 {
-    UIButton *titleButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, [self superview].bounds.size.width - 10 *2, 30)];
-    titleButton.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 0, 200, 30)];
+    UIButton *titleButton = [[UIButton alloc] initWithFrame:CGRectMake(52, 0, [self superview].bounds.size.width - 52, 30)];
+    //titleButton.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, 200, 30)];
     titleLabel.text = [stopArray objectAtIndex:row];
+    //titleLabel.textAlignment = NSTextAlignmentLeft;
     [titleButton addSubview:titleLabel];
     [cell addSubview:titleButton];
     
+    UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 18, 13, 13)];
+    iconImageView.image = [UIImage imageNamed:@"50x50"];
+    [cell addSubview:iconImageView];
+    
+    /*
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(50, 30, 2, 95 - 30)];
     lineView.backgroundColor = myColor;
     [cell addSubview:lineView];
+    */
     
-    UILabel *strategyLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 40, 200, 30)];
+    UILabel *strategyLabel = [[UILabel alloc] initWithFrame:CGRectMake(52, 50, 200, 30)];
     strategyLabel.text = [strategyArray objectAtIndex:row];
+    strategyLabel.font = [UIFont systemFontOfSize:15.0f];
     strategyLabel.textColor = myColor;
     [cell addSubview:strategyLabel];
     
-    UILabel *strDetailsLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 72, 200, 12)];
+    UILabel *strDetailsLabel = [[UILabel alloc] initWithFrame:CGRectMake(52, 82, 200, 12)];
     strDetailsLabel.text = [strDetailsArray objectAtIndex:row];
     strDetailsLabel.textColor = [UIColor lightGrayColor];
     strDetailsLabel.font = [UIFont fontWithName:@"Heiti SC" size:12.0f];
     [cell addSubview:strDetailsLabel];
     
-    UIImageView *iconImg = [[UIImageView alloc] initWithFrame:CGRectMake(20, 45, 20, 20)];
-    iconImg.image = [UIImage imageNamed:@"busIcon"];
+    UIImageView *iconImg = [[UIImageView alloc] initWithFrame:CGRectMake(18, 55, 17, 21)];
+    iconImg.image = [UIImage imageNamed:@"68x84"];
     [cell addSubview:iconImg];
+    
+    UIView *litteIconView = [[UIView alloc] initWithFrame:CGRectMake(20, 55 - 20, 14, 20)];
+    //litteIconView.backgroundColor = myColor;
+    UIImageView *imgV1 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 3, 3)];
+    imgV1.image = [UIImage imageNamed:@"10x10"];
+    UIImageView *imgV2 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 12, 3, 3)];
+    imgV2.image = [UIImage imageNamed:@"10x10"];
+    [litteIconView addSubview:imgV1];
+    [litteIconView addSubview:imgV2];
+    [cell addSubview:litteIconView];
+    
+    UIView *litteIconView2 = [[UIView alloc] initWithFrame:CGRectMake(20, 55 + 21, 14, 40)];
+    //litteIconView2.backgroundColor = myColor;
+    UIImageView *imgV3 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 3, 3)];
+    imgV3.image = [UIImage imageNamed:@"10x10"];
+    UIImageView *imgV4 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 12, 3, 3)];
+    imgV4.image = [UIImage imageNamed:@"10x10"];
+    UIImageView *imgV5 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 19, 3, 3)];
+    imgV5.image = [UIImage imageNamed:@"10x10"];
+    UIImageView *imgV6 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 26, 3, 3)];
+    imgV6.image = [UIImage imageNamed:@"10x10"];
+    [litteIconView2 addSubview:imgV3];
+    [litteIconView2 addSubview:imgV4];
+    [litteIconView2 addSubview:imgV5];
+    [litteIconView2 addSubview:imgV6];
+    [cell addSubview:litteIconView2];
+    
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(52, cell.bounds.size.height - 2, [self superview].bounds.size.width - 52 - 30, 2)];
+    line.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    [cell addSubview:line];
+    
+    UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(52, 102 - 2, [self superview].bounds.size.width - 52 - 30, 2)];
+    line2.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    
+    [cell addSubview:line2];
+    
 }
 
 //构建额外ViewCell

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="FYR-EA-tLT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="FYR-EA-tLT">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
@@ -20,6 +20,37 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qd0-a6-hWB">
                                 <rect key="frame" x="0.0" y="64" width="320" height="351"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x8H-pG-tWe">
+                                        <rect key="frame" x="8" y="308" width="35" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="35" id="Mbk-XT-e1e"/>
+                                            <constraint firstAttribute="height" constant="35" id="utN-VO-Xf1"/>
+                                        </constraints>
+                                        <state key="normal" image="指南140x140@4x.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="getIndicator:" destination="x5A-6p-PRh" eventType="touchUpInside" id="Dar-CP-2p1"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sot-Oi-AP6">
+                                        <rect key="frame" x="277" y="265" width="35" height="78"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="78" id="EjG-I9-qdq"/>
+                                            <constraint firstAttribute="width" constant="35" id="V0M-ne-AsB"/>
+                                        </constraints>
+                                        <state key="normal" image="放缩140x310@4x.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="x8H-pG-tWe" firstAttribute="leading" secondItem="qd0-a6-hWB" secondAttribute="leading" constant="8" id="c9X-9G-0ks"/>
+                                    <constraint firstAttribute="bottom" secondItem="sot-Oi-AP6" secondAttribute="bottom" constant="8" id="eMk-E9-sg5"/>
+                                    <constraint firstAttribute="trailing" secondItem="sot-Oi-AP6" secondAttribute="trailing" constant="8" id="vtp-rK-3M4"/>
+                                    <constraint firstAttribute="bottom" secondItem="x8H-pG-tWe" secondAttribute="bottom" constant="8" id="wdf-TA-XT0"/>
+                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QKL-Tv-BmJ">
                                 <rect key="frame" x="0.0" y="415" width="320" height="104"/>
@@ -81,11 +112,13 @@
                     <navigationItem key="navigationItem" title="绿出行" id="8Pa-Ni-5yq">
                         <barButtonItem key="backBarButtonItem" title=" " id="Sqj-nM-wXO"/>
                         <barButtonItem key="rightBarButtonItem" id="jZR-Ea-9gG">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xCS-pK-k5d">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xCS-pK-k5d">
+                                <rect key="frame" x="255" y="11" width="46" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <state key="normal" title="[ 杭州 ]">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <inset key="titleEdgeInsets" minX="-35" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="-66" maxY="0.0"/>
+                                <state key="normal" title=" 杭州" image="箭头38x22.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -93,6 +126,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="_mapView" destination="qd0-a6-hWB" id="uvO-Q7-kaE"/>
+                        <outlet property="indicatorButton" destination="x8H-pG-tWe" id="vXE-pk-YDA"/>
+                        <outlet property="scalingButton" destination="sot-Oi-AP6" id="9BU-bw-zZ3"/>
                         <outlet property="startButton" destination="8ZM-UD-uHF" id="8A7-fv-2Um"/>
                     </connections>
                 </viewController>
@@ -240,7 +275,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="pcf-NH-Whc">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -288,7 +323,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="vaD-TV-gdB">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -353,7 +388,7 @@
         <scene sceneID="zFM-RX-Dfb">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CiO-5B-R1z" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="出行" image="tabBar1.png" id="S05-6k-Vdc"/>
+                    <tabBarItem key="tabBarItem" title="出行" image="1出发未激活130x80.png" id="S05-6k-Vdc"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rt7-hS-ok7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -381,7 +416,7 @@
         <scene sceneID="FJP-U1-GPv">
             <objects>
                 <navigationController title="发现" automaticallyAdjustsScrollViewInsets="NO" id="AqC-Fj-msr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="发现" image="tabBar2.png" id="eLl-Bb-Fts"/>
+                    <tabBarItem key="tabBarItem" title="发现" image="2发现未激活130x80.png" id="eLl-Bb-Fts"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bTw-T2-Ptw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -410,7 +445,7 @@
         <scene sceneID="odo-Ln-f9G">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="nbv-qR-D6R" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我的" image="tabBar3.png" id="h2B-5g-ChJ"/>
+                    <tabBarItem key="tabBarItem" title="我的" image="3我的未激活130x80.png" id="h2B-5g-ChJ"/>
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="y5g-Jf-E2a">
@@ -460,7 +495,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="累积骑行：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M7W-bC-B6c">
                                                 <rect key="frame" x="74" y="66" width="85" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.65" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I6T-FP-IHm">
@@ -489,13 +524,13 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="累积减排：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eog-Ch-ngA">
                                                 <rect key="frame" x="72" y="113" width="85" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="千克" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ju-R2-Y99">
                                                 <rect key="frame" x="256" y="113" width="34" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0rb-fZ-e83">
@@ -515,7 +550,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="累积乘坐公交：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cWM-Be-eUj">
                                                 <rect key="frame" x="72" y="22" width="119" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W9I-kl-FcF">
@@ -530,7 +565,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="趟" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMv-qi-Plc">
                                                 <rect key="frame" x="265" y="22" width="17" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hai-IL-6b2">
@@ -543,13 +578,13 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您打败了全国" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sar-i8-T33">
                                                 <rect key="frame" x="22" y="180" width="102" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="的绿出行用户！" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qLt-8f-JYz">
                                                 <rect key="frame" x="193" y="180" width="119" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="80%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X62-xy-Va5">
@@ -561,7 +596,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请继续为绿色城市做贡献。" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GfX-7n-hyr">
                                                 <rect key="frame" x="22" y="218" width="204" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.65" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1F-hV-aFT">
@@ -576,7 +611,7 @@
                                                     <constraint firstAttribute="width" constant="40" id="Zr0-Zf-Xh4"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -776,7 +811,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0jX-Kn-TQc">
                                         <rect key="frame" x="216" y="355" width="30" height="30"/>
                                         <state key="normal" title="登录">
-                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -812,6 +847,8 @@
                     <connections>
                         <outlet property="LoginningView" destination="qp1-CS-NRc" id="nIU-t0-0ID"/>
                         <outlet property="afterLoginView" destination="noF-YH-0O2" id="OCh-cL-9bV"/>
+                        <outlet property="logoutImageView" destination="gmH-Uk-6s8" id="QPC-c1-FYH"/>
+                        <outlet property="profileImageView" destination="D8s-Jn-MiT" id="fcZ-U0-GfA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3NF-w2-xNA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -820,15 +857,18 @@
         </scene>
     </scenes>
     <resources>
+        <image name="1出发未激活130x80.png" width="43" height="27"/>
+        <image name="2发现未激活130x80.png" width="43" height="27"/>
+        <image name="3我的未激活130x80.png" width="43" height="27"/>
         <image name="3我的未激活130x80@4x.png" width="130" height="81"/>
         <image name="4设置未激活130x80@4x副本.png" width="131" height="81"/>
         <image name="bikeIcon.png" width="45" height="48"/>
         <image name="busIcon.png" width="42" height="51"/>
         <image name="proxy.png" width="434" height="434"/>
-        <image name="tabBar1.png" width="30" height="20"/>
-        <image name="tabBar2.png" width="30" height="20"/>
-        <image name="tabBar3.png" width="30" height="20"/>
         <image name="出发按钮300x300@4x.png" width="301" height="301"/>
+        <image name="指南140x140@4x.png" width="141" height="141"/>
+        <image name="放缩140x310@4x.png" width="141" height="311"/>
+        <image name="箭头38x22.png" width="13" height="7"/>
         <image name="箭头中+420x84@4x.png" width="421" height="84"/>
         <image name="箭头中420x84@4x.png" width="421" height="84"/>
     </resources>
