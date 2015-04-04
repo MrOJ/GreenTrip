@@ -199,6 +199,7 @@
         //exTableView.delegate = self;
         //exTableView.dataSource = self;
         //exTableView.delegate_extend = self;
+        exTableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         exTableView.separatorStyle = UITableViewCellSeparatorStyleNone;   //去掉线条
         exTableView.showsHorizontalScrollIndicator = NO;
         exTableView.showsVerticalScrollIndicator = NO;
@@ -370,6 +371,10 @@
         megeImg.image = [UIImage imageNamed:@"箭头3-54x30px"];
         [cell addSubview:megeImg];
         
+        UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(52, 88 - 2, [self superview].bounds.size.width - 52 - 30, 2)];
+        line2.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        [cell addSubview:line2];
+        
     } else if ([[flagArray objectAtIndex:row] isEqualToString:@"1"]) {    //公交
         //创建公交公共cell
         [self creatBuslineCell:cell inTheRow:row];
@@ -378,6 +383,11 @@
         UIImageView *megeImg = [[UIImageView alloc] initWithFrame:CGRectMake([self superview].bounds.size.width - 45, 64, 15, 8)];
         megeImg.image = [UIImage imageNamed:@"箭头3-54x30px"];
         [cell addSubview:megeImg];
+        
+        UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(52, 102 - 2, [self superview].bounds.size.width - 52 - 30, 2)];
+        line2.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        
+        [cell addSubview:line2];
         
     } else {                                                              //终点
         //创建额外的CellView
@@ -418,7 +428,7 @@
         //添加具体的路段信息(步行)
         NSArray *stepsArray = [[NSArray alloc] init];
         stepsArray = [detailWaysArray objectAtIndex:row];
-        UIButton *detailsButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 80, [self superview].bounds.size.width, 20 * stepsArray.count)];
+        UIButton *detailsButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 95, [self superview].bounds.size.width, 20 * stepsArray.count)];
         //detailsButton.backgroundColor = [UIColor redColor];
         [detailsButton addTarget:self action:@selector(showOnMap:) forControlEvents:UIControlEventTouchUpInside];
         detailsButton.tag = row;
@@ -426,16 +436,28 @@
         
         for (int i = 0; i < stepsArray.count; i ++) {
             AMapStep *s = (AMapStep *)stepsArray[i];
-            UILabel *detailsLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 0 + 20 * i, 200, 12)];
+            UILabel *detailsLabel = [[UILabel alloc] initWithFrame:CGRectMake(52, 0 + 20 * i, 200, 12)];
             detailsLabel.text = s.instruction;
             detailsLabel.textColor = [UIColor blackColor];
             detailsLabel.font = [UIFont fontWithName:@"Heiti SC" size:12.0f];
             [detailsButton addSubview:detailsLabel];
             
+            /*
             UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(50, 0 + 20 * i, 2, 20)];
             lineView.backgroundColor = [UIColor lightGrayColor];
             [detailsButton addSubview:lineView];
+            */
+            
+            UIView *litteIconView = [[UIView alloc] initWithFrame:CGRectMake(20, 0 + 20 * i, 14, 20)];
+            UIImageView *imgV = [[UIImageView alloc] initWithFrame:CGRectMake(3, 3, 6, 6)];
+            imgV.image = [UIImage imageNamed:@"10x10"];
+            [litteIconView addSubview:imgV];
+            [detailsButton addSubview:litteIconView];
         }
+        
+        UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(52, 95 + 20 * stepsArray.count - 2, [self superview].bounds.size.width - 52 - 30, 2)];
+        line2.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        [cell addSubview:line2];
         
     } else if ([[flagArray objectAtIndex:row] isEqualToString:@"1"]) {    //公交
         //创建公交公共cell
@@ -449,22 +471,34 @@
         
         NSArray *stopsArray = [[NSArray alloc] init];
         stopsArray = [detailWaysArray objectAtIndex:row];
-        UIButton *detailsButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 95, [self superview].bounds.size.width, 20 * stopsArray.count)];
+        UIButton *detailsButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 110, [self superview].bounds.size.width, 20 * stopsArray.count)];
         detailsButton.tag = row;
         [cell addSubview:detailsButton];
         
         for (int i = 0; i < stopsArray.count; i++) {
             AMapBusStop *bs = (AMapBusStop *)stopsArray[i];
-            UILabel *detailsLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 0 + 20 * i, 200, 12)];
+            UILabel *detailsLabel = [[UILabel alloc] initWithFrame:CGRectMake(52, 0 + 20 * i, 200, 12)];
             detailsLabel.text = bs.name;
             detailsLabel.textColor = [UIColor blackColor];
             detailsLabel.font = [UIFont fontWithName:@"Heiti SC" size:12.0f];
             [detailsButton addSubview:detailsLabel];
             
+            /*
             UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(50, 0 + 20 * i, 2, 20)];
             lineView.backgroundColor = myColor;
             [detailsButton addSubview:lineView];
+            */
+            UIView *litteIconView = [[UIView alloc] initWithFrame:CGRectMake(20, 0 + 20 * i, 14, 20)];
+            UIImageView *imgV = [[UIImageView alloc] initWithFrame:CGRectMake(3, 3, 6, 6)];
+            imgV.image = [UIImage imageNamed:@"10x10"];
+            [litteIconView addSubview:imgV];
+            [detailsButton addSubview:litteIconView];
         }
+        
+        UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(52, 110 + 20 * stopsArray.count - 2, [self superview].bounds.size.width - 52 - 30, 2)];
+        line2.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        
+        [cell addSubview:line2];
         
     } else {                                                              //终点
         //创建额外的CellView
@@ -483,11 +517,11 @@
     detailsArray = [detailWaysArray objectAtIndex:row];
     
     if ([[flagArray objectAtIndex:row] isEqualToString:@"0"]) {            //步行
-        return 80 + 20 * detailsArray.count;
-    } else if ([[flagArray objectAtIndex:row] isEqualToString:@"1"]) {    //公交
         return 95 + 20 * detailsArray.count;
+    } else if ([[flagArray objectAtIndex:row] isEqualToString:@"1"]) {    //公交
+        return 110 + 20 * detailsArray.count;
     } else {                                                              //终点
-        return 90;
+        return 120;
     }
 }
 
@@ -504,11 +538,11 @@
     NSInteger row = indexPath.row;
     
     if ([[flagArray objectAtIndex:row] isEqualToString:@"0"]) {            //步行
-        return 80;
-    } else if ([[flagArray objectAtIndex:row] isEqualToString:@"1"]) {    //公交
         return 95;
+    } else if ([[flagArray objectAtIndex:row] isEqualToString:@"1"]) {    //公交
+        return 110;
     } else {                                                              //终点
-        return 90;
+        return 120;
     }
 }
 
@@ -614,10 +648,11 @@
     line.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [cell addSubview:line];
     
+    /*
     UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(52, 88 - 2, [self superview].bounds.size.width - 52 - 30, 2)];
     line2.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [cell addSubview:line2];
-    
+    */
 }
 
 //构建公交车的cell
@@ -687,36 +722,54 @@
     line.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [cell addSubview:line];
     
+    /*
     UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(52, 102 - 2, [self superview].bounds.size.width - 52 - 30, 2)];
     line2.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
     [cell addSubview:line2];
-    
+    */
 }
 
 //构建额外ViewCell
 - (void)createxCell:(UITableViewCell *)cell inTheRow:(NSInteger)row
 {
-    UIButton *titleButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, [self superview].bounds.size.width - 10 *2, 30)];
-    titleButton.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 0, 200, 30)];
+    UIButton *titleButton = [[UIButton alloc] initWithFrame:CGRectMake(52, 0, [self superview].bounds.size.width - 52, 30)];
+    //titleButton.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, 200, 30)];
     titleLabel.text = [stopArray objectAtIndex:row];
+    //titleLabel.textAlignment = NSTextAlignmentLeft;
     [titleButton addSubview:titleLabel];
     [cell addSubview:titleButton];
     
-    UIView *exView = [[UIView alloc] initWithFrame:CGRectMake(0, 30, [self superview].bounds.size.width, 60)];
-    //exView.backgroundColor = [UIColor redColor];
+    UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 18, 13, 13)];
+    iconImageView.image = [UIImage imageNamed:@"50x50"];
+    [cell addSubview:iconImageView];
+    
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, cell.bounds.size.height - 2, [self superview].bounds.size.width, 2)];
+    line.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    [cell addSubview:line];
+    
+    UIView *exView = [[UIView alloc] initWithFrame:CGRectMake(0, 44, [self superview].bounds.size.width, 80)];
+    exView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [cell addSubview:exView];
     
     UIButton *collectButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, ([self superview].bounds.size.width - 10 * 2) / 2, 40)];
-    [collectButton setTitle:@"收藏" forState:UIControlStateNormal];
-    [collectButton setTitleColor:myColor forState:UIControlStateNormal];
-    collectButton.layer.borderWidth = 0.5;
+    collectButton.backgroundColor = myColor;
+    [collectButton setTitle:@"    收藏" forState:UIControlStateNormal];
+    [collectButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    //collectButton.layer.borderWidth = 0.5;
+    UIImageView *collectImg = [[UIImageView alloc] initWithFrame:CGRectMake(60, 12, 15, 15)];
+    collectImg.image = [UIImage imageNamed:@"五角星56x56"];
+    [collectButton addSubview:collectImg];
     [exView addSubview:collectButton];
+    
     UIButton *shareButton = [[UIButton alloc] initWithFrame:CGRectMake(10 + ([self superview].bounds.size.width - 10 * 2) / 2, 10, ([self superview].bounds.size.width - 10 * 2) / 2, 40)];
-    [shareButton setTitle:@"分享" forState:UIControlStateNormal];
-    [shareButton setTitleColor:myColor forState:UIControlStateNormal];
-    shareButton.layer.borderWidth = 0.5;
+    shareButton.backgroundColor = [UIColor whiteColor];
+    [shareButton setTitle:@"      分享" forState:UIControlStateNormal];
+    [shareButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    UIImageView *shareImg = [[UIImageView alloc] initWithFrame:CGRectMake(60, 12, 15, 15)];
+    shareImg.image = [UIImage imageNamed:@"分享48x52"];
+    [shareButton addSubview:shareImg];
     [exView addSubview:shareButton];
 }
 

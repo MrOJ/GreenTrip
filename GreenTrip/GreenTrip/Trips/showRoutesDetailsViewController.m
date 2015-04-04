@@ -56,7 +56,7 @@
     
     if (wayFlag == 1) {
         self.navigationItem.title = @"公交路线";
-        textDetailsScrollView = [[textRoutesDetailsScrollView alloc] initWithFrame:CGRectMake(-1, myMapView.bounds.size.height - 134, myMapView.bounds.size.width + 2, self.view.bounds.size.height - 64 + 1)];
+        textDetailsScrollView = [[textRoutesDetailsScrollView alloc] initWithFrame:CGRectMake(0, myMapView.bounds.size.height - 134, myMapView.bounds.size.width, self.view.bounds.size.height - 64 + 1)];
         
         textDetailsScrollView.contentSize = CGSizeMake((myMapView.bounds.size.width) * allRoutes.transits.count, 1);
         textDetailsScrollView.dragEnable = YES;
@@ -85,7 +85,7 @@
         [self loadScrollView:textDetailsScrollView withPage:index];
     } else if (wayFlag == 2) {                //步行线路
         self.navigationItem.title = @"步行路线";
-        textWRDView = [[textWalkingRoutesDetailsView alloc] initWithFrame:CGRectMake(-1, myMapView.bounds.size.height - 134, myMapView.bounds.size.width + 2, self.view.bounds.size.height - 64 + 1)];
+        textWRDView = [[textWalkingRoutesDetailsView alloc] initWithFrame:CGRectMake(0, myMapView.bounds.size.height - 134, myMapView.bounds.size.width, self.view.bounds.size.height - 64 + 1)];
         textWRDView.dragEnable = YES;
         textWRDView.walkingRoute = allRoutes;
         textWRDView.startName = startName;

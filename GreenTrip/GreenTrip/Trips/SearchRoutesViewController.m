@@ -125,6 +125,9 @@
                 [self navigationBusSearchStartLacation:start getLocation:endPoint chooseStategy:[getPattern integerValue] city:@"杭州"];
             } else {
                 [self navigationBusSearchStartLacation:startPoint getLocation:endPoint chooseStategy:[getPattern integerValue] city:@"杭州"];
+                
+                //NSLog(@"起点 = %@；终点 = %@",startPoint,endPoint);
+                
             }
         } else {
             NSLog(@"输入不能为空");
