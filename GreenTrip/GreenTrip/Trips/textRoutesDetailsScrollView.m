@@ -361,6 +361,8 @@
     
     cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellTableIdentifier];
     
+    //cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     //未展开的cell，只显示名字
     if ([[flagArray objectAtIndex:row] isEqualToString:@"0"]) {            //步行
         //创建步行公共cell
@@ -415,6 +417,8 @@
     
     cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellTableIdentifier];
 
+    //cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     if ([[flagArray objectAtIndex:row] isEqualToString:@"0"]) {            //步行
         //创建步行公共cell
         [self creatWalkingCell:cell inTheRow:row];
@@ -755,21 +759,16 @@
     
     UIButton *collectButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, ([self superview].bounds.size.width - 10 * 2) / 2, 40)];
     collectButton.backgroundColor = myColor;
-    [collectButton setTitle:@"    收藏" forState:UIControlStateNormal];
+    [collectButton setTitle:@" 收藏" forState:UIControlStateNormal];
     [collectButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    //collectButton.layer.borderWidth = 0.5;
-    UIImageView *collectImg = [[UIImageView alloc] initWithFrame:CGRectMake(60, 12, 15, 15)];
-    collectImg.image = [UIImage imageNamed:@"五角星56x56"];
-    [collectButton addSubview:collectImg];
+    [collectButton setImage:[UIImage imageNamed:@"五角星56x56"] forState:UIControlStateNormal];
     [exView addSubview:collectButton];
     
     UIButton *shareButton = [[UIButton alloc] initWithFrame:CGRectMake(10 + ([self superview].bounds.size.width - 10 * 2) / 2, 10, ([self superview].bounds.size.width - 10 * 2) / 2, 40)];
     shareButton.backgroundColor = [UIColor whiteColor];
-    [shareButton setTitle:@"      分享" forState:UIControlStateNormal];
+    [shareButton setTitle:@" 分享" forState:UIControlStateNormal];
     [shareButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    UIImageView *shareImg = [[UIImageView alloc] initWithFrame:CGRectMake(60, 12, 15, 15)];
-    shareImg.image = [UIImage imageNamed:@"分享48x52"];
-    [shareButton addSubview:shareImg];
+    [shareButton setImage:[UIImage imageNamed:@"分享48x52"] forState:UIControlStateNormal];
     [exView addSubview:shareButton];
 }
 

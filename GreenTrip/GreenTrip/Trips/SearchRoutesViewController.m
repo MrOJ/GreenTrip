@@ -28,6 +28,9 @@
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(back:)];
     self.navigationItem.leftBarButtonItem = backButton;
     */
+    //self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+    //self.navigationController.navigationBar.translucent = NO;
+    
     
     getNameStr = [[NSString alloc] init];
     getAddr = [[NSString alloc] init];
