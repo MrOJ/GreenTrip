@@ -168,8 +168,8 @@
     walkingDetailsLabel.font = [UIFont fontWithName:@"Heiti SC-Bold" size:14.0f];
     [briefView addSubview:walkingDetailsLabel];
     
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(10, 84, [self superview].bounds.size.width - 10 * 2, 0.5)];
-    line.backgroundColor = [UIColor lightGrayColor];
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 84, [self superview].bounds.size.width - 10, 2)];
+    line.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [self addSubview:line];
     
     //处理数据
@@ -188,7 +188,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == [stepArray count] - 1) {
-        return 110;
+        return 80;
     } else {
         return 50;
     }
@@ -219,43 +219,52 @@
         
         if (row == [stepArray count] - 1) {            //最后一个添加额外的收藏与分享按钮
             //NSLog(@"hello");
-            UILabel *stepLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, (50 - 14) / 2, [self superview].bounds.size.width, 14)];
+            /*
+            UILabel *stepLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, (50 - 14) / 2, [self superview].bounds.size.width, 14)];
             stepLabel.text = [stepArray objectAtIndex:row];
             stepLabel.textColor = [UIColor blackColor];
             stepLabel.font = [UIFont fontWithName:@"Heiti SC" size:14.0f];
             
-            UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 49, [self superview].bounds.size.width, 0.5)];
-            line.backgroundColor = [UIColor lightGrayColor];
+            UIView *line = [[UIView alloc] initWithFrame:CGRectMake(52, 49, [self superview].bounds.size.width - 50 - 30, 2)];
+            line.backgroundColor = [UIColor groupTableViewBackgroundColor];
             
-            [cell addSubview:line];
-            [cell addSubview:stepLabel];
-            
-            UIView *exView = [[UIView alloc] initWithFrame:CGRectMake(10, 50, [self superview].bounds.size.width, 60)];
-            //exView.backgroundColor = [UIColor redColor];
+            UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 18, 13, 13)];
+            iconImageView.image = [UIImage imageNamed:@"50x50"];
+            [cell addSubview:iconImageView];
+            */
+            UIView *exView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [self superview].bounds.size.width, 80)];
+            exView.backgroundColor = [UIColor groupTableViewBackgroundColor];
             [cell addSubview:exView];
+           
             
-            UIButton *collectButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 10, ([self superview].bounds.size.width - 10 * 2) / 2, 40)];
-            [collectButton setTitle:@"收藏" forState:UIControlStateNormal];
-            [collectButton setTitleColor:myColor forState:UIControlStateNormal];
-            collectButton.layer.borderWidth = 0.5;
+            UIButton *collectButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 20, ([self superview].bounds.size.width - 10 * 2) / 2, 40)];
+            collectButton.backgroundColor = myColor;
+            [collectButton setTitle:@" 收藏" forState:UIControlStateNormal];
+            [collectButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [collectButton setImage:[UIImage imageNamed:@"五角星56x56"] forState:UIControlStateNormal];
             [exView addSubview:collectButton];
             
-            UIButton *shareButton = [[UIButton alloc] initWithFrame:CGRectMake(0 + ([self superview].bounds.size.width - 10 * 2) / 2, 10, ([self superview].bounds.size.width - 10 * 2) / 2, 40)];
-            [shareButton setTitle:@"分享" forState:UIControlStateNormal];
-            [shareButton setTitleColor:myColor forState:UIControlStateNormal];
-            shareButton.layer.borderWidth = 0.5;
+            UIButton *shareButton = [[UIButton alloc] initWithFrame:CGRectMake(10 + ([self superview].bounds.size.width - 10 * 2) / 2, 20, ([self superview].bounds.size.width - 10 * 2) / 2, 40)];
+            shareButton.backgroundColor = [UIColor whiteColor];
+            [shareButton setTitle:@" 分享" forState:UIControlStateNormal];
+            [shareButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [shareButton setImage:[UIImage imageNamed:@"分享48x52"] forState:UIControlStateNormal];
             [exView addSubview:shareButton];
             
         } else {
             //cell.selectionStyle = UITableViewCellSelectionStyleNone;
             //UILabel重写会被覆盖，需要写在这个里面
-            UILabel *stepLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, (50 - 14) / 2, [self superview].bounds.size.width, 14)];
+            UILabel *stepLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, (50 - 14) / 2, [self superview].bounds.size.width, 14)];
             stepLabel.text = [stepArray objectAtIndex:row];
             stepLabel.textColor = [UIColor blackColor];
             stepLabel.font = [UIFont fontWithName:@"Heiti SC" size:14.0f];
             
-            UIView *line = [[UIView alloc] initWithFrame:CGRectMake(50, 49, [self superview].bounds.size.width - 50 - 20, 0.5)];
-            line.backgroundColor = [UIColor lightGrayColor];
+            UIView *line = [[UIView alloc] initWithFrame:CGRectMake(52, 49, [self superview].bounds.size.width - 50 - 30, 2)];
+            line.backgroundColor = [UIColor groupTableViewBackgroundColor];
+            
+            UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 18, 13, 13)];
+            iconImageView.image = [UIImage imageNamed:@"50x50"];
+            [cell addSubview:iconImageView];
             
             [cell addSubview:line];
             [cell addSubview:stepLabel];

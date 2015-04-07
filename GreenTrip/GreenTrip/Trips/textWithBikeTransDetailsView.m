@@ -174,8 +174,7 @@
     
     [self getRoutesDetails:allRoutesDictionary];
     
-    
-    UILabel *detailsLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 42, 320, 20)];
+    UILabel *detailsLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 46, 320, 20)];
     //detailsLabel.text = @"test";
     detailsLabel.text = [NSString stringWithFormat:@"共%@ | 步行%@ | 骑行%@ | 约%@",
                           [self distanceFormatted:totalDistance],
@@ -188,8 +187,8 @@
     [briefView addSubview:detailsLabel];
     
     
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(10, 84, [self superview].bounds.size.width - 10 * 2, 0.5)];
-    line.backgroundColor = [UIColor lightGrayColor];
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 84, [self superview].bounds.size.width, 2)];
+    line.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [self addSubview:line];
     
     listTableView = [[ExtensibleTableView alloc] initWithFrame:CGRectMake(0, 95, [self superview].bounds.size.width, [self superview].bounds.size.height - 99)];
@@ -237,26 +236,39 @@
         [self creatWalkingCell:cell inTheRow:row];
         
         //添加指示箭头
-        UIImageView *megeImg = [[UIImageView alloc] initWithFrame:CGRectMake([self superview].bounds.size.width - 45, 54, 10, 6)];
-        megeImg.image = [UIImage imageNamed:@"expandableImage"];
+        UIImageView *megeImg = [[UIImageView alloc] initWithFrame:CGRectMake([self superview].bounds.size.width - 45, 64, 15, 8)];
+        megeImg.image = [UIImage imageNamed:@"箭头3-54x30px"];
         [cell addSubview:megeImg];
+        
+        UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(52, 88 - 2, [self superview].bounds.size.width - 52 - 30, 2)];
+        line2.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        [cell addSubview:line2];
         
     } else if ([[flagArray objectAtIndex:row] isEqualToString:@"2"]) {    //公交
         //创建公交公共cell
         [self creatBuslineCell:cell inTheRow:row];
         
         //添加指示箭头
-        UIImageView *megeImg = [[UIImageView alloc] initWithFrame:CGRectMake([self superview].bounds.size.width - 45, 54, 10, 6)];
-        megeImg.image = [UIImage imageNamed:@"expandableImage"];
+        UIImageView *megeImg = [[UIImageView alloc] initWithFrame:CGRectMake([self superview].bounds.size.width - 45, 64, 15, 8)];
+        megeImg.image = [UIImage imageNamed:@"箭头3-54x30px"];
         [cell addSubview:megeImg];
+        
+        UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(52, 102 - 2, [self superview].bounds.size.width - 52 - 30, 2)];
+        line2.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        
+        [cell addSubview:line2];
         
     } else if ([[flagArray objectAtIndex:row] isEqualToString:@"3"]) {   //自行车
         [self creatBikeCell:cell inTheRow:row];
         
         //添加指示箭头
-        UIImageView *megeImg = [[UIImageView alloc] initWithFrame:CGRectMake([self superview].bounds.size.width - 45, 54, 10, 6)];
-        megeImg.image = [UIImage imageNamed:@"expandableImage"];
+        UIImageView *megeImg = [[UIImageView alloc] initWithFrame:CGRectMake([self superview].bounds.size.width - 45, 64, 15, 8)];
+        megeImg.image = [UIImage imageNamed:@"箭头3-54x30px"];
         [cell addSubview:megeImg];
+        
+        UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(52, 88 - 2, [self superview].bounds.size.width - 52 - 30, 2)];
+        line2.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        [cell addSubview:line2];
     }
     else {                                                              //终点
         //创建额外的CellView
@@ -289,15 +301,15 @@
         [self creatWalkingCell:cell inTheRow:row];
         
         //添加指示箭头
-        UIImageView *megeImg = [[UIImageView alloc] initWithFrame:CGRectMake([self superview].bounds.size.width - 45, 54, 10, 6)];
-        megeImg.image = [UIImage imageNamed:@"expandableImage"];
+        UIImageView *megeImg = [[UIImageView alloc] initWithFrame:CGRectMake([self superview].bounds.size.width - 45, 64, 15, 8)];
+        megeImg.image = [UIImage imageNamed:@"箭头3-54x30px"];
         megeImg.transform = CGAffineTransformMakeRotation(M_PI);
         [cell addSubview:megeImg];
         
         //添加具体的路段信息(步行)
         NSArray *stepsArray = [[NSArray alloc] init];
         stepsArray = [detailWaysArray objectAtIndex:row];
-        UIButton *detailsButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 80, [self superview].bounds.size.width, 20 * stepsArray.count)];
+        UIButton *detailsButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 95, [self superview].bounds.size.width, 20 * stepsArray.count)];
         //detailsButton.backgroundColor = [UIColor redColor];
         [detailsButton addTarget:self action:@selector(showOnMap:) forControlEvents:UIControlEventTouchUpInside];
         detailsButton.tag = row;
@@ -305,53 +317,83 @@
         
         for (int i = 0; i < stepsArray.count; i ++) {
             AMapStep *s = (AMapStep *)stepsArray[i];
-            UILabel *detailsLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 0 + 20 * i, 200, 12)];
+            UILabel *detailsLabel = [[UILabel alloc] initWithFrame:CGRectMake(52, 0 + 20 * i, 200, 12)];
             detailsLabel.text = s.instruction;
             detailsLabel.textColor = [UIColor blackColor];
             detailsLabel.font = [UIFont fontWithName:@"Heiti SC" size:12.0f];
             [detailsButton addSubview:detailsLabel];
             
-            UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(50, 0 + 20 * i, 2, 20)];
-            lineView.backgroundColor = [UIColor lightGrayColor];
-            [detailsButton addSubview:lineView];
+            /*
+             UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(50, 0 + 20 * i, 2, 20)];
+             lineView.backgroundColor = [UIColor lightGrayColor];
+             [detailsButton addSubview:lineView];
+             */
+            
+            UIView *litteIconView = [[UIView alloc] initWithFrame:CGRectMake(20, 0 + 20 * i, 14, 20)];
+            UIImageView *imgV = [[UIImageView alloc] initWithFrame:CGRectMake(3, 3, 6, 6)];
+            imgV.image = [UIImage imageNamed:@"10x10"];
+            [litteIconView addSubview:imgV];
+            [detailsButton addSubview:litteIconView];
         }
+        
+        UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(52, 95 + 20 * stepsArray.count - 2, [self superview].bounds.size.width - 52 - 30, 2)];
+        line2.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        [cell addSubview:line2];
         
     } else if ([[flagArray objectAtIndex:row] isEqualToString:@"2"]) {    //公交
         //创建公交公共cell
         [self creatBuslineCell:cell inTheRow:row];
         
         //添加指示箭头
-        UIImageView *megeImg = [[UIImageView alloc] initWithFrame:CGRectMake([self superview].bounds.size.width - 45, 54, 10, 6)];
-        megeImg.image = [UIImage imageNamed:@"expandableImage"];
+        UIImageView *megeImg = [[UIImageView alloc] initWithFrame:CGRectMake([self superview].bounds.size.width - 45, 64, 15, 8)];
+        megeImg.image = [UIImage imageNamed:@"箭头3-54x30px"];
         megeImg.transform = CGAffineTransformMakeRotation(M_PI);
         [cell addSubview:megeImg];
         
         NSArray *stopsArray = [[NSArray alloc] init];
         stopsArray = [detailWaysArray objectAtIndex:row];
-        UIButton *detailsButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 95, [self superview].bounds.size.width, 20 * stopsArray.count)];
+        UIButton *detailsButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 110, [self superview].bounds.size.width, 20 * stopsArray.count)];
         detailsButton.tag = row;
         [cell addSubview:detailsButton];
         
         for (int i = 0; i < stopsArray.count; i++) {
             AMapBusStop *bs = (AMapBusStop *)stopsArray[i];
-            UILabel *detailsLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 0 + 20 * i, 200, 12)];
+            UILabel *detailsLabel = [[UILabel alloc] initWithFrame:CGRectMake(52, 0 + 20 * i, 200, 12)];
             detailsLabel.text = bs.name;
             detailsLabel.textColor = [UIColor blackColor];
             detailsLabel.font = [UIFont fontWithName:@"Heiti SC" size:12.0f];
             [detailsButton addSubview:detailsLabel];
             
-            UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(50, 0 + 20 * i, 2, 20)];
-            lineView.backgroundColor = iosBlue;
-            [detailsButton addSubview:lineView];
+            /*
+             UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(50, 0 + 20 * i, 2, 20)];
+             lineView.backgroundColor = myColor;
+             [detailsButton addSubview:lineView];
+             */
+            UIView *litteIconView = [[UIView alloc] initWithFrame:CGRectMake(20, 0 + 20 * i, 14, 20)];
+            UIImageView *imgV = [[UIImageView alloc] initWithFrame:CGRectMake(3, 3, 6, 6)];
+            imgV.image = [UIImage imageNamed:@"10x10"];
+            [litteIconView addSubview:imgV];
+            [detailsButton addSubview:litteIconView];
         }
+        
+        UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(52, 110 + 20 * stopsArray.count - 2, [self superview].bounds.size.width - 52 - 30, 2)];
+        line2.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        
+        [cell addSubview:line2];
         
     } else if ([[flagArray objectAtIndex:row] isEqualToString:@"3"]) {   //自行车
         [self creatBikeCell:cell inTheRow:row];
         
-        //添加具体的路段信息(自行车)
+        //添加指示箭头
+        UIImageView *megeImg = [[UIImageView alloc] initWithFrame:CGRectMake([self superview].bounds.size.width - 45, 64, 15, 8)];
+        megeImg.image = [UIImage imageNamed:@"箭头3-54x30px"];
+        megeImg.transform = CGAffineTransformMakeRotation(M_PI);
+        [cell addSubview:megeImg];
+        
+        //添加具体的路段信息(步行)
         NSArray *stepsArray = [[NSArray alloc] init];
         stepsArray = [detailWaysArray objectAtIndex:row];
-        UIButton *detailsButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 80, [self superview].bounds.size.width, 20 * stepsArray.count)];
+        UIButton *detailsButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 95, [self superview].bounds.size.width, 20 * stepsArray.count)];
         //detailsButton.backgroundColor = [UIColor redColor];
         [detailsButton addTarget:self action:@selector(showOnMap:) forControlEvents:UIControlEventTouchUpInside];
         detailsButton.tag = row;
@@ -359,16 +401,23 @@
         
         for (int i = 0; i < stepsArray.count; i ++) {
             AMapStep *s = (AMapStep *)stepsArray[i];
-            UILabel *detailsLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 0 + 20 * i, 200, 12)];
-            detailsLabel.text = [s.instruction stringByReplacingOccurrencesOfString:@"步行" withString:@"骑行"];
+            UILabel *detailsLabel = [[UILabel alloc] initWithFrame:CGRectMake(52, 0 + 20 * i, 200, 12)];
+            detailsLabel.text = s.instruction;
             detailsLabel.textColor = [UIColor blackColor];
             detailsLabel.font = [UIFont fontWithName:@"Heiti SC" size:12.0f];
             [detailsButton addSubview:detailsLabel];
-            
-            UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(50, 0 + 20 * i, 2, 20)];
-            lineView.backgroundColor = myColor;
-            [detailsButton addSubview:lineView];
+
+            UIView *litteIconView = [[UIView alloc] initWithFrame:CGRectMake(20, 0 + 20 * i, 14, 20)];
+            UIImageView *imgV = [[UIImageView alloc] initWithFrame:CGRectMake(3, 3, 6, 6)];
+            imgV.image = [UIImage imageNamed:@"10x10"];
+            [litteIconView addSubview:imgV];
+            [detailsButton addSubview:litteIconView];
         }
+        
+        UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(52, 95 + 20 * stepsArray.count - 2, [self superview].bounds.size.width - 52 - 30, 2)];
+        line2.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        [cell addSubview:line2];
+        
     } else {                                                               //终点
         //创建额外的CellView
         [self createxCell:cell inTheRow:row];
@@ -386,13 +435,13 @@
     detailsArray = [detailWaysArray objectAtIndex:row];
     
     if ([[flagArray objectAtIndex:row] isEqualToString:@"0"] || [[flagArray objectAtIndex:row] isEqualToString:@"1"]) {            //步行
-        return 80 + 20 * detailsArray.count;
+        return 90 + 20 * detailsArray.count;
     } else if ([[flagArray objectAtIndex:row] isEqualToString:@"2"]) {    //公交
-        return 95 + 20 * detailsArray.count;
+        return 105 + 20 * detailsArray.count;
     } else if ([[flagArray objectAtIndex:row] isEqualToString:@"3"]) {    //自行车
-        return 80 + 20 * detailsArray.count;
+        return 90 + 20 * detailsArray.count;
     } else {                                                              //终点
-        return 90;
+        return 105;
     }
 }
 
@@ -409,13 +458,13 @@
     NSInteger row = indexPath.row;
     
     if ([[flagArray objectAtIndex:row] isEqualToString:@"0"] || [[flagArray objectAtIndex:row] isEqualToString:@"1"]) {            //步行
-        return 80;
-    } else if ([[flagArray objectAtIndex:row] isEqualToString:@"2"]) {    //公交
-        return 95;
-    } else if ([[flagArray objectAtIndex:row] isEqualToString:@"3"]){     //自行车
-        return 80;
-    } else {                                                   //终点
         return 90;
+    } else if ([[flagArray objectAtIndex:row] isEqualToString:@"2"]) {    //公交
+        return 105;
+    } else if ([[flagArray objectAtIndex:row] isEqualToString:@"3"]){     //自行车
+        return 90;
+    } else {                                                   //终点
+        return 115;
     }
 }
 
@@ -592,111 +641,262 @@
 //构建步行cell
 - (void)creatWalkingCell:(UITableViewCell *)cell inTheRow:(NSInteger)row
 {
-    UIButton *titleButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, [self superview].bounds.size.width - 10 *2, 30)];
-    titleButton.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 0, 200, 30)];
+    UIButton *titleButton = [[UIButton alloc] initWithFrame:CGRectMake(52, 0, [self superview].bounds.size.width - 52, 30)];
+    //titleButton.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, 200, 30)];
     titleLabel.text = [stopArray objectAtIndex:row];
+    //titleLabel.textAlignment = NSTextAlignmentLeft;
     [titleButton addSubview:titleLabel];
     [cell addSubview:titleButton];
     
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(50, 30, 2, 80 - 30)];
-    lineView.backgroundColor = [UIColor lightGrayColor];
-    [cell addSubview:lineView];
+    UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 18, 13, 13)];
+    iconImageView.image = [UIImage imageNamed:@"50x50"];
+    [cell addSubview:iconImageView];
     
-    UILabel *strategyLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 40, 200, 30)];
+    UILabel *strategyLabel = [[UILabel alloc] initWithFrame:CGRectMake(52, 50, 200, 30)];
     strategyLabel.text = [strategyArray objectAtIndex:row];
+    strategyLabel.font = [UIFont systemFontOfSize:15.0f];
+    strategyLabel.textColor = [UIColor grayColor];
     [cell addSubview:strategyLabel];
     
-    UIImageView *iconImg = [[UIImageView alloc] initWithFrame:CGRectMake(20, 45, 20, 20)];
-    iconImg.image = [UIImage imageNamed:@"walkingIcon"];
+    UIImageView *iconImg = [[UIImageView alloc] initWithFrame:CGRectMake(20, 55, 12, 21)];
+    iconImg.image = [UIImage imageNamed:@"48x84"];
     [cell addSubview:iconImg];
+    
+    UIView *litteIconView = [[UIView alloc] initWithFrame:CGRectMake(20, 55 - 20, 14, 20)];
+    //litteIconView.backgroundColor = myColor;
+    UIImageView *imgV1 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 3, 3)];
+    imgV1.image = [UIImage imageNamed:@"10x10"];
+    UIImageView *imgV2 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 12, 3, 3)];
+    imgV2.image = [UIImage imageNamed:@"10x10"];
+    [litteIconView addSubview:imgV1];
+    [litteIconView addSubview:imgV2];
+    [cell addSubview:litteIconView];
+    
+    UIView *litteIconView2 = [[UIView alloc] initWithFrame:CGRectMake(20, 55 + 21, 14, 20)];
+    //litteIconView2.backgroundColor = myColor;
+    UIImageView *imgV3 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 3, 3)];
+    imgV3.image = [UIImage imageNamed:@"10x10"];
+    UIImageView *imgV4 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 12, 3, 3)];
+    imgV4.image = [UIImage imageNamed:@"10x10"];
+    [litteIconView2 addSubview:imgV3];
+    [litteIconView2 addSubview:imgV4];
+    [cell addSubview:litteIconView2];
+    
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(52, cell.bounds.size.height - 2, [self superview].bounds.size.width - 52 - 30, 2)];
+    line.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    [cell addSubview:line];
+    
+    if (row != 0) {
+        UIView *litteIconView2 = [[UIView alloc] initWithFrame:CGRectMake(20, 0, 14, 20)];
+        //litteIconView2.backgroundColor = myColor;
+        UIImageView *imgV3 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 3, 3)];
+        imgV3.image = [UIImage imageNamed:@"10x10"];
+        UIImageView *imgV4 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 12, 3, 3)];
+        imgV4.image = [UIImage imageNamed:@"10x10"];
+        [litteIconView2 addSubview:imgV3];
+        [litteIconView2 addSubview:imgV4];
+        [cell addSubview:litteIconView2];
+    }
+}
+
+//构建公交车的cell
+- (void)creatBuslineCell:(UITableViewCell *)cell inTheRow:(NSInteger)row
+{
+    UIButton *titleButton = [[UIButton alloc] initWithFrame:CGRectMake(52, 0, [self superview].bounds.size.width - 52, 30)];
+    //titleButton.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, 200, 30)];
+    titleLabel.text = [stopArray objectAtIndex:row];
+    //titleLabel.textAlignment = NSTextAlignmentLeft;
+    [titleButton addSubview:titleLabel];
+    [cell addSubview:titleButton];
+    
+    UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 18, 13, 13)];
+    iconImageView.image = [UIImage imageNamed:@"50x50"];
+    [cell addSubview:iconImageView];
+    
+    /*
+     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(50, 30, 2, 95 - 30)];
+     lineView.backgroundColor = myColor;
+     [cell addSubview:lineView];
+     */
+    
+    UILabel *strategyLabel = [[UILabel alloc] initWithFrame:CGRectMake(52, 50, 200, 30)];
+    strategyLabel.text = [strategyArray objectAtIndex:row];
+    strategyLabel.font = [UIFont systemFontOfSize:15.0f];
+    strategyLabel.textColor = iosBlue;
+    [cell addSubview:strategyLabel];
+    
+    UILabel *strDetailsLabel = [[UILabel alloc] initWithFrame:CGRectMake(52, 82, 200, 12)];
+    strDetailsLabel.text = [strDetailsArray objectAtIndex:row];
+    strDetailsLabel.textColor = [UIColor lightGrayColor];
+    strDetailsLabel.font = [UIFont fontWithName:@"Heiti SC" size:12.0f];
+    [cell addSubview:strDetailsLabel];
+    
+    UIImageView *iconImg = [[UIImageView alloc] initWithFrame:CGRectMake(18, 55, 17, 21)];
+    iconImg.image = [UIImage imageNamed:@"68x84"];
+    [cell addSubview:iconImg];
+    
+    UIView *litteIconView = [[UIView alloc] initWithFrame:CGRectMake(20, 55 - 20, 14, 20)];
+    //litteIconView.backgroundColor = myColor;
+    UIImageView *imgV1 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 3, 3)];
+    imgV1.image = [UIImage imageNamed:@"10x10"];
+    UIImageView *imgV2 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 12, 3, 3)];
+    imgV2.image = [UIImage imageNamed:@"10x10"];
+    [litteIconView addSubview:imgV1];
+    [litteIconView addSubview:imgV2];
+    [cell addSubview:litteIconView];
+    
+    UIView *litteIconView2 = [[UIView alloc] initWithFrame:CGRectMake(20, 55 + 21, 14, 40)];
+    //litteIconView2.backgroundColor = myColor;
+    UIImageView *imgV3 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 3, 3)];
+    imgV3.image = [UIImage imageNamed:@"10x10"];
+    UIImageView *imgV4 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 12, 3, 3)];
+    imgV4.image = [UIImage imageNamed:@"10x10"];
+    UIImageView *imgV5 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 19, 3, 3)];
+    imgV5.image = [UIImage imageNamed:@"10x10"];
+    UIImageView *imgV6 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 26, 3, 3)];
+    imgV6.image = [UIImage imageNamed:@"10x10"];
+    [litteIconView2 addSubview:imgV3];
+    [litteIconView2 addSubview:imgV4];
+    [litteIconView2 addSubview:imgV5];
+    [litteIconView2 addSubview:imgV6];
+    [cell addSubview:litteIconView2];
+    
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(52, cell.bounds.size.height - 2, [self superview].bounds.size.width - 52 - 30, 2)];
+    line.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    [cell addSubview:line];
+    
+    if (row != 0) {
+        UIView *litteIconView2 = [[UIView alloc] initWithFrame:CGRectMake(20, 0, 14, 20)];
+        //litteIconView2.backgroundColor = myColor;
+        UIImageView *imgV3 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 3, 3)];
+        imgV3.image = [UIImage imageNamed:@"10x10"];
+        UIImageView *imgV4 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 12, 3, 3)];
+        imgV4.image = [UIImage imageNamed:@"10x10"];
+        [litteIconView2 addSubview:imgV3];
+        [litteIconView2 addSubview:imgV4];
+        [cell addSubview:litteIconView2];
+    }
+
+}
+
+//构建额外ViewCell
+- (void)createxCell:(UITableViewCell *)cell inTheRow:(NSInteger)row
+{
+    UIButton *titleButton = [[UIButton alloc] initWithFrame:CGRectMake(52, 0, [self superview].bounds.size.width - 52, 30)];
+    //titleButton.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, 200, 30)];
+    titleLabel.text = [stopArray objectAtIndex:row];
+    //titleLabel.textAlignment = NSTextAlignmentLeft;
+    [titleButton addSubview:titleLabel];
+    [cell addSubview:titleButton];
+    
+    UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 18, 13, 13)];
+    iconImageView.image = [UIImage imageNamed:@"50x50"];
+    [cell addSubview:iconImageView];
+    
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, cell.bounds.size.height - 2, [self superview].bounds.size.width, 2)];
+    line.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    [cell addSubview:line];
+    
+    UIView *exView = [[UIView alloc] initWithFrame:CGRectMake(0, 44, [self superview].bounds.size.width, 80)];
+    exView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    [cell addSubview:exView];
+    
+    UIButton *collectButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, ([self superview].bounds.size.width - 10 * 2) / 2, 40)];
+    collectButton.backgroundColor = myColor;
+    [collectButton setTitle:@" 收藏" forState:UIControlStateNormal];
+    [collectButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [collectButton setImage:[UIImage imageNamed:@"五角星56x56"] forState:UIControlStateNormal];
+    [exView addSubview:collectButton];
+    
+    UIButton *shareButton = [[UIButton alloc] initWithFrame:CGRectMake(10 + ([self superview].bounds.size.width - 10 * 2) / 2, 10, ([self superview].bounds.size.width - 10 * 2) / 2, 40)];
+    shareButton.backgroundColor = [UIColor whiteColor];
+    [shareButton setTitle:@" 分享" forState:UIControlStateNormal];
+    [shareButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [shareButton setImage:[UIImage imageNamed:@"分享48x52"] forState:UIControlStateNormal];
+    [exView addSubview:shareButton];
+    
+    if (row != 0) {
+        UIView *litteIconView2 = [[UIView alloc] initWithFrame:CGRectMake(20, 0, 14, 20)];
+        //litteIconView2.backgroundColor = myColor;
+        UIImageView *imgV3 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 3, 3)];
+        imgV3.image = [UIImage imageNamed:@"10x10"];
+        UIImageView *imgV4 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 12, 3, 3)];
+        imgV4.image = [UIImage imageNamed:@"10x10"];
+        [litteIconView2 addSubview:imgV3];
+        [litteIconView2 addSubview:imgV4];
+        [cell addSubview:litteIconView2];
+    }
 }
 
 //构建自行车的cell
 - (void)creatBikeCell:(UITableViewCell *)cell inTheRow:(NSInteger)row
 {
     
-    UIButton *titleButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, [self superview].bounds.size.width, 30)];
-    titleButton.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 0, 200, 30)];
+    UIButton *titleButton = [[UIButton alloc] initWithFrame:CGRectMake(52, 0, [self superview].bounds.size.width - 52, 30)];
+    //titleButton.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, 200, 30)];
     titleLabel.text = [stopArray objectAtIndex:row];
+    //titleLabel.textAlignment = NSTextAlignmentLeft;
     [titleButton addSubview:titleLabel];
     [cell addSubview:titleButton];
     
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(50, 30, 2, 95 - 30)];
-    lineView.backgroundColor = myColor;
-    [cell addSubview:lineView];
+    UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 18, 13, 13)];
+    iconImageView.image = [UIImage imageNamed:@"50x50"];
+    [cell addSubview:iconImageView];
     
-    UILabel *strategyLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 40, 200, 30)];
+    UILabel *strategyLabel = [[UILabel alloc] initWithFrame:CGRectMake(52, 50, 200, 30)];
     strategyLabel.text = [strategyArray objectAtIndex:row];
+    strategyLabel.font = [UIFont systemFontOfSize:15.0f];
     strategyLabel.textColor = myColor;
     [cell addSubview:strategyLabel];
     
-    UIImageView *iconImg = [[UIImageView alloc] initWithFrame:CGRectMake(20, 45, 20, 20)];
+    UIImageView *iconImg = [[UIImageView alloc] initWithFrame:CGRectMake(20, 55, 12, 21)];
     iconImg.image = [UIImage imageNamed:@"bikeIcon"];
     [cell addSubview:iconImg];
     
-}
-
-//构建公交车的cell
-- (void)creatBuslineCell:(UITableViewCell *)cell inTheRow:(NSInteger)row
-{
-    UIButton *titleButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, [self superview].bounds.size.width - 10 *2, 30)];
-    titleButton.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 0, 320, 30)];
-    titleLabel.text = [stopArray objectAtIndex:row];
-    [titleButton addSubview:titleLabel];
-    [cell addSubview:titleButton];
+    UIView *litteIconView = [[UIView alloc] initWithFrame:CGRectMake(20, 55 - 20, 14, 20)];
+    //litteIconView.backgroundColor = myColor;
+    UIImageView *imgV1 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 3, 3)];
+    imgV1.image = [UIImage imageNamed:@"10x10"];
+    UIImageView *imgV2 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 12, 3, 3)];
+    imgV2.image = [UIImage imageNamed:@"10x10"];
+    [litteIconView addSubview:imgV1];
+    [litteIconView addSubview:imgV2];
+    [cell addSubview:litteIconView];
     
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(50, 30, 2, 95 - 30)];
-    lineView.backgroundColor = myColor;
-    [cell addSubview:lineView];
+    UIView *litteIconView2 = [[UIView alloc] initWithFrame:CGRectMake(20, 55 + 21, 14, 20)];
+    //litteIconView2.backgroundColor = myColor;
+    UIImageView *imgV3 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 3, 3)];
+    imgV3.image = [UIImage imageNamed:@"10x10"];
+    UIImageView *imgV4 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 12, 3, 3)];
+    imgV4.image = [UIImage imageNamed:@"10x10"];
+    [litteIconView2 addSubview:imgV3];
+    [litteIconView2 addSubview:imgV4];
+    [cell addSubview:litteIconView2];
     
-    UILabel *strategyLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 40, 200, 30)];
-    strategyLabel.text = [strategyArray objectAtIndex:row];
-    strategyLabel.textColor = iosBlue;
-    [cell addSubview:strategyLabel];
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(52, cell.bounds.size.height - 2, [self superview].bounds.size.width - 52 - 30, 2)];
+    line.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    [cell addSubview:line];
     
-    UILabel *strDetailsLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 72, 200, 12)];
-    strDetailsLabel.text = [strDetailsArray objectAtIndex:row];
-    strDetailsLabel.textColor = [UIColor lightGrayColor];
-    strDetailsLabel.font = [UIFont fontWithName:@"Heiti SC" size:12.0f];
-    [cell addSubview:strDetailsLabel];
-    
-    UIImageView *iconImg = [[UIImageView alloc] initWithFrame:CGRectMake(20, 45, 20, 20)];
-    iconImg.image = [UIImage imageNamed:@"busIcon"];
-    [cell addSubview:iconImg];
-}
-
-//构建额外ViewCell
-- (void)createxCell:(UITableViewCell *)cell inTheRow:(NSInteger)row
-{
-    UIButton *titleButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, [self superview].bounds.size.width - 10 *2, 30)];
-    titleButton.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 0, 200, 30)];
-    titleLabel.text = [stopArray objectAtIndex:row];
-    [titleButton addSubview:titleLabel];
-    [cell addSubview:titleButton];
-    
-    UIView *exView = [[UIView alloc] initWithFrame:CGRectMake(0, 30, [self superview].bounds.size.width, 60)];
-    //exView.backgroundColor = [UIColor redColor];
-    [cell addSubview:exView];
-    
-    UIButton *collectButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, ([self superview].bounds.size.width - 10 * 2) / 2, 40)];
-    [collectButton setTitle:@"收藏" forState:UIControlStateNormal];
-    [collectButton setTitleColor:myColor forState:UIControlStateNormal];
-    collectButton.layer.borderWidth = 0.5;
-    [exView addSubview:collectButton];
-    UIButton *shareButton = [[UIButton alloc] initWithFrame:CGRectMake(10 + ([self superview].bounds.size.width - 10 * 2) / 2, 10, ([self superview].bounds.size.width - 10 * 2) / 2, 40)];
-    [shareButton setTitle:@"分享" forState:UIControlStateNormal];
-    [shareButton setTitleColor:myColor forState:UIControlStateNormal];
-    shareButton.layer.borderWidth = 0.5;
-    [exView addSubview:shareButton];
+    if (row != 0) {
+        UIView *litteIconView2 = [[UIView alloc] initWithFrame:CGRectMake(20, 0, 14, 20)];
+        //litteIconView2.backgroundColor = myColor;
+        UIImageView *imgV3 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 3, 3)];
+        imgV3.image = [UIImage imageNamed:@"10x10"];
+        UIImageView *imgV4 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 12, 3, 3)];
+        imgV4.image = [UIImage imageNamed:@"10x10"];
+        [litteIconView2 addSubview:imgV3];
+        [litteIconView2 addSubview:imgV4];
+        [cell addSubview:litteIconView2];
+    }
 }
 
 - (void)showOnMap:(UIButton *)sender
 {
-    
+    NSLog(@"未实现");
 }
 
 //获得经纬度坐标

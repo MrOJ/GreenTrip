@@ -521,11 +521,11 @@
     detailsArray = [detailWaysArray objectAtIndex:row];
     
     if ([[flagArray objectAtIndex:row] isEqualToString:@"0"]) {            //步行
-        return 95 + 20 * detailsArray.count;
+        return 90 + 20 * detailsArray.count;
     } else if ([[flagArray objectAtIndex:row] isEqualToString:@"1"]) {    //公交
-        return 110 + 20 * detailsArray.count;
+        return 105 + 20 * detailsArray.count;
     } else {                                                              //终点
-        return 120;
+        return 115;
     }
 }
 
@@ -542,11 +542,11 @@
     NSInteger row = indexPath.row;
     
     if ([[flagArray objectAtIndex:row] isEqualToString:@"0"]) {            //步行
-        return 95;
+        return 90;
     } else if ([[flagArray objectAtIndex:row] isEqualToString:@"1"]) {    //公交
-        return 110;
+        return 105;
     } else {                                                              //终点
-        return 120;
+        return 115;
     }
 }
 
@@ -652,11 +652,17 @@
     line.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [cell addSubview:line];
     
-    /*
-    UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(52, 88 - 2, [self superview].bounds.size.width - 52 - 30, 2)];
-    line2.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    [cell addSubview:line2];
-    */
+    if (row != 0) {
+        UIView *litteIconView2 = [[UIView alloc] initWithFrame:CGRectMake(20, 0, 14, 20)];
+        //litteIconView2.backgroundColor = myColor;
+        UIImageView *imgV3 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 3, 3)];
+        imgV3.image = [UIImage imageNamed:@"10x10"];
+        UIImageView *imgV4 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 12, 3, 3)];
+        imgV4.image = [UIImage imageNamed:@"10x10"];
+        [litteIconView2 addSubview:imgV3];
+        [litteIconView2 addSubview:imgV4];
+        [cell addSubview:litteIconView2];
+    }
 }
 
 //构建公交车的cell
@@ -726,12 +732,17 @@
     line.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [cell addSubview:line];
     
-    /*
-    UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(52, 102 - 2, [self superview].bounds.size.width - 52 - 30, 2)];
-    line2.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    
-    [cell addSubview:line2];
-    */
+    if (row != 0) {
+        UIView *litteIconView2 = [[UIView alloc] initWithFrame:CGRectMake(20, 0, 14, 20)];
+        //litteIconView2.backgroundColor = myColor;
+        UIImageView *imgV3 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 3, 3)];
+        imgV3.image = [UIImage imageNamed:@"10x10"];
+        UIImageView *imgV4 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 12, 3, 3)];
+        imgV4.image = [UIImage imageNamed:@"10x10"];
+        [litteIconView2 addSubview:imgV3];
+        [litteIconView2 addSubview:imgV4];
+        [cell addSubview:litteIconView2];
+    }
 }
 
 //构建额外ViewCell
@@ -770,6 +781,18 @@
     [shareButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [shareButton setImage:[UIImage imageNamed:@"分享48x52"] forState:UIControlStateNormal];
     [exView addSubview:shareButton];
+    
+    if (row != 0) {
+        UIView *litteIconView2 = [[UIView alloc] initWithFrame:CGRectMake(20, 0, 14, 20)];
+        //litteIconView2.backgroundColor = myColor;
+        UIImageView *imgV3 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 3, 3)];
+        imgV3.image = [UIImage imageNamed:@"10x10"];
+        UIImageView *imgV4 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 12, 3, 3)];
+        imgV4.image = [UIImage imageNamed:@"10x10"];
+        [litteIconView2 addSubview:imgV3];
+        [litteIconView2 addSubview:imgV4];
+        [cell addSubview:litteIconView2];
+    }
 }
 
 //获得经纬度

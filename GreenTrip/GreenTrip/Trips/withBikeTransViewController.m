@@ -59,7 +59,7 @@
     //发起路径搜索
     [search AMapNavigationSearch: naviRequest];
     
-    textWithBikeTransDV = [[textWithBikeTransDetailsView alloc] initWithFrame:CGRectMake(-1, myMapView.bounds.size.height - 134, myMapView.bounds.size.width + 2, self.view.bounds.size.height - 64 + 1)];
+    textWithBikeTransDV = [[textWithBikeTransDetailsView alloc] initWithFrame:CGRectMake(-1, myMapView.bounds.size.height - 134, myMapView.bounds.size.width + 2, self.view.bounds.size.height - 64 - 2)];
     textWithBikeTransDV.dragEnable = YES;
     textWithBikeTransDV.startName = startName;
     textWithBikeTransDV.endName = endName;
