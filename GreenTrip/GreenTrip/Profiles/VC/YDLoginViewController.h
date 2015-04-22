@@ -12,6 +12,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AFNetworking.h"
 @protocol YDLoginViewControllerDelegate <NSObject>
 
 -(void)loginWithSuccess;

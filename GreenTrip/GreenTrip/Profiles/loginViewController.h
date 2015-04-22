@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "YDLoginViewController.h"
 #import "YDRegistrationViewController.h"
+#import "AFNetworking.h"
 
 @interface loginViewController : UIViewController<YDLoginViewControllerDelegate,YDRegistrationViewControllerDelegate>
 {

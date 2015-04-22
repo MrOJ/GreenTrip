@@ -16,11 +16,20 @@
 
 @synthesize _mapView,mapView,titleV,startButton,indicatorButton,scalingButton;
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    
+    self.navigationController.navigationBar.barTintColor = myColor;
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];  
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     //self.navigationController.navigationItem.backBarButtonItem.title = @"返回";
     // Do any additional setup after loading the view.
-
+    
     [MAMapServices sharedServices].apiKey = @"f57ba48c60c524724d3beff7f7063af9";    //
     
     mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(_mapView.bounds), CGRectGetHeight(_mapView.bounds))];

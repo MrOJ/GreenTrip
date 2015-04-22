@@ -178,10 +178,13 @@
         busNameLabel.font = [UIFont fontWithName:@"Heiti SC-Bold" size:14.0f];
         [briefView addSubview:busNameLabel];
         
-        UIButton *setoutchButton = [[UIButton alloc] initWithFrame:CGRectMake([self superview].bounds.size.width - 20 - 80 + [self superview].bounds.size.width * i, 20, 80, 40)];
+        UIButton *setoutchButton = [[UIButton alloc] initWithFrame:CGRectMake([self superview].bounds.size.width - 20 - 42 + [self superview].bounds.size.width * i, 19, 42, 50)];
+        /*
         setoutchButton.backgroundColor = myColor;
         [setoutchButton setTitle:@"AR导航" forState:UIControlStateNormal];
         [setoutchButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        */
+        [setoutchButton setImage:[UIImage imageNamed:@"摄像头166x200"] forState:UIControlStateNormal];
         [setoutchButton addTarget:self action:@selector(go:) forControlEvents:UIControlEventTouchUpInside];
         [briefView addSubview:setoutchButton];
         

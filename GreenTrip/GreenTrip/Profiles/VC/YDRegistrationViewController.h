@@ -14,6 +14,7 @@
 
 #import <UIKit/UIKit.h>
 #import "YDConfigurationHelper.h"
+#import "AFNetworking.h"
 @protocol YDRegistrationViewControllerDelegate <NSObject>
 
 -(void)registeredWithSuccess;

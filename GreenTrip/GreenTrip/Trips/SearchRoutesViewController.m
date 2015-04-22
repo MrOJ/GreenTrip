@@ -28,9 +28,14 @@
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(back:)];
     self.navigationItem.leftBarButtonItem = backButton;
     */
-    //self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
-    //self.navigationController.navigationBar.translucent = NO;
     
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    
+    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:myColor forKey:NSForegroundColorAttributeName];
+    self.navigationController.navigationBar.tintColor = myColor;
+    //self.navigationController.navigationBar.backgroundColor = [UIColor whiteColor];
     
     getNameStr = [[NSString alloc] init];
     getAddr = [[NSString alloc] init];
@@ -48,6 +53,7 @@
     self.navigationItem.backBarButtonItem = backItem;
     
     searchButton = [[UIBarButtonItem alloc] initWithTitle:@"搜索" style:UIBarButtonItemStylePlain target:self action:@selector(search:)];
+    [searchButton setTintColor:myColor];
     
     //测试的时候注释掉了,测试完记得加上！
     //[searchButton setEnabled:NO];

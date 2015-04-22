@@ -50,6 +50,7 @@
     }
     else
     {
+        /*
         KeychainItemWrapper* keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"YDAPPNAME" accessGroup:nil];
         if ([self.nameField.text isEqualToString:[keychain objectForKey:(__bridge id)kSecAttrAccount]])
         {
@@ -63,6 +64,36 @@
         }
         else
             [self showErrorWithMessage:@"用户名不正确."];
+        */
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        
+        //2.设置登录参数
+        NSDictionary *dict = @{ @"username":self.nameField.text, @"password":[self.passwordField.text MD5] };
+        
+        //3.请求
+        [manager GET:@"http://localhost:1200/login" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"GET --> %@", responseObject); //自动返回主线程
+            
+            NSString *getLogin = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"login"]];
+            
+            if ([getLogin isEqualToString:@"0"]) {
+                NSLog(@"登录成功！");
+                [self.delegate loginWithSuccess];
+                [self dismissViewControllerAnimated:YES completion:nil];
+            } else if ([getLogin isEqualToString:@"1"]) {
+                self.passwordField.text = @"";
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"登录失败" message:@"密码错误!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alert show];
+            } else {
+                self.nameField.text = @"";
+                self.passwordField.text = @"";
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"登录失败" message:@"用户名不存在!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alert show];
+            }
+            
+        } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"%@", error);
+        }];
     }
 
 }

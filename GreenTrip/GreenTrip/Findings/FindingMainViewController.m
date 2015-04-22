@@ -30,11 +30,11 @@
     findingTableViewController.dataSource = self;
 }
 
-/*
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 64;
+    return 50;
 }
-*/
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;
@@ -63,17 +63,21 @@
                                        reuseIdentifier:CellIdentifier];
     }
     
-    cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+    //cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+    
+    UIImageView *arrowImgView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 20, 18, 8, 14)];
+    arrowImgView.image = [UIImage imageNamed:@"箭头30x56"];
+    [cell addSubview:arrowImgView];
     
     if (indexPath.section == 0) {
         //cell.textLabel.text = @"绿出行圈";
         
-        UIImageView *findingLogoImgView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 12, 20, 20)];
-        findingLogoImgView.image = [UIImage imageNamed:@"finding_logo"];
+        UIImageView *findingLogoImgView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 14, 22, 23)];
+        findingLogoImgView.image = [UIImage imageNamed:@"搜搜86x90"];
         
         [cell addSubview:findingLogoImgView];
         
-        UILabel *findingLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 5, 200, 30)];
+        UILabel *findingLabel = [[UILabel alloc] initWithFrame:CGRectMake(55, 10, 200, 30)];
         findingLabel.text = @"绿出行圈";
         
         [cell addSubview:findingLabel];
@@ -82,7 +86,12 @@
     } else {
         //cell.textLabel.text = @"减排排行榜";
         
-        UILabel *findingLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 5, 200, 30)];
+        UIImageView *findingLogoImgView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 17, 27, 17)];
+        findingLogoImgView.image = [UIImage imageNamed:@"排行榜208x66"];
+        
+        [cell addSubview:findingLogoImgView];
+        
+        UILabel *findingLabel = [[UILabel alloc] initWithFrame:CGRectMake(55, 10, 200, 30)];
         findingLabel.text = @"减排排行榜";
         
         [cell addSubview:findingLabel];

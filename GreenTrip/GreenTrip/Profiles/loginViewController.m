@@ -71,6 +71,35 @@
     self.loginVC.delegate=self;
     
     [self presentViewController:loginVC animated:YES completion:nil];
+    
+    NSLog(@"Hello");
+    
+    /*
+    //get 数据解析
+    //请求管理器
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    //发起请求
+    [manager GET:@"http://localhost:1210/" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@", error);
+    }];
+    */
+    //1.管理器
+    /*
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    //2.设置登录参数
+    NSDictionary *dict = @{ @"username":@"xn", @"password":@"123" };
+    
+    //3.请求
+    [manager GET:@"http://121.40.218.33:1200/" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"GET --> %@, %@", responseObject, [NSThread currentThread]); //自动返回主线程
+    } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@", error);
+    }];
+    */
 }
 
 - (IBAction)getRegister:(id)sender {
