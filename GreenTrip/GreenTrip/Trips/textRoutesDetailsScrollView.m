@@ -298,7 +298,6 @@
     //NSLog(@"%@",strategyArray);
 }
 
-
 //进入AR导航
 - (void)go:(UIButton *)sender
 {

@@ -46,7 +46,7 @@
 }
 
 @property (nonatomic, retain) UIViewController *rootViewController;
-@property (nonatomic, retain) UIImagePickerController *pickerController;
+@property (nonatomic, strong) UIImagePickerController *pickerController;
 @property (nonatomic, retain) UIView *hudView;
 @property (nonatomic, retain) CLLocationManager *locationManager;
 @property (nonatomic, retain) CMMotionManager *motionManager;

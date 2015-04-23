@@ -34,7 +34,7 @@
         
         UIButton *shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [shareButton setFrame:CGRectMake(0, 0, 50, 50)];
-        [shareButton setBackgroundImage:[UIImage imageNamed:@"truck.png"] forState:UIControlStateNormal];
+        [shareButton setBackgroundImage:[UIImage imageNamed:@"车164x166"] forState:UIControlStateNormal];
         [shareButton addTarget:self action:@selector(shareButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [labelView addSubview:shareButton];
         
@@ -50,7 +50,7 @@
         UILabel *placeLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, ANNOTATION_WIDTH, 20.0)];
         placeLabel.backgroundColor = [UIColor clearColor];
         placeLabel.textAlignment = NSTextAlignmentCenter;
-        placeLabel.font = [UIFont fontWithName:@"Arial" size:10];
+        placeLabel.font = [UIFont systemFontOfSize:10.0f];
         placeLabel.text = coordinate.place;
         [placeLabel sizeToFit];
         [placeLabel setFrame:CGRectMake(50, 25, placeLabel.bounds.size.width + 8.0, placeLabel.bounds.size.height + 8.0)];

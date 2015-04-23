@@ -46,14 +46,20 @@
     
     
     UINavigationBar *navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
-    navigationBar.backgroundColor = myColor;
+    //navigationBar.backgroundColor = myColor;
+    navigationBar.barTintColor = myColor;
     [self.view addSubview:navigationBar];
     
-    UIButton *exitButton = [[UIButton alloc] initWithFrame:CGRectMake(5, 25, 50, 30)];
-    [exitButton setTitle:@"返回" forState:UIControlStateNormal];
-    [exitButton.titleLabel setTextColor:[UIColor whiteColor]];
+    UIButton *exitButton = [[UIButton alloc] initWithFrame:CGRectMake(15, 25, 50, 50)];
+    //[exitButton setTitle:@"返回" forState:UIControlStateNormal];
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 11, 21)];
+    imgView.image = [UIImage imageNamed:@"箭头1-44x84px"];
+    //[exitButton setImage:[UIImage imageNamed:@"箭头1-44x84px"] forState:UIControlStateNormal];
+    //[exitButton.titleLabel setTextColor:[UIColor whiteColor]];
+    [exitButton addSubview:imgView];
     [exitButton  addTarget:self action:@selector(exit:) forControlEvents:UIControlEventTouchUpInside];
     [navigationBar addSubview:exitButton];
+    
     
     /*
     UIView *navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, -50, self.view.bounds.size.width, 64)];

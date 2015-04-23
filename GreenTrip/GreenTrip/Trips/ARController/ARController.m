@@ -52,27 +52,35 @@
 @synthesize busStopArray;
 
 - (id)initWithViewController:(UIViewController *)viewController {
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    
     search = [[AMapSearchAPI alloc] initWithSearchKey:@"f57ba48c60c524724d3beff7f7063af9" Delegate:self];
     
     self.rootViewController = viewController;
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    self.hudView = [[UIView alloc] initWithFrame:screenBounds];
+    self.hudView = [[UIView alloc] initWithFrame:CGRectMake(0, 100, screenBounds.size.width, screenBounds.size.height - 100)];
     self.rootViewController.view = self.hudView;
     self.rootViewController.navigationController.navigationBarHidden = NO;
     
     self.pickerController = [[UIImagePickerController alloc] init];
 	self.pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-    CGAffineTransform cameraTransform = CGAffineTransformMakeScale(1.65,1.65);
-    self.pickerController.cameraViewTransform = cameraTransform;
+    self.pickerController.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
+    //CGAffineTransform cameraTransform = CGAffineTransformMakeScale(1.65,1.65);
+    //self.pickerController.cameraViewTransform = cameraTransform;
+    CGAffineTransform transform = CGAffineTransformMakeTranslation(0.0f, 100.0f);
+    transform = CGAffineTransformScale(transform, 1.2f, 1.2f);
+    self.pickerController.cameraViewTransform = transform;
     self.pickerController.view.frame = CGRectMake(0, 100, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 100);
-	
 	self.pickerController.showsCameraControls = NO;
     self.pickerController.navigationBar.hidden = NO;
 	self.pickerController.cameraOverlayView = _hudView;
     
     noticeView = [[UIView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 50, [UIScreen mainScreen].bounds.size.width, 50)];
-    noticeView.layer.cornerRadius = 5.0;
-    noticeView.layer.masksToBounds = YES;
+    //noticeView.layer.cornerRadius = 5.0;
+    //noticeView.layer.masksToBounds = YES;
+    noticeView.layer.shadowColor = [UIColor grayColor].CGColor;
+    noticeView.layer.shadowOffset = CGSizeMake(1, 1);
+    noticeView.layer.shadowOpacity = 0.3;
     //设置背景透明度
     [noticeView setBackgroundColor:[UIColor whiteColor]];
     
@@ -103,8 +111,9 @@
     isTheFirst = TRUE;
     
     //添加指南针
+    
     arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width - 50) / 2, [UIScreen mainScreen].bounds.size.height - 150, 50, 50)];
-    arrowImageView.image = [UIImage imageNamed:@"compassArrow.png"];
+    arrowImageView.image = [UIImage imageNamed:@"1箭头154x152.png"];
     arrowImageView.hidden = YES;
     [_hudView addSubview:arrowImageView];
     
@@ -114,6 +123,7 @@
 - (void)presentModalARControllerAnimated:(BOOL)animated {
     //[self.rootViewController presentModalViewController:[self pickerController] animated:animated];
     [self.rootViewController presentViewController:[self pickerController] animated:animated completion:nil];
+    //[self.rootViewController.view addSubview:self.pickerController.view];
     _hudView.frame = _pickerController.view.bounds;
 }
 
@@ -247,7 +257,7 @@ updatingLocation:(BOOL)updatingLocation
     // Set the coordinates of the location to be used for calculating the angle
     
     if (geoPoint != nil) {
-        arrowImageView.hidden = NO;
+        //arrowImageView.hidden = NO;
         latitudeOfTargetedPoint = geoPoint.latitude;
         longitudeOfTargetedPoint = geoPoint.longitude;
     } else {
@@ -264,7 +274,7 @@ updatingLocation:(BOOL)updatingLocation
 
 - (void)updateCurrentLocation:(CLLocation *)newLocation{
     self.deviceLocation = newLocation;
-    
+    arrowImageView.hidden = NO;
     CLLocation *destination = [[CLLocation alloc] initWithLatitude:geoPoint.latitude longitude:geoPoint.longitude];
     CLLocationDistance distance = [self.deviceLocation distanceFromLocation:destination];
     
