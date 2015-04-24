@@ -21,8 +21,8 @@
 {
     [super viewWillAppear:NO];
     
-    self.navigationController.navigationBarHidden = YES;
-    self.tabBarController.tabBar.hidden = NO;
+    //self.navigationController.navigationBarHidden = YES;
+    //self.tabBarController.tabBar.hidden = NO;
     //NSLog(@"Hello");
 
     
@@ -48,6 +48,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    /*
     self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2;
     self.profileImageView.clipsToBounds = YES;
     self.profileImageView.layer.borderWidth = 3.0f;
@@ -57,6 +58,7 @@
     self.logoutImageView.clipsToBounds = YES;
     self.logoutImageView.layer.borderWidth = 3.0f;
     self.logoutImageView.layer.borderColor = [UIColor whiteColor].CGColor;
+    */
     
 }
 

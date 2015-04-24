@@ -49,28 +49,30 @@
 
 @synthesize coordinates = _coordinates;
 
-@synthesize busStopArray;
+@synthesize busStopArray,alert;
 
 - (id)initWithViewController:(UIViewController *)viewController {
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     
     search = [[AMapSearchAPI alloc] initWithSearchKey:@"f57ba48c60c524724d3beff7f7063af9" Delegate:self];
     
+    alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请将设备竖屏摆放" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil];
+    
     self.rootViewController = viewController;
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    self.hudView = [[UIView alloc] initWithFrame:CGRectMake(0, 100, screenBounds.size.width, screenBounds.size.height - 100)];
+    self.hudView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenBounds.size.width, screenBounds.size.height)];
     self.rootViewController.view = self.hudView;
     self.rootViewController.navigationController.navigationBarHidden = NO;
     
     self.pickerController = [[UIImagePickerController alloc] init];
 	self.pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
     self.pickerController.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
-    //CGAffineTransform cameraTransform = CGAffineTransformMakeScale(1.65,1.65);
-    //self.pickerController.cameraViewTransform = cameraTransform;
-    CGAffineTransform transform = CGAffineTransformMakeTranslation(0.0f, 100.0f);
-    transform = CGAffineTransformScale(transform, 1.2f, 1.2f);
-    self.pickerController.cameraViewTransform = transform;
-    self.pickerController.view.frame = CGRectMake(0, 100, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 100);
+    CGAffineTransform cameraTransform = CGAffineTransformMakeScale(1.65,1.65);
+    self.pickerController.cameraViewTransform = cameraTransform;
+    //CGAffineTransform transform = CGAffineTransformMakeTranslation(0.0f, 100.0f);
+    //transform = CGAffineTransformScale(transform, 1.2f, 1.2f);
+    //self.pickerController.cameraViewTransform = transform;
+    self.pickerController.view.frame = CGRectMake(0, 00, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
 	self.pickerController.showsCameraControls = NO;
     self.pickerController.navigationBar.hidden = NO;
 	self.pickerController.cameraOverlayView = _hudView;
@@ -176,6 +178,15 @@
         
 	}
 	_deviceOrientation = orientation;
+    
+    //强制竖屏显示
+    if (orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight) {
+        [_hudView setHidden:YES];
+        [alert show];
+    } else {
+        [_hudView setHidden:NO];
+        [alert dismissWithClickedButtonIndex:0 animated:YES];
+    }
 }
 
 /*

@@ -66,6 +66,7 @@
 
 @property (nonatomic, strong) NSMutableArray *busStopArray;
 
+@property (nonatomic, strong) UIAlertView *alert;
 
 
 - (id)initWithViewController:(UIViewController *)viewController;

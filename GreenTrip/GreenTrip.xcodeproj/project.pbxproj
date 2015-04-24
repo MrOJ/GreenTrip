@@ -7,6 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18040EB21AEA603500844F0C /* bike104x66.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040EA01AEA603500844F0C /* bike104x66.png */; };
+		18040EB31AEA603500844F0C /* bike104x66@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040EA11AEA603500844F0C /* bike104x66@2x.png */; };
+		18040EB41AEA603500844F0C /* bike104x66@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040EA21AEA603500844F0C /* bike104x66@3x.png */; };
+		18040EB51AEA603500844F0C /* bus68x84.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040EA31AEA603500844F0C /* bus68x84.png */; };
+		18040EB61AEA603500844F0C /* bus68x84@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040EA41AEA603500844F0C /* bus68x84@2x.png */; };
+		18040EB71AEA603500844F0C /* bus68x84@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040EA51AEA603500844F0C /* bus68x84@3x.png */; };
+		18040EB81AEA603500844F0C /* QQ188x188.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040EA61AEA603500844F0C /* QQ188x188.png */; };
+		18040EB91AEA603500844F0C /* QQ188x188@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040EA71AEA603500844F0C /* QQ188x188@2x.png */; };
+		18040EBA1AEA603500844F0C /* QQ188x188@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040EA81AEA603500844F0C /* QQ188x188@3x.png */; };
+		18040EBB1AEA603500844F0C /* reduce58x70.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040EA91AEA603500844F0C /* reduce58x70.png */; };
+		18040EBC1AEA603500844F0C /* reduce58x70@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040EAA1AEA603500844F0C /* reduce58x70@2x.png */; };
+		18040EBD1AEA603500844F0C /* reduce58x70@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040EAB1AEA603500844F0C /* reduce58x70@3x.png */; };
+		18040EBE1AEA603500844F0C /* wechat188x188.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040EAC1AEA603500844F0C /* wechat188x188.png */; };
+		18040EBF1AEA603500844F0C /* wechat188x188@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040EAD1AEA603500844F0C /* wechat188x188@2x.png */; };
+		18040EC01AEA603500844F0C /* wechat188x188@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040EAE1AEA603500844F0C /* wechat188x188@3x.png */; };
+		18040EC11AEA603500844F0C /* weibo188x188.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040EAF1AEA603500844F0C /* weibo188x188.png */; };
+		18040EC21AEA603500844F0C /* weibo188x188@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040EB01AEA603500844F0C /* weibo188x188@2x.png */; };
+		18040EC31AEA603500844F0C /* weibo188x188@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040EB11AEA603500844F0C /* weibo188x188@3x.png */; };
+		18040EC61AEA66DC00844F0C /* profilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18040EC51AEA66DC00844F0C /* profilesViewController.m */; };
 		1840802A1AB8449B00E89AB3 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 184080121AB8449B00E89AB3 /* MJRefresh.bundle */; };
 		1840802B1AB8449B00E89AB3 /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 184080151AB8449B00E89AB3 /* MJRefreshComponent.m */; };
 		1840802C1AB8449B00E89AB3 /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 184080171AB8449B00E89AB3 /* MJRefreshConst.m */; };
@@ -240,6 +259,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18040EA01AEA603500844F0C /* bike104x66.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bike104x66.png; sourceTree = "<group>"; };
+		18040EA11AEA603500844F0C /* bike104x66@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bike104x66@2x.png"; sourceTree = "<group>"; };
+		18040EA21AEA603500844F0C /* bike104x66@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bike104x66@3x.png"; sourceTree = "<group>"; };
+		18040EA31AEA603500844F0C /* bus68x84.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus68x84.png; sourceTree = "<group>"; };
+		18040EA41AEA603500844F0C /* bus68x84@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bus68x84@2x.png"; sourceTree = "<group>"; };
+		18040EA51AEA603500844F0C /* bus68x84@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bus68x84@3x.png"; sourceTree = "<group>"; };
+		18040EA61AEA603500844F0C /* QQ188x188.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QQ188x188.png; sourceTree = "<group>"; };
+		18040EA71AEA603500844F0C /* QQ188x188@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QQ188x188@2x.png"; sourceTree = "<group>"; };
+		18040EA81AEA603500844F0C /* QQ188x188@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QQ188x188@3x.png"; sourceTree = "<group>"; };
+		18040EA91AEA603500844F0C /* reduce58x70.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reduce58x70.png; sourceTree = "<group>"; };
+		18040EAA1AEA603500844F0C /* reduce58x70@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reduce58x70@2x.png"; sourceTree = "<group>"; };
+		18040EAB1AEA603500844F0C /* reduce58x70@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reduce58x70@3x.png"; sourceTree = "<group>"; };
+		18040EAC1AEA603500844F0C /* wechat188x188.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wechat188x188.png; sourceTree = "<group>"; };
+		18040EAD1AEA603500844F0C /* wechat188x188@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wechat188x188@2x.png"; sourceTree = "<group>"; };
+		18040EAE1AEA603500844F0C /* wechat188x188@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wechat188x188@3x.png"; sourceTree = "<group>"; };
+		18040EAF1AEA603500844F0C /* weibo188x188.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weibo188x188.png; sourceTree = "<group>"; };
+		18040EB01AEA603500844F0C /* weibo188x188@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weibo188x188@2x.png"; sourceTree = "<group>"; };
+		18040EB11AEA603500844F0C /* weibo188x188@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weibo188x188@3x.png"; sourceTree = "<group>"; };
+		18040EC41AEA66DC00844F0C /* profilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = profilesViewController.h; sourceTree = "<group>"; };
+		18040EC51AEA66DC00844F0C /* profilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = profilesViewController.m; sourceTree = "<group>"; };
 		184080121AB8449B00E89AB3 /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
 		184080131AB8449B00E89AB3 /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
 		184080141AB8449B00E89AB3 /* MJRefreshComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshComponent.h; sourceTree = "<group>"; };
@@ -552,9 +591,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18040E9F1AEA603500844F0C /* profiles */ = {
+			isa = PBXGroup;
+			children = (
+				18040EA01AEA603500844F0C /* bike104x66.png */,
+				18040EA11AEA603500844F0C /* bike104x66@2x.png */,
+				18040EA21AEA603500844F0C /* bike104x66@3x.png */,
+				18040EA31AEA603500844F0C /* bus68x84.png */,
+				18040EA41AEA603500844F0C /* bus68x84@2x.png */,
+				18040EA51AEA603500844F0C /* bus68x84@3x.png */,
+				18040EA61AEA603500844F0C /* QQ188x188.png */,
+				18040EA71AEA603500844F0C /* QQ188x188@2x.png */,
+				18040EA81AEA603500844F0C /* QQ188x188@3x.png */,
+				18040EA91AEA603500844F0C /* reduce58x70.png */,
+				18040EAA1AEA603500844F0C /* reduce58x70@2x.png */,
+				18040EAB1AEA603500844F0C /* reduce58x70@3x.png */,
+				18040EAC1AEA603500844F0C /* wechat188x188.png */,
+				18040EAD1AEA603500844F0C /* wechat188x188@2x.png */,
+				18040EAE1AEA603500844F0C /* wechat188x188@3x.png */,
+				18040EAF1AEA603500844F0C /* weibo188x188.png */,
+				18040EB01AEA603500844F0C /* weibo188x188@2x.png */,
+				18040EB11AEA603500844F0C /* weibo188x188@3x.png */,
+			);
+			path = profiles;
+			sourceTree = "<group>";
+		};
 		183205F01AC8151F00FA4B34 /* TripMainImg */ = {
 			isa = PBXGroup;
 			children = (
+				18040E9F1AEA603500844F0C /* profiles */,
 				18B539F61AE7C5C200B6F344 /* finding */,
 				18B5393A1AE7BC7B00B6F344 /* searchRoutes */,
 				18B538B41AE7BB9100B6F344 /* tripMain */,
@@ -764,6 +829,8 @@
 				18CE37B71AC673D400EF6141 /* VC */,
 				18CE37A51AC5982100EF6141 /* loginViewController.h */,
 				18CE37A61AC5982100EF6141 /* loginViewController.m */,
+				18040EC41AEA66DC00844F0C /* profilesViewController.h */,
+				18040EC51AEA66DC00844F0C /* profilesViewController.m */,
 			);
 			path = Profiles;
 			sourceTree = "<group>";
@@ -1158,12 +1225,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18040EBE1AEA603500844F0C /* wechat188x188.png in Resources */,
 				18B539B71AE7BC7C00B6F344 /* 4-120x124未激活.png in Resources */,
 				18B539D31AE7BC7C00B6F344 /* 分享48x52@3x.png in Resources */,
 				18B3415E1AA6D81A00B19ED4 /* expandableImage.png in Resources */,
 				18B539991AE7BC7C00B6F344 /* 1出发未激活130x80.png in Resources */,
 				18B53A171AE7C5CC00B6F344 /* 2箭头154x152@3x.png in Resources */,
 				18B539DD1AE7BC7C00B6F344 /* 终点150x240px.png in Resources */,
+				18040EC11AEA603500844F0C /* weibo188x188.png in Resources */,
 				18B539CE1AE7BC7C00B6F344 /* 五角星56x56@2x.png in Resources */,
 				18F76A221AB5BB0B00705FBA /* 8.jpeg in Resources */,
 				18B539B51AE7BC7C00B6F344 /* 4-120x124@2x.png in Resources */,
@@ -1196,6 +1265,7 @@
 				18F769711AB42C6A00705FBA /* finding_logo.png in Resources */,
 				18B5399F1AE7BC7C00B6F344 /* 2-112x140未激活.png in Resources */,
 				18B539C81AE7BC7C00B6F344 /* 68x84.png in Resources */,
+				18040EBD1AEA603500844F0C /* reduce58x70@3x.png in Resources */,
 				18F76A1C1AB5BB0B00705FBA /* 2.jpeg in Resources */,
 				18B539A31AE7BC7C00B6F344 /* 2-70x110@2x.png in Resources */,
 				18B539A71AE7BC7C00B6F344 /* 2发现未激活130x80@3x.png in Resources */,
@@ -1204,6 +1274,7 @@
 				18B340D71AA6D55700B19ED4 /* Main.storyboard in Resources */,
 				18B539C21AE7BC7C00B6F344 /* 5-76x92@2x.png in Resources */,
 				18B539B01AE7BC7C00B6F344 /* 3-148x112未激活@3x.png in Resources */,
+				18040EB51AEA603500844F0C /* bus68x84.png in Resources */,
 				18B53A031AE7C5C200B6F344 /* 搜搜86x90.png in Resources */,
 				18B539961AE7BC7C00B6F344 /* 1-70x110@2x.png in Resources */,
 				18B340C11AA6D4CC00B19ED4 /* LaunchScreen.xib in Resources */,
@@ -1227,13 +1298,17 @@
 				18B341421AA6D7CE00B19ED4 /* AMap.bundle in Resources */,
 				18B539B61AE7BC7C00B6F344 /* 4-120x124@3x.png in Resources */,
 				18B538D21AE7BB9100B6F344 /* 箭头中420x84@4x.png in Resources */,
+				18040EC01AEA603500844F0C /* wechat188x188@3x.png in Resources */,
 				18B3415C1AA6D81A00B19ED4 /* disclosure_arrow.png in Resources */,
 				18B5399B1AE7BC7C00B6F344 /* 1出发未激活130x80@3x.png in Resources */,
 				18B539D61AE7BC7C00B6F344 /* 摄像头166x200@3x.png in Resources */,
 				18F76A1D1AB5BB0B00705FBA /* 3.jpeg in Resources */,
 				18B539B11AE7BC7C00B6F344 /* 3我的未激活130x80.png in Resources */,
 				18B539AE1AE7BC7C00B6F344 /* 3-148x112未激活.png in Resources */,
+				18040EB61AEA603500844F0C /* bus68x84@2x.png in Resources */,
 				18B539931AE7BC7C00B6F344 /* 1-148x112未激活@2x.png in Resources */,
+				18040EC31AEA603500844F0C /* weibo188x188@3x.png in Resources */,
+				18040EC21AEA603500844F0C /* weibo188x188@2x.png in Resources */,
 				18B539DB1AE7BC7C00B6F344 /* 箭头38x22@2x.png in Resources */,
 				18B539AF1AE7BC7C00B6F344 /* 3-148x112未激活@2x.png in Resources */,
 				1846F9251AC18C95006067BA /* 4设置未激活130x80@4x副本.png in Resources */,
@@ -1256,10 +1331,13 @@
 				18B539BE1AE7BC7C00B6F344 /* 4设置未激活130x80.png in Resources */,
 				18B539A21AE7BC7C00B6F344 /* 2-70x110.png in Resources */,
 				18F76A231AB5BB0B00705FBA /* 9.jpeg in Resources */,
+				18040EBA1AEA603500844F0C /* QQ188x188@3x.png in Resources */,
 				18B539C71AE7BC7C00B6F344 /* 6-100x98@3x.png in Resources */,
 				18B340BE1AA6D4CC00B19ED4 /* Images.xcassets in Resources */,
 				18B539D81AE7BC7C00B6F344 /* 箭头2-76x44px.png in Resources */,
+				18040EB21AEA603500844F0C /* bike104x66.png in Resources */,
 				18B539AA1AE7BC7C00B6F344 /* 3-144x92@3x.png in Resources */,
+				18040EBF1AEA603500844F0C /* wechat188x188@2x.png in Resources */,
 				18B539C91AE7BC7C00B6F344 /* 7-90x120.png in Resources */,
 				18B539971AE7BC7C00B6F344 /* 1-70x110@3x.png in Resources */,
 				18B5398F1AE7BC7C00B6F344 /* 1-148x112.png in Resources */,
@@ -1275,27 +1353,33 @@
 				18B3415B1AA6D81A00B19ED4 /* compassArrow.png in Resources */,
 				18B538D01AE7BB9100B6F344 /* 箭头38x22@4x.png in Resources */,
 				18B5399E1AE7BC7C00B6F344 /* 2-112x140@3x.png in Resources */,
+				18040EBB1AEA603500844F0C /* reduce58x70.png in Resources */,
 				18BCABA41AA9EA1E00827C66 /* tabBar1.png in Resources */,
 				18B53A071AE7C5C200B6F344 /* 箭头30x56@2x.png in Resources */,
 				18B539DC1AE7BC7C00B6F344 /* 箭头38x22@3x.png in Resources */,
 				18B53A021AE7C5C200B6F344 /* 排行榜208x66@3x.png in Resources */,
+				18040EB81AEA603500844F0C /* QQ188x188.png in Resources */,
 				18B53A001AE7C5C200B6F344 /* 排行榜208x66.png in Resources */,
 				18B53A191AE7C5CC00B6F344 /* 车164x166@2x.png in Resources */,
 				18B3415A1AA6D81A00B19ED4 /* checkmark.png in Resources */,
 				18B53A011AE7C5C200B6F344 /* 排行榜208x66@2x.png in Resources */,
 				18B539D51AE7BC7C00B6F344 /* 摄像头166x200@2x.png in Resources */,
+				18040EB41AEA603500844F0C /* bike104x66@3x.png in Resources */,
 				18B539AB1AE7BC7C00B6F344 /* 3-148x112.png in Resources */,
 				18B539921AE7BC7C00B6F344 /* 1-148x112未激活.png in Resources */,
 				18B53A1A1AE7C5CC00B6F344 /* 车164x166@3x.png in Resources */,
 				18B341621AA6D81A00B19ED4 /* 出发按钮160x160px.png in Resources */,
 				18B539E01AE7BC7C00B6F344 /* 起点150x240px.png in Resources */,
 				18B539CC1AE7BC7C00B6F344 /* 五角星2-56x56.png in Resources */,
+				18040EB31AEA603500844F0C /* bike104x66@2x.png in Resources */,
 				18F76A211AB5BB0B00705FBA /* 7.jpeg in Resources */,
 				18BCABA61AA9EA1E00827C66 /* tabBar3.png in Resources */,
 				18B53A151AE7C5CC00B6F344 /* 2箭头154x152.png in Resources */,
 				18B53A051AE7C5C200B6F344 /* 搜搜86x90@3x.png in Resources */,
 				18B53A181AE7C5CC00B6F344 /* 车164x166.png in Resources */,
+				18040EB71AEA603500844F0C /* bus68x84@3x.png in Resources */,
 				1840802A1AB8449B00E89AB3 /* MJRefresh.bundle in Resources */,
+				18040EBC1AEA603500844F0C /* reduce58x70@2x.png in Resources */,
 				18B539B21AE7BC7C00B6F344 /* 3我的未激活130x80@2x.png in Resources */,
 				18B539E21AE7BC7C00B6F344 /* 起点150x240px@3x.png in Resources */,
 				18B539D21AE7BC7C00B6F344 /* 分享48x52@2x.png in Resources */,
@@ -1304,6 +1388,7 @@
 				18F76A1E1AB5BB0B00705FBA /* 4.jpeg in Resources */,
 				18B539E11AE7BC7C00B6F344 /* 起点150x240px@2x.png in Resources */,
 				18B539951AE7BC7C00B6F344 /* 1-70x110.png in Resources */,
+				18040EB91AEA603500844F0C /* QQ188x188@2x.png in Resources */,
 				18B53A061AE7C5C200B6F344 /* 箭头30x56.png in Resources */,
 				18F76A201AB5BB0B00705FBA /* 6.jpeg in Resources */,
 				18B538CB1AE7BB9100B6F344 /* 4设置未激活130x80@4x.png in Resources */,
@@ -1372,6 +1457,7 @@
 				18B3411E1AA6D5A600B19ED4 /* FindingMainViewController.m in Sources */,
 				18B3410E1AA6D58300B19ED4 /* ExtensibleTableView.m in Sources */,
 				18B341121AA6D58300B19ED4 /* textFieldEditDetailsViewController.m in Sources */,
+				18040EC61AEA66DC00844F0C /* profilesViewController.m in Sources */,
 				18B3410A1AA6D58300B19ED4 /* ARViewController.m in Sources */,
 				18B341061AA6D58300B19ED4 /* ARAnnotation.m in Sources */,
 				184080311AB8449B00E89AB3 /* MJRefreshLegendFooter.m in Sources */,
