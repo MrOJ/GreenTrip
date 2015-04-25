@@ -12,5 +12,5 @@
 
 @interface SettingMainViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
-@property (strong, nonatomic) IBOutlet UITableView *tableViewController;
+@property (strong, nonatomic) UITableView *myTableView;
 @end

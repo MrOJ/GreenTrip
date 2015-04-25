@@ -61,15 +61,19 @@
     self.navigationItem.rightBarButtonItem = searchButton;
 
     busButton.selected = YES;   //默认选择当前界面
+    [busButton setImage:[UIImage imageNamed:@"5-76x92"] forState:UIControlStateSelected];
     [busButton addTarget:self action:@selector(chooseBus:) forControlEvents:UIControlEventTouchUpInside];
     
     walkButton.selected = NO;
+    [walkButton setImage:[UIImage imageNamed:@"4-54x92"] forState:UIControlStateSelected];
     [walkButton addTarget:self action:@selector(chooseWalk:) forControlEvents:UIControlEventTouchUpInside];
     
     bikeButton.selected = NO;
+    [bikeButton setImage:[UIImage imageNamed:@"3-144x92"] forState:UIControlStateSelected];
     [bikeButton addTarget:self action:@selector(chooseBike:) forControlEvents:UIControlEventTouchUpInside];
     
     mixButton.selected = NO;
+    [mixButton setImage:[UIImage imageNamed:@"6-100x98"] forState:UIControlStateSelected];
     [mixButton addTarget:self action:@selector(chooseMix:) forControlEvents:UIControlEventTouchUpInside];
     
     

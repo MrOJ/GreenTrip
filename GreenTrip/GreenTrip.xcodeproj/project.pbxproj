@@ -26,6 +26,21 @@
 		18040EC21AEA603500844F0C /* weibo188x188@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040EB01AEA603500844F0C /* weibo188x188@2x.png */; };
 		18040EC31AEA603500844F0C /* weibo188x188@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040EB11AEA603500844F0C /* weibo188x188@3x.png */; };
 		18040EC61AEA66DC00844F0C /* profilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18040EC51AEA66DC00844F0C /* profilesViewController.m */; };
+		18040ECB1AEBAC9A00844F0C /* 4设置130x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040EC81AEBAC9A00844F0C /* 4设置130x80.png */; };
+		18040ECC1AEBAC9A00844F0C /* 4设置130x80@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040EC91AEBAC9A00844F0C /* 4设置130x80@2x.png */; };
+		18040ECD1AEBAC9A00844F0C /* 4设置130x80@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040ECA1AEBAC9A00844F0C /* 4设置130x80@3x.png */; };
+		18040EDA1AEBBB6200844F0C /* 3-144x92未激活.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040ECE1AEBBB6200844F0C /* 3-144x92未激活.png */; };
+		18040EDB1AEBBB6200844F0C /* 3-144x92未激活@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040ECF1AEBBB6200844F0C /* 3-144x92未激活@2x.png */; };
+		18040EDC1AEBBB6200844F0C /* 3-144x92未激活@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040ED01AEBBB6200844F0C /* 3-144x92未激活@3x.png */; };
+		18040EDD1AEBBB6200844F0C /* 4-54x92未激活.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040ED11AEBBB6200844F0C /* 4-54x92未激活.png */; };
+		18040EDE1AEBBB6200844F0C /* 4-54x92未激活@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040ED21AEBBB6200844F0C /* 4-54x92未激活@2x.png */; };
+		18040EDF1AEBBB6200844F0C /* 4-54x92未激活@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040ED31AEBBB6200844F0C /* 4-54x92未激活@3x.png */; };
+		18040EE01AEBBB6200844F0C /* 5-76x92未激活.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040ED41AEBBB6200844F0C /* 5-76x92未激活.png */; };
+		18040EE11AEBBB6200844F0C /* 5-76x92未激活@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040ED51AEBBB6200844F0C /* 5-76x92未激活@2x.png */; };
+		18040EE21AEBBB6200844F0C /* 5-76x92未激活@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040ED61AEBBB6200844F0C /* 5-76x92未激活@3x.png */; };
+		18040EE31AEBBB6200844F0C /* 6-100x98未激活.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040ED71AEBBB6200844F0C /* 6-100x98未激活.png */; };
+		18040EE41AEBBB6200844F0C /* 6-100x98未激活@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040ED81AEBBB6200844F0C /* 6-100x98未激活@2x.png */; };
+		18040EE51AEBBB6200844F0C /* 6-100x98未激活@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040ED91AEBBB6200844F0C /* 6-100x98未激活@3x.png */; };
 		1840802A1AB8449B00E89AB3 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 184080121AB8449B00E89AB3 /* MJRefresh.bundle */; };
 		1840802B1AB8449B00E89AB3 /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 184080151AB8449B00E89AB3 /* MJRefreshComponent.m */; };
 		1840802C1AB8449B00E89AB3 /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 184080171AB8449B00E89AB3 /* MJRefreshConst.m */; };
@@ -279,6 +294,21 @@
 		18040EB11AEA603500844F0C /* weibo188x188@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weibo188x188@3x.png"; sourceTree = "<group>"; };
 		18040EC41AEA66DC00844F0C /* profilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = profilesViewController.h; sourceTree = "<group>"; };
 		18040EC51AEA66DC00844F0C /* profilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = profilesViewController.m; sourceTree = "<group>"; };
+		18040EC81AEBAC9A00844F0C /* 4设置130x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "4设置130x80.png"; sourceTree = "<group>"; };
+		18040EC91AEBAC9A00844F0C /* 4设置130x80@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "4设置130x80@2x.png"; sourceTree = "<group>"; };
+		18040ECA1AEBAC9A00844F0C /* 4设置130x80@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "4设置130x80@3x.png"; sourceTree = "<group>"; };
+		18040ECE1AEBBB6200844F0C /* 3-144x92未激活.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3-144x92未激活.png"; sourceTree = "<group>"; };
+		18040ECF1AEBBB6200844F0C /* 3-144x92未激活@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3-144x92未激活@2x.png"; sourceTree = "<group>"; };
+		18040ED01AEBBB6200844F0C /* 3-144x92未激活@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3-144x92未激活@3x.png"; sourceTree = "<group>"; };
+		18040ED11AEBBB6200844F0C /* 4-54x92未激活.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "4-54x92未激活.png"; sourceTree = "<group>"; };
+		18040ED21AEBBB6200844F0C /* 4-54x92未激活@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "4-54x92未激活@2x.png"; sourceTree = "<group>"; };
+		18040ED31AEBBB6200844F0C /* 4-54x92未激活@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "4-54x92未激活@3x.png"; sourceTree = "<group>"; };
+		18040ED41AEBBB6200844F0C /* 5-76x92未激活.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "5-76x92未激活.png"; sourceTree = "<group>"; };
+		18040ED51AEBBB6200844F0C /* 5-76x92未激活@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "5-76x92未激活@2x.png"; sourceTree = "<group>"; };
+		18040ED61AEBBB6200844F0C /* 5-76x92未激活@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "5-76x92未激活@3x.png"; sourceTree = "<group>"; };
+		18040ED71AEBBB6200844F0C /* 6-100x98未激活.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "6-100x98未激活.png"; sourceTree = "<group>"; };
+		18040ED81AEBBB6200844F0C /* 6-100x98未激活@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "6-100x98未激活@2x.png"; sourceTree = "<group>"; };
+		18040ED91AEBBB6200844F0C /* 6-100x98未激活@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "6-100x98未激活@3x.png"; sourceTree = "<group>"; };
 		184080121AB8449B00E89AB3 /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
 		184080131AB8449B00E89AB3 /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
 		184080141AB8449B00E89AB3 /* MJRefreshComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshComponent.h; sourceTree = "<group>"; };
@@ -594,6 +624,9 @@
 		18040E9F1AEA603500844F0C /* profiles */ = {
 			isa = PBXGroup;
 			children = (
+				18040EC81AEBAC9A00844F0C /* 4设置130x80.png */,
+				18040EC91AEBAC9A00844F0C /* 4设置130x80@2x.png */,
+				18040ECA1AEBAC9A00844F0C /* 4设置130x80@3x.png */,
 				18040EA01AEA603500844F0C /* bike104x66.png */,
 				18040EA11AEA603500844F0C /* bike104x66@2x.png */,
 				18040EA21AEA603500844F0C /* bike104x66@3x.png */,
@@ -936,6 +969,18 @@
 		18B5393A1AE7BC7B00B6F344 /* searchRoutes */ = {
 			isa = PBXGroup;
 			children = (
+				18040ECE1AEBBB6200844F0C /* 3-144x92未激活.png */,
+				18040ECF1AEBBB6200844F0C /* 3-144x92未激活@2x.png */,
+				18040ED01AEBBB6200844F0C /* 3-144x92未激活@3x.png */,
+				18040ED11AEBBB6200844F0C /* 4-54x92未激活.png */,
+				18040ED21AEBBB6200844F0C /* 4-54x92未激活@2x.png */,
+				18040ED31AEBBB6200844F0C /* 4-54x92未激活@3x.png */,
+				18040ED41AEBBB6200844F0C /* 5-76x92未激活.png */,
+				18040ED51AEBBB6200844F0C /* 5-76x92未激活@2x.png */,
+				18040ED61AEBBB6200844F0C /* 5-76x92未激活@3x.png */,
+				18040ED71AEBBB6200844F0C /* 6-100x98未激活.png */,
+				18040ED81AEBBB6200844F0C /* 6-100x98未激活@2x.png */,
+				18040ED91AEBBB6200844F0C /* 6-100x98未激活@3x.png */,
 				18B53A091AE7C5CC00B6F344 /* 1箭头154x152.png */,
 				18B53A0A1AE7C5CC00B6F344 /* 1箭头154x152@2x.png */,
 				18B53A0B1AE7C5CC00B6F344 /* 1箭头154x152@3x.png */,
@@ -1225,6 +1270,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18040ECB1AEBAC9A00844F0C /* 4设置130x80.png in Resources */,
 				18040EBE1AEA603500844F0C /* wechat188x188.png in Resources */,
 				18B539B71AE7BC7C00B6F344 /* 4-120x124未激活.png in Resources */,
 				18B539D31AE7BC7C00B6F344 /* 分享48x52@3x.png in Resources */,
@@ -1233,12 +1279,14 @@
 				18B53A171AE7C5CC00B6F344 /* 2箭头154x152@3x.png in Resources */,
 				18B539DD1AE7BC7C00B6F344 /* 终点150x240px.png in Resources */,
 				18040EC11AEA603500844F0C /* weibo188x188.png in Resources */,
+				18040EDF1AEBBB6200844F0C /* 4-54x92未激活@3x.png in Resources */,
 				18B539CE1AE7BC7C00B6F344 /* 五角星56x56@2x.png in Resources */,
 				18F76A221AB5BB0B00705FBA /* 8.jpeg in Resources */,
 				18B539B51AE7BC7C00B6F344 /* 4-120x124@2x.png in Resources */,
 				18B53A131AE7C5CC00B6F344 /* 1箭头154x152@2x.png in Resources */,
 				18B539D41AE7BC7C00B6F344 /* 摄像头166x200.png in Resources */,
 				18B341581AA6D81A00B19ED4 /* bikeIcon.png in Resources */,
+				18040EDC1AEBBB6200844F0C /* 3-144x92未激活@3x.png in Resources */,
 				18B538C91AE7BB9100B6F344 /* 3我的未激活130x80@4x.png in Resources */,
 				18B5399A1AE7BC7C00B6F344 /* 1出发未激活130x80@2x.png in Resources */,
 				18B539B31AE7BC7C00B6F344 /* 3我的未激活130x80@3x.png in Resources */,
@@ -1256,6 +1304,7 @@
 				18B341591AA6D81A00B19ED4 /* busIcon.png in Resources */,
 				18B538CC1AE7BB9100B6F344 /* 出发按钮300x300@4x.png in Resources */,
 				18B539CA1AE7BC7C00B6F344 /* 7-90x120@2x.png in Resources */,
+				18040EDB1AEBBB6200844F0C /* 3-144x92未激活@2x.png in Resources */,
 				18B53A161AE7C5CC00B6F344 /* 2箭头154x152@2x.png in Resources */,
 				18B539D71AE7BC7C00B6F344 /* 箭头1-44x84px.png in Resources */,
 				18B539D11AE7BC7C00B6F344 /* 分享48x52.png in Resources */,
@@ -1276,6 +1325,8 @@
 				18B539B01AE7BC7C00B6F344 /* 3-148x112未激活@3x.png in Resources */,
 				18040EB51AEA603500844F0C /* bus68x84.png in Resources */,
 				18B53A031AE7C5C200B6F344 /* 搜搜86x90.png in Resources */,
+				18040EDE1AEBBB6200844F0C /* 4-54x92未激活@2x.png in Resources */,
+				18040EE21AEBBB6200844F0C /* 5-76x92未激活@3x.png in Resources */,
 				18B539961AE7BC7C00B6F344 /* 1-70x110@2x.png in Resources */,
 				18B340C11AA6D4CC00B19ED4 /* LaunchScreen.xib in Resources */,
 				18B539A41AE7BC7C00B6F344 /* 2-70x110@3x.png in Resources */,
@@ -1286,6 +1337,7 @@
 				18B5399D1AE7BC7C00B6F344 /* 2-112x140@2x.png in Resources */,
 				18BCABA71AA9EA1E00827C66 /* tabBar4.png in Resources */,
 				18B539B41AE7BC7C00B6F344 /* 4-120x124.png in Resources */,
+				18040EE01AEBBB6200844F0C /* 5-76x92未激活.png in Resources */,
 				18B539D91AE7BC7C00B6F344 /* 箭头3-54x30px.png in Resources */,
 				18B539C51AE7BC7C00B6F344 /* 6-100x98.png in Resources */,
 				18B539A51AE7BC7C00B6F344 /* 2发现未激活130x80.png in Resources */,
@@ -1296,6 +1348,7 @@
 				18B341631AA6D81A00B19ED4 /* 向下选择18x10px.png in Resources */,
 				18B539DE1AE7BC7C00B6F344 /* 终点150x240px@2x.png in Resources */,
 				18B341421AA6D7CE00B19ED4 /* AMap.bundle in Resources */,
+				18040EE51AEBBB6200844F0C /* 6-100x98未激活@3x.png in Resources */,
 				18B539B61AE7BC7C00B6F344 /* 4-120x124@3x.png in Resources */,
 				18B538D21AE7BB9100B6F344 /* 箭头中420x84@4x.png in Resources */,
 				18040EC01AEA603500844F0C /* wechat188x188@3x.png in Resources */,
@@ -1307,6 +1360,7 @@
 				18B539AE1AE7BC7C00B6F344 /* 3-148x112未激活.png in Resources */,
 				18040EB61AEA603500844F0C /* bus68x84@2x.png in Resources */,
 				18B539931AE7BC7C00B6F344 /* 1-148x112未激活@2x.png in Resources */,
+				18040ECC1AEBAC9A00844F0C /* 4设置130x80@2x.png in Resources */,
 				18040EC31AEA603500844F0C /* weibo188x188@3x.png in Resources */,
 				18040EC21AEA603500844F0C /* weibo188x188@2x.png in Resources */,
 				18B539DB1AE7BC7C00B6F344 /* 箭头38x22@2x.png in Resources */,
@@ -1325,6 +1379,7 @@
 				18B341601AA6D81A00B19ED4 /* truck.png in Resources */,
 				18B539A01AE7BC7C00B6F344 /* 2-112x140未激活@2x.png in Resources */,
 				18B539BF1AE7BC7C00B6F344 /* 4设置未激活130x80@2x.png in Resources */,
+				18040ECD1AEBAC9A00844F0C /* 4设置130x80@3x.png in Resources */,
 				18B539B81AE7BC7C00B6F344 /* 4-120x124未激活@2x.png in Resources */,
 				18B341611AA6D81A00B19ED4 /* walkingIcon.png in Resources */,
 				18B538C81AE7BB9100B6F344 /* 3我的130x80@4x.png in Resources */,
@@ -1346,6 +1401,7 @@
 				18B539C01AE7BC7C00B6F344 /* 4设置未激活130x80@3x.png in Resources */,
 				18B3415F1AA6D81A00B19ED4 /* expandableImage@2x.png in Resources */,
 				18B539BA1AE7BC7C00B6F344 /* 4-54x92.png in Resources */,
+				18040EE11AEBBB6200844F0C /* 5-76x92未激活@2x.png in Resources */,
 				18B538C51AE7BB9100B6F344 /* 1出发未激活130x80@4x.png in Resources */,
 				18B539CD1AE7BC7C00B6F344 /* 五角星56x56.png in Resources */,
 				18B539D01AE7BC7C00B6F344 /* 分享2-48x52.png in Resources */,
@@ -1361,6 +1417,7 @@
 				18040EB81AEA603500844F0C /* QQ188x188.png in Resources */,
 				18B53A001AE7C5C200B6F344 /* 排行榜208x66.png in Resources */,
 				18B53A191AE7C5CC00B6F344 /* 车164x166@2x.png in Resources */,
+				18040EDD1AEBBB6200844F0C /* 4-54x92未激活.png in Resources */,
 				18B3415A1AA6D81A00B19ED4 /* checkmark.png in Resources */,
 				18B53A011AE7C5C200B6F344 /* 排行榜208x66@2x.png in Resources */,
 				18B539D51AE7BC7C00B6F344 /* 摄像头166x200@2x.png in Resources */,
@@ -1392,7 +1449,10 @@
 				18B53A061AE7C5C200B6F344 /* 箭头30x56.png in Resources */,
 				18F76A201AB5BB0B00705FBA /* 6.jpeg in Resources */,
 				18B538CB1AE7BB9100B6F344 /* 4设置未激活130x80@4x.png in Resources */,
+				18040EDA1AEBBB6200844F0C /* 3-144x92未激活.png in Resources */,
+				18040EE41AEBBB6200844F0C /* 6-100x98未激活@2x.png in Resources */,
 				18B539DF1AE7BC7C00B6F344 /* 终点150x240px@3x.png in Resources */,
+				18040EE31AEBBB6200844F0C /* 6-100x98未激活.png in Resources */,
 				18B539BB1AE7BC7C00B6F344 /* 4-54x92@2x.png in Resources */,
 				18B539981AE7BC7C00B6F344 /* 10x10.png in Resources */,
 				18B3415D1AA6D81A00B19ED4 /* disclosure_arrow_180.png in Resources */,

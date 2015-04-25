@@ -15,9 +15,14 @@
 @implementation profilesViewController
 
 @synthesize usernameTextField,passwordTextField,LoginView,afterLoginView;
+@synthesize portraitButton,backgroundImageView,nicknameLabel,messageLabel;
+@synthesize takingbikeNumLabel,takingbusNumLabel,reducingLabel,percentLabel;
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:NO];
+    
+    self.tabBarController.tabBar.hidden = NO;
     
     self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
     
@@ -42,6 +47,9 @@
                 
                 self.navigationItem.title = @"个人资料";
                 
+                UIBarButtonItem *settingButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"4设置130x80"] style:UIBarButtonItemStylePlain target:self action:@selector(goSetting:)];
+                self.navigationItem.rightBarButtonItem = settingButton;
+                
             }
         }
     }
@@ -51,12 +59,20 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //实际这个地方要删去
-    [YDConfigurationHelper setBoolValueForConfigurationKey:@"isLogout" withValue:YES];
+    [YDConfigurationHelper setBoolValueForConfigurationKey:@"isLogout" withValue:NO];
 
 }
 
+//进入注册界面
 - (void)goRegister:(id)sender {
     
+}
+
+//进入设置界面
+- (void)goSetting:(id)sender {
+    SettingMainViewController *settingMainVC = [[SettingMainViewController alloc] init];
+    
+    [self.navigationController pushViewController:settingMainVC animated:YES];
 }
 
 - (IBAction)login:(id)sender {
@@ -115,6 +131,10 @@
 
 - (IBAction)useWeibo:(id)sender {
     
+}
+
+- (IBAction)uploadPortrait:(id)sender {
+    NSLog(@"上传头像");
 }
 
 -(void)showErrorWithMessage:(NSString *)msg

@@ -14,12 +14,12 @@
 
 @implementation SettingMainViewController
 
-@synthesize tableViewController;
+@synthesize myTableView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationController.navigationBarHidden = NO;
+    //self.navigationController.navigationBarHidden = NO;
     //设置下一个页面的返回键。
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
     backItem.title = @"";
@@ -27,8 +27,12 @@
     
     self.tabBarController.tabBar.hidden = YES;
     
-    tableViewController.delegate = self;
-    tableViewController.dataSource = self;
+    myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStyleGrouped];
+    
+    myTableView.delegate = self;
+    myTableView.dataSource = self;
+    
+    [self.view addSubview:myTableView];
 
 }
 
@@ -37,16 +41,31 @@
  return 64;
  }
  */
+//设置section行高
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 10;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return 30;
+    } else {
+        return 10;
+    }
+
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 4;
 }
 
 /*
- - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
- return 30;
- }
- */
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 15;
+}
+*/
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -69,7 +88,7 @@
     
     if (indexPath.section == 0) {
         cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
-        cell.textLabel.text = @"修改资料";
+        cell.textLabel.text = @"个人资料修改";
         /*
         UIImageView *findingLogoImgView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 12, 20, 20)];
         findingLogoImgView.image = [UIImage imageNamed:@"finding_logo"];
@@ -85,7 +104,7 @@
         
     } else if (indexPath.section == 1) {
         cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
-        cell.textLabel.text = @"关于";
+        cell.textLabel.text = @"意见反馈";
         /*
         UILabel *findingLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 5, 200, 30)];
         findingLabel.text = @"关于";
@@ -93,12 +112,18 @@
         [cell addSubview:findingLabel];
         */
     } else if (indexPath.section == 2) {
+        cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+        cell.textLabel.text = @"关于我们";
+        
+    } else if (indexPath.section == 3) {
         UILabel *deleteLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.bounds.size.width, cell.bounds.size.height)];
         deleteLabel.text = @"退出登录";
         deleteLabel.textAlignment = NSTextAlignmentCenter;
         deleteLabel.textColor = [UIColor redColor];
         
         [cell addSubview:deleteLabel];
+    } else if (indexPath.section == 4) {
+        
     }
     
     return cell;
@@ -110,6 +135,8 @@
     } else if (indexPath.section == 1) {
         
     } else if (indexPath.section == 2) {
+
+    } else if (indexPath.section == 3) {
         [self.navigationController popViewControllerAnimated:NO];
         
         [YDConfigurationHelper setBoolValueForConfigurationKey:@"isLogout" withValue:YES];
