@@ -13,14 +13,20 @@
 #import "YDConfigurationHelper.h"
 #import "SettingMainViewController.h"
 
-@interface profilesViewController : UIViewController<UITextFieldDelegate>
+#import "VPImageCropperViewController.h"
+
+#define myColor [UIColor colorWithRed:119.0 / 255.0f green:185.0 / 255.0f blue:67.0 / 255.0f alpha:1.0f]
+#define ORIGINAL_MAX_WIDTH 640.0f
+
+@interface profilesViewController : UIViewController<UITextFieldDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,VPImageCropperDelegate>
+
 
 @property (strong, nonatomic) IBOutlet UIView *LoginView;
 @property (strong, nonatomic) IBOutlet UIView *afterLoginView;
 @property (strong, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
 
-
+@property (strong, nonatomic) UIImagePickerController *imagePickerController;
 
 @property (strong, nonatomic) IBOutlet UIButton *portraitButton;        //头像
 @property (strong, nonatomic) IBOutlet UIImageView *backgroundImageView;   //资料背景

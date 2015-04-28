@@ -41,6 +41,7 @@
 		18040EE31AEBBB6200844F0C /* 6-100x98未激活.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040ED71AEBBB6200844F0C /* 6-100x98未激活.png */; };
 		18040EE41AEBBB6200844F0C /* 6-100x98未激活@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040ED81AEBBB6200844F0C /* 6-100x98未激活@2x.png */; };
 		18040EE51AEBBB6200844F0C /* 6-100x98未激活@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18040ED91AEBBB6200844F0C /* 6-100x98未激活@3x.png */; };
+		1817482D1AEE5D4C00F1DFE8 /* VPImageCropperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817482C1AEE5D4C00F1DFE8 /* VPImageCropperViewController.m */; };
 		1840802A1AB8449B00E89AB3 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 184080121AB8449B00E89AB3 /* MJRefresh.bundle */; };
 		1840802B1AB8449B00E89AB3 /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 184080151AB8449B00E89AB3 /* MJRefreshComponent.m */; };
 		1840802C1AB8449B00E89AB3 /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 184080171AB8449B00E89AB3 /* MJRefreshConst.m */; };
@@ -309,6 +310,9 @@
 		18040ED71AEBBB6200844F0C /* 6-100x98未激活.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "6-100x98未激活.png"; sourceTree = "<group>"; };
 		18040ED81AEBBB6200844F0C /* 6-100x98未激活@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "6-100x98未激活@2x.png"; sourceTree = "<group>"; };
 		18040ED91AEBBB6200844F0C /* 6-100x98未激活@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "6-100x98未激活@3x.png"; sourceTree = "<group>"; };
+		1817482B1AEE5D4C00F1DFE8 /* VPImageCropperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VPImageCropperViewController.h; sourceTree = "<group>"; };
+		1817482C1AEE5D4C00F1DFE8 /* VPImageCropperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VPImageCropperViewController.m; sourceTree = "<group>"; };
+		1817482E1AEE74EB00F1DFE8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		184080121AB8449B00E89AB3 /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
 		184080131AB8449B00E89AB3 /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
 		184080141AB8449B00E89AB3 /* MJRefreshComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshComponent.h; sourceTree = "<group>"; };
@@ -649,6 +653,15 @@
 			path = profiles;
 			sourceTree = "<group>";
 		};
+		1817482A1AEE5D4C00F1DFE8 /* VPImageCropper */ = {
+			isa = PBXGroup;
+			children = (
+				1817482B1AEE5D4C00F1DFE8 /* VPImageCropperViewController.h */,
+				1817482C1AEE5D4C00F1DFE8 /* VPImageCropperViewController.m */,
+			);
+			path = VPImageCropper;
+			sourceTree = "<group>";
+		};
 		183205F01AC8151F00FA4B34 /* TripMainImg */ = {
 			isa = PBXGroup;
 			children = (
@@ -854,6 +867,7 @@
 		18B3411F1AA6D5BF00B19ED4 /* Profiles */ = {
 			isa = PBXGroup;
 			children = (
+				1817482A1AEE5D4C00F1DFE8 /* VPImageCropper */,
 				18CE37A81AC673D400EF6141 /* Categories */,
 				18CE37AB1AC673D400EF6141 /* CrashHandler */,
 				18CE37AE1AC673D400EF6141 /* Definitions */,
@@ -1508,6 +1522,7 @@
 				18F76A0A1AB5B30D00705FBA /* PSCollectionView.m in Sources */,
 				18B340B01AA6D4CC00B19ED4 /* main.m in Sources */,
 				18A6C2861AE3E1FE00452140 /* AFHTTPRequestOperation.m in Sources */,
+				1817482D1AEE5D4C00F1DFE8 /* VPImageCropperViewController.m in Sources */,
 				18A6C2881AE3E1FE00452140 /* AFHTTPSessionManager.m in Sources */,
 				18CE37C21AC673D400EF6141 /* YDLoginViewController.m in Sources */,
 				18B341161AA6D58300B19ED4 /* TripsMainViewController.m in Sources */,
@@ -1553,6 +1568,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				18B340C01AA6D4CC00B19ED4 /* Base */,
+				1817482E1AEE74EB00F1DFE8 /* zh-Hans */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";

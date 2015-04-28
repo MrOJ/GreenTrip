@@ -22,8 +22,12 @@
 
 +(NSString *)getStringValueForConfigurationKey:(NSString *)_objectkey;
 
++(NSData *)getObjectValueForConfigurationKey:(NSString *)_objectkey;
+
 +(void)setBoolValueForConfigurationKey:(NSString *)_objectkey withValue:(BOOL)_boolvalue;
 
 +(void)setStringValueForConfigurationKey:(NSString *)_objectkey withValue:(NSString *)_value;
+
++(void)setDataValueForConfigurationKey:(NSData *)_objectkey withValue:(NSString *)_value;
 
 @end

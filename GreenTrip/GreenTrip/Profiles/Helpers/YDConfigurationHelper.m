@@ -49,6 +49,23 @@
     }
 }
 
++(NSData *)getObjectValueForConfigurationKey:(NSString *)_objectkey
+{
+    //create an instance of NSUserDefaults
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults synchronize]; //let's make sure the object is synchronized
+    if ([defaults objectForKey:_objectkey] == nil )
+    {
+        //I don't want a (null) returned since the result might be a text property of a UILabel
+        return nil;
+    }
+    else
+    {
+        
+        return [defaults objectForKey:_objectkey];
+    }
+}
+
 +(void)setBoolValueForConfigurationKey:(NSString *)_objectkey withValue:(BOOL)_boolvalue
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -65,5 +82,12 @@
     [defaults synchronize];//make sure you're synchronized again
 }
 
++(void)setDataValueForConfigurationKey:(NSData *)_objectkey withValue:(NSString *)_value
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults synchronize]; //let's make sure the object is synchronized
+    [defaults setObject:_objectkey forKey:_value];
+    [defaults synchronize];//make sure you're synchronized again
+}
 
 @end
