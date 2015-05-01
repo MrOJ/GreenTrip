@@ -21,6 +21,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //NSLog(@"hello");
+        self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:myColor,NSForegroundColorAttributeName,[UIFont systemFontOfSize:22.0f], NSFontAttributeName, nil];
+    
     search = [[AMapSearchAPI alloc] initWithSearchKey:@"f57ba48c60c524724d3beff7f7063af9" Delegate:self];
     
     bicyclePOIArray     = [[NSMutableArray alloc] init];

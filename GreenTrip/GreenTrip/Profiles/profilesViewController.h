@@ -12,6 +12,8 @@
 #import "KeychainItemWrapper.h"
 #import "YDConfigurationHelper.h"
 #import "SettingMainViewController.h"
+#import "registrationViewController.h"
+#import "UIImageView+WebCache.h"
 
 #import "VPImageCropperViewController.h"
 
@@ -28,6 +30,7 @@
 
 @property (strong, nonatomic) UIImagePickerController *imagePickerController;
 
+@property (strong, nonatomic) IBOutlet UIView *portraitView;
 @property (strong, nonatomic) IBOutlet UIButton *portraitButton;        //头像
 @property (strong, nonatomic) IBOutlet UIImageView *backgroundImageView;   //资料背景
 @property (strong, nonatomic) IBOutlet UILabel *nicknameLabel;         //昵称

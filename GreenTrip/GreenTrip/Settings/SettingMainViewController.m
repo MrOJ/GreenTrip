@@ -137,9 +137,18 @@
     } else if (indexPath.section == 2) {
 
     } else if (indexPath.section == 3) {
+        
         [self.navigationController popViewControllerAnimated:NO];
         
-        [YDConfigurationHelper setBoolValueForConfigurationKey:@"isLogout" withValue:YES];
+        //清空本地数据
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSDictionary *dict = [defaults dictionaryRepresentation];
+        for (id key in dict) {
+            [defaults removeObjectForKey:key];
+        }
+        
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
     }
 }
 

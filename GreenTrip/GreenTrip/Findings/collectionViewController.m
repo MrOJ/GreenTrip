@@ -15,6 +15,12 @@
 @implementation collectionViewController
 
 @synthesize collectionView;
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,[UIFont systemFontOfSize:22.0f], NSFontAttributeName, nil];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

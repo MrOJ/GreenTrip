@@ -15,7 +15,7 @@
 @implementation profilesViewController
 
 @synthesize usernameTextField,passwordTextField,LoginView,afterLoginView;
-@synthesize portraitButton,backgroundImageView,nicknameLabel,messageLabel;
+@synthesize portraitButton,backgroundImageView,nicknameLabel,messageLabel,portraitView;
 @synthesize takingbikeNumLabel,takingbusNumLabel,reducingLabel,percentLabel;
 @synthesize imagePickerController;
 
@@ -25,82 +25,57 @@
     
     self.tabBarController.tabBar.hidden = NO;
     
-    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,[UIFont systemFontOfSize:22.0f], NSFontAttributeName, nil];
     
     //BOOL isLogout= [YDConfigurationHelper getBoolValueForConfigurationKey:@"isLogout"];
     //NSLog(@"yes or no = %d",isLogout);
-    
-    if (![YDConfigurationHelper getBoolValueForConfigurationKey:@"isLogout"]) {
-        NSLog(@"Login");
-        LoginView.hidden = YES;
-        afterLoginView.hidden = NO;
-        
-        self.navigationItem.title = @"个人资料";
-        
-        UIBarButtonItem *settingButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"4设置130x80"] style:UIBarButtonItemStylePlain target:self action:@selector(goSetting:)];
-        self.navigationItem.rightBarButtonItem = settingButton;
-        
-    } else {
-        NSLog(@"Logout");
-        LoginView.hidden = NO;
-        afterLoginView.hidden = YES;
-        
-        self.navigationItem.title = @"登录帐号";
-        
-        UIBarButtonItem *registerButton = [[UIBarButtonItem alloc] initWithTitle:@"注册" style:UIBarButtonItemStylePlain target:self action:@selector(goRegister:)];
-        self.navigationItem.rightBarButtonItem = registerButton;
-        
-        //注册验证，之后加入注册功能后修改此处。
-        /*
-        if (!bYDRegistrationRequired || [YDConfigurationHelper getBoolValueForConfigurationKey:bYDRegistered])
-        {
-            // you arrive here if either the registration is not required or yet achieved
-            if (!bYDLoginRequired)
-            {
-                NSLog(@"Logout");
-                LoginView.hidden = NO;
-                afterLoginView.hidden = YES;
-                
-                self.navigationItem.title = @"登录帐号";
-                
-                UIBarButtonItem *registerButton = [[UIBarButtonItem alloc] initWithTitle:@"注册" style:UIBarButtonItemStylePlain target:self action:@selector(goRegister:)];
-                self.navigationItem.rightBarButtonItem = registerButton;
-                
-            }
-        }
-        */
-    }
+    [self loginState];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    //实际这个地方要删去
-    [YDConfigurationHelper setBoolValueForConfigurationKey:@"isLogout" withValue:NO];
     
-    //NSLog(@"get = %@",[YDConfigurationHelper getObjectValueForConfigurationKey:@"portrait"]);
+    portraitView.layer.masksToBounds = YES;
+    portraitView.layer.borderWidth = 0.5f;
+    portraitView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    
+    /*
+    portraitButton.layer.shadowColor = [UIColor darkGrayColor].CGColor;
+    portraitButton.layer.shadowOffset = CGSizeMake(1, 1);
+    portraitButton.layer.shadowOpacity = 0.5;
+    portraitButton.layer.shadowRadius = 10.0;
+    */
+    //实际这个地方要删去
+    //[YDConfigurationHelper setBoolValueForConfigurationKey:@"isLogout" withValue:YES];
+    
+    /*
+    //获取本地userdefault头像信息
     if ([YDConfigurationHelper getObjectValueForConfigurationKey:@"portrait"] != nil) {
-        NSLog(@"has portrait");
+        //NSLog(@"has portrait");
         NSData *imageDta = [YDConfigurationHelper getObjectValueForConfigurationKey:@"portrait"];
         UIImage *image = [UIImage imageWithData:imageDta];
         [portraitButton setImage:image forState:UIControlStateNormal];
     }
-    /*
+    
     UIImage *portraitImg = [UIImage imageNamed:@"proxy.png"];
     NSData *data = UIImagePNGRepresentation(portraitImg);
     [YDConfigurationHelper setBoolValueForConfigurationKey:@"portrait" withValue:data];
     */
+
 }
 
 //进入注册界面
 - (void)goRegister:(id)sender {
+    registrationViewController *registerVC = [[registrationViewController alloc] init];
+    [self.navigationController pushViewController:registerVC animated:YES];
+    self.navigationItem.title = @"";
     
 }
 
 //进入设置界面
 - (void)goSetting:(id)sender {
     SettingMainViewController *settingMainVC = [[SettingMainViewController alloc] init];
-    
     [self.navigationController pushViewController:settingMainVC animated:YES];
 }
 
@@ -124,20 +99,50 @@
             
             if ([getLogin isEqualToString:@"0"]) {
                 NSLog(@"登录成功！");
-                [YDConfigurationHelper setBoolValueForConfigurationKey:@"isLogout" withValue:NO];
-                LoginView.hidden = YES;
-                afterLoginView.hidden = NO;
-                //[self.delegate loginWithSuccess];
-                [self dismissViewControllerAnimated:YES completion:nil];
+                [passwordTextField resignFirstResponder];
+                //-------登录服务器后下载个人资料数据实现----------
+                NSString *getUsername = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"username"]];
+                NSString *getNickname = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"nickname"]];
+                NSString *getPortraitImage = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"portrait_image"]];
+                
+                nicknameLabel.text = getNickname;
+                
+                //利用SDWenImage下载图片
+                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:1200/syncportrait?image=%@",getPortraitImage]];
+                SDWebImageManager *manager = [SDWebImageManager sharedManager];
+                [manager downloadImageWithURL:url options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                    // progression tracking code
+                } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                    if (error) {
+                        NSLog(@"error %@",error);
+                    } else {
+                        if (image) {
+                            NSLog(@"图片下载成功！");
+                            [portraitButton setImage:image forState:UIControlStateNormal];
+                            //将图片数据存入NSUserDefaults中
+                            NSData *data = UIImagePNGRepresentation(image);
+                            [YDConfigurationHelper setDataValueForConfigurationKey:data withValue:@"portrait"];
+
+                        }
+                    }
+                }];
+                
+                [YDConfigurationHelper setStringValueForConfigurationKey:getUsername withValue:@"username"];
+                [YDConfigurationHelper setStringValueForConfigurationKey:getNickname withValue:@"nickname"];
+                
+                //改变登录状态
+                [self loginState];
+                
+                
             } else if ([getLogin isEqualToString:@"1"]) {
                 self.passwordTextField.text = @"";
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"登录失败" message:@"密码错误，请重试" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                [alert show];
+                [self.passwordTextField becomeFirstResponder];
+                [self showErrorWithMessage:@"密码错误，请重试"];
             } else {
                 self.usernameTextField.text = @"";
                 self.passwordTextField.text = @"";
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"登录失败" message:@"用户名不存在，请重试" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                [alert show];
+                [self showErrorWithMessage:@"用户名不存在，请重试"];
+                [self.usernameTextField becomeFirstResponder];
             }
             
         } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -178,54 +183,52 @@
 #pragma mark VPImageCropperDelegate
 - (void)imageCropper:(VPImageCropperViewController *)cropperViewController didFinished:(UIImage *)editedImage {
     [portraitButton setImage:editedImage forState:UIControlStateNormal];
+    //将图片传至服务器，并且存入本地userdefaults保存
+    NSData *data = UIImagePNGRepresentation(editedImage);
+    [YDConfigurationHelper setDataValueForConfigurationKey:data withValue:@"portrait"];
     [cropperViewController dismissViewControllerAnimated:YES completion:^{
         // TO DO
         NSLog(@"修改完成。");
         
-        NSData *data = UIImagePNGRepresentation(editedImage);
-        
-        //将修改后的图片存入本地userdefault中
-        [YDConfigurationHelper setDataValueForConfigurationKey:data withValue:@"portrait"];
-        
         // 在网络开发中，上传文件时，是文件不允许被覆盖，文件重名
-        // 要解决此问题，
-        // 可以在上传时使用当前的系统事件作为文件名
+        // 要解决此问题，可以在上传时使用当前的系统事件作为文件名
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         // 设置时间格式
         formatter.dateFormat = @"yyyyMMddHHmmss";
         NSString *str = [formatter stringFromDate:[NSDate date]];
-        NSString *fileName = [NSString stringWithFormat:@"%@.png", str];
+        NSString *fileName = [NSString stringWithFormat:@"portrait_%@.png", str];
         
-        /*
-        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-        AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
-        
-        NSURL *URL = [NSURL URLWithString:@"http://localhost:1200/upload"];
-        NSURLRequest *request = [NSURLRequest requestWithURL:URL];
-        */
-        
-        NSMutableURLRequest *urlrequest = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:@"http://localhost:1200/upload" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-            [formData appendPartWithFileData:data name:@"myfile" fileName:fileName mimeType:@"image/png"];
-            
-        } error:nil];
-        
-        AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-        NSProgress *progress = nil;
-        AFJSONResponseSerializer *jsonResponseSerializer = [AFJSONResponseSerializer serializer];
-        
-        NSMutableSet *jsonAcceptableContentTypes = [NSMutableSet setWithSet:jsonResponseSerializer.acceptableContentTypes];
-        [jsonAcceptableContentTypes addObject:@"text/plain"];
-        jsonResponseSerializer.acceptableContentTypes = jsonAcceptableContentTypes;
-        manager.responseSerializer = jsonResponseSerializer;
+        NSString *usernameStr = [NSString stringWithFormat:@"%@",[YDConfigurationHelper getStringValueForConfigurationKey:@"username"]];
 
-        NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:urlrequest progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-            if (error) {
-                NSLog(@"Error: %@", error);
-            } else {
-                NSLog(@"%@", responseObject);
-            }
-        }];
-        [uploadTask resume];
+        NSDictionary *dict = [[NSDictionary alloc] init];
+        if (![usernameStr isEqualToString:@""]) {
+            dict = @{ @"username":usernameStr};
+            
+            NSMutableURLRequest *urlrequest = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:@"http://localhost:1200/upload" parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+                [formData appendPartWithFileData:data name:@"myfile" fileName:fileName mimeType:@"image/png"];
+                
+            } error:nil];
+            
+            AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+            NSProgress *progress = nil;
+            AFJSONResponseSerializer *jsonResponseSerializer = [AFJSONResponseSerializer serializer];
+            
+            NSMutableSet *jsonAcceptableContentTypes = [NSMutableSet setWithSet:jsonResponseSerializer.acceptableContentTypes];
+            [jsonAcceptableContentTypes addObject:@"text/plain"];
+            jsonResponseSerializer.acceptableContentTypes = jsonAcceptableContentTypes;
+            manager.responseSerializer = jsonResponseSerializer;
+            
+            NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:urlrequest progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+                if (error) {
+                    //NSLog(@"Error: %@", error);
+                } else {
+                    NSLog(@"图片修改成功！");
+                }
+            }];
+            [uploadTask resume];
+        } else {
+            [self showErrorWithMessage:@"用户名不存在，请重试"];
+        }
 
     }];
 }
@@ -277,6 +280,58 @@
             break;
         default:
             break;
+    }
+}
+
+//登录的状态改变函数
+- (void)loginState
+{
+    if (![[YDConfigurationHelper getStringValueForConfigurationKey:@"username"] isEqualToString:@""]) {
+        NSLog(@"个人资料界面");
+        LoginView.hidden = YES;
+        afterLoginView.hidden = NO;
+        
+        self.navigationItem.title = @"个人资料";
+        
+        UIBarButtonItem *settingButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"4设置130x80"] style:UIBarButtonItemStylePlain target:self action:@selector(goSetting:)];
+        self.navigationItem.rightBarButtonItem = settingButton;
+        
+        NSString *nicknameStr = [NSString stringWithFormat:@"%@",[YDConfigurationHelper getStringValueForConfigurationKey:@"nickname"]];
+        //NSLog(@"nickname = %@",nicknameStr);
+        //NSLog(@"username = %@",[YDConfigurationHelper getStringValueForConfigurationKey:@"username"]);
+        //获取本地用户名信息
+        if ([nicknameStr isEqualToString:@"<null>"]) {
+            nicknameLabel.text = [YDConfigurationHelper getStringValueForConfigurationKey:@"username"];
+        } else {
+            nicknameLabel.text = nicknameStr;
+        }
+        
+        //获取本地userdefault头像信息
+        NSData *imageData = [YDConfigurationHelper getObjectValueForConfigurationKey:@"portrait"];
+        //NSLog(@"imageData = %@",imageData);
+        if (imageData != nil) {
+            UIImage *image = [UIImage imageWithData:imageData];
+            [portraitButton setImage:image forState:UIControlStateNormal];
+        } else {
+            [portraitButton setImage:[UIImage imageNamed:@"default_image.png"] forState:UIControlStateNormal];
+        }
+
+        
+    } else {
+        
+        if (!bYDLoginRequired)
+        {
+            NSLog(@"登录界面");
+            LoginView.hidden = NO;
+            afterLoginView.hidden = YES;
+            
+            self.navigationItem.title = @"登录帐号";
+            
+            UIBarButtonItem *registerButton = [[UIBarButtonItem alloc] initWithTitle:@"注册" style:UIBarButtonItemStylePlain target:self action:@selector(goRegister:)];
+            self.navigationItem.rightBarButtonItem = registerButton;
+            
+        }
+        
     }
 }
 

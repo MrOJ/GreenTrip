@@ -14,21 +14,27 @@
 
 @implementation TripsMainViewController
 
-@synthesize _mapView,mapView,titleV,startButton,indicatorButton,scalingButton;
+@synthesize _mapView,mapView,titleV,startButton,indicatorButton,scalingView;
+@synthesize increaseButton,decreaseButton;
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
     
+    //self.navigationItem.title = @"绿出行";
     self.navigationController.navigationBar.barTintColor = myColor;
-    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];  
+    self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,[UIFont systemFontOfSize:22.0f], NSFontAttributeName, nil];
+    //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     //self.navigationController.navigationItem.backBarButtonItem.title = @"返回";
     // Do any additional setup after loading the view.
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
+    backItem.title = @"";
+    self.navigationItem.backBarButtonItem = backItem;
     
     [MAMapServices sharedServices].apiKey = @"f57ba48c60c524724d3beff7f7063af9";    //
     
@@ -46,9 +52,11 @@
     //titleV.backgroundColor = myColor;
     [self.navigationItem.titleView addSubview:titleV];
     
+    //startButton.layer.masksToBounds = YES;
     startButton.layer.shadowOffset = CGSizeMake(3, 3);
     startButton.layer.shadowOpacity = 0.3f;
 
+    //indicatorButton.layer.masksToBounds = YES;
     indicatorButton.layer.shadowOffset = CGSizeMake(1, 1);
     indicatorButton.layer.shadowOpacity = 0.3f;
     //[indicatorButton seti]
@@ -56,30 +64,71 @@
     [indicatorButton setImage:[UIImage imageNamed:@"指南140x140.png"] forState:UIControlStateNormal];
     indicatorTag = 0;
     
-    scalingButton.layer.shadowOffset = CGSizeMake(1, 1);
-    scalingButton.layer.shadowOpacity = 0.3f;
+    //scalingView.layer.masksToBounds = YES;
+    scalingView.layer.shadowOffset = CGSizeMake(1, 1);
+    scalingView.layer.shadowOpacity = 0.3f;
+    scalingView.layer.cornerRadius = 3.0f;
     
     [mapView addSubview:indicatorButton];
-    [mapView addSubview:scalingButton];
+    [mapView addSubview:startButton];
+    [mapView addSubview:scalingView];
+    
+    //[increaseButton setEnabled:NO];
+    
+    //添加点击手势
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap:)];
+    //tapGesture.numberOfTapsRequired = 1;
+    //tapGesture.delegate = self;
+    [mapView addGestureRecognizer:tapGesture];
 }
 
 - (IBAction)getIndicator:(id)sender {
-    
     
     if (indicatorTag == 0) {
         indicatorButton.selected = YES;
         indicatorTag = 1;
         mapView.userTrackingMode = MAUserTrackingModeFollowWithHeading;
-        
+        mapView.zoomLevel = 15.0f;
+        mapView.showsCompass = YES;
     } else if (indicatorTag == 1) {
         indicatorButton.selected = NO;
         indicatorTag = 0;
         mapView.userTrackingMode = MAUserTrackingModeNone;
+        mapView.showsCompass = NO;
     }
     
     //indicatorButton.selected = YES;
     //NSLog(@"Hello!");
     
+}
+
+- (IBAction)increaseScaling:(id)sender {
+    float curZoomlevel = mapView.zoomLevel;
+    NSLog(@"%f",curZoomlevel);
+    if (curZoomlevel < mapView.maxZoomLevel && curZoomlevel >= 2.0) {
+        [increaseButton setEnabled:YES];
+        [decreaseButton setEnabled:YES];
+        mapView.zoomLevel = curZoomlevel + 1;
+    } else {
+        [increaseButton setEnabled:NO];
+        //increaseButton.enabled = NO;
+    }
+    //NSLog(@"zoomlevel = %f",mapView.zoomLevel);
+    //NSLog(@"maxzoomlevel = %f",mapView.maxZoomLevel);
+}
+
+- (IBAction)decreaseScaling:(id)sender {
+    //NSLog(@"zoomlevel = %f",mapView.zoomLevel);
+    //NSLog(@"minzoomlevel = %f",mapView.minZoomLevel);
+    float curZoomlevel = mapView.zoomLevel;
+    NSLog(@"%f",curZoomlevel);
+    if (curZoomlevel <= mapView.maxZoomLevel && curZoomlevel > 2.0) {
+        [increaseButton setEnabled:YES];
+        [decreaseButton setEnabled:YES];
+        mapView.zoomLevel = curZoomlevel - 1;
+    } else {
+        [decreaseButton setEnabled:NO];
+    }
 }
 
 - (UIImage *)reSizeImage:(UIImage *)image toSize:(CGSize)reSize
@@ -93,6 +142,21 @@
     
     return reSizeImage;
     
+}
+
+//点击地图以后调用
+- (void)singleTap:(UIGestureRecognizer *)recognizer
+{
+    NSLog(@"Tap!");
+}
+
+- (void)mapView:(MAMapView *)mapView regionDidChangeAnimated:(BOOL)animated
+{
+    if (indicatorButton.tag == 1) {
+        NSLog(@"Tap");
+    } else {
+        
+    }
 }
 
 /*

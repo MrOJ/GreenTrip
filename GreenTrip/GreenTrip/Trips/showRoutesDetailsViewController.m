@@ -32,6 +32,7 @@
     //self.navigationController.navigationBarHidden = NO;
     
     //NSLog(@"Hello@");
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:myColor,NSForegroundColorAttributeName,[UIFont systemFontOfSize:22.0f], NSFontAttributeName, nil];
     
     NSString *myKey = @"f57ba48c60c524724d3beff7f7063af9";
     [MAMapServices sharedServices].apiKey = myKey;

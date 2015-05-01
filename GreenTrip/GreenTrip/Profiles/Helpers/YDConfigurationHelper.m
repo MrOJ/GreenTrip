@@ -78,7 +78,7 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults synchronize]; //let's make sure the object is synchronized
-    [defaults setValue:_value forKey:_objectkey];
+    [defaults setValue:_objectkey forKey:_value];
     [defaults synchronize];//make sure you're synchronized again
 }
 

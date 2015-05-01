@@ -15,12 +15,12 @@
 @implementation FindingMainViewController
 
 @synthesize findingTableViewController;
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
     
-    //self.navigationController.navigationBarHidden = YES;
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,[UIFont systemFontOfSize:22.0f], NSFontAttributeName, nil];
+    self.navigationItem.title = @"发现";
 }
 
 - (void)viewDidLoad {
