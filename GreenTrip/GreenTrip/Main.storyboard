@@ -210,6 +210,18 @@
                     </view>
                     <navigationItem key="navigationItem" id="Xq7-Xr-KJ2">
                         <nil key="title"/>
+                        <view key="titleView" contentMode="scaleToFill" id="ok6-uD-TRh">
+                            <rect key="frame" x="96" y="6" width="128" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="发现" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCB-Nm-hkM">
+                                    <rect key="frame" x="43" y="6" width="34" height="21"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </view>
                     </navigationItem>
                     <connections>
                         <outlet property="findingTableViewController" destination="pcf-NH-Whc" id="drl-zR-1Cy"/>
@@ -224,7 +236,7 @@
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="FYR-EA-tLT" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="H90-9o-DWu">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -298,9 +310,6 @@
                                         <state key="normal" image="指南140x140.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <connections>
-                                            <action selector="getIndicator:" destination="zFc-iS-TpB" eventType="touchUpInside" id="QhO-bo-twj"/>
-                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gp0-Pb-den">
                                         <rect key="frame" x="270" y="419" width="35" height="78"/>
@@ -310,18 +319,12 @@
                                                 <state key="normal" image="放大140x156.png">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
-                                                <connections>
-                                                    <action selector="increaseScaling:" destination="zFc-iS-TpB" eventType="touchUpInside" id="wQH-9j-fFT"/>
-                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KW4-t2-wxR">
                                                 <rect key="frame" x="0.0" y="39" width="35" height="39"/>
                                                 <state key="normal" image="缩小140x156.png">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
-                                                <connections>
-                                                    <action selector="decreaseScaling:" destination="zFc-iS-TpB" eventType="touchUpInside" id="xAw-Ct-KBZ"/>
-                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -345,14 +348,60 @@
                                             <segue destination="UMk-43-ekm" kind="push" id="wss-3T-V85"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kda-kY-fCu">
+                                        <rect key="frame" x="255" y="11" width="50" height="44"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AuZ-wB-mOd">
+                                                <rect key="frame" x="5" y="10" width="40" height="24"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="24" id="Xwp-m2-VQ7"/>
+                                                    <constraint firstAttribute="width" constant="40" id="wDc-iD-dmF"/>
+                                                </constraints>
+                                                <state key="normal" image="30x18px.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="bikePointSearch:" destination="zFc-iS-TpB" eventType="touchUpInside" id="YKc-zC-LCf"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="AuZ-wB-mOd" firstAttribute="leading" secondItem="kda-kY-fCu" secondAttribute="leading" constant="5" id="3Og-IS-VNF"/>
+                                            <constraint firstItem="AuZ-wB-mOd" firstAttribute="top" secondItem="kda-kY-fCu" secondAttribute="top" constant="10" id="5IW-cK-YGx"/>
+                                            <constraint firstAttribute="height" constant="44" id="80w-8N-ZBF"/>
+                                            <constraint firstAttribute="width" constant="50" id="B03-JQ-PbN"/>
+                                            <constraint firstAttribute="trailing" secondItem="AuZ-wB-mOd" secondAttribute="trailing" constant="5" id="GEr-fc-vfc"/>
+                                            <constraint firstAttribute="bottom" secondItem="AuZ-wB-mOd" secondAttribute="bottom" constant="10" id="JjQ-YN-r9e"/>
+                                        </constraints>
+                                    </view>
+                                    <searchBar contentMode="redraw" placeholder="搜地点、查询自行车站点" translatesAutoresizingMaskIntoConstraints="NO" id="Zsp-bS-0gC">
+                                        <rect key="frame" x="15" y="11" width="229" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="TTi-oO-hdw"/>
+                                        </constraints>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <scopeButtonTitles>
+                                            <string>Title</string>
+                                            <string>Title</string>
+                                        </scopeButtonTitles>
+                                        <connections>
+                                            <outlet property="delegate" destination="c2V-tI-4hL" id="53d-N8-C0h"/>
+                                        </connections>
+                                    </searchBar>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="P4z-bW-gow" secondAttribute="bottom" constant="21" id="22f-Tp-T6Z"/>
                                     <constraint firstAttribute="bottom" secondItem="NU8-B4-tgo" secondAttribute="bottom" constant="22" id="6q6-EM-bS4"/>
+                                    <constraint firstItem="kda-kY-fCu" firstAttribute="leading" secondItem="Zsp-bS-0gC" secondAttribute="trailing" constant="11" id="BQi-4X-CIP"/>
                                     <constraint firstItem="P4z-bW-gow" firstAttribute="centerX" secondItem="IgP-gY-BCs" secondAttribute="centerX" id="JKD-Ly-zzn"/>
+                                    <constraint firstAttribute="trailing" secondItem="kda-kY-fCu" secondAttribute="trailing" constant="15" id="SND-E0-Csa"/>
+                                    <constraint firstItem="Zsp-bS-0gC" firstAttribute="leading" secondItem="IgP-gY-BCs" secondAttribute="leading" constant="15" id="Sj8-pU-FI7"/>
+                                    <constraint firstItem="Zsp-bS-0gC" firstAttribute="top" secondItem="IgP-gY-BCs" secondAttribute="top" constant="11" id="W6n-H8-Iow"/>
                                     <constraint firstAttribute="bottom" secondItem="gp0-Pb-den" secondAttribute="bottom" constant="22" id="moR-xE-AVd"/>
                                     <constraint firstAttribute="trailing" secondItem="gp0-Pb-den" secondAttribute="trailing" constant="15" id="pv5-mJ-omG"/>
                                     <constraint firstItem="NU8-B4-tgo" firstAttribute="leading" secondItem="IgP-gY-BCs" secondAttribute="leading" constant="15" id="sd0-nS-khu"/>
+                                    <constraint firstItem="kda-kY-fCu" firstAttribute="top" secondItem="IgP-gY-BCs" secondAttribute="top" constant="11" id="tTW-QR-aEc"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -380,14 +429,27 @@
                     </navigationItem>
                     <connections>
                         <outlet property="_mapView" destination="IgP-gY-BCs" id="BaN-OJ-zvQ"/>
+                        <outlet property="bikeButton" destination="AuZ-wB-mOd" id="qUE-ut-s0d"/>
+                        <outlet property="bikeView" destination="kda-kY-fCu" id="2U6-SH-60o"/>
                         <outlet property="decreaseButton" destination="KW4-t2-wxR" id="tz7-Gv-60n"/>
                         <outlet property="increaseButton" destination="m4I-yc-XJ6" id="WJn-ig-GLJ"/>
                         <outlet property="indicatorButton" destination="NU8-B4-tgo" id="4ms-1k-Mg5"/>
+                        <outlet property="placeSearchBar" destination="Zsp-bS-0gC" id="N0c-DD-XDf"/>
                         <outlet property="scalingView" destination="gp0-Pb-den" id="dA3-qx-Vqv"/>
+                        <outlet property="searchDisplayController" destination="Gmw-nh-jGe" id="aAL-6U-7CV"/>
                         <outlet property="startButton" destination="P4z-bW-gow" id="zhF-5M-YBH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zFc-iS-TpB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="Gmw-nh-jGe">
+                    <connections>
+                        <outlet property="delegate" destination="c2V-tI-4hL" id="Afi-uH-ZVL"/>
+                        <outlet property="searchBar" destination="Zsp-bS-0gC" id="8E6-eh-gSR"/>
+                        <outlet property="searchContentsController" destination="c2V-tI-4hL" id="7DC-Id-Qme"/>
+                        <outlet property="searchResultsDataSource" destination="c2V-tI-4hL" id="ofN-2K-tWT"/>
+                        <outlet property="searchResultsDelegate" destination="c2V-tI-4hL" id="rw5-O8-tBK"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="994" y="-480"/>
         </scene>
@@ -1062,6 +1124,7 @@
         <image name="2发现未激活130x80.png" width="43" height="27"/>
         <image name="3-144x92未激活.png" width="48" height="31"/>
         <image name="3.jpeg" width="280" height="119"/>
+        <image name="30x18px.png" width="40" height="24"/>
         <image name="3我的未激活130x80.png" width="43" height="27"/>
         <image name="4-54x92未激活.png" width="18" height="31"/>
         <image name="5-76x92未激活.png" width="25" height="31"/>

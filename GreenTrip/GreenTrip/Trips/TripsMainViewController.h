@@ -11,7 +11,7 @@
 
 #define myColor [UIColor colorWithRed:119.0 / 255.0f green:185.0 / 255.0f blue:67.0 / 255.0f alpha:1.0f]
 
-@interface TripsMainViewController : UIViewController <MAMapViewDelegate,UIGestureRecognizerDelegate>
+@interface TripsMainViewController : UIViewController <MAMapViewDelegate,UIGestureRecognizerDelegate,UISearchBarDelegate,UISearchDisplayDelegate,UITableViewDataSource,UITableViewDelegate>
 {
     UIView *testView;
     NSInteger indicatorTag;
@@ -28,8 +28,14 @@
 @property (strong, nonatomic) UIView *titleV;
 
 @property (strong, nonatomic) IBOutlet UIButton *startButton;
+@property (strong, nonatomic) IBOutlet UISearchBar *placeSearchBar;
+@property (strong, nonatomic) IBOutlet UIView *bikeView;
+@property (strong, nonatomic) IBOutlet UIButton *bikeButton;
+@property (strong, nonatomic) IBOutlet UITableView *searchTableView;
 
 - (IBAction)getIndicator:(id)sender;
 - (IBAction)increaseScaling:(id)sender;
 - (IBAction)decreaseScaling:(id)sender;
+
+- (IBAction)bikePointSearch:(id)sender;
 @end

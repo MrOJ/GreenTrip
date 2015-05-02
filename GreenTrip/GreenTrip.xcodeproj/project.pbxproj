@@ -281,6 +281,15 @@
 		18F6B3DF1AF34849000D9A40 /* 缩小140x156.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F6B3D61AF34849000D9A40 /* 缩小140x156.png */; };
 		18F6B3E01AF34849000D9A40 /* 缩小140x156@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F6B3D71AF34849000D9A40 /* 缩小140x156@2x.png */; };
 		18F6B3E11AF34849000D9A40 /* 缩小140x156@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F6B3D81AF34849000D9A40 /* 缩小140x156@3x.png */; };
+		18F6B3EB1AF4A8FA000D9A40 /* 30x18px.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F6B3E21AF4A8FA000D9A40 /* 30x18px.png */; };
+		18F6B3EC1AF4A8FA000D9A40 /* 30x18px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F6B3E31AF4A8FA000D9A40 /* 30x18px@2x.png */; };
+		18F6B3ED1AF4A8FA000D9A40 /* 30x18px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F6B3E41AF4A8FA000D9A40 /* 30x18px@3x.png */; };
+		18F6B3EE1AF4A8FA000D9A40 /* 30x18px未激活.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F6B3E51AF4A8FA000D9A40 /* 30x18px未激活.png */; };
+		18F6B3EF1AF4A8FA000D9A40 /* 30x18px未激活@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F6B3E61AF4A8FA000D9A40 /* 30x18px未激活@2x.png */; };
+		18F6B3F01AF4A8FA000D9A40 /* 30x18px未激活@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F6B3E71AF4A8FA000D9A40 /* 30x18px未激活@3x.png */; };
+		18F6B3F11AF4A8FA000D9A40 /* 140x140px.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F6B3E81AF4A8FA000D9A40 /* 140x140px.png */; };
+		18F6B3F21AF4A8FA000D9A40 /* 140x140px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F6B3E91AF4A8FA000D9A40 /* 140x140px@2x.png */; };
+		18F6B3F31AF4A8FA000D9A40 /* 140x140px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F6B3EA1AF4A8FA000D9A40 /* 140x140px@3x.png */; };
 		18F769711AB42C6A00705FBA /* finding_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F769701AB42C6A00705FBA /* finding_logo.png */; };
 		18F769851AB45C8800705FBA /* collectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F769841AB45C8800705FBA /* collectionViewController.m */; };
 		18F76A0A1AB5B30D00705FBA /* PSCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F76A071AB5B30D00705FBA /* PSCollectionView.m */; };
@@ -659,6 +668,15 @@
 		18F6B3D61AF34849000D9A40 /* 缩小140x156.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "缩小140x156.png"; sourceTree = "<group>"; };
 		18F6B3D71AF34849000D9A40 /* 缩小140x156@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "缩小140x156@2x.png"; sourceTree = "<group>"; };
 		18F6B3D81AF34849000D9A40 /* 缩小140x156@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "缩小140x156@3x.png"; sourceTree = "<group>"; };
+		18F6B3E21AF4A8FA000D9A40 /* 30x18px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 30x18px.png; path = tripMain/30x18px.png; sourceTree = "<group>"; };
+		18F6B3E31AF4A8FA000D9A40 /* 30x18px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "30x18px@2x.png"; path = "tripMain/30x18px@2x.png"; sourceTree = "<group>"; };
+		18F6B3E41AF4A8FA000D9A40 /* 30x18px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "30x18px@3x.png"; path = "tripMain/30x18px@3x.png"; sourceTree = "<group>"; };
+		18F6B3E51AF4A8FA000D9A40 /* 30x18px未激活.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "30x18px未激活.png"; path = "tripMain/30x18px未激活.png"; sourceTree = "<group>"; };
+		18F6B3E61AF4A8FA000D9A40 /* 30x18px未激活@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "30x18px未激活@2x.png"; path = "tripMain/30x18px未激活@2x.png"; sourceTree = "<group>"; };
+		18F6B3E71AF4A8FA000D9A40 /* 30x18px未激活@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "30x18px未激活@3x.png"; path = "tripMain/30x18px未激活@3x.png"; sourceTree = "<group>"; };
+		18F6B3E81AF4A8FA000D9A40 /* 140x140px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 140x140px.png; path = tripMain/140x140px.png; sourceTree = "<group>"; };
+		18F6B3E91AF4A8FA000D9A40 /* 140x140px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "140x140px@2x.png"; path = "tripMain/140x140px@2x.png"; sourceTree = "<group>"; };
+		18F6B3EA1AF4A8FA000D9A40 /* 140x140px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "140x140px@3x.png"; path = "tripMain/140x140px@3x.png"; sourceTree = "<group>"; };
 		18F769701AB42C6A00705FBA /* finding_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = finding_logo.png; sourceTree = "<group>"; };
 		18F769831AB45C8800705FBA /* collectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = collectionViewController.h; sourceTree = "<group>"; };
 		18F769841AB45C8800705FBA /* collectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = collectionViewController.m; sourceTree = "<group>"; };
@@ -758,6 +776,15 @@
 		183205F01AC8151F00FA4B34 /* TripMainImg */ = {
 			isa = PBXGroup;
 			children = (
+				18F6B3E21AF4A8FA000D9A40 /* 30x18px.png */,
+				18F6B3E31AF4A8FA000D9A40 /* 30x18px@2x.png */,
+				18F6B3E41AF4A8FA000D9A40 /* 30x18px@3x.png */,
+				18F6B3E51AF4A8FA000D9A40 /* 30x18px未激活.png */,
+				18F6B3E61AF4A8FA000D9A40 /* 30x18px未激活@2x.png */,
+				18F6B3E71AF4A8FA000D9A40 /* 30x18px未激活@3x.png */,
+				18F6B3E81AF4A8FA000D9A40 /* 140x140px.png */,
+				18F6B3E91AF4A8FA000D9A40 /* 140x140px@2x.png */,
+				18F6B3EA1AF4A8FA000D9A40 /* 140x140px@3x.png */,
 				18040E9F1AEA603500844F0C /* profiles */,
 				18B539F61AE7C5C200B6F344 /* finding */,
 				18B5393A1AE7BC7B00B6F344 /* searchRoutes */,
@@ -1468,6 +1495,7 @@
 				18B341591AA6D81A00B19ED4 /* busIcon.png in Resources */,
 				18B538CC1AE7BB9100B6F344 /* 出发按钮300x300@4x.png in Resources */,
 				18B539CA1AE7BC7C00B6F344 /* 7-90x120@2x.png in Resources */,
+				18F6B3ED1AF4A8FA000D9A40 /* 30x18px@3x.png in Resources */,
 				18040EDB1AEBBB6200844F0C /* 3-144x92未激活@2x.png in Resources */,
 				18B53A161AE7C5CC00B6F344 /* 2箭头154x152@2x.png in Resources */,
 				18B539D71AE7BC7C00B6F344 /* 箭头1-44x84px.png in Resources */,
@@ -1497,6 +1525,7 @@
 				18B539BC1AE7BC7C00B6F344 /* 4-54x92@3x.png in Resources */,
 				18B538C71AE7BB9100B6F344 /* 2发现未激活130x80@4x.png in Resources */,
 				18B539C11AE7BC7C00B6F344 /* 5-76x92.png in Resources */,
+				18F6B3EE1AF4A8FA000D9A40 /* 30x18px未激活.png in Resources */,
 				18B53A121AE7C5CC00B6F344 /* 1箭头154x152.png in Resources */,
 				18B5399D1AE7BC7C00B6F344 /* 2-112x140@2x.png in Resources */,
 				18BCABA71AA9EA1E00827C66 /* tabBar4.png in Resources */,
@@ -1532,6 +1561,7 @@
 				18B539AF1AE7BC7C00B6F344 /* 3-148x112未激活@2x.png in Resources */,
 				1846F9251AC18C95006067BA /* 4设置未激活130x80@4x副本.png in Resources */,
 				18B539BD1AE7BC7C00B6F344 /* 48x84.png in Resources */,
+				18F6B3F31AF4A8FA000D9A40 /* 140x140px@3x.png in Resources */,
 				18B538C41AE7BB9100B6F344 /* 1出发130x80@4x.png in Resources */,
 				18B539A61AE7BC7C00B6F344 /* 2发现未激活130x80@2x.png in Resources */,
 				18B538CA1AE7BB9100B6F344 /* 4设置130x80@4x.png in Resources */,
@@ -1556,10 +1586,12 @@
 				18B539C71AE7BC7C00B6F344 /* 6-100x98@3x.png in Resources */,
 				18B340BE1AA6D4CC00B19ED4 /* Images.xcassets in Resources */,
 				18B539D81AE7BC7C00B6F344 /* 箭头2-76x44px.png in Resources */,
+				18F6B3EC1AF4A8FA000D9A40 /* 30x18px@2x.png in Resources */,
 				18040EB21AEA603500844F0C /* bike104x66.png in Resources */,
 				18B539AA1AE7BC7C00B6F344 /* 3-144x92@3x.png in Resources */,
 				18F6B3E01AF34849000D9A40 /* 缩小140x156@2x.png in Resources */,
 				18040EBF1AEA603500844F0C /* wechat188x188@2x.png in Resources */,
+				18F6B3F01AF4A8FA000D9A40 /* 30x18px未激活@3x.png in Resources */,
 				18B539C91AE7BC7C00B6F344 /* 7-90x120.png in Resources */,
 				18B539971AE7BC7C00B6F344 /* 1-70x110@3x.png in Resources */,
 				18B5398F1AE7BC7C00B6F344 /* 1-148x112.png in Resources */,
@@ -1575,6 +1607,7 @@
 				18B539CD1AE7BC7C00B6F344 /* 五角星56x56.png in Resources */,
 				18B539D01AE7BC7C00B6F344 /* 分享2-48x52.png in Resources */,
 				18AE83291AB1CE4400384C47 /* proxy.png in Resources */,
+				18F6B3F21AF4A8FA000D9A40 /* 140x140px@2x.png in Resources */,
 				1817483D1AF0F39F00F1DFE8 /* 选择56x56px.png in Resources */,
 				18F6B3E11AF34849000D9A40 /* 缩小140x156@3x.png in Resources */,
 				18B3415B1AA6D81A00B19ED4 /* compassArrow.png in Resources */,
@@ -1588,6 +1621,7 @@
 				18B53A021AE7C5C200B6F344 /* 排行榜208x66@3x.png in Resources */,
 				18040EB81AEA603500844F0C /* QQ188x188.png in Resources */,
 				18B53A001AE7C5C200B6F344 /* 排行榜208x66.png in Resources */,
+				18F6B3EB1AF4A8FA000D9A40 /* 30x18px.png in Resources */,
 				18B53A191AE7C5CC00B6F344 /* 车164x166@2x.png in Resources */,
 				18040EDD1AEBBB6200844F0C /* 4-54x92未激活.png in Resources */,
 				18B3415A1AA6D81A00B19ED4 /* checkmark.png in Resources */,
@@ -1617,6 +1651,7 @@
 				18B539C31AE7BC7C00B6F344 /* 5-76x92@3x.png in Resources */,
 				18B53A041AE7C5C200B6F344 /* 搜搜86x90@2x.png in Resources */,
 				18F76A1E1AB5BB0B00705FBA /* 4.jpeg in Resources */,
+				18F6B3EF1AF4A8FA000D9A40 /* 30x18px未激活@2x.png in Resources */,
 				18B539E11AE7BC7C00B6F344 /* 起点150x240px@2x.png in Resources */,
 				18F6B3DC1AF34849000D9A40 /* 放大140x156.png in Resources */,
 				18B539951AE7BC7C00B6F344 /* 1-70x110.png in Resources */,
@@ -1630,6 +1665,7 @@
 				18B539DF1AE7BC7C00B6F344 /* 终点150x240px@3x.png in Resources */,
 				1817483C1AF0F39F00F1DFE8 /* 未选择56x56px@3x.png in Resources */,
 				18040EE31AEBBB6200844F0C /* 6-100x98未激活.png in Resources */,
+				18F6B3F11AF4A8FA000D9A40 /* 140x140px.png in Resources */,
 				18B539BB1AE7BC7C00B6F344 /* 4-54x92@2x.png in Resources */,
 				18B539981AE7BC7C00B6F344 /* 10x10.png in Resources */,
 				18B3415D1AA6D81A00B19ED4 /* disclosure_arrow_180.png in Resources */,

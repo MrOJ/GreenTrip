@@ -15,7 +15,8 @@
 @implementation TripsMainViewController
 
 @synthesize _mapView,mapView,titleV,startButton,indicatorButton,scalingView;
-@synthesize increaseButton,decreaseButton;
+@synthesize placeSearchBar,bikeButton,bikeView;
+@synthesize increaseButton,decreaseButton,searchTableView;
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -32,6 +33,10 @@
     [super viewDidLoad];
     //self.navigationController.navigationItem.backBarButtonItem.title = @"返回";
     // Do any additional setup after loading the view.
+    //NSLog(@"%f",self.tabBarController.tabBar.frame.size.height);
+    //[[UITabBar appearance] setBarTintColor:[UIColor whiteColor]];
+    //self.tabBarController.tabBar.barTintColor = [UIColor whiteColor];
+    
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
     backItem.title = @"";
     self.navigationItem.backBarButtonItem = backItem;
@@ -53,7 +58,7 @@
     [self.navigationItem.titleView addSubview:titleV];
     
     //startButton.layer.masksToBounds = YES;
-    startButton.layer.shadowOffset = CGSizeMake(3, 3);
+    startButton.layer.shadowOffset = CGSizeMake(1.5, 1.5);
     startButton.layer.shadowOpacity = 0.3f;
 
     //indicatorButton.layer.masksToBounds = YES;
@@ -69,9 +74,22 @@
     scalingView.layer.shadowOpacity = 0.3f;
     scalingView.layer.cornerRadius = 3.0f;
     
+    
+    bikeView.layer.shadowOffset = CGSizeMake(0.5, 0.0);
+    bikeView.layer.shadowOpacity = 0.25f;
+    bikeView.layer.cornerRadius = 1.0f;
+    
+    placeSearchBar.layer.shadowOffset = CGSizeMake(0.5, 0);
+    placeSearchBar.layer.shadowOpacity = 0.25f;
+    placeSearchBar.layer.cornerRadius = 1.0f;
+    placeSearchBar.barTintColor = [UIColor whiteColor];
+    placeSearchBar.delegate = self;
+    
     [mapView addSubview:indicatorButton];
     [mapView addSubview:startButton];
     [mapView addSubview:scalingView];
+    [mapView addSubview:placeSearchBar];
+    [mapView addSubview:bikeView];
     
     //[increaseButton setEnabled:NO];
     
@@ -129,6 +147,51 @@
     } else {
         [decreaseButton setEnabled:NO];
     }
+}
+
+- (IBAction)bikePointSearch:(id)sender {
+    
+}
+
+- (void)searchBarButtonClicked:(UISearchBar *)searchBar
+{
+    NSLog(@"click search bar");
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    [placeSearchBar resignFirstResponder];
+}
+
+#pragma searchTableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 10;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                       reuseIdentifier:CellIdentifier];
+    }
+    
+    cell.textLabel.text = @"hello";
+
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
 }
 
 - (UIImage *)reSizeImage:(UIImage *)image toSize:(CGSize)reSize
