@@ -18,8 +18,9 @@
 @synthesize bikeSearchButton;
 @synthesize increaseButton,decreaseButton,searchTableView,searchIconView,searchView;
 @synthesize searchTextField;
+@synthesize busButton,bikePlaceButton;
 
-@synthesize tipsResultTableView,myUserLocation,bikePOIArray;
+@synthesize tipsResultTableView,myUserLocation,POIsArray;
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -94,25 +95,23 @@
 
     UIView *chooseView = [[UIView alloc] initWithFrame:CGRectMake(15, 11 + searchTextField.bounds.size.height, (self.view.bounds.size.width - 30 - 50 - 13 ), 35)];
     
-    UIButton *busButton = [[UIButton alloc]initWithFrame:CGRectMake(0,0, (self.view.bounds.size.width - 30 - 50 - 13 ) / 3, 35)];
+    buttonFlag = 0;
+    
+    busButton = [[UIButton alloc]initWithFrame:CGRectMake(0,0, (self.view.bounds.size.width - 30 - 50 - 13 ) / 2, 35)];
     [busButton setTitle:@"地点" forState:UIControlStateNormal];
-    busButton.titleLabel.font = [UIFont systemFontOfSize:13.0f];
+    [busButton addTarget:self action:@selector(busSearch:) forControlEvents:UIControlEventTouchUpInside];
+    busButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
     [busButton setBackgroundColor:myColor];
     
-    UIButton *routeButton = [[UIButton alloc]initWithFrame:CGRectMake(0 + (self.view.bounds.size.width - 30 - 50 - 13 ) / 3, 0, (self.view.bounds.size.width - 30 - 50 - 13 ) / 3, 35)];
-    [routeButton setTitle:@"公交线" forState:UIControlStateNormal];
-    routeButton.titleLabel.font = [UIFont systemFontOfSize:13.0f];
-    [routeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [routeButton setBackgroundColor:[UIColor whiteColor]];
-    
-    UIButton *bikePlaceButton = [[UIButton alloc]initWithFrame:CGRectMake(0 + (self.view.bounds.size.width - 30 - 50 - 13 ) / 3 * 2, 0, (self.view.bounds.size.width - 30 - 50 - 13 ) / 3, 35)];
+    bikePlaceButton = [[UIButton alloc]initWithFrame:CGRectMake(0 + (self.view.bounds.size.width - 30 - 50 - 13 ) / 2, 0, (self.view.bounds.size.width - 30 - 50 - 13 ) / 2, 35)];
     [bikePlaceButton setTitle:@"自行车站" forState:UIControlStateNormal];
-    bikePlaceButton.titleLabel.font = [UIFont systemFontOfSize:13.0f];
+    bikePlaceButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+    [bikePlaceButton addTarget:self action:@selector(bikePlaceSearch:) forControlEvents:UIControlEventTouchUpInside];
     [bikePlaceButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [bikePlaceButton setBackgroundColor:[UIColor whiteColor]];
     
     [chooseView addSubview:busButton];
-    [chooseView addSubview:routeButton];
+    //[chooseView addSubview:routeButton];
     [chooseView addSubview:bikePlaceButton];
     tipsResultTableView.tableHeaderView = chooseView;
     
@@ -176,13 +175,10 @@
         [increaseButton setEnabled:NO];
         //increaseButton.enabled = NO;
     }
-    //NSLog(@"zoomlevel = %f",mapView.zoomLevel);
-    //NSLog(@"maxzoomlevel = %f",mapView.maxZoomLevel);
 }
 
 - (IBAction)decreaseScaling:(id)sender {
-    //NSLog(@"zoomlevel = %f",mapView.zoomLevel);
-    //NSLog(@"minzoomlevel = %f",mapView.minZoomLevel);
+
     float curZoomlevel = myMapView.zoomLevel;
     NSLog(@"%f",curZoomlevel);
     if (curZoomlevel <= myMapView.maxZoomLevel && curZoomlevel > 2.0) {
@@ -196,9 +192,9 @@
 
 - (IBAction)bikePointSearch:(id)sender {
     
-    [myMapView removeAnnotations:bikePOIArray];
+    [myMapView removeAnnotations:POIsArray];
     
-    bikePOIArray = [[NSMutableArray alloc] init];
+    POIsArray = [[NSMutableArray alloc] init];
     
     searchTextField.text = @"";
     tipsResultTableView.hidden = YES;
@@ -229,8 +225,15 @@
 
         AMapInputTipsSearchRequest *tipsRequest= [[AMapInputTipsSearchRequest alloc] init];
         tipsRequest.searchType = AMapSearchType_InputTips;
-        tipsRequest.keywords = textStr;
-        //tipsRequest.city = @[@"杭州"];    //之后会修改
+        tipsRequest.city = @[@"杭州"];    //之后会修改
+        
+        if (buttonFlag == 0) {
+            tipsRequest.keywords = textStr;
+        } else {
+            NSString *newStr = [textStr stringByAppendingString:@"自行车租赁点"];
+            tipsRequest.keywords = newStr;
+        }
+        
         
         [search AMapInputTipsSearch:tipsRequest];
     }
@@ -254,22 +257,84 @@
 }
 
 //点击return取消键盘
-
 - (BOOL)textFieldShouldReturn:(UITextField *) textField
 {
     [textField resignFirstResponder];
     return YES;
 }
 
+# pragma searchButton
+- (void)busSearch:(id)sender {
+    
+    [busButton       setBackgroundColor:myColor];
+    [bikePlaceButton setBackgroundColor:[UIColor whiteColor]];
+    [busButton       setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [bikePlaceButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    buttonFlag = 0;
+    
+    NSLog(@"bus str = %@", textStr);
+    
+    AMapInputTipsSearchRequest *tipsRequest= [[AMapInputTipsSearchRequest alloc] init];
+    tipsRequest.searchType = AMapSearchType_InputTips;
+    tipsRequest.keywords = textStr;
+    tipsRequest.city = @[@"杭州"];    //之后会修改
+    
+    [search AMapInputTipsSearch:tipsRequest];
+}
+
+- (void)bikePlaceSearch:(id)sender {
+    [busButton       setBackgroundColor:[UIColor whiteColor]];
+    [bikePlaceButton setBackgroundColor:myColor];
+    [busButton       setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [bikePlaceButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    buttonFlag = 1;
+    
+    NSString *bikeTextStr = [textStr stringByAppendingString:@"自行车租赁点"];
+    
+    NSLog(@"bike str = %@", bikeTextStr);
+    
+    AMapInputTipsSearchRequest *tipsRequest= [[AMapInputTipsSearchRequest alloc] init];
+    tipsRequest.searchType = AMapSearchType_InputTips;
+    tipsRequest.keywords = bikeTextStr;
+    tipsRequest.city = @[@"杭州"];    //之后会修改
+    
+    [search AMapInputTipsSearch:tipsRequest];
+}
+
 #pragma AmapTipsSearch
 //实现输入提示的回调函数
 -(void)onInputTipsSearchDone:(AMapInputTipsSearchRequest*)request response:(AMapInputTipsSearchResponse *)response
 {
+    //NSLog(@"Hello");
+    //NSLog(@"%lu",(unsigned long)response.tips.count);
+    
     nameArray = [[NSMutableArray alloc] init];
     districtArray =[[NSMutableArray alloc] init];
     
     if(response.tips.count == 0)
     {
+        //NSLog(@"未找到目标站点，请重试");
+        if (buttonFlag == 0) {
+            myAlert = [[UIAlertView alloc] initWithTitle:@"查找失败" message:@"未找到目标站点，请重新输入关键字" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        } else {
+            myAlert = [[UIAlertView alloc] initWithTitle:@"查找失败" message:@"未找到目标自行车站，请重新输入关键字" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        }
+
+        [myAlert show];
+        
+        [searchTextField resignFirstResponder];
+        searchTextField.text = @"";
+        [tipsResultTableView setHidden:YES];
+        
+        //复原为busButton
+        /*
+        [busButton       setBackgroundColor:myColor];
+        [bikePlaceButton setBackgroundColor:[UIColor whiteColor]];
+        [busButton       setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [bikePlaceButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        buttonFlag = 0;
+        */
+        
         return;
     }
     
@@ -285,31 +350,42 @@
 #pragma place seach results
 - (void)onPlaceSearchDone:(AMapPlaceSearchRequest *)request response:(AMapPlaceSearchResponse *)response
 {
+    [searchTextField resignFirstResponder];
+    searchTableView.hidden = YES;
+    
+    //找到第一个目的站点，用于在地图上显示
+    AMapPOI *poi0 = response.pois[0];
+    MAPointAnnotation *pointAnn0 = [[MAPointAnnotation alloc] init];
+    pointAnn0.coordinate = CLLocationCoordinate2DMake(poi0.location.latitude, poi0.location.longitude);
+    MAMapPoint point0 = MAMapPointForCoordinate(pointAnn0.coordinate);
+    
+    //NSLog(@"name = %@",poi0.name);
+    //NSLog(@"x = %f, y = %f",point0.x,point0.y);
+    
     if (response.pois.count == 0) {
         //NSLog(@"附近未找到公共自行车站点！");
         myAlert = [[UIAlertView alloc] initWithTitle:@"查找失败" message:@"附近未找到公共自行车站点" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil, nil];
-        //[alert show];
+        [myAlert show];
     } else {
         for (AMapPOI *poi in response.pois) {
             MAPointAnnotation *pointAnn = [[MAPointAnnotation alloc] init];
             pointAnn.coordinate = CLLocationCoordinate2DMake(poi.location.latitude, poi.location.longitude);
             pointAnn.title = poi.name;
             
-            [bikePOIArray addObject:pointAnn];
+            [POIsArray addObject:pointAnn];
             
         }
-        
-        //NSLog(@"%lu",(unsigned long)bikePOIArray.count);
 
-        
-        [myMapView addAnnotations:bikePOIArray];
-        //AMapGeoPoint *poi = response.pois[0];
+        [myMapView addAnnotations:POIsArray];
+        //myMapView.visibleMapRect = [CommonUtility minMapRectForAnnotations:POIsArray];
+        myMapView.visibleMapRect = MAMapRectMake(point0.x, point0.y, 1, 1);
+        //NSLog(@"POI count = %lu", (unsigned long)POIsArray.count);
     }
     
-    [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector: @selector(performDismiss:)  userInfo:nil repeats:NO];
-    [myAlert show];
+    //定时提醒任务，但是效果太差了，需要重新写
+    //[NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector: @selector(performDismiss:)  userInfo:nil repeats:NO];
+    //[myAlert show];
 }
-
 
 - (void) performDismiss: (NSTimer *)timer {
     [myAlert dismissWithClickedButtonIndex:0 animated:NO];//important
@@ -370,7 +446,24 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"Hello");
+    //NSLog(@"Hello");
+    [myMapView removeAnnotations:POIsArray];
+    POIsArray = [[NSMutableArray alloc] init];
+    NSInteger row = indexPath.row;
+    if (buttonFlag == 0) {
+        //NSLog(@"%@",[nameArray objectAtIndex:row]);
+        //构造AMapPlaceSearchRequest对象，配置关键字搜索参数
+        AMapPlaceSearchRequest *poiRequest = [[AMapPlaceSearchRequest alloc] init];
+        poiRequest.searchType = AMapSearchType_PlaceKeyword;
+        poiRequest.keywords = [nameArray objectAtIndex:row];
+        poiRequest.city = @[@"杭州"];                 //暂定
+        poiRequest.requireExtension = YES;
+        
+        //发起POI搜索
+        [search AMapPlaceSearch: poiRequest];
+    } else {
+        NSLog(@"bike search");
+    }
 }
 
 - (UIImage *)reSizeImage:(UIImage *)image toSize:(CGSize)reSize
@@ -403,6 +496,7 @@
 - (void)mapView:(MAMapView *)mapView regionWillChangeAnimated:(BOOL)animated
 {
     //NSLog(@"change!");
+    [searchTextField resignFirstResponder];
     self.myMapView.userTrackingMode = MAUserTrackingModeNone;
     indicatorButton.selected = NO;
     [indicatorButton setImage:[UIImage imageNamed:@"指南140x140"] forState:UIControlStateNormal];

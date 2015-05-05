@@ -25,6 +25,8 @@
     NSMutableArray *districtArray;
     
     UIAlertView *myAlert;
+    
+    int buttonFlag;
 
 }
 
@@ -52,7 +54,10 @@
 
 @property (strong, nonatomic) MAUserLocation *myUserLocation;;
 
-@property (strong, nonatomic) NSMutableArray *bikePOIArray;
+@property (strong, nonatomic) NSMutableArray *POIsArray;
+
+@property (strong, nonatomic) UIButton *busButton;
+@property (strong, nonatomic) UIButton *bikePlaceButton;
 
 - (IBAction)getIndicator:(id)sender;
 - (IBAction)increaseScaling:(id)sender;
