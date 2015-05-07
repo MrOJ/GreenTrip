@@ -82,4 +82,6 @@
 - (NSString *)timeFormatted:(NSInteger)totalSeconds;
 - (NSString *)busNameTrans:(NSString *)originName;
 
+- (IBAction)reverseButton:(id)sender;
+
 @end

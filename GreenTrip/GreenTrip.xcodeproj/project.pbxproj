@@ -59,8 +59,6 @@
 		18048C821AF65F0300E68A54 /* 租赁点12x18px.png in Resources */ = {isa = PBXBuildFile; fileRef = 18048C7F1AF65F0300E68A54 /* 租赁点12x18px.png */; };
 		18048C831AF65F0300E68A54 /* 租赁点12x18px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18048C801AF65F0300E68A54 /* 租赁点12x18px@2x.png */; };
 		18048C841AF65F0300E68A54 /* 租赁点12x18px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18048C811AF65F0300E68A54 /* 租赁点12x18px@3x.png */; };
-		18048C871AF6612D00E68A54 /* CustomCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18048C861AF6612D00E68A54 /* CustomCalloutView.m */; };
-		18048C8A1AF662AF00E68A54 /* CustomAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18048C891AF662AF00E68A54 /* CustomAnnotationView.m */; };
 		1817482D1AEE5D4C00F1DFE8 /* VPImageCropperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817482C1AEE5D4C00F1DFE8 /* VPImageCropperViewController.m */; };
 		181748321AF0EE4100F1DFE8 /* registrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 181748301AF0EE4100F1DFE8 /* registrationViewController.m */; };
 		181748331AF0EE4100F1DFE8 /* registrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 181748311AF0EE4100F1DFE8 /* registrationViewController.xib */; };
@@ -83,6 +81,48 @@
 		184080341AB8449B00E89AB3 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 184080271AB8449B00E89AB3 /* UIScrollView+MJRefresh.m */; };
 		184080351AB8449B00E89AB3 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 184080291AB8449B00E89AB3 /* UIView+MJExtension.m */; };
 		1846F9251AC18C95006067BA /* 4设置未激活130x80@4x副本.png in Resources */ = {isa = PBXBuildFile; fileRef = 1846F9241AC18C95006067BA /* 4设置未激活130x80@4x副本.png */; };
+		18586C6D1AFA354500045A42 /* 反转92x124px.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C6A1AFA354500045A42 /* 反转92x124px.png */; };
+		18586C6E1AFA354500045A42 /* 反转92x124px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C6B1AFA354500045A42 /* 反转92x124px@2x.png */; };
+		18586C6F1AFA354500045A42 /* 反转92x124px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C6C1AFA354500045A42 /* 反转92x124px@3x.png */; };
+		18586C761AFA36E100045A42 /* 路线选择箭头36x68px.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C701AFA36E100045A42 /* 路线选择箭头36x68px.png */; };
+		18586C771AFA36E100045A42 /* 路线选择箭头36x68px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C711AFA36E100045A42 /* 路线选择箭头36x68px@2x.png */; };
+		18586C781AFA36E100045A42 /* 路线选择箭头36x68px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C721AFA36E100045A42 /* 路线选择箭头36x68px@3x.png */; };
+		18586C791AFA36E100045A42 /* 偏好箭头36x68px.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C731AFA36E100045A42 /* 偏好箭头36x68px.png */; };
+		18586C7A1AFA36E100045A42 /* 偏好箭头36x68px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C741AFA36E100045A42 /* 偏好箭头36x68px@2x.png */; };
+		18586C7B1AFA36E100045A42 /* 偏好箭头36x68px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C751AFA36E100045A42 /* 偏好箭头36x68px@3x.png */; };
+		18586C7E1AFA414400045A42 /* customActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 18586C7D1AFA414400045A42 /* customActionSheet.m */; };
+		18586C841AFA416700045A42 /* CustomAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18586C811AFA416700045A42 /* CustomAnnotationView.m */; };
+		18586C851AFA416700045A42 /* CustomCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18586C831AFA416700045A42 /* CustomCalloutView.m */; };
+		18586CA11AFA579200045A42 /* 公交路线描边50x6px.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C861AFA579200045A42 /* 公交路线描边50x6px.png */; };
+		18586CA21AFA579200045A42 /* 公交路线描边50x6px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C871AFA579200045A42 /* 公交路线描边50x6px@2x.png */; };
+		18586CA31AFA579200045A42 /* 公交路线描边50x6px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C881AFA579200045A42 /* 公交路线描边50x6px@3x.png */; };
+		18586CA41AFA579200045A42 /* 公交转换22x22px.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C891AFA579200045A42 /* 公交转换22x22px.png */; };
+		18586CA51AFA579200045A42 /* 公交转换22x22px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C8A1AFA579200045A42 /* 公交转换22x22px@2x.png */; };
+		18586CA61AFA579200045A42 /* 公交转换22x22px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C8B1AFA579200045A42 /* 公交转换22x22px@3x.png */; };
+		18586CA71AFA579200045A42 /* 骑车路线描边50x6px.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C8C1AFA579200045A42 /* 骑车路线描边50x6px.png */; };
+		18586CA81AFA579200045A42 /* 骑车路线描边50x6px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C8D1AFA579200045A42 /* 骑车路线描边50x6px@2x.png */; };
+		18586CA91AFA579200045A42 /* 骑车路线描边50x6px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C8E1AFA579200045A42 /* 骑车路线描边50x6px@3x.png */; };
+		18586CAA1AFA579200045A42 /* 骑车转换22x22px.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C8F1AFA579200045A42 /* 骑车转换22x22px.png */; };
+		18586CAB1AFA579200045A42 /* 骑车转换22x22px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C901AFA579200045A42 /* 骑车转换22x22px@2x.png */; };
+		18586CAC1AFA579200045A42 /* 骑车转换22x22px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C911AFA579200045A42 /* 骑车转换22x22px@3x.png */; };
+		18586CAD1AFA579200045A42 /* 起点38x60px.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C921AFA579200045A42 /* 起点38x60px.png */; };
+		18586CAE1AFA579200045A42 /* 起点38x60px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C931AFA579200045A42 /* 起点38x60px@2x.png */; };
+		18586CAF1AFA579200045A42 /* 起点38x60px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C941AFA579200045A42 /* 起点38x60px@3x.png */; };
+		18586CB01AFA579200045A42 /* 上拉箭头19x11px.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C951AFA579200045A42 /* 上拉箭头19x11px.png */; };
+		18586CB11AFA579200045A42 /* 上拉箭头19x11px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C961AFA579200045A42 /* 上拉箭头19x11px@2x.png */; };
+		18586CB21AFA579200045A42 /* 上拉箭头19x11px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C971AFA579200045A42 /* 上拉箭头19x11px@3x.png */; };
+		18586CB31AFA579200045A42 /* 行走路线描边50x6px.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C981AFA579200045A42 /* 行走路线描边50x6px.png */; };
+		18586CB41AFA579200045A42 /* 行走路线描边50x6px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C991AFA579200045A42 /* 行走路线描边50x6px@2x.png */; };
+		18586CB51AFA579200045A42 /* 行走路线描边50x6px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C9A1AFA579200045A42 /* 行走路线描边50x6px@3x.png */; };
+		18586CB61AFA579200045A42 /* 行走转换22x22px.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C9B1AFA579200045A42 /* 行走转换22x22px.png */; };
+		18586CB71AFA579200045A42 /* 行走转换22x22px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C9C1AFA579200045A42 /* 行走转换22x22px@2x.png */; };
+		18586CB81AFA579200045A42 /* 行走转换22x22px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C9D1AFA579200045A42 /* 行走转换22x22px@3x.png */; };
+		18586CB91AFA579200045A42 /* 终点38x60px.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C9E1AFA579200045A42 /* 终点38x60px.png */; };
+		18586CBA1AFA579200045A42 /* 终点38x60px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C9F1AFA579200045A42 /* 终点38x60px@2x.png */; };
+		18586CBB1AFA579200045A42 /* 终点38x60px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586CA01AFA579200045A42 /* 终点38x60px@3x.png */; };
+		18586CBF1AFAEB5F00045A42 /* 下拉箭头19x11px.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586CBC1AFAEB5F00045A42 /* 下拉箭头19x11px.png */; };
+		18586CC01AFAEB5F00045A42 /* 下拉箭头19x11px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586CBD1AFAEB5F00045A42 /* 下拉箭头19x11px@2x.png */; };
+		18586CC11AFAEB5F00045A42 /* 下拉箭头19x11px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586CBE1AFAEB5F00045A42 /* 下拉箭头19x11px@3x.png */; };
 		18A6C2861AE3E1FE00452140 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A6C2741AE3E1FE00452140 /* AFHTTPRequestOperation.m */; };
 		18A6C2871AE3E1FE00452140 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A6C2761AE3E1FE00452140 /* AFHTTPRequestOperationManager.m */; };
 		18A6C2881AE3E1FE00452140 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A6C2781AE3E1FE00452140 /* AFHTTPSessionManager.m */; };
@@ -106,7 +146,6 @@
 		18B341091AA6D58300B19ED4 /* ARGeoCoordinate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B340E11AA6D58300B19ED4 /* ARGeoCoordinate.m */; };
 		18B3410A1AA6D58300B19ED4 /* ARViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B340E31AA6D58300B19ED4 /* ARViewController.m */; };
 		18B3410C1AA6D58300B19ED4 /* choosePreferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B340E71AA6D58300B19ED4 /* choosePreferViewController.m */; };
-		18B3410D1AA6D58300B19ED4 /* customActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B340E91AA6D58300B19ED4 /* customActionSheet.m */; };
 		18B3410E1AA6D58300B19ED4 /* ExtensibleTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B340EC1AA6D58300B19ED4 /* ExtensibleTableView.m */; };
 		18B341101AA6D58300B19ED4 /* SearchRoutesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B340F01AA6D58300B19ED4 /* SearchRoutesViewController.m */; };
 		18B341111AA6D58300B19ED4 /* showRoutesDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B340F21AA6D58300B19ED4 /* showRoutesDetailsViewController.m */; };
@@ -158,12 +197,6 @@
 		18B538D01AE7BB9100B6F344 /* 箭头38x22@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B538C11AE7BB9100B6F344 /* 箭头38x22@4x.png */; };
 		18B538D11AE7BB9100B6F344 /* 箭头中+420x84@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B538C21AE7BB9100B6F344 /* 箭头中+420x84@4x.png */; };
 		18B538D21AE7BB9100B6F344 /* 箭头中420x84@4x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B538C31AE7BB9100B6F344 /* 箭头中420x84@4x.png */; };
-		18B5398F1AE7BC7C00B6F344 /* 1-148x112.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B5393B1AE7BC7B00B6F344 /* 1-148x112.png */; };
-		18B539901AE7BC7C00B6F344 /* 1-148x112@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B5393C1AE7BC7B00B6F344 /* 1-148x112@2x.png */; };
-		18B539911AE7BC7C00B6F344 /* 1-148x112@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B5393D1AE7BC7B00B6F344 /* 1-148x112@3x.png */; };
-		18B539921AE7BC7C00B6F344 /* 1-148x112未激活.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B5393E1AE7BC7B00B6F344 /* 1-148x112未激活.png */; };
-		18B539931AE7BC7C00B6F344 /* 1-148x112未激活@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B5393F1AE7BC7B00B6F344 /* 1-148x112未激活@2x.png */; };
-		18B539941AE7BC7C00B6F344 /* 1-148x112未激活@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539401AE7BC7B00B6F344 /* 1-148x112未激活@3x.png */; };
 		18B539951AE7BC7C00B6F344 /* 1-70x110.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539411AE7BC7B00B6F344 /* 1-70x110.png */; };
 		18B539961AE7BC7C00B6F344 /* 1-70x110@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539421AE7BC7B00B6F344 /* 1-70x110@2x.png */; };
 		18B539971AE7BC7C00B6F344 /* 1-70x110@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539431AE7BC7B00B6F344 /* 1-70x110@3x.png */; };
@@ -171,12 +204,6 @@
 		18B539991AE7BC7C00B6F344 /* 1出发未激活130x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539451AE7BC7B00B6F344 /* 1出发未激活130x80.png */; };
 		18B5399A1AE7BC7C00B6F344 /* 1出发未激活130x80@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539461AE7BC7B00B6F344 /* 1出发未激活130x80@2x.png */; };
 		18B5399B1AE7BC7C00B6F344 /* 1出发未激活130x80@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539471AE7BC7B00B6F344 /* 1出发未激活130x80@3x.png */; };
-		18B5399C1AE7BC7C00B6F344 /* 2-112x140.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539481AE7BC7B00B6F344 /* 2-112x140.png */; };
-		18B5399D1AE7BC7C00B6F344 /* 2-112x140@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539491AE7BC7B00B6F344 /* 2-112x140@2x.png */; };
-		18B5399E1AE7BC7C00B6F344 /* 2-112x140@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B5394A1AE7BC7B00B6F344 /* 2-112x140@3x.png */; };
-		18B5399F1AE7BC7C00B6F344 /* 2-112x140未激活.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B5394B1AE7BC7B00B6F344 /* 2-112x140未激活.png */; };
-		18B539A01AE7BC7C00B6F344 /* 2-112x140未激活@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B5394C1AE7BC7B00B6F344 /* 2-112x140未激活@2x.png */; };
-		18B539A11AE7BC7C00B6F344 /* 2-112x140未激活@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B5394D1AE7BC7B00B6F344 /* 2-112x140未激活@3x.png */; };
 		18B539A21AE7BC7C00B6F344 /* 2-70x110.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B5394E1AE7BC7C00B6F344 /* 2-70x110.png */; };
 		18B539A31AE7BC7C00B6F344 /* 2-70x110@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B5394F1AE7BC7C00B6F344 /* 2-70x110@2x.png */; };
 		18B539A41AE7BC7C00B6F344 /* 2-70x110@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539501AE7BC7C00B6F344 /* 2-70x110@3x.png */; };
@@ -186,21 +213,9 @@
 		18B539A81AE7BC7C00B6F344 /* 3-144x92.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539541AE7BC7C00B6F344 /* 3-144x92.png */; };
 		18B539A91AE7BC7C00B6F344 /* 3-144x92@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539551AE7BC7C00B6F344 /* 3-144x92@2x.png */; };
 		18B539AA1AE7BC7C00B6F344 /* 3-144x92@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539561AE7BC7C00B6F344 /* 3-144x92@3x.png */; };
-		18B539AB1AE7BC7C00B6F344 /* 3-148x112.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539571AE7BC7C00B6F344 /* 3-148x112.png */; };
-		18B539AC1AE7BC7C00B6F344 /* 3-148x112@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539581AE7BC7C00B6F344 /* 3-148x112@2x.png */; };
-		18B539AD1AE7BC7C00B6F344 /* 3-148x112@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539591AE7BC7C00B6F344 /* 3-148x112@3x.png */; };
-		18B539AE1AE7BC7C00B6F344 /* 3-148x112未激活.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B5395A1AE7BC7C00B6F344 /* 3-148x112未激活.png */; };
-		18B539AF1AE7BC7C00B6F344 /* 3-148x112未激活@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B5395B1AE7BC7C00B6F344 /* 3-148x112未激活@2x.png */; };
-		18B539B01AE7BC7C00B6F344 /* 3-148x112未激活@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B5395C1AE7BC7C00B6F344 /* 3-148x112未激活@3x.png */; };
 		18B539B11AE7BC7C00B6F344 /* 3我的未激活130x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B5395D1AE7BC7C00B6F344 /* 3我的未激活130x80.png */; };
 		18B539B21AE7BC7C00B6F344 /* 3我的未激活130x80@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B5395E1AE7BC7C00B6F344 /* 3我的未激活130x80@2x.png */; };
 		18B539B31AE7BC7C00B6F344 /* 3我的未激活130x80@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B5395F1AE7BC7C00B6F344 /* 3我的未激活130x80@3x.png */; };
-		18B539B41AE7BC7C00B6F344 /* 4-120x124.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539601AE7BC7C00B6F344 /* 4-120x124.png */; };
-		18B539B51AE7BC7C00B6F344 /* 4-120x124@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539611AE7BC7C00B6F344 /* 4-120x124@2x.png */; };
-		18B539B61AE7BC7C00B6F344 /* 4-120x124@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539621AE7BC7C00B6F344 /* 4-120x124@3x.png */; };
-		18B539B71AE7BC7C00B6F344 /* 4-120x124未激活.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539631AE7BC7C00B6F344 /* 4-120x124未激活.png */; };
-		18B539B81AE7BC7C00B6F344 /* 4-120x124未激活@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539641AE7BC7C00B6F344 /* 4-120x124未激活@2x.png */; };
-		18B539B91AE7BC7C00B6F344 /* 4-120x124未激活@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539651AE7BC7C00B6F344 /* 4-120x124未激活@3x.png */; };
 		18B539BA1AE7BC7C00B6F344 /* 4-54x92.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539661AE7BC7C00B6F344 /* 4-54x92.png */; };
 		18B539BB1AE7BC7C00B6F344 /* 4-54x92@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539671AE7BC7C00B6F344 /* 4-54x92@2x.png */; };
 		18B539BC1AE7BC7C00B6F344 /* 4-54x92@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539681AE7BC7C00B6F344 /* 4-54x92@3x.png */; };
@@ -216,9 +231,6 @@
 		18B539C61AE7BC7C00B6F344 /* 6-100x98@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539721AE7BC7C00B6F344 /* 6-100x98@2x.png */; };
 		18B539C71AE7BC7C00B6F344 /* 6-100x98@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539731AE7BC7C00B6F344 /* 6-100x98@3x.png */; };
 		18B539C81AE7BC7C00B6F344 /* 68x84.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539741AE7BC7C00B6F344 /* 68x84.png */; };
-		18B539C91AE7BC7C00B6F344 /* 7-90x120.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539751AE7BC7C00B6F344 /* 7-90x120.png */; };
-		18B539CA1AE7BC7C00B6F344 /* 7-90x120@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539761AE7BC7C00B6F344 /* 7-90x120@2x.png */; };
-		18B539CB1AE7BC7C00B6F344 /* 7-90x120@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539771AE7BC7C00B6F344 /* 7-90x120@3x.png */; };
 		18B539CC1AE7BC7C00B6F344 /* 五角星2-56x56.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539781AE7BC7C00B6F344 /* 五角星2-56x56.png */; };
 		18B539CD1AE7BC7C00B6F344 /* 五角星56x56.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539791AE7BC7C00B6F344 /* 五角星56x56.png */; };
 		18B539CE1AE7BC7C00B6F344 /* 五角星56x56@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B5397A1AE7BC7C00B6F344 /* 五角星56x56@2x.png */; };
@@ -236,12 +248,6 @@
 		18B539DA1AE7BC7C00B6F344 /* 箭头38x22.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539861AE7BC7C00B6F344 /* 箭头38x22.png */; };
 		18B539DB1AE7BC7C00B6F344 /* 箭头38x22@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539871AE7BC7C00B6F344 /* 箭头38x22@2x.png */; };
 		18B539DC1AE7BC7C00B6F344 /* 箭头38x22@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539881AE7BC7C00B6F344 /* 箭头38x22@3x.png */; };
-		18B539DD1AE7BC7C00B6F344 /* 终点150x240px.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539891AE7BC7C00B6F344 /* 终点150x240px.png */; };
-		18B539DE1AE7BC7C00B6F344 /* 终点150x240px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B5398A1AE7BC7C00B6F344 /* 终点150x240px@2x.png */; };
-		18B539DF1AE7BC7C00B6F344 /* 终点150x240px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B5398B1AE7BC7C00B6F344 /* 终点150x240px@3x.png */; };
-		18B539E01AE7BC7C00B6F344 /* 起点150x240px.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B5398C1AE7BC7C00B6F344 /* 起点150x240px.png */; };
-		18B539E11AE7BC7C00B6F344 /* 起点150x240px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B5398D1AE7BC7C00B6F344 /* 起点150x240px@2x.png */; };
-		18B539E21AE7BC7C00B6F344 /* 起点150x240px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B5398E1AE7BC7C00B6F344 /* 起点150x240px@3x.png */; };
 		18B53A001AE7C5C200B6F344 /* 排行榜208x66.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539F71AE7C5C200B6F344 /* 排行榜208x66.png */; };
 		18B53A011AE7C5C200B6F344 /* 排行榜208x66@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539F81AE7C5C200B6F344 /* 排行榜208x66@2x.png */; };
 		18B53A021AE7C5C200B6F344 /* 排行榜208x66@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B539F91AE7C5C200B6F344 /* 排行榜208x66@3x.png */; };
@@ -380,10 +386,6 @@
 		18048C7F1AF65F0300E68A54 /* 租赁点12x18px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "租赁点12x18px.png"; sourceTree = "<group>"; };
 		18048C801AF65F0300E68A54 /* 租赁点12x18px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "租赁点12x18px@2x.png"; sourceTree = "<group>"; };
 		18048C811AF65F0300E68A54 /* 租赁点12x18px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "租赁点12x18px@3x.png"; sourceTree = "<group>"; };
-		18048C851AF6612D00E68A54 /* CustomCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCalloutView.h; sourceTree = "<group>"; };
-		18048C861AF6612D00E68A54 /* CustomCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCalloutView.m; sourceTree = "<group>"; };
-		18048C881AF662AF00E68A54 /* CustomAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAnnotationView.h; sourceTree = "<group>"; };
-		18048C891AF662AF00E68A54 /* CustomAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAnnotationView.m; sourceTree = "<group>"; };
 		1817482B1AEE5D4C00F1DFE8 /* VPImageCropperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VPImageCropperViewController.h; sourceTree = "<group>"; };
 		1817482C1AEE5D4C00F1DFE8 /* VPImageCropperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VPImageCropperViewController.m; sourceTree = "<group>"; };
 		1817482E1AEE74EB00F1DFE8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -421,6 +423,51 @@
 		184080281AB8449B00E89AB3 /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		184080291AB8449B00E89AB3 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
 		1846F9241AC18C95006067BA /* 4设置未激活130x80@4x副本.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "4设置未激活130x80@4x副本.png"; path = "images/4设置未激活130x80@4x副本.png"; sourceTree = "<group>"; };
+		18586C6A1AFA354500045A42 /* 反转92x124px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "反转92x124px.png"; sourceTree = "<group>"; };
+		18586C6B1AFA354500045A42 /* 反转92x124px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "反转92x124px@2x.png"; sourceTree = "<group>"; };
+		18586C6C1AFA354500045A42 /* 反转92x124px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "反转92x124px@3x.png"; sourceTree = "<group>"; };
+		18586C701AFA36E100045A42 /* 路线选择箭头36x68px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "路线选择箭头36x68px.png"; sourceTree = "<group>"; };
+		18586C711AFA36E100045A42 /* 路线选择箭头36x68px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "路线选择箭头36x68px@2x.png"; sourceTree = "<group>"; };
+		18586C721AFA36E100045A42 /* 路线选择箭头36x68px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "路线选择箭头36x68px@3x.png"; sourceTree = "<group>"; };
+		18586C731AFA36E100045A42 /* 偏好箭头36x68px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "偏好箭头36x68px.png"; sourceTree = "<group>"; };
+		18586C741AFA36E100045A42 /* 偏好箭头36x68px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "偏好箭头36x68px@2x.png"; sourceTree = "<group>"; };
+		18586C751AFA36E100045A42 /* 偏好箭头36x68px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "偏好箭头36x68px@3x.png"; sourceTree = "<group>"; };
+		18586C7C1AFA414400045A42 /* customActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customActionSheet.h; sourceTree = "<group>"; };
+		18586C7D1AFA414400045A42 /* customActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customActionSheet.m; sourceTree = "<group>"; };
+		18586C801AFA416700045A42 /* CustomAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAnnotationView.h; sourceTree = "<group>"; };
+		18586C811AFA416700045A42 /* CustomAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAnnotationView.m; sourceTree = "<group>"; };
+		18586C821AFA416700045A42 /* CustomCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCalloutView.h; sourceTree = "<group>"; };
+		18586C831AFA416700045A42 /* CustomCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCalloutView.m; sourceTree = "<group>"; };
+		18586C861AFA579200045A42 /* 公交路线描边50x6px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公交路线描边50x6px.png"; sourceTree = "<group>"; };
+		18586C871AFA579200045A42 /* 公交路线描边50x6px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公交路线描边50x6px@2x.png"; sourceTree = "<group>"; };
+		18586C881AFA579200045A42 /* 公交路线描边50x6px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公交路线描边50x6px@3x.png"; sourceTree = "<group>"; };
+		18586C891AFA579200045A42 /* 公交转换22x22px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公交转换22x22px.png"; sourceTree = "<group>"; };
+		18586C8A1AFA579200045A42 /* 公交转换22x22px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公交转换22x22px@2x.png"; sourceTree = "<group>"; };
+		18586C8B1AFA579200045A42 /* 公交转换22x22px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公交转换22x22px@3x.png"; sourceTree = "<group>"; };
+		18586C8C1AFA579200045A42 /* 骑车路线描边50x6px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "骑车路线描边50x6px.png"; sourceTree = "<group>"; };
+		18586C8D1AFA579200045A42 /* 骑车路线描边50x6px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "骑车路线描边50x6px@2x.png"; sourceTree = "<group>"; };
+		18586C8E1AFA579200045A42 /* 骑车路线描边50x6px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "骑车路线描边50x6px@3x.png"; sourceTree = "<group>"; };
+		18586C8F1AFA579200045A42 /* 骑车转换22x22px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "骑车转换22x22px.png"; sourceTree = "<group>"; };
+		18586C901AFA579200045A42 /* 骑车转换22x22px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "骑车转换22x22px@2x.png"; sourceTree = "<group>"; };
+		18586C911AFA579200045A42 /* 骑车转换22x22px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "骑车转换22x22px@3x.png"; sourceTree = "<group>"; };
+		18586C921AFA579200045A42 /* 起点38x60px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "起点38x60px.png"; sourceTree = "<group>"; };
+		18586C931AFA579200045A42 /* 起点38x60px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "起点38x60px@2x.png"; sourceTree = "<group>"; };
+		18586C941AFA579200045A42 /* 起点38x60px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "起点38x60px@3x.png"; sourceTree = "<group>"; };
+		18586C951AFA579200045A42 /* 上拉箭头19x11px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "上拉箭头19x11px.png"; sourceTree = "<group>"; };
+		18586C961AFA579200045A42 /* 上拉箭头19x11px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "上拉箭头19x11px@2x.png"; sourceTree = "<group>"; };
+		18586C971AFA579200045A42 /* 上拉箭头19x11px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "上拉箭头19x11px@3x.png"; sourceTree = "<group>"; };
+		18586C981AFA579200045A42 /* 行走路线描边50x6px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "行走路线描边50x6px.png"; sourceTree = "<group>"; };
+		18586C991AFA579200045A42 /* 行走路线描边50x6px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "行走路线描边50x6px@2x.png"; sourceTree = "<group>"; };
+		18586C9A1AFA579200045A42 /* 行走路线描边50x6px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "行走路线描边50x6px@3x.png"; sourceTree = "<group>"; };
+		18586C9B1AFA579200045A42 /* 行走转换22x22px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "行走转换22x22px.png"; sourceTree = "<group>"; };
+		18586C9C1AFA579200045A42 /* 行走转换22x22px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "行走转换22x22px@2x.png"; sourceTree = "<group>"; };
+		18586C9D1AFA579200045A42 /* 行走转换22x22px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "行走转换22x22px@3x.png"; sourceTree = "<group>"; };
+		18586C9E1AFA579200045A42 /* 终点38x60px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "终点38x60px.png"; sourceTree = "<group>"; };
+		18586C9F1AFA579200045A42 /* 终点38x60px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "终点38x60px@2x.png"; sourceTree = "<group>"; };
+		18586CA01AFA579200045A42 /* 终点38x60px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "终点38x60px@3x.png"; sourceTree = "<group>"; };
+		18586CBC1AFAEB5F00045A42 /* 下拉箭头19x11px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "下拉箭头19x11px.png"; sourceTree = "<group>"; };
+		18586CBD1AFAEB5F00045A42 /* 下拉箭头19x11px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "下拉箭头19x11px@2x.png"; sourceTree = "<group>"; };
+		18586CBE1AFAEB5F00045A42 /* 下拉箭头19x11px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "下拉箭头19x11px@3x.png"; sourceTree = "<group>"; };
 		18A6C2731AE3E1FE00452140 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		18A6C2741AE3E1FE00452140 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		18A6C2751AE3E1FE00452140 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -465,8 +512,6 @@
 		18B340E31AA6D58300B19ED4 /* ARViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARViewController.m; sourceTree = "<group>"; };
 		18B340E61AA6D58300B19ED4 /* choosePreferViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = choosePreferViewController.h; sourceTree = "<group>"; };
 		18B340E71AA6D58300B19ED4 /* choosePreferViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = choosePreferViewController.m; sourceTree = "<group>"; };
-		18B340E81AA6D58300B19ED4 /* customActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = customActionSheet.h; path = ../customActionSheet.h; sourceTree = "<group>"; };
-		18B340E91AA6D58300B19ED4 /* customActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = customActionSheet.m; path = ../customActionSheet.m; sourceTree = "<group>"; };
 		18B340EB1AA6D58300B19ED4 /* ExtensibleTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExtensibleTableView.h; path = GreenTrip/Trips/ExtensibleTableView.h; sourceTree = SOURCE_ROOT; };
 		18B340EC1AA6D58300B19ED4 /* ExtensibleTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExtensibleTableView.m; path = GreenTrip/Trips/ExtensibleTableView.m; sourceTree = SOURCE_ROOT; };
 		18B340EF1AA6D58300B19ED4 /* SearchRoutesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchRoutesViewController.h; sourceTree = "<group>"; };
@@ -531,12 +576,6 @@
 		18B538C11AE7BB9100B6F344 /* 箭头38x22@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "箭头38x22@4x.png"; sourceTree = "<group>"; };
 		18B538C21AE7BB9100B6F344 /* 箭头中+420x84@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "箭头中+420x84@4x.png"; sourceTree = "<group>"; };
 		18B538C31AE7BB9100B6F344 /* 箭头中420x84@4x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "箭头中420x84@4x.png"; sourceTree = "<group>"; };
-		18B5393B1AE7BC7B00B6F344 /* 1-148x112.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1-148x112.png"; sourceTree = "<group>"; };
-		18B5393C1AE7BC7B00B6F344 /* 1-148x112@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1-148x112@2x.png"; sourceTree = "<group>"; };
-		18B5393D1AE7BC7B00B6F344 /* 1-148x112@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1-148x112@3x.png"; sourceTree = "<group>"; };
-		18B5393E1AE7BC7B00B6F344 /* 1-148x112未激活.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1-148x112未激活.png"; sourceTree = "<group>"; };
-		18B5393F1AE7BC7B00B6F344 /* 1-148x112未激活@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1-148x112未激活@2x.png"; sourceTree = "<group>"; };
-		18B539401AE7BC7B00B6F344 /* 1-148x112未激活@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1-148x112未激活@3x.png"; sourceTree = "<group>"; };
 		18B539411AE7BC7B00B6F344 /* 1-70x110.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1-70x110.png"; sourceTree = "<group>"; };
 		18B539421AE7BC7B00B6F344 /* 1-70x110@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1-70x110@2x.png"; sourceTree = "<group>"; };
 		18B539431AE7BC7B00B6F344 /* 1-70x110@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1-70x110@3x.png"; sourceTree = "<group>"; };
@@ -544,12 +583,6 @@
 		18B539451AE7BC7B00B6F344 /* 1出发未激活130x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1出发未激活130x80.png"; sourceTree = "<group>"; };
 		18B539461AE7BC7B00B6F344 /* 1出发未激活130x80@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1出发未激活130x80@2x.png"; sourceTree = "<group>"; };
 		18B539471AE7BC7B00B6F344 /* 1出发未激活130x80@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1出发未激活130x80@3x.png"; sourceTree = "<group>"; };
-		18B539481AE7BC7B00B6F344 /* 2-112x140.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2-112x140.png"; sourceTree = "<group>"; };
-		18B539491AE7BC7B00B6F344 /* 2-112x140@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2-112x140@2x.png"; sourceTree = "<group>"; };
-		18B5394A1AE7BC7B00B6F344 /* 2-112x140@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2-112x140@3x.png"; sourceTree = "<group>"; };
-		18B5394B1AE7BC7B00B6F344 /* 2-112x140未激活.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2-112x140未激活.png"; sourceTree = "<group>"; };
-		18B5394C1AE7BC7B00B6F344 /* 2-112x140未激活@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2-112x140未激活@2x.png"; sourceTree = "<group>"; };
-		18B5394D1AE7BC7B00B6F344 /* 2-112x140未激活@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2-112x140未激活@3x.png"; sourceTree = "<group>"; };
 		18B5394E1AE7BC7C00B6F344 /* 2-70x110.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2-70x110.png"; sourceTree = "<group>"; };
 		18B5394F1AE7BC7C00B6F344 /* 2-70x110@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2-70x110@2x.png"; sourceTree = "<group>"; };
 		18B539501AE7BC7C00B6F344 /* 2-70x110@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2-70x110@3x.png"; sourceTree = "<group>"; };
@@ -559,21 +592,9 @@
 		18B539541AE7BC7C00B6F344 /* 3-144x92.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3-144x92.png"; sourceTree = "<group>"; };
 		18B539551AE7BC7C00B6F344 /* 3-144x92@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3-144x92@2x.png"; sourceTree = "<group>"; };
 		18B539561AE7BC7C00B6F344 /* 3-144x92@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3-144x92@3x.png"; sourceTree = "<group>"; };
-		18B539571AE7BC7C00B6F344 /* 3-148x112.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3-148x112.png"; sourceTree = "<group>"; };
-		18B539581AE7BC7C00B6F344 /* 3-148x112@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3-148x112@2x.png"; sourceTree = "<group>"; };
-		18B539591AE7BC7C00B6F344 /* 3-148x112@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3-148x112@3x.png"; sourceTree = "<group>"; };
-		18B5395A1AE7BC7C00B6F344 /* 3-148x112未激活.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3-148x112未激活.png"; sourceTree = "<group>"; };
-		18B5395B1AE7BC7C00B6F344 /* 3-148x112未激活@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3-148x112未激活@2x.png"; sourceTree = "<group>"; };
-		18B5395C1AE7BC7C00B6F344 /* 3-148x112未激活@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3-148x112未激活@3x.png"; sourceTree = "<group>"; };
 		18B5395D1AE7BC7C00B6F344 /* 3我的未激活130x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3我的未激活130x80.png"; sourceTree = "<group>"; };
 		18B5395E1AE7BC7C00B6F344 /* 3我的未激活130x80@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3我的未激活130x80@2x.png"; sourceTree = "<group>"; };
 		18B5395F1AE7BC7C00B6F344 /* 3我的未激活130x80@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3我的未激活130x80@3x.png"; sourceTree = "<group>"; };
-		18B539601AE7BC7C00B6F344 /* 4-120x124.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "4-120x124.png"; sourceTree = "<group>"; };
-		18B539611AE7BC7C00B6F344 /* 4-120x124@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "4-120x124@2x.png"; sourceTree = "<group>"; };
-		18B539621AE7BC7C00B6F344 /* 4-120x124@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "4-120x124@3x.png"; sourceTree = "<group>"; };
-		18B539631AE7BC7C00B6F344 /* 4-120x124未激活.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "4-120x124未激活.png"; sourceTree = "<group>"; };
-		18B539641AE7BC7C00B6F344 /* 4-120x124未激活@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "4-120x124未激活@2x.png"; sourceTree = "<group>"; };
-		18B539651AE7BC7C00B6F344 /* 4-120x124未激活@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "4-120x124未激活@3x.png"; sourceTree = "<group>"; };
 		18B539661AE7BC7C00B6F344 /* 4-54x92.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "4-54x92.png"; sourceTree = "<group>"; };
 		18B539671AE7BC7C00B6F344 /* 4-54x92@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "4-54x92@2x.png"; sourceTree = "<group>"; };
 		18B539681AE7BC7C00B6F344 /* 4-54x92@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "4-54x92@3x.png"; sourceTree = "<group>"; };
@@ -589,9 +610,6 @@
 		18B539721AE7BC7C00B6F344 /* 6-100x98@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "6-100x98@2x.png"; sourceTree = "<group>"; };
 		18B539731AE7BC7C00B6F344 /* 6-100x98@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "6-100x98@3x.png"; sourceTree = "<group>"; };
 		18B539741AE7BC7C00B6F344 /* 68x84.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 68x84.png; sourceTree = "<group>"; };
-		18B539751AE7BC7C00B6F344 /* 7-90x120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "7-90x120.png"; sourceTree = "<group>"; };
-		18B539761AE7BC7C00B6F344 /* 7-90x120@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "7-90x120@2x.png"; sourceTree = "<group>"; };
-		18B539771AE7BC7C00B6F344 /* 7-90x120@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "7-90x120@3x.png"; sourceTree = "<group>"; };
 		18B539781AE7BC7C00B6F344 /* 五角星2-56x56.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "五角星2-56x56.png"; sourceTree = "<group>"; };
 		18B539791AE7BC7C00B6F344 /* 五角星56x56.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "五角星56x56.png"; sourceTree = "<group>"; };
 		18B5397A1AE7BC7C00B6F344 /* 五角星56x56@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "五角星56x56@2x.png"; sourceTree = "<group>"; };
@@ -609,12 +627,6 @@
 		18B539861AE7BC7C00B6F344 /* 箭头38x22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "箭头38x22.png"; sourceTree = "<group>"; };
 		18B539871AE7BC7C00B6F344 /* 箭头38x22@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "箭头38x22@2x.png"; sourceTree = "<group>"; };
 		18B539881AE7BC7C00B6F344 /* 箭头38x22@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "箭头38x22@3x.png"; sourceTree = "<group>"; };
-		18B539891AE7BC7C00B6F344 /* 终点150x240px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "终点150x240px.png"; sourceTree = "<group>"; };
-		18B5398A1AE7BC7C00B6F344 /* 终点150x240px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "终点150x240px@2x.png"; sourceTree = "<group>"; };
-		18B5398B1AE7BC7C00B6F344 /* 终点150x240px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "终点150x240px@3x.png"; sourceTree = "<group>"; };
-		18B5398C1AE7BC7C00B6F344 /* 起点150x240px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "起点150x240px.png"; sourceTree = "<group>"; };
-		18B5398D1AE7BC7C00B6F344 /* 起点150x240px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "起点150x240px@2x.png"; sourceTree = "<group>"; };
-		18B5398E1AE7BC7C00B6F344 /* 起点150x240px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "起点150x240px@3x.png"; sourceTree = "<group>"; };
 		18B539F71AE7C5C200B6F344 /* 排行榜208x66.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "排行榜208x66.png"; sourceTree = "<group>"; };
 		18B539F81AE7C5C200B6F344 /* 排行榜208x66@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "排行榜208x66@2x.png"; sourceTree = "<group>"; };
 		18B539F91AE7C5C200B6F344 /* 排行榜208x66@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "排行榜208x66@3x.png"; sourceTree = "<group>"; };
@@ -835,6 +847,17 @@
 			path = MJRefresh;
 			sourceTree = "<group>";
 		};
+		18586C7F1AFA416700045A42 /* CustomAnn&Overlay */ = {
+			isa = PBXGroup;
+			children = (
+				18586C801AFA416700045A42 /* CustomAnnotationView.h */,
+				18586C811AFA416700045A42 /* CustomAnnotationView.m */,
+				18586C821AFA416700045A42 /* CustomCalloutView.h */,
+				18586C831AFA416700045A42 /* CustomCalloutView.m */,
+			);
+			path = "CustomAnn&Overlay";
+			sourceTree = "<group>";
+		};
 		18A6C2721AE3E1FE00452140 /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -928,12 +951,9 @@
 		18B340D81AA6D58300B19ED4 /* Trips */ = {
 			isa = PBXGroup;
 			children = (
-				18048C851AF6612D00E68A54 /* CustomCalloutView.h */,
-				18048C861AF6612D00E68A54 /* CustomCalloutView.m */,
-				18048C881AF662AF00E68A54 /* CustomAnnotationView.h */,
-				18048C891AF662AF00E68A54 /* CustomAnnotationView.m */,
 				18B340FB1AA6D58300B19ED4 /* TripsMainViewController.h */,
 				18B340FC1AA6D58300B19ED4 /* TripsMainViewController.m */,
+				18586C7F1AFA416700045A42 /* CustomAnn&Overlay */,
 				18B341641AA6D8E500B19ED4 /* CustomActionSheet */,
 				18B341651AA6D8E500B19ED4 /* ExtensibleTableView */,
 				18B340FD1AA6D58300B19ED4 /* Utility */,
@@ -1082,8 +1102,8 @@
 		18B341641AA6D8E500B19ED4 /* CustomActionSheet */ = {
 			isa = PBXGroup;
 			children = (
-				18B340E81AA6D58300B19ED4 /* customActionSheet.h */,
-				18B340E91AA6D58300B19ED4 /* customActionSheet.m */,
+				18586C7C1AFA414400045A42 /* customActionSheet.h */,
+				18586C7D1AFA414400045A42 /* customActionSheet.m */,
 			);
 			path = CustomActionSheet;
 			sourceTree = "<group>";
@@ -1147,6 +1167,12 @@
 		18B5393A1AE7BC7B00B6F344 /* searchRoutes */ = {
 			isa = PBXGroup;
 			children = (
+				18586C701AFA36E100045A42 /* 路线选择箭头36x68px.png */,
+				18586C711AFA36E100045A42 /* 路线选择箭头36x68px@2x.png */,
+				18586C721AFA36E100045A42 /* 路线选择箭头36x68px@3x.png */,
+				18586C731AFA36E100045A42 /* 偏好箭头36x68px.png */,
+				18586C741AFA36E100045A42 /* 偏好箭头36x68px@2x.png */,
+				18586C751AFA36E100045A42 /* 偏好箭头36x68px@3x.png */,
 				18040ECE1AEBBB6200844F0C /* 3-144x92未激活.png */,
 				18040ECF1AEBBB6200844F0C /* 3-144x92未激活@2x.png */,
 				18040ED01AEBBB6200844F0C /* 3-144x92未激活@3x.png */,
@@ -1168,12 +1194,6 @@
 				18B53A0F1AE7C5CC00B6F344 /* 车164x166.png */,
 				18B53A101AE7C5CC00B6F344 /* 车164x166@2x.png */,
 				18B53A111AE7C5CC00B6F344 /* 车164x166@3x.png */,
-				18B5393B1AE7BC7B00B6F344 /* 1-148x112.png */,
-				18B5393C1AE7BC7B00B6F344 /* 1-148x112@2x.png */,
-				18B5393D1AE7BC7B00B6F344 /* 1-148x112@3x.png */,
-				18B5393E1AE7BC7B00B6F344 /* 1-148x112未激活.png */,
-				18B5393F1AE7BC7B00B6F344 /* 1-148x112未激活@2x.png */,
-				18B539401AE7BC7B00B6F344 /* 1-148x112未激活@3x.png */,
 				18B539411AE7BC7B00B6F344 /* 1-70x110.png */,
 				18B539421AE7BC7B00B6F344 /* 1-70x110@2x.png */,
 				18B539431AE7BC7B00B6F344 /* 1-70x110@3x.png */,
@@ -1181,12 +1201,6 @@
 				18B539451AE7BC7B00B6F344 /* 1出发未激活130x80.png */,
 				18B539461AE7BC7B00B6F344 /* 1出发未激活130x80@2x.png */,
 				18B539471AE7BC7B00B6F344 /* 1出发未激活130x80@3x.png */,
-				18B539481AE7BC7B00B6F344 /* 2-112x140.png */,
-				18B539491AE7BC7B00B6F344 /* 2-112x140@2x.png */,
-				18B5394A1AE7BC7B00B6F344 /* 2-112x140@3x.png */,
-				18B5394B1AE7BC7B00B6F344 /* 2-112x140未激活.png */,
-				18B5394C1AE7BC7B00B6F344 /* 2-112x140未激活@2x.png */,
-				18B5394D1AE7BC7B00B6F344 /* 2-112x140未激活@3x.png */,
 				18B5394E1AE7BC7C00B6F344 /* 2-70x110.png */,
 				18B5394F1AE7BC7C00B6F344 /* 2-70x110@2x.png */,
 				18B539501AE7BC7C00B6F344 /* 2-70x110@3x.png */,
@@ -1196,21 +1210,9 @@
 				18B539541AE7BC7C00B6F344 /* 3-144x92.png */,
 				18B539551AE7BC7C00B6F344 /* 3-144x92@2x.png */,
 				18B539561AE7BC7C00B6F344 /* 3-144x92@3x.png */,
-				18B539571AE7BC7C00B6F344 /* 3-148x112.png */,
-				18B539581AE7BC7C00B6F344 /* 3-148x112@2x.png */,
-				18B539591AE7BC7C00B6F344 /* 3-148x112@3x.png */,
-				18B5395A1AE7BC7C00B6F344 /* 3-148x112未激活.png */,
-				18B5395B1AE7BC7C00B6F344 /* 3-148x112未激活@2x.png */,
-				18B5395C1AE7BC7C00B6F344 /* 3-148x112未激活@3x.png */,
 				18B5395D1AE7BC7C00B6F344 /* 3我的未激活130x80.png */,
 				18B5395E1AE7BC7C00B6F344 /* 3我的未激活130x80@2x.png */,
 				18B5395F1AE7BC7C00B6F344 /* 3我的未激活130x80@3x.png */,
-				18B539601AE7BC7C00B6F344 /* 4-120x124.png */,
-				18B539611AE7BC7C00B6F344 /* 4-120x124@2x.png */,
-				18B539621AE7BC7C00B6F344 /* 4-120x124@3x.png */,
-				18B539631AE7BC7C00B6F344 /* 4-120x124未激活.png */,
-				18B539641AE7BC7C00B6F344 /* 4-120x124未激活@2x.png */,
-				18B539651AE7BC7C00B6F344 /* 4-120x124未激活@3x.png */,
 				18B539661AE7BC7C00B6F344 /* 4-54x92.png */,
 				18B539671AE7BC7C00B6F344 /* 4-54x92@2x.png */,
 				18B539681AE7BC7C00B6F344 /* 4-54x92@3x.png */,
@@ -1226,9 +1228,9 @@
 				18B539721AE7BC7C00B6F344 /* 6-100x98@2x.png */,
 				18B539731AE7BC7C00B6F344 /* 6-100x98@3x.png */,
 				18B539741AE7BC7C00B6F344 /* 68x84.png */,
-				18B539751AE7BC7C00B6F344 /* 7-90x120.png */,
-				18B539761AE7BC7C00B6F344 /* 7-90x120@2x.png */,
-				18B539771AE7BC7C00B6F344 /* 7-90x120@3x.png */,
+				18586C6A1AFA354500045A42 /* 反转92x124px.png */,
+				18586C6B1AFA354500045A42 /* 反转92x124px@2x.png */,
+				18586C6C1AFA354500045A42 /* 反转92x124px@3x.png */,
 				18B539781AE7BC7C00B6F344 /* 五角星2-56x56.png */,
 				18B539791AE7BC7C00B6F344 /* 五角星56x56.png */,
 				18B5397A1AE7BC7C00B6F344 /* 五角星56x56@2x.png */,
@@ -1246,12 +1248,36 @@
 				18B539861AE7BC7C00B6F344 /* 箭头38x22.png */,
 				18B539871AE7BC7C00B6F344 /* 箭头38x22@2x.png */,
 				18B539881AE7BC7C00B6F344 /* 箭头38x22@3x.png */,
-				18B539891AE7BC7C00B6F344 /* 终点150x240px.png */,
-				18B5398A1AE7BC7C00B6F344 /* 终点150x240px@2x.png */,
-				18B5398B1AE7BC7C00B6F344 /* 终点150x240px@3x.png */,
-				18B5398C1AE7BC7C00B6F344 /* 起点150x240px.png */,
-				18B5398D1AE7BC7C00B6F344 /* 起点150x240px@2x.png */,
-				18B5398E1AE7BC7C00B6F344 /* 起点150x240px@3x.png */,
+				18586C861AFA579200045A42 /* 公交路线描边50x6px.png */,
+				18586C871AFA579200045A42 /* 公交路线描边50x6px@2x.png */,
+				18586C881AFA579200045A42 /* 公交路线描边50x6px@3x.png */,
+				18586C891AFA579200045A42 /* 公交转换22x22px.png */,
+				18586C8A1AFA579200045A42 /* 公交转换22x22px@2x.png */,
+				18586C8B1AFA579200045A42 /* 公交转换22x22px@3x.png */,
+				18586C8C1AFA579200045A42 /* 骑车路线描边50x6px.png */,
+				18586C8D1AFA579200045A42 /* 骑车路线描边50x6px@2x.png */,
+				18586C8E1AFA579200045A42 /* 骑车路线描边50x6px@3x.png */,
+				18586C8F1AFA579200045A42 /* 骑车转换22x22px.png */,
+				18586C901AFA579200045A42 /* 骑车转换22x22px@2x.png */,
+				18586C911AFA579200045A42 /* 骑车转换22x22px@3x.png */,
+				18586C921AFA579200045A42 /* 起点38x60px.png */,
+				18586C931AFA579200045A42 /* 起点38x60px@2x.png */,
+				18586C941AFA579200045A42 /* 起点38x60px@3x.png */,
+				18586C951AFA579200045A42 /* 上拉箭头19x11px.png */,
+				18586C961AFA579200045A42 /* 上拉箭头19x11px@2x.png */,
+				18586C971AFA579200045A42 /* 上拉箭头19x11px@3x.png */,
+				18586CBC1AFAEB5F00045A42 /* 下拉箭头19x11px.png */,
+				18586CBD1AFAEB5F00045A42 /* 下拉箭头19x11px@2x.png */,
+				18586CBE1AFAEB5F00045A42 /* 下拉箭头19x11px@3x.png */,
+				18586C981AFA579200045A42 /* 行走路线描边50x6px.png */,
+				18586C991AFA579200045A42 /* 行走路线描边50x6px@2x.png */,
+				18586C9A1AFA579200045A42 /* 行走路线描边50x6px@3x.png */,
+				18586C9B1AFA579200045A42 /* 行走转换22x22px.png */,
+				18586C9C1AFA579200045A42 /* 行走转换22x22px@2x.png */,
+				18586C9D1AFA579200045A42 /* 行走转换22x22px@3x.png */,
+				18586C9E1AFA579200045A42 /* 终点38x60px.png */,
+				18586C9F1AFA579200045A42 /* 终点38x60px@2x.png */,
+				18586CA01AFA579200045A42 /* 终点38x60px@3x.png */,
 			);
 			path = searchRoutes;
 			sourceTree = "<group>";
@@ -1490,22 +1516,21 @@
 			files = (
 				18040ECB1AEBAC9A00844F0C /* 4设置130x80.png in Resources */,
 				18040EBE1AEA603500844F0C /* wechat188x188.png in Resources */,
-				18B539B71AE7BC7C00B6F344 /* 4-120x124未激活.png in Resources */,
 				18B539D31AE7BC7C00B6F344 /* 分享48x52@3x.png in Resources */,
 				18B3415E1AA6D81A00B19ED4 /* expandableImage.png in Resources */,
 				18B539991AE7BC7C00B6F344 /* 1出发未激活130x80.png in Resources */,
 				18B53A171AE7C5CC00B6F344 /* 2箭头154x152@3x.png in Resources */,
-				18B539DD1AE7BC7C00B6F344 /* 终点150x240px.png in Resources */,
+				18586C6D1AFA354500045A42 /* 反转92x124px.png in Resources */,
 				18040EC11AEA603500844F0C /* weibo188x188.png in Resources */,
 				18040EDF1AEBBB6200844F0C /* 4-54x92未激活@3x.png in Resources */,
 				18048C7C1AF65B4C00E68A54 /* 自行车50x44px.png in Resources */,
 				18B539CE1AE7BC7C00B6F344 /* 五角星56x56@2x.png in Resources */,
 				1817483F1AF0F39F00F1DFE8 /* 选择56x56px@3x.png in Resources */,
 				18F76A221AB5BB0B00705FBA /* 8.jpeg in Resources */,
-				18B539B51AE7BC7C00B6F344 /* 4-120x124@2x.png in Resources */,
 				18B53A131AE7C5CC00B6F344 /* 1箭头154x152@2x.png in Resources */,
 				18B539D41AE7BC7C00B6F344 /* 摄像头166x200.png in Resources */,
 				18048C7D1AF65B4C00E68A54 /* 自行车50x44px@2x.png in Resources */,
+				18586CC01AFAEB5F00045A42 /* 下拉箭头19x11px@2x.png in Resources */,
 				18B341581AA6D81A00B19ED4 /* bikeIcon.png in Resources */,
 				18040EDC1AEBBB6200844F0C /* 3-144x92未激活@3x.png in Resources */,
 				18B538C91AE7BB9100B6F344 /* 3我的未激活130x80@4x.png in Resources */,
@@ -1514,76 +1539,85 @@
 				18B539B31AE7BC7C00B6F344 /* 3我的未激活130x80@3x.png in Resources */,
 				18BCABA51AA9EA1E00827C66 /* tabBar2.png in Resources */,
 				1817483E1AF0F39F00F1DFE8 /* 选择56x56px@2x.png in Resources */,
-				18B539AD1AE7BC7C00B6F344 /* 3-148x112@3x.png in Resources */,
-				18B539CB1AE7BC7C00B6F344 /* 7-90x120@3x.png in Resources */,
 				18048C661AF5E26F00E68A54 /* 指南140x140@3x.png in Resources */,
 				18B538D11AE7BB9100B6F344 /* 箭头中+420x84@4x.png in Resources */,
 				18F76A1F1AB5BB0B00705FBA /* 5.jpeg in Resources */,
+				18586C6F1AFA354500045A42 /* 反转92x124px@3x.png in Resources */,
 				18B539A81AE7BC7C00B6F344 /* 3-144x92.png in Resources */,
 				18F6B3DE1AF34849000D9A40 /* 放大140x156@3x.png in Resources */,
+				18586CB21AFA579200045A42 /* 上拉箭头19x11px@3x.png in Resources */,
 				18B539CF1AE7BC7C00B6F344 /* 五角星56x56@3x.png in Resources */,
-				18B539A11AE7BC7C00B6F344 /* 2-112x140未激活@3x.png in Resources */,
-				18B539911AE7BC7C00B6F344 /* 1-148x112@3x.png in Resources */,
-				18B5399C1AE7BC7C00B6F344 /* 2-112x140.png in Resources */,
+				18586CAF1AFA579200045A42 /* 起点38x60px@3x.png in Resources */,
 				18B539C61AE7BC7C00B6F344 /* 6-100x98@2x.png in Resources */,
 				18B341591AA6D81A00B19ED4 /* busIcon.png in Resources */,
+				18586CBF1AFAEB5F00045A42 /* 下拉箭头19x11px.png in Resources */,
 				18B538CC1AE7BB9100B6F344 /* 出发按钮300x300@4x.png in Resources */,
 				18048C821AF65F0300E68A54 /* 租赁点12x18px.png in Resources */,
-				18B539CA1AE7BC7C00B6F344 /* 7-90x120@2x.png in Resources */,
+				18586CB71AFA579200045A42 /* 行走转换22x22px@2x.png in Resources */,
 				18040EDB1AEBBB6200844F0C /* 3-144x92未激活@2x.png in Resources */,
 				18B53A161AE7C5CC00B6F344 /* 2箭头154x152@2x.png in Resources */,
 				18B539D71AE7BC7C00B6F344 /* 箭头1-44x84px.png in Resources */,
 				18048C831AF65F0300E68A54 /* 租赁点12x18px@2x.png in Resources */,
+				18586CC11AFAEB5F00045A42 /* 下拉箭头19x11px@3x.png in Resources */,
 				18B539D11AE7BC7C00B6F344 /* 分享48x52.png in Resources */,
 				18CE37C31AC673D400EF6141 /* YDLoginViewController.xib in Resources */,
+				18586CB41AFA579200045A42 /* 行走路线描边50x6px@2x.png in Resources */,
 				18B539A91AE7BC7C00B6F344 /* 3-144x92@2x.png in Resources */,
-				18B539B91AE7BC7C00B6F344 /* 4-120x124未激活@3x.png in Resources */,
+				18586CB81AFA579200045A42 /* 行走转换22x22px@3x.png in Resources */,
 				18F769711AB42C6A00705FBA /* finding_logo.png in Resources */,
-				18B5399F1AE7BC7C00B6F344 /* 2-112x140未激活.png in Resources */,
 				18B539C81AE7BC7C00B6F344 /* 68x84.png in Resources */,
 				18040EBD1AEA603500844F0C /* reduce58x70@3x.png in Resources */,
+				18586CA61AFA579200045A42 /* 公交转换22x22px@3x.png in Resources */,
 				18F76A1C1AB5BB0B00705FBA /* 2.jpeg in Resources */,
 				18B539A31AE7BC7C00B6F344 /* 2-70x110@2x.png in Resources */,
 				18B539A71AE7BC7C00B6F344 /* 2发现未激活130x80@3x.png in Resources */,
 				18B539DA1AE7BC7C00B6F344 /* 箭头38x22.png in Resources */,
 				18048C7E1AF65B4C00E68A54 /* 自行车50x44px@3x.png in Resources */,
 				18B539C41AE7BC7C00B6F344 /* 50x50.png in Resources */,
+				18586C791AFA36E100045A42 /* 偏好箭头36x68px.png in Resources */,
 				18B340D71AA6D55700B19ED4 /* Main.storyboard in Resources */,
 				18B539C21AE7BC7C00B6F344 /* 5-76x92@2x.png in Resources */,
+				18586CAA1AFA579200045A42 /* 骑车转换22x22px.png in Resources */,
+				18586CA71AFA579200045A42 /* 骑车路线描边50x6px.png in Resources */,
 				18048C671AF5E26F00E68A54 /* 指南140x140选中.png in Resources */,
-				18B539B01AE7BC7C00B6F344 /* 3-148x112未激活@3x.png in Resources */,
 				18048C691AF5E26F00E68A54 /* 指南140x140选中@3x.png in Resources */,
 				18040EB51AEA603500844F0C /* bus68x84.png in Resources */,
 				18B53A031AE7C5C200B6F344 /* 搜搜86x90.png in Resources */,
+				18586CBB1AFA579200045A42 /* 终点38x60px@3x.png in Resources */,
 				18040EDE1AEBBB6200844F0C /* 4-54x92未激活@2x.png in Resources */,
 				18040EE21AEBBB6200844F0C /* 5-76x92未激活@3x.png in Resources */,
 				18048C651AF5E26F00E68A54 /* 指南140x140@2x.png in Resources */,
 				18B539961AE7BC7C00B6F344 /* 1-70x110@2x.png in Resources */,
 				18B340C11AA6D4CC00B19ED4 /* LaunchScreen.xib in Resources */,
 				18B539A41AE7BC7C00B6F344 /* 2-70x110@3x.png in Resources */,
+				18586CA31AFA579200045A42 /* 公交路线描边50x6px@3x.png in Resources */,
 				18048C781AF631F400E68A54 /* 搜索18x19px@3x.png in Resources */,
 				18B539BC1AE7BC7C00B6F344 /* 4-54x92@3x.png in Resources */,
 				18B538C71AE7BB9100B6F344 /* 2发现未激活130x80@4x.png in Resources */,
 				18B539C11AE7BC7C00B6F344 /* 5-76x92.png in Resources */,
 				18B53A121AE7C5CC00B6F344 /* 1箭头154x152.png in Resources */,
-				18B5399D1AE7BC7C00B6F344 /* 2-112x140@2x.png in Resources */,
+				18586C771AFA36E100045A42 /* 路线选择箭头36x68px@2x.png in Resources */,
+				18586CAC1AFA579200045A42 /* 骑车转换22x22px@3x.png in Resources */,
 				18BCABA71AA9EA1E00827C66 /* tabBar4.png in Resources */,
-				18B539B41AE7BC7C00B6F344 /* 4-120x124.png in Resources */,
+				18586C761AFA36E100045A42 /* 路线选择箭头36x68px.png in Resources */,
 				18040EE01AEBBB6200844F0C /* 5-76x92未激活.png in Resources */,
 				18B539D91AE7BC7C00B6F344 /* 箭头3-54x30px.png in Resources */,
 				18B539C51AE7BC7C00B6F344 /* 6-100x98.png in Resources */,
 				18B539A51AE7BC7C00B6F344 /* 2发现未激活130x80.png in Resources */,
 				18F76A1A1AB5BB0B00705FBA /* 1.jpeg in Resources */,
 				18CE37C51AC673D400EF6141 /* YDRegistrationViewController.xib in Resources */,
+				18586CB51AFA579200045A42 /* 行走路线描边50x6px@3x.png in Resources */,
 				18B53A141AE7C5CC00B6F344 /* 1箭头154x152@3x.png in Resources */,
 				18048C641AF5E26F00E68A54 /* 指南140x140.png in Resources */,
+				18586CAB1AFA579200045A42 /* 骑车转换22x22px@2x.png in Resources */,
 				18B538C61AE7BB9100B6F344 /* 2发现130x80@4x.png in Resources */,
 				18B341631AA6D81A00B19ED4 /* 向下选择18x10px.png in Resources */,
-				18B539DE1AE7BC7C00B6F344 /* 终点150x240px@2x.png in Resources */,
+				18586CA21AFA579200045A42 /* 公交路线描边50x6px@2x.png in Resources */,
 				18F6B3CF1AF26469000D9A40 /* default_image.png in Resources */,
 				18B341421AA6D7CE00B19ED4 /* AMap.bundle in Resources */,
+				18586CAE1AFA579200045A42 /* 起点38x60px@2x.png in Resources */,
+				18586CB31AFA579200045A42 /* 行走路线描边50x6px.png in Resources */,
 				18040EE51AEBBB6200844F0C /* 6-100x98未激活@3x.png in Resources */,
-				18B539B61AE7BC7C00B6F344 /* 4-120x124@3x.png in Resources */,
 				18B538D21AE7BB9100B6F344 /* 箭头中420x84@4x.png in Resources */,
 				18040EC01AEA603500844F0C /* wechat188x188@3x.png in Resources */,
 				18048C6D1AF5E34A00E68A54 /* 140x140px.png in Resources */,
@@ -1592,29 +1626,28 @@
 				18B539D61AE7BC7C00B6F344 /* 摄像头166x200@3x.png in Resources */,
 				18F76A1D1AB5BB0B00705FBA /* 3.jpeg in Resources */,
 				18B539B11AE7BC7C00B6F344 /* 3我的未激活130x80.png in Resources */,
-				18B539AE1AE7BC7C00B6F344 /* 3-148x112未激活.png in Resources */,
+				18586C7B1AFA36E100045A42 /* 偏好箭头36x68px@3x.png in Resources */,
 				18040EB61AEA603500844F0C /* bus68x84@2x.png in Resources */,
-				18B539931AE7BC7C00B6F344 /* 1-148x112未激活@2x.png in Resources */,
 				18040ECC1AEBAC9A00844F0C /* 4设置130x80@2x.png in Resources */,
+				18586CBA1AFA579200045A42 /* 终点38x60px@2x.png in Resources */,
 				18040EC31AEA603500844F0C /* weibo188x188@3x.png in Resources */,
 				18040EC21AEA603500844F0C /* weibo188x188@2x.png in Resources */,
 				18B539DB1AE7BC7C00B6F344 /* 箭头38x22@2x.png in Resources */,
-				18B539AF1AE7BC7C00B6F344 /* 3-148x112未激活@2x.png in Resources */,
 				1846F9251AC18C95006067BA /* 4设置未激活130x80@4x副本.png in Resources */,
 				18B539BD1AE7BC7C00B6F344 /* 48x84.png in Resources */,
 				18B538C41AE7BB9100B6F344 /* 1出发130x80@4x.png in Resources */,
 				18048C841AF65F0300E68A54 /* 租赁点12x18px@3x.png in Resources */,
 				18B539A61AE7BC7C00B6F344 /* 2发现未激活130x80@2x.png in Resources */,
 				18B538CA1AE7BB9100B6F344 /* 4设置130x80@4x.png in Resources */,
+				18586C781AFA36E100045A42 /* 路线选择箭头36x68px@3x.png in Resources */,
+				18586CAD1AFA579200045A42 /* 起点38x60px.png in Resources */,
 				18B538CF1AE7BB9100B6F344 /* 放缩140x310@4x.png in Resources */,
 				18F76A1B1AB5BB0B00705FBA /* 10.jpeg in Resources */,
-				18B539901AE7BC7C00B6F344 /* 1-148x112@2x.png in Resources */,
 				18B53A081AE7C5C200B6F344 /* 箭头30x56@3x.png in Resources */,
+				18586CA91AFA579200045A42 /* 骑车路线描边50x6px@3x.png in Resources */,
 				18B341601AA6D81A00B19ED4 /* truck.png in Resources */,
-				18B539A01AE7BC7C00B6F344 /* 2-112x140未激活@2x.png in Resources */,
 				18B539BF1AE7BC7C00B6F344 /* 4设置未激活130x80@2x.png in Resources */,
 				18040ECD1AEBAC9A00844F0C /* 4设置130x80@3x.png in Resources */,
-				18B539B81AE7BC7C00B6F344 /* 4-120x124未激活@2x.png in Resources */,
 				1817483A1AF0F39F00F1DFE8 /* 未选择56x56px.png in Resources */,
 				18B341611AA6D81A00B19ED4 /* walkingIcon.png in Resources */,
 				18B538C81AE7BB9100B6F344 /* 3我的130x80@4x.png in Resources */,
@@ -1625,19 +1658,19 @@
 				18B539C71AE7BC7C00B6F344 /* 6-100x98@3x.png in Resources */,
 				18B340BE1AA6D4CC00B19ED4 /* Images.xcassets in Resources */,
 				18B539D81AE7BC7C00B6F344 /* 箭头2-76x44px.png in Resources */,
+				18586CA81AFA579200045A42 /* 骑车路线描边50x6px@2x.png in Resources */,
 				18040EB21AEA603500844F0C /* bike104x66.png in Resources */,
 				18B539AA1AE7BC7C00B6F344 /* 3-144x92@3x.png in Resources */,
+				18586CB61AFA579200045A42 /* 行走转换22x22px.png in Resources */,
 				18F6B3E01AF34849000D9A40 /* 缩小140x156@2x.png in Resources */,
 				18048C6F1AF5E34A00E68A54 /* 140x140px@3x.png in Resources */,
 				18040EBF1AEA603500844F0C /* wechat188x188@2x.png in Resources */,
-				18B539C91AE7BC7C00B6F344 /* 7-90x120.png in Resources */,
+				18586CA41AFA579200045A42 /* 公交转换22x22px.png in Resources */,
 				18B539971AE7BC7C00B6F344 /* 1-70x110@3x.png in Resources */,
-				18B5398F1AE7BC7C00B6F344 /* 1-148x112.png in Resources */,
 				18F6B3DB1AF34849000D9A40 /* 出发按钮312x312px@3x.png in Resources */,
-				18B539AC1AE7BC7C00B6F344 /* 3-148x112@2x.png in Resources */,
 				18F6B3DA1AF34849000D9A40 /* 出发按钮312x312px@2x.png in Resources */,
+				18586C6E1AFA354500045A42 /* 反转92x124px@2x.png in Resources */,
 				18048C6E1AF5E34A00E68A54 /* 140x140px@2x.png in Resources */,
-				18B539941AE7BC7C00B6F344 /* 1-148x112未激活@3x.png in Resources */,
 				18B539C01AE7BC7C00B6F344 /* 4设置未激活130x80@3x.png in Resources */,
 				18B3415F1AA6D81A00B19ED4 /* expandableImage@2x.png in Resources */,
 				18B539BA1AE7BC7C00B6F344 /* 4-54x92.png in Resources */,
@@ -1650,7 +1683,6 @@
 				18F6B3E11AF34849000D9A40 /* 缩小140x156@3x.png in Resources */,
 				18B3415B1AA6D81A00B19ED4 /* compassArrow.png in Resources */,
 				18B538D01AE7BB9100B6F344 /* 箭头38x22@4x.png in Resources */,
-				18B5399E1AE7BC7C00B6F344 /* 2-112x140@3x.png in Resources */,
 				18040EBB1AEA603500844F0C /* reduce58x70.png in Resources */,
 				18BCABA41AA9EA1E00827C66 /* tabBar1.png in Resources */,
 				18B53A071AE7C5C200B6F344 /* 箭头30x56@2x.png in Resources */,
@@ -1661,16 +1693,16 @@
 				18B53A001AE7C5C200B6F344 /* 排行榜208x66.png in Resources */,
 				18B53A191AE7C5CC00B6F344 /* 车164x166@2x.png in Resources */,
 				18040EDD1AEBBB6200844F0C /* 4-54x92未激活.png in Resources */,
+				18586CB91AFA579200045A42 /* 终点38x60px.png in Resources */,
+				18586CB11AFA579200045A42 /* 上拉箭头19x11px@2x.png in Resources */,
 				18B3415A1AA6D81A00B19ED4 /* checkmark.png in Resources */,
 				18B53A011AE7C5C200B6F344 /* 排行榜208x66@2x.png in Resources */,
 				18B539D51AE7BC7C00B6F344 /* 摄像头166x200@2x.png in Resources */,
 				18040EB41AEA603500844F0C /* bike104x66@3x.png in Resources */,
-				18B539AB1AE7BC7C00B6F344 /* 3-148x112.png in Resources */,
 				18048C771AF631F400E68A54 /* 搜索18x19px@2x.png in Resources */,
-				18B539921AE7BC7C00B6F344 /* 1-148x112未激活.png in Resources */,
 				18B53A1A1AE7C5CC00B6F344 /* 车164x166@3x.png in Resources */,
+				18586CA11AFA579200045A42 /* 公交路线描边50x6px.png in Resources */,
 				18B341621AA6D81A00B19ED4 /* 出发按钮160x160px.png in Resources */,
-				18B539E01AE7BC7C00B6F344 /* 起点150x240px.png in Resources */,
 				18B539CC1AE7BC7C00B6F344 /* 五角星2-56x56.png in Resources */,
 				18040EB31AEA603500844F0C /* bike104x66@2x.png in Resources */,
 				18F76A211AB5BB0B00705FBA /* 7.jpeg in Resources */,
@@ -1685,26 +1717,26 @@
 				1840802A1AB8449B00E89AB3 /* MJRefresh.bundle in Resources */,
 				18040EBC1AEA603500844F0C /* reduce58x70@2x.png in Resources */,
 				18B539B21AE7BC7C00B6F344 /* 3我的未激活130x80@2x.png in Resources */,
-				18B539E21AE7BC7C00B6F344 /* 起点150x240px@3x.png in Resources */,
 				18B539D21AE7BC7C00B6F344 /* 分享48x52@2x.png in Resources */,
 				18B539C31AE7BC7C00B6F344 /* 5-76x92@3x.png in Resources */,
 				18B53A041AE7C5C200B6F344 /* 搜搜86x90@2x.png in Resources */,
 				18F76A1E1AB5BB0B00705FBA /* 4.jpeg in Resources */,
-				18B539E11AE7BC7C00B6F344 /* 起点150x240px@2x.png in Resources */,
 				18F6B3DC1AF34849000D9A40 /* 放大140x156.png in Resources */,
 				18B539951AE7BC7C00B6F344 /* 1-70x110.png in Resources */,
 				18040EB91AEA603500844F0C /* QQ188x188@2x.png in Resources */,
 				18F6B3DD1AF34849000D9A40 /* 放大140x156@2x.png in Resources */,
+				18586C7A1AFA36E100045A42 /* 偏好箭头36x68px@2x.png in Resources */,
 				18B53A061AE7C5C200B6F344 /* 箭头30x56.png in Resources */,
+				18586CA51AFA579200045A42 /* 公交转换22x22px@2x.png in Resources */,
 				18F76A201AB5BB0B00705FBA /* 6.jpeg in Resources */,
 				18048C681AF5E26F00E68A54 /* 指南140x140选中@2x.png in Resources */,
 				18B538CB1AE7BB9100B6F344 /* 4设置未激活130x80@4x.png in Resources */,
 				18040EDA1AEBBB6200844F0C /* 3-144x92未激活.png in Resources */,
 				18040EE41AEBBB6200844F0C /* 6-100x98未激活@2x.png in Resources */,
-				18B539DF1AE7BC7C00B6F344 /* 终点150x240px@3x.png in Resources */,
 				1817483C1AF0F39F00F1DFE8 /* 未选择56x56px@3x.png in Resources */,
 				18040EE31AEBBB6200844F0C /* 6-100x98未激活.png in Resources */,
 				18B539BB1AE7BC7C00B6F344 /* 4-54x92@2x.png in Resources */,
+				18586CB01AFA579200045A42 /* 上拉箭头19x11px.png in Resources */,
 				18B539981AE7BC7C00B6F344 /* 10x10.png in Resources */,
 				18B3415D1AA6D81A00B19ED4 /* disclosure_arrow_180.png in Resources */,
 			);
@@ -1730,7 +1762,9 @@
 				18CE37BE1AC673D400EF6141 /* NSString+MD5.m in Sources */,
 				18B341101AA6D58300B19ED4 /* SearchRoutesViewController.m in Sources */,
 				18B3410C1AA6D58300B19ED4 /* choosePreferViewController.m in Sources */,
+				18586C841AFA416700045A42 /* CustomAnnotationView.m in Sources */,
 				18A6C28B1AE3E1FE00452140 /* AFURLConnectionOperation.m in Sources */,
+				18586C851AFA416700045A42 /* CustomCalloutView.m in Sources */,
 				18B341111AA6D58300B19ED4 /* showRoutesDetailsViewController.m in Sources */,
 				18F6B3C91AF24AC0000D9A40 /* UIImage+MultiFormat.m in Sources */,
 				1840802B1AB8449B00E89AB3 /* MJRefreshComponent.m in Sources */,
@@ -1742,7 +1776,6 @@
 				18F6B3C81AF24AC0000D9A40 /* UIImage+GIF.m in Sources */,
 				18A6C28C1AE3E1FE00452140 /* AFURLRequestSerialization.m in Sources */,
 				18B341071AA6D58300B19ED4 /* ARController.m in Sources */,
-				18048C871AF6612D00E68A54 /* CustomCalloutView.m in Sources */,
 				18F6B3C61AF24AC0000D9A40 /* SDWebImagePrefetcher.m in Sources */,
 				184080301AB8449B00E89AB3 /* MJRefreshHeader.m in Sources */,
 				18B341141AA6D58300B19ED4 /* textWalkingRoutesDetailsView.m in Sources */,
@@ -1750,6 +1783,7 @@
 				18A6C2871AE3E1FE00452140 /* AFHTTPRequestOperationManager.m in Sources */,
 				18B340B31AA6D4CC00B19ED4 /* AppDelegate.m in Sources */,
 				18A6C28D1AE3E1FE00452140 /* AFURLResponseSerialization.m in Sources */,
+				18586C7E1AFA414400045A42 /* customActionSheet.m in Sources */,
 				18B341181AA6D58300B19ED4 /* LineDashPolyline.m in Sources */,
 				184080351AB8449B00E89AB3 /* UIView+MJExtension.m in Sources */,
 				18F6B3C71AF24AC0000D9A40 /* UIButton+WebCache.m in Sources */,
@@ -1764,7 +1798,6 @@
 				18A6C2891AE3E1FE00452140 /* AFNetworkReachabilityManager.m in Sources */,
 				18CE37BF1AC673D400EF6141 /* YDCrashHandler.m in Sources */,
 				184080341AB8449B00E89AB3 /* UIScrollView+MJRefresh.m in Sources */,
-				18B3410D1AA6D58300B19ED4 /* customActionSheet.m in Sources */,
 				18F76A0B1AB5B30D00705FBA /* PSCollectionViewCell.m in Sources */,
 				18F76A0A1AB5B30D00705FBA /* PSCollectionView.m in Sources */,
 				18B340B01AA6D4CC00B19ED4 /* main.m in Sources */,
@@ -1778,7 +1811,6 @@
 				18CE37C11AC673D400EF6141 /* YDConfigurationHelper.m in Sources */,
 				18F6B3C21AF24AC0000D9A40 /* SDWebImageDecoder.m in Sources */,
 				18F6B3CD1AF24AC0000D9A40 /* UIView+WebCacheOperation.m in Sources */,
-				18048C8A1AF662AF00E68A54 /* CustomAnnotationView.m in Sources */,
 				1840802C1AB8449B00E89AB3 /* MJRefreshConst.m in Sources */,
 				18B3411E1AA6D5A600B19ED4 /* FindingMainViewController.m in Sources */,
 				18B3410E1AA6D58300B19ED4 /* ExtensibleTableView.m in Sources */,

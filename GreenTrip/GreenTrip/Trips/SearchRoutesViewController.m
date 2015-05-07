@@ -486,6 +486,18 @@
     
 }
 
+- (IBAction)reverseButton:(id)sender
+{
+    NSString *temStr = startTextView.text;
+    startTextView.text = endTextView.text;
+    endTextView.text = temStr;
+    
+    AMapGeoPoint *tempPoint = [[AMapGeoPoint alloc] init];
+    tempPoint = startPoint;
+    startPoint = endPoint;
+    endPoint = startPoint;
+}
+
 /*
 - (void)viewDidDisappear:(BOOL)animated
 {
@@ -596,7 +608,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 64;
+    return 65;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -614,11 +626,20 @@
     
     [buttonView addTarget:self action:@selector(choosePrefer:) forControlEvents:UIControlEventTouchUpInside];
     
-    UITableViewCell *sectionCell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 30)];
-    sectionCell.backgroundColor = [UIColor lightGrayColor];
+    UITableViewCell *sectionCell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 45)];
+    sectionCell.backgroundColor = [UIColor whiteColor];
     sectionCell.alpha = 0.8f;
     sectionCell.textLabel.text = @"偏好选择";
-    sectionCell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+    sectionCell.textLabel.textColor = myColor;
+    //sectionCell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+    
+    UIImageView *arrowImgView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 20 - 9, 14, 9, 17)];
+    arrowImgView.image = [UIImage imageNamed:@"偏好箭头36x68px"];
+    [sectionCell addSubview:arrowImgView];
+    
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 44, self.view.bounds.size.width, 1)];
+    lineView.backgroundColor = myColor;
+    [sectionCell addSubview:lineView];
     
     //[buttonView addSubview:sectionCell];
     [sectionCell addSubview:buttonView];
@@ -631,7 +652,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 30;
+    return 45;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -651,9 +672,9 @@
         cell =[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:MyIdentifier];
     }
     // Set up the cell.
-    cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+    //cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.text = [buslineArray objectAtIndex:indexPath.row];
-    
+    cell.textLabel.font = [UIFont systemFontOfSize:18.0f];
     
     NSString *duration = [[NSString alloc] initWithString:[durationArray objectAtIndex:indexPath.row]];
     NSString *totalDis = [[NSString alloc] initWithString:[totalDisArray objectAtIndex:indexPath.row]];
@@ -661,6 +682,12 @@
     
     NSString *detailText = [[NSString alloc] initWithFormat:@"%@ | %@ | %@", duration ,totalDis ,walkDis];
     cell.detailTextLabel.text= detailText;
+    cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0f];
+    cell.detailTextLabel.textColor = [UIColor lightGrayColor];
+    
+    UIImageView *arrowImgView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 20 - 9, 24, 9, 17)];
+    arrowImgView.image = [UIImage imageNamed:@"路线选择箭头36x68px"];
+    [cell addSubview:arrowImgView];
     
     return cell;
 }

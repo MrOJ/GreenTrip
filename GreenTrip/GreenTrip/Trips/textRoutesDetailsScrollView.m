@@ -97,9 +97,10 @@
             
         }];
         
-        //箭头有问题！！
+        //箭头有问题！！,可能要倒过来
         UIImageView *currentIamgeView= [arrowImageViewArray objectAtIndex:currentIndex];
-        currentIamgeView.image = [UIImage imageNamed:@"disclosure_arrow_180"];
+        currentIamgeView.image = [UIImage imageNamed:@"下拉箭头19x11px"];
+        //currentIamgeView.transform = CGAffineTransformMakeRotation(M_PI);
         
     } else {
         [UIView animateWithDuration:0.6 animations:^{
@@ -107,7 +108,7 @@
         }];
         
         UIImageView *currentIamgeView = [arrowImageViewArray objectAtIndex:currentIndex];
-        currentIamgeView.image = [UIImage imageNamed:@"disclosure_arrow"];
+        currentIamgeView.image = [UIImage imageNamed:@"上拉箭头19x11px"];
     }
     
 }
@@ -120,7 +121,8 @@
         }];
         
         UIImageView *currentIamgeView = [arrowImageViewArray objectAtIndex:currentIndex];
-        currentIamgeView.image = [UIImage imageNamed:@"disclosure_arrow_180"];
+        currentIamgeView.image = [UIImage imageNamed:@"下拉箭头19x11px"];
+        //currentIamgeView.transform = CGAffineTransformMakeRotation(M_PI);
         
     } else {
         [UIView animateWithDuration:0.6 animations:^{
@@ -128,7 +130,7 @@
         }];
         
         UIImageView *currentIamgeView = [arrowImageViewArray objectAtIndex:currentIndex];
-        currentIamgeView.image = [UIImage imageNamed:@"disclosure_arrow"];
+        currentIamgeView.image = [UIImage imageNamed:@"上拉箭头19x11px"];
     }
 
 }
@@ -169,8 +171,9 @@
     
     for (int i = 0; i < allRoutes.transits.count; i++) {
         
-        UIImageView *arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake((self.center.x - 8) + [self superview].bounds.size.width * i, 5, 16, 10)];
-        arrowImageView.image = [UIImage imageNamed:@"disclosure_arrow"];
+        UIImageView *arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake((self.center.x - 10) + [self superview].bounds.size.width * i, 23, 19, 11)];
+        arrowImageView.image = [UIImage imageNamed:@"上拉箭头19x11px"];
+        //.transform = CGAffineTransformMakeRotation(M_PI);
         [briefView addSubview:arrowImageView];
         
         UILabel *busNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20 + [self superview].bounds.size.width * i, 20, 200, 20)];
@@ -266,16 +269,7 @@
             [busStopArray addObject:s.busline.arrivalStop];
             NSString *departureStopStr = s.busline.departureStop.name;
             NSString *arrivalStopStr = s.busline.arrivalStop.name;
-            /*
-            if (![departureStopStr isEqualToString:[stopArray lastObject]]) {
-                [stopArray addObject:departureStopStr];
-                [stopArray addObject:arrivalStopStr];
-                [strategyArray addObject:[NSString stringWithFormat:@"乘坐%@",[buslineArray objectAtIndex:i]]];
-                [flagArray addObject:@"1"];
-            } else {
-                [stopArray addObject:arrivalStopStr];
-            }
-            */
+
             [stopArray addObject:[NSString stringWithFormat:@"%@站上车",departureStopStr]];
             [stopArray addObject:[NSString stringWithFormat:@"%@站下车",arrivalStopStr]];
             [strategyArray addObject:[NSString stringWithFormat:@"乘坐%@",[self busNameTrans:s.busline.name]]];
@@ -323,7 +317,7 @@
     }];
     
     UIImageView *currentIamgeView = [arrowImageViewArray objectAtIndex:currentIndex];
-    currentIamgeView.image = [UIImage imageNamed:@"disclosure_arrow"];
+    currentIamgeView.image = [UIImage imageNamed:@"上拉箭头19x11px"];
     
     
     MAMapView *myMap = (MAMapView *)[self superview];
@@ -341,7 +335,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [stopArray count];
+    return [flagArray count];   //之前这里有bug，已修改
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

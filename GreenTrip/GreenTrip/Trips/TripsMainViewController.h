@@ -28,6 +28,7 @@
     
     int buttonFlag;
 
+    int isFirstView;
 }
 
 @property (strong, nonatomic) MAMapView *myMapView;

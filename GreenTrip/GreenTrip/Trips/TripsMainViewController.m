@@ -54,6 +54,8 @@
     myMapView.showsScale = NO;
     [_mapView addSubview:myMapView];
     
+    isFirstView = 0;
+    
     titleV = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.navigationItem.titleView.frame.size.width, self.navigationItem.titleView.frame.size.height)];
     //titleV.backgroundColor = myColor;
     [self.navigationItem.titleView addSubview:titleV];
@@ -535,6 +537,13 @@ updatingLocation:(BOOL)updatingLocation
     {
         //取出当前位置的坐标
         //NSLog(@"latitude : %f,longitude: %f",userLocation.coordinate.latitude,userLocation.coordinate.longitude);
+        if (isFirstView == 0) {
+            //myMapView.visibleMapRect = MAMapRectMake(point0.x, point0.y, 1, 1);
+            MAMapPoint usrloc = MAMapPointForCoordinate(userLocation.coordinate);
+            myMapView.visibleMapRect = MAMapRectMake(usrloc.x, usrloc.y, 0.25f, 0.25f);
+            myMapView.zoomLevel = 15.0f;
+            isFirstView = 1;
+        }
         self.myUserLocation = userLocation;
         
     }
