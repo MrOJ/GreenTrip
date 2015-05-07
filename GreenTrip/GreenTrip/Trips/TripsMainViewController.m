@@ -67,6 +67,7 @@
     //indicatorButton.layer.masksToBounds = YES;
     indicatorButton.layer.shadowOffset = CGSizeMake(1, 1);
     indicatorButton.layer.shadowOpacity = 0.3f;
+    indicatorButton.layer.cornerRadius = 3.0f;
     //[indicatorButton setImage:[UIImage imageNamed:@"指南140x140选中.png"] forState:UIControlStateSelected];
     [indicatorButton setImage:[UIImage imageNamed:@"指南140x140.png"] forState:UIControlStateNormal];
     indicatorTag = 0;

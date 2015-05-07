@@ -18,6 +18,7 @@
 @implementation showRoutesDetailsViewController
 
 @synthesize index,allRoutes,buslineArray,totalDisArray,walkDisArray,durationArray,startName,endName,wayFlag;
+@synthesize indicatorButton,scalingView,increaseButton,decreaseButton;
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -50,6 +51,31 @@
     myMapView.showsCompass = YES;
     myMapView.showsScale = YES;
     [self.view addSubview:myMapView];
+    
+    indicatorButton = [[UIButton alloc] initWithFrame:CGRectMake(15, self.view.bounds.size.height - 184 - 15, 35, 35)];
+    indicatorButton.layer.shadowOffset = CGSizeMake(1, 1);
+    indicatorButton.layer.shadowOpacity = 0.3f;
+    [indicatorButton setImage:[UIImage imageNamed:@"指南140x140.png"] forState:UIControlStateNormal];
+    [indicatorButton addTarget:self action:@selector(getIndicator:) forControlEvents:UIControlEventTouchUpInside];
+    indicatorTag = 0;
+    [myMapView addSubview:indicatorButton];
+    
+    scalingView = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 15 - 39, self.view.bounds.size.height - 184 - 15 - 78 + 35, 35, 78)];
+    scalingView.backgroundColor = [UIColor whiteColor];
+    scalingView.layer.cornerRadius = 3.0f;
+    
+    increaseButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 39, 39)];
+    [increaseButton setImage:[UIImage imageNamed:@"放大140x156"] forState:UIControlStateNormal];
+    [increaseButton addTarget:self action:@selector(increaseScaling:) forControlEvents:UIControlEventTouchUpInside];
+    [scalingView addSubview:increaseButton];
+    decreaseButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 39, 39, 39)];
+    [decreaseButton setImage:[UIImage imageNamed:@"缩小140x156"] forState:UIControlStateNormal];
+    [decreaseButton addTarget:self action:@selector(decreaseScaling:) forControlEvents:UIControlEventTouchUpInside];
+    [scalingView addSubview:decreaseButton];
+
+    [myMapView addSubview:scalingView];
+    
+    
     
     //不知为何真机测试数据显示刷要两次，难道是BUG??
     [self drawAnnotationAndOverlay:index];
@@ -124,8 +150,91 @@
     [myMapView addSubview:pageControl];
     
     //[self drawAnnotationAndOverlay:index];
-
+    //添加点击手势
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap:)];
+    tapGesture.numberOfTapsRequired = 1;
+    tapGesture.delegate = self;
+    [self.view addGestureRecognizer:tapGesture];
     
+    
+}
+
+# pragma button
+- (void)getIndicator:(id)sender {
+    //NSLog(@"%ld",(long)indicatorTag);
+    if (indicatorTag == 0) {
+        //必须先调用用户模式，否则indicatorbutton等会被初始化！！
+        myMapView.userTrackingMode = MAUserTrackingModeFollow;
+        indicatorButton.selected = YES;
+        [indicatorButton setImage:[UIImage imageNamed:@"指南140x140选中"] forState:UIControlStateSelected];
+        indicatorTag = 1;
+        //mapView.zoomLevel = 15.0f;
+        //mapView.showsCompass = NO;
+    } else if (indicatorTag == 1) {
+        myMapView.zoomLevel = 15.0f;
+        myMapView.userTrackingMode = MAUserTrackingModeFollowWithHeading;
+        indicatorButton.selected = NO;
+        [indicatorButton setImage:[UIImage imageNamed:@"140x140px"] forState:UIControlStateNormal];
+        indicatorTag = 2;
+        //mapView.showsCompass = YES;
+    } else if (indicatorTag == 2) {
+        //myMapView.zoomLevel = 15.0f;
+        myMapView.userTrackingMode = MAUserTrackingModeFollow;
+        indicatorButton.selected = YES;
+        [indicatorButton setImage:[UIImage imageNamed:@"指南140x140选中"] forState:UIControlStateSelected];
+        indicatorTag = 1;
+        //mapView.showsCompass = NO;
+    }
+    
+    //indicatorButton.selected = YES;
+    //NSLog(@"Hello!");
+    
+}
+
+- (void)increaseScaling:(id)sender {
+    float curZoomlevel = myMapView.zoomLevel;
+    NSLog(@"%f",curZoomlevel);
+    if (curZoomlevel < myMapView.maxZoomLevel && curZoomlevel >= 2.0) {
+        [increaseButton setEnabled:YES];
+        [decreaseButton setEnabled:YES];
+        myMapView.zoomLevel = curZoomlevel + 1;
+    } else {
+        [increaseButton setEnabled:NO];
+        //increaseButton.enabled = NO;
+    }
+}
+
+- (void)decreaseScaling:(id)sender {
+    
+    float curZoomlevel = myMapView.zoomLevel;
+    NSLog(@"%f",curZoomlevel);
+    if (curZoomlevel <= myMapView.maxZoomLevel && curZoomlevel > 2.0) {
+        [increaseButton setEnabled:YES];
+        [decreaseButton setEnabled:YES];
+        myMapView.zoomLevel = curZoomlevel - 1;
+    } else {
+        [decreaseButton setEnabled:NO];
+    }
+}
+
+//点击地图以后调用
+- (void)singleTap:(UIGestureRecognizer *)recognizer
+{
+    NSLog(@"Tap!");
+    myMapView.userTrackingMode = MAUserTrackingModeNone;
+    indicatorButton.selected = NO;
+    [indicatorButton setImage:[UIImage imageNamed:@"指南140x140"] forState:UIControlStateNormal];
+    indicatorTag = 0;
+    
+}
+
+- (void)mapView:(MAMapView *)mapView regionWillChangeAnimated:(BOOL)animated
+{
+    //NSLog(@"change!");
+    myMapView.userTrackingMode = MAUserTrackingModeNone;
+    indicatorButton.selected = NO;
+    [indicatorButton setImage:[UIImage imageNamed:@"指南140x140"] forState:UIControlStateNormal];
+    indicatorTag = 0;
     
 }
 
@@ -166,29 +275,34 @@
 {
     if ([annotation isKindOfClass:[MAPointAnnotation class]])
     {
-        if ([annotation isEqual:departureAnnotation]) {    //区分不同的类型
-            static NSString *pointReuseIndetifier = @"pointReuseIndetifier";
-            MAPinAnnotationView*annotationView = (MAPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:pointReuseIndetifier];
-            if (annotationView == nil)
-            {
-                annotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pointReuseIndetifier];
-            }
-            annotationView.canShowCallout= YES;       //设置气泡可以弹出，默认为NO
-            //annotationView.animatesDrop = YES;        //设置标注动画显示，默认为NO
-            //annotationView.draggable = YES;           //设置标注可以拖动，默认为NO
-            annotationView.pinColor = MAPinAnnotationColorPurple;
+        static NSString *pointReuseIndetifier = @"pointReuseIndetifier";
+        MAPinAnnotationView *annotationView = (MAPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:pointReuseIndetifier];
+        if (annotationView == nil)
+        {
+            annotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pointReuseIndetifier];
+        }
+        
+        NSString *wayReuslt = [self findWayInAnnotationArray:pointAnnotationArray targetAnnotation:annotation];
+        //NSLog(@"%@",wayReuslt);
+        if ([wayReuslt isEqualToString:@"0"]) {    //起点
+            annotationView.canShowCallout= NO;
+            annotationView.image = [UIImage imageNamed:@"起点38x60px"];
             return annotationView;
-        } else {
-            static NSString *pointReuseIndetifier = @"pointReuseIndetifier";
-            MAPinAnnotationView*annotationView = (MAPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:pointReuseIndetifier];
-            if (annotationView == nil)
-            {
-                annotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pointReuseIndetifier];
-            }
-            annotationView.canShowCallout= YES;       //设置气泡可以弹出，默认为NO
-            //annotationView.animatesDrop = YES;        //设置标注动画显示，默认为NO
-            //annotationView.draggable = YES;           //设置标注可以拖动，默认为NO
-            annotationView.pinColor = MAPinAnnotationColorRed;
+        } else if ([wayReuslt isEqualToString:@"1"]) {
+            annotationView.canShowCallout= NO;            //终点
+            annotationView.image = [UIImage imageNamed:@"终点38x60px"];
+            return annotationView;
+        } else  if ([wayReuslt isEqualToString:@"2"]){
+            annotationView.canShowCallout= NO;            //步行
+            annotationView.image = [UIImage imageNamed:@"行走转换22x22px"];
+            return annotationView;
+        } else  if ([wayReuslt isEqualToString:@"3"]){
+            annotationView.canShowCallout= NO;            //公交车
+            annotationView.image = [UIImage imageNamed:@"公交转换22x22px"];
+            return annotationView;
+        }  else  if ([wayReuslt isEqualToString:@"4"]){
+            annotationView.canShowCallout= NO;            //公交车
+            annotationView.image = [UIImage imageNamed:@"骑车转换22x22px"];
             return annotationView;
         }
     }
@@ -206,16 +320,17 @@
             
             //在这里修改线路颜色
             if (wayFlag == 2 || wayFlag == 1) {
-                polylineView.strokeColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:0.6];
+                polylineView.strokeColor = myColor;
+                //polylineView.subviews
             } else if (wayFlag == 3) {
-                polylineView.strokeColor = [UIColor colorWithRed:0 green:1 blue:0 alpha:0.6];
+                polylineView.strokeColor = [UIColor cyanColor];
             }
             
             //polylineView.lineJoin = kCALineJoinRound;//连接类型
             //polylineView.lineCapType = kCALineCapRound;//端点类型
         } else {
             polylineView.lineWidth = 10.f;
-            polylineView.strokeColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:0.6];
+            polylineView.strokeColor = [UIColor orangeColor];
             //polylineView.lineJoin = kCALineJoinRound;//连接类型
             //polylineView.lineCapType = kCALineCapRound;//端点类型
         }
@@ -234,13 +349,15 @@
     [myMapView removeOverlays:walkingPolylineArray];
     
     walkingPolylineArray = [[NSMutableArray alloc] init];
-    busPolylineArray = [[NSMutableArray alloc] init];
+    busPolylineArray     = [[NSMutableArray alloc] init];
     pointAnnotationArray = [[NSMutableArray alloc] init];
+    wayIndexArray        = [[NSMutableArray alloc] init];
     
     switch (wayFlag) {
         case 1: {
             AMapTransit *transOfIndex = allRoutes.transits[pageIndex];
             NSArray *segmentArray = transOfIndex.segments;
+            //NSLog(@"%@",segmentArray);
             for (AMapSegment *s in segmentArray) {
                 //处理步行轨迹
                 if (s.walking != nil) {
@@ -250,6 +367,13 @@
                         MAPolyline *polyline = [self polylineStrToGeoPoint:polylineStr];
                         [walkingPolylineArray addObject:polyline];
                     }
+                    
+                    AMapGeoPoint *walkingPoint = s.walking.origin;
+                    walkingAnnotation = [[MAPointAnnotation alloc] init];
+                    walkingAnnotation.coordinate = CLLocationCoordinate2DMake(walkingPoint.latitude, walkingPoint.longitude);
+                    [pointAnnotationArray addObject:walkingAnnotation];
+                    [wayIndexArray addObject:@"2"];      // 2-步行
+                    
                 }
                 //处理公交路线轨迹
                 if (s.busline != nil) {
@@ -258,13 +382,11 @@
                     [busPolylineArray addObject:polyline];
                     
                     //标注
-                    AMapGeoPoint *busDepartrue = s.busline.departureStop.location;
-                    departureAnnotation = [[MAPointAnnotation alloc] init];
-                    departureAnnotation.coordinate = CLLocationCoordinate2DMake(busDepartrue.latitude, busDepartrue.longitude);
-                    [pointAnnotationArray addObject:departureAnnotation];
-                    //[myMapView addAnnotation:departureAnnotation];
-                    
-                    //[pointAnnotationArray addObject:departureAnnotation];
+                    AMapGeoPoint *busPoint = s.busline.departureStop.location;
+                    busAnnotation = [[MAPointAnnotation alloc] init];
+                    busAnnotation.coordinate = CLLocationCoordinate2DMake(busPoint.latitude, busPoint.longitude);
+                    [pointAnnotationArray addObject:busAnnotation];
+                    [wayIndexArray addObject:@"3"];      // 3-公交
                     
                 }
             }
@@ -288,6 +410,7 @@
                     NSString *polylineStr = step.polyline;
                     MAPolyline *polyline = [self polylineStrToGeoPoint:polylineStr];
                     [walkingPolylineArray addObject:polyline];
+                    
                 }
             }
         }
@@ -304,16 +427,17 @@
     
     //起点
     AMapGeoPoint *origin = allRoutes.origin;
-    MAPointAnnotation *originAnnotation = [[MAPointAnnotation alloc] init];
-    originAnnotation.coordinate = CLLocationCoordinate2DMake(origin.latitude, origin.longitude);
-    [pointAnnotationArray addObject:originAnnotation];
+    departureAnnotation = [[MAPointAnnotation alloc] init];
+    departureAnnotation.coordinate = CLLocationCoordinate2DMake(origin.latitude, origin.longitude);
+    [pointAnnotationArray addObject:departureAnnotation];
+    [wayIndexArray addObject:@"0"];      // 0-起点
     
     //终点
     AMapGeoPoint *desti = allRoutes.destination;
     destiAnnotation = [[MAPointAnnotation alloc] init];
     destiAnnotation.coordinate = CLLocationCoordinate2DMake(desti.latitude, desti.longitude);
-    [myMapView addAnnotation:destiAnnotation];
     [pointAnnotationArray addObject:destiAnnotation];
+    [wayIndexArray addObject:@"1"];      // 1-终点
     
     [myMapView addAnnotations:pointAnnotationArray];
     [myMapView addOverlays:walkingPolylineArray];
@@ -344,6 +468,16 @@
     MAPolyline *polyline = [MAPolyline polylineWithCoordinates:polylineCoords count:[splitArray count]];
     
     return polyline;
+}
+
+- (NSString *)findWayInAnnotationArray:(NSMutableArray *)annotationArray targetAnnotation:(MAPointAnnotation *)annotation
+{
+    for (int i = 0; i < annotationArray.count; i++) {
+        if ([annotation isEqual:[annotationArray objectAtIndex:i]]) {
+            return [wayIndexArray objectAtIndex:i];
+        }
+    }
+    return nil;
 }
 
 - (BOOL)isInArray:(NSArray *)array target:(MAPolyline *)target
