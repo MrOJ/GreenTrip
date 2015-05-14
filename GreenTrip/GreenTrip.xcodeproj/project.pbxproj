@@ -134,7 +134,11 @@
 		1884F5481B046E8800F4DE19 /* 12x10px未激活.png in Resources */ = {isa = PBXBuildFile; fileRef = 1884F5421B046E8800F4DE19 /* 12x10px未激活.png */; };
 		1884F5491B046E8800F4DE19 /* 12x10px未激活@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1884F5431B046E8800F4DE19 /* 12x10px未激活@2x.png */; };
 		1884F54A1B046E8800F4DE19 /* 12x10px未激活@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1884F5441B046E8800F4DE19 /* 12x10px未激活@3x.png */; };
-		1884F5581B04957A00F4DE19 /* PSCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1884F5571B04957A00F4DE19 /* PSCollectionView.m */; };
+		1884F5971B04B9A300F4DE19 /* TGRImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1884F5911B04B9A300F4DE19 /* TGRImageViewController.m */; };
+		1884F5981B04B9A300F4DE19 /* TGRImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1884F5921B04B9A300F4DE19 /* TGRImageViewController.xib */; };
+		1884F5991B04B9A300F4DE19 /* TGRImageZoomAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1884F5941B04B9A300F4DE19 /* TGRImageZoomAnimationController.m */; };
+		1884F59A1B04B9A300F4DE19 /* UIImage+AspectFit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1884F5961B04B9A300F4DE19 /* UIImage+AspectFit.m */; };
+		1884F59C1B04CA6F00F4DE19 /* PSCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1884F59B1B04CA6F00F4DE19 /* PSCollectionView.m */; };
 		18A6C2861AE3E1FE00452140 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A6C2741AE3E1FE00452140 /* AFHTTPRequestOperation.m */; };
 		18A6C2871AE3E1FE00452140 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A6C2761AE3E1FE00452140 /* AFHTTPRequestOperationManager.m */; };
 		18A6C2881AE3E1FE00452140 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A6C2781AE3E1FE00452140 /* AFHTTPSessionManager.m */; };
@@ -483,7 +487,14 @@
 		1884F5421B046E8800F4DE19 /* 12x10px未激活.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "12x10px未激活.png"; sourceTree = "<group>"; };
 		1884F5431B046E8800F4DE19 /* 12x10px未激活@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "12x10px未激活@2x.png"; sourceTree = "<group>"; };
 		1884F5441B046E8800F4DE19 /* 12x10px未激活@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "12x10px未激活@3x.png"; sourceTree = "<group>"; };
-		1884F5571B04957A00F4DE19 /* PSCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCollectionView.m; sourceTree = "<group>"; };
+		1884F5901B04B9A300F4DE19 /* TGRImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGRImageViewController.h; sourceTree = "<group>"; };
+		1884F5911B04B9A300F4DE19 /* TGRImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGRImageViewController.m; sourceTree = "<group>"; };
+		1884F5921B04B9A300F4DE19 /* TGRImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TGRImageViewController.xib; sourceTree = "<group>"; };
+		1884F5931B04B9A300F4DE19 /* TGRImageZoomAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGRImageZoomAnimationController.h; sourceTree = "<group>"; };
+		1884F5941B04B9A300F4DE19 /* TGRImageZoomAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGRImageZoomAnimationController.m; sourceTree = "<group>"; };
+		1884F5951B04B9A300F4DE19 /* UIImage+AspectFit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+AspectFit.h"; sourceTree = "<group>"; };
+		1884F5961B04B9A300F4DE19 /* UIImage+AspectFit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+AspectFit.m"; sourceTree = "<group>"; };
+		1884F59B1B04CA6F00F4DE19 /* PSCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCollectionView.m; sourceTree = "<group>"; };
 		18A6C2731AE3E1FE00452140 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		18A6C2741AE3E1FE00452140 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		18A6C2751AE3E1FE00452140 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -864,6 +875,20 @@
 			path = "CustomAnn&Overlay";
 			sourceTree = "<group>";
 		};
+		1884F58F1B04B9A300F4DE19 /* Vertigo */ = {
+			isa = PBXGroup;
+			children = (
+				1884F5901B04B9A300F4DE19 /* TGRImageViewController.h */,
+				1884F5911B04B9A300F4DE19 /* TGRImageViewController.m */,
+				1884F5921B04B9A300F4DE19 /* TGRImageViewController.xib */,
+				1884F5931B04B9A300F4DE19 /* TGRImageZoomAnimationController.h */,
+				1884F5941B04B9A300F4DE19 /* TGRImageZoomAnimationController.m */,
+				1884F5951B04B9A300F4DE19 /* UIImage+AspectFit.h */,
+				1884F5961B04B9A300F4DE19 /* UIImage+AspectFit.m */,
+			);
+			path = Vertigo;
+			sourceTree = "<group>";
+		};
 		18A6C2721AE3E1FE00452140 /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -1019,6 +1044,7 @@
 		18B3411B1AA6D5A600B19ED4 /* Findings */ = {
 			isa = PBXGroup;
 			children = (
+				1884F58F1B04B9A300F4DE19 /* Vertigo */,
 				184080111AB8449B00E89AB3 /* MJRefresh */,
 				18F76A051AB5B30D00705FBA /* PSCollectionView */,
 				18B3411C1AA6D5A600B19ED4 /* FindingMainViewController.h */,
@@ -1422,8 +1448,8 @@
 		18F76A051AB5B30D00705FBA /* PSCollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				1884F5571B04957A00F4DE19 /* PSCollectionView.m */,
 				18F76A061AB5B30D00705FBA /* PSCollectionView.h */,
+				1884F59B1B04CA6F00F4DE19 /* PSCollectionView.m */,
 				18F76A081AB5B30D00705FBA /* PSCollectionViewCell.h */,
 				18F76A091AB5B30D00705FBA /* PSCollectionViewCell.m */,
 				18F76A0C1AB5B7D700705FBA /* PSBroView.h */,
@@ -1582,6 +1608,7 @@
 				18B539A71AE7BC7C00B6F344 /* 2发现未激活130x80@3x.png in Resources */,
 				18B539DA1AE7BC7C00B6F344 /* 箭头38x22.png in Resources */,
 				18048C7E1AF65B4C00E68A54 /* 自行车50x44px@3x.png in Resources */,
+				1884F5981B04B9A300F4DE19 /* TGRImageViewController.xib in Resources */,
 				18B539C41AE7BC7C00B6F344 /* 50x50.png in Resources */,
 				18586C791AFA36E100045A42 /* 偏好箭头36x68px.png in Resources */,
 				18B340D71AA6D55700B19ED4 /* Main.storyboard in Resources */,
@@ -1786,6 +1813,7 @@
 				18B341091AA6D58300B19ED4 /* ARGeoCoordinate.m in Sources */,
 				18B341151AA6D58300B19ED4 /* textWithBikeTransDetailsView.m in Sources */,
 				18F6B3C81AF24AC0000D9A40 /* UIImage+GIF.m in Sources */,
+				1884F5971B04B9A300F4DE19 /* TGRImageViewController.m in Sources */,
 				18A6C28C1AE3E1FE00452140 /* AFURLRequestSerialization.m in Sources */,
 				18B341071AA6D58300B19ED4 /* ARController.m in Sources */,
 				18F6B3C61AF24AC0000D9A40 /* SDWebImagePrefetcher.m in Sources */,
@@ -1818,6 +1846,8 @@
 				18A6C2881AE3E1FE00452140 /* AFHTTPSessionManager.m in Sources */,
 				18CE37C21AC673D400EF6141 /* YDLoginViewController.m in Sources */,
 				18B341161AA6D58300B19ED4 /* TripsMainViewController.m in Sources */,
+				1884F59C1B04CA6F00F4DE19 /* PSCollectionView.m in Sources */,
+				1884F5991B04B9A300F4DE19 /* TGRImageZoomAnimationController.m in Sources */,
 				1840802F1AB8449B00E89AB3 /* MJRefreshGifHeader.m in Sources */,
 				18CE37C11AC673D400EF6141 /* YDConfigurationHelper.m in Sources */,
 				18F6B3C21AF24AC0000D9A40 /* SDWebImageDecoder.m in Sources */,
@@ -1832,7 +1862,6 @@
 				184080311AB8449B00E89AB3 /* MJRefreshLegendFooter.m in Sources */,
 				18B341261AA6D5C600B19ED4 /* SettingMainViewController.m in Sources */,
 				18CE37A71AC5982100EF6141 /* loginViewController.m in Sources */,
-				1884F5581B04957A00F4DE19 /* PSCollectionView.m in Sources */,
 				18F6B3C01AF24AC0000D9A40 /* SDImageCache.m in Sources */,
 				18B341131AA6D58300B19ED4 /* textRoutesDetailsScrollView.m in Sources */,
 				18F6B3BE1AF24AC0000D9A40 /* MKAnnotationView+WebCache.m in Sources */,
@@ -1842,6 +1871,7 @@
 				18F6B3BF1AF24AC0000D9A40 /* NSData+ImageContentType.m in Sources */,
 				18F6B3CB1AF24AC0000D9A40 /* UIImageView+HighlightedWebCache.m in Sources */,
 				1840802D1AB8449B00E89AB3 /* MJRefreshFooter.m in Sources */,
+				1884F59A1B04B9A300F4DE19 /* UIImage+AspectFit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

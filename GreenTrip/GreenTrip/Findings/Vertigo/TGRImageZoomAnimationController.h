@@ -21,7 +21,8 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
-
+#import <UIKit/UIKit.h>
+//因为没有导入import <UIKit/UIKit.h> 折腾将近一个下午，惨痛的教训！
 // Image zoom custom transition.
 @interface TGRImageZoomAnimationController : NSObject <UIViewControllerAnimatedTransitioning>
 

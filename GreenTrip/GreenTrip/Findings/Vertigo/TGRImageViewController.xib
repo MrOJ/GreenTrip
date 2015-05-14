@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TGRImageViewController">
@@ -18,13 +19,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" maximumZoomScale="2" id="mKd-iv-BEJ">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" maximumZoomScale="2" translatesAutoresizingMaskIntoConstraints="NO" id="mKd-iv-BEJ">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="YzD-IK-hmd">
+                        <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YzD-IK-hmd">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <gestureRecognizers/>
                             <connections>
                                 <outletCollection property="gestureRecognizers" destination="dlf-fy-eoH" appends="YES" id="LZ8-Bc-cDh"/>
@@ -32,13 +31,27 @@
                             </connections>
                         </imageView>
                     </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="YzD-IK-hmd" secondAttribute="bottom" id="Vc4-ZA-SQI"/>
+                        <constraint firstItem="YzD-IK-hmd" firstAttribute="centerX" secondItem="mKd-iv-BEJ" secondAttribute="centerX" id="WXU-GR-6tM"/>
+                        <constraint firstItem="YzD-IK-hmd" firstAttribute="centerY" secondItem="mKd-iv-BEJ" secondAttribute="centerY" id="XVY-lX-RyA"/>
+                        <constraint firstItem="YzD-IK-hmd" firstAttribute="leading" secondItem="mKd-iv-BEJ" secondAttribute="leading" id="f6v-Ro-UTk"/>
+                        <constraint firstAttribute="trailing" secondItem="YzD-IK-hmd" secondAttribute="trailing" id="jLJ-do-foO"/>
+                        <constraint firstItem="YzD-IK-hmd" firstAttribute="top" secondItem="mKd-iv-BEJ" secondAttribute="top" id="xXM-Yx-eYJ"/>
+                    </constraints>
                     <connections>
                         <outlet property="delegate" destination="-1" id="zNw-31-f6r"/>
                     </connections>
                 </scrollView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="mKd-iv-BEJ" secondAttribute="bottom" id="6O2-Xv-n5M"/>
+                <constraint firstAttribute="trailing" secondItem="mKd-iv-BEJ" secondAttribute="trailing" id="AaS-Ft-oSe"/>
+                <constraint firstItem="mKd-iv-BEJ" firstAttribute="top" secondItem="1" secondAttribute="top" id="JAY-T7-IJ2"/>
+                <constraint firstItem="mKd-iv-BEJ" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="Qk2-Dw-KBS"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
         </view>
         <tapGestureRecognizer id="dlf-fy-eoH" userLabel="Single Tap Gesture Recognizer">
             <connections>
@@ -51,4 +64,9 @@
             </connections>
         </tapGestureRecognizer>
     </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

@@ -43,6 +43,8 @@
     [super viewDidLoad];
     
     [self.singleTapGestureRecognizer requireGestureRecognizerToFail:self.doubleTapGestureRecognizer];
+    //self.imageView.frame = [UIScreen mainScreen].bounds;
+    //self.scrollView.frame = [UIScreen mainScreen].bounds;
     self.imageView.image = self.image;
 }
 

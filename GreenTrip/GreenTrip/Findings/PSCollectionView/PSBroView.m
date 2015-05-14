@@ -112,7 +112,8 @@ likeButton = _likeButton;
     
     self.imageButton.frame = self.imageView.frame;
     [self.imageButton addTarget:self action:@selector(openImage:) forControlEvents:UIControlEventTouchUpInside];
-    [self.imageButton addSubview:self.imageView];
+    self.imageButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
+    //[self.imageButton addSubview:self.imageView];
     
     // Label
     CGSize labelSize = CGSizeZero;
@@ -156,6 +157,25 @@ likeButton = _likeButton;
 
 - (void)openImage:(id)sender {
     NSLog(@"open");
+    TGRImageViewController *viewController = [[TGRImageViewController alloc] initWithImage:[self.imageButton imageForState:UIControlStateNormal]];
+    viewController.view.frame = [UIScreen mainScreen].bounds;
+    viewController.transitioningDelegate = self;
+    
+    UIViewController *VC = [self findViewController:self];
+    
+    [VC presentViewController:viewController animated:YES completion:nil];
+}
+
+- (UIViewController *)findViewController:(UIView *)sourceView
+{
+    id target=sourceView;
+    while (target) {
+        target = ((UIResponder *)target).nextResponder;
+        if ([target isKindOfClass:[UIViewController class]]) {
+            break;
+        }
+    }
+    return target;
 }
 
 - (void)pressLikeButton:(id)sender {
@@ -177,6 +197,7 @@ likeButton = _likeButton;
     */
     
     self.imageView.image = [UIImage imageNamed:str];
+    [self.imageButton setImage:[UIImage imageNamed:str] forState:UIControlStateNormal];
     //self.captionLabel.text = str;
     
 }
@@ -228,6 +249,22 @@ likeButton = _likeButton;
     height += 70;
     
     return height;
+}
+
+#pragma mark - UIViewControllerTransitioningDelegate methods
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    if ([presented isKindOfClass:TGRImageViewController.class]) {
+        return [[TGRImageZoomAnimationController alloc] initWithReferenceImageView:self.imageButton.imageView];
+    }
+    return nil;
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    if ([dismissed isKindOfClass:TGRImageViewController.class]) {
+        return [[TGRImageZoomAnimationController alloc] initWithReferenceImageView:self.imageButton.imageView];
+    }
+    return nil;
 }
 
 @end
