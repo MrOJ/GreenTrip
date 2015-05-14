@@ -149,7 +149,7 @@
     CGPoint point = [touch locationInView:self];
     
     // 判断是不是点击顶部的brief栏，如果不是,则tap手势不响应事件
-    if ((point.y >= 0.0 && point.y <= 84.0)) {
+    if ((point.y >= 0.0 && point.y <= 90.0)) {
         return YES;
     }
     //self.scrollEnabled = YES;

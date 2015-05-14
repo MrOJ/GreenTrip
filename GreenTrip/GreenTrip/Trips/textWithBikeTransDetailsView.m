@@ -21,9 +21,9 @@
         
         self.layer.borderWidth = 1;
         self.layer.borderColor = [[UIColor lightGrayColor] CGColor];
-        self.layer.shadowOffset = CGSizeMake(0, 2);
-        self.layer.shadowOpacity = 1;
-        self.layer.shadowColor = [UIColor blackColor].CGColor;
+        //self.layer.shadowOffset = CGSizeMake(0, 2);
+        //self.layer.shadowOpacity = 1;
+        //self.layer.shadowColor = [UIColor lightGrayColor].CGColor;
         
         //添加点击响应
         UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
@@ -92,14 +92,14 @@
             
         }];
         
-        arrowImageView.image = [UIImage imageNamed:@"disclosure_arrow_180"];
+        arrowImageView.image = [UIImage imageNamed:@"下拉箭头19x11px"];
         
     } else {
         [UIView animateWithDuration:0.6 animations:^{
             self.center = CGPointMake(self.center.x, initPoint.y);
         }];
         
-        arrowImageView.image = [UIImage imageNamed:@"disclosure_arrow"];
+        arrowImageView.image = [UIImage imageNamed:@"上拉箭头19x11px"];
     }
     
 }
@@ -111,14 +111,14 @@
             self.center = CGPointMake(self.center.x, self.superview.center.y);
         }];
         
-        arrowImageView.image = [UIImage imageNamed:@"disclosure_arrow_180"];
+        arrowImageView.image = [UIImage imageNamed:@"下拉箭头19x11px"];
         
     } else {
         [UIView animateWithDuration:0.6 animations:^{
             self.center = CGPointMake(self.center.x, initPoint.y);
         }];
         
-        arrowImageView.image = [UIImage imageNamed:@"disclosure_arrow"];
+        arrowImageView.image = [UIImage imageNamed:@"上拉箭头19x11px"];
     }
     
 }
@@ -137,7 +137,7 @@
     CGPoint point = [touch locationInView:self];
     
     // 判断是不是点击顶部的brief栏，如果不是,则tap手势不响应事件
-    if ((point.y >= 0.0 && point.y <= 84.0)) {
+    if ((point.y >= 0.0 && point.y <= 90.0)) {
         return YES;
     }
     //self.scrollEnabled = YES;
@@ -156,25 +156,31 @@
     
     bikeSteps = [[NSArray alloc] init];
     
-    
     UIView * briefView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [self superview].bounds.size.width, 84)];
     briefView.backgroundColor = [UIColor clearColor];
     [self addSubview:briefView];
     
     //添加箭头
-    arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake((self.center.x - 8), 5, 16, 10)];
-    arrowImageView.image = [UIImage imageNamed:@"disclosure_arrow"];
+    arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake((self.center.x - 10), 13, 19, 11)];
+    arrowImageView.image = [UIImage imageNamed:@"上拉箭头19x11px"];
     [briefView addSubview:arrowImageView];
     
     //NSLog(@"busname = %@",[NSString stringWithFormat:@"公共自行车 & %@",busName]);
-    UILabel *busNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, 300, 20)];
-    busNameLabel.text = [NSString stringWithFormat:@"公共自行车 & %@",busName];
+    UILabel *busNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 28, 300, 20)];
+    if (flag == 0) {
+        busNameLabel.text = [NSString stringWithFormat:@"%@",busName];
+    } else if (flag == 1) {
+        busNameLabel.text = [NSString stringWithFormat:@"公共自行车 & %@",busName];
+    } else {
+        busNameLabel.text = [NSString stringWithFormat:@"%@ & 公共自行车",busName];
+    }
+
     busNameLabel.font = [UIFont fontWithName:@"Heiti SC-Bold" size:14.0f];
     [briefView addSubview:busNameLabel];
     
     [self getRoutesDetails:allRoutesDictionary];
     
-    UILabel *detailsLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 46, 320, 20)];
+    UILabel *detailsLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 54, 320, 20)];
     //detailsLabel.text = @"test";
     detailsLabel.text = [NSString stringWithFormat:@"共%@ | 步行%@ | 骑行%@ | 约%@",
                           [self distanceFormatted:totalDistance],
@@ -183,7 +189,7 @@
                           [self timeFormatted:totalDuration]];;
 
     detailsLabel.textColor = [UIColor grayColor];
-    detailsLabel.font = [UIFont fontWithName:@"Heiti SC" size:10.0f];
+    detailsLabel.font = [UIFont fontWithName:@"Heiti SC" size:12.0f];
     [briefView addSubview:detailsLabel];
     
     
@@ -191,20 +197,20 @@
     line.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [self addSubview:line];
     
-    listTableView = [[ExtensibleTableView alloc] initWithFrame:CGRectMake(0, 95, [self superview].bounds.size.width, [self superview].bounds.size.height - 99)];
+    listTableView = [[ExtensibleTableView alloc] initWithFrame:CGRectMake(0, 95, [self superview].bounds.size.width, [self superview].bounds.size.height - 95)];
     listTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     listTableView.showsHorizontalScrollIndicator = NO;
     listTableView.showsVerticalScrollIndicator   = NO;
     listTableView.delegate = self;
     listTableView.dataSource = self;
     listTableView.delegate_extend = self;
+    listTableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
 
     [self addSubview:listTableView];
     
 }
 
 #pragma mark - UITableView Source Delegate Methods
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     //原先这里是stopArray，修改过
@@ -604,14 +610,16 @@
         [strDetailsArray insertObject:@"" atIndex:1];
         [flagArray insertObject:@"3" atIndex:1];                    //3表示骑自行车
         
-    } else {
-        [stopArray addObject:startBikeStopName];
-        [stopArray addObject:endBikeStopName];
+    } else if (flag == 2) {
+        //[stopArray addObject:startBikeStopName];
+        //[stopArray addObject:endBikeStopName];
+        [stopArray insertObject:endBikeStopName atIndex:stopArray.count-2];
+        [stopArray insertObject:startBikeStopName atIndex:stopArray.count-2];
         
-        [strategyArray addObject:bikeStr];
-        [detailWaysArray addObject:bikeSteps];
-        [strDetailsArray addObject:@""];
-        [flagArray addObject:@"3"];                                //3表示骑自行车
+        [strategyArray insertObject:bikeStr atIndex:stopArray.count-2];
+        [detailWaysArray insertObject:bikeSteps atIndex:stopArray.count-2];
+        [strDetailsArray insertObject:@"" atIndex:stopArray.count-2];
+        [flagArray insertObject:@"3" atIndex:stopArray.count-2];
     }
     
     if (![endName isEqualToString:@""]) {
@@ -853,8 +861,8 @@
     strategyLabel.textColor = myColor;
     [cell addSubview:strategyLabel];
     
-    UIImageView *iconImg = [[UIImageView alloc] initWithFrame:CGRectMake(20, 55, 12, 21)];
-    iconImg.image = [UIImage imageNamed:@"bikeIcon"];
+    UIImageView *iconImg = [[UIImageView alloc] initWithFrame:CGRectMake(12, 55, 30, 18)];
+    iconImg.image = [UIImage imageNamed:@"3-144x92未激活"];
     [cell addSubview:iconImg];
     
     UIView *litteIconView = [[UIView alloc] initWithFrame:CGRectMake(20, 55 - 20, 14, 20)];

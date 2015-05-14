@@ -151,11 +151,12 @@
     
     //[self drawAnnotationAndOverlay:index];
     //添加点击手势
+    /*
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap:)];
     tapGesture.numberOfTapsRequired = 1;
     tapGesture.delegate = self;
     [self.view addGestureRecognizer:tapGesture];
-    
+    */
     
 }
 
@@ -220,7 +221,7 @@
 //点击地图以后调用
 - (void)singleTap:(UIGestureRecognizer *)recognizer
 {
-    NSLog(@"Tap!");
+    //NSLog(@"Tap!");
     myMapView.userTrackingMode = MAUserTrackingModeNone;
     indicatorButton.selected = NO;
     [indicatorButton setImage:[UIImage imageNamed:@"指南140x140"] forState:UIControlStateNormal];

@@ -16,12 +16,13 @@
 @implementation withBikeTransViewController
 
 @synthesize startPoint,endPoint,bicyclePOI,startName,endName;
+@synthesize indicatorButton,scalingView,increaseButton,decreaseButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //NSLog(@"hello");
-        self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:myColor,NSForegroundColorAttributeName,[UIFont systemFontOfSize:22.0f], NSFontAttributeName, nil];
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:myColor,NSForegroundColorAttributeName,[UIFont systemFontOfSize:22.0f], NSFontAttributeName, nil];
     
     search = [[AMapSearchAPI alloc] initWithSearchKey:@"f57ba48c60c524724d3beff7f7063af9" Delegate:self];
     
@@ -51,6 +52,29 @@
     myMapView.showsScale = YES;
     [self.view addSubview:myMapView];
     
+    indicatorButton = [[UIButton alloc] initWithFrame:CGRectMake(15, self.view.bounds.size.height - 184 - 15, 35, 35)];
+    indicatorButton.layer.shadowOffset = CGSizeMake(1, 1);
+    indicatorButton.layer.shadowOpacity = 0.3f;
+    [indicatorButton setImage:[UIImage imageNamed:@"指南140x140.png"] forState:UIControlStateNormal];
+    [indicatorButton addTarget:self action:@selector(getIndicator:) forControlEvents:UIControlEventTouchUpInside];
+    indicatorTag = 0;
+    [myMapView addSubview:indicatorButton];
+    
+    scalingView = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 15 - 39, self.view.bounds.size.height - 184 - 15 - 78 + 35, 35, 78)];
+    scalingView.backgroundColor = [UIColor whiteColor];
+    scalingView.layer.cornerRadius = 3.0f;
+    
+    increaseButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 39, 39)];
+    [increaseButton setImage:[UIImage imageNamed:@"放大140x156"] forState:UIControlStateNormal];
+    [increaseButton addTarget:self action:@selector(increaseScaling:) forControlEvents:UIControlEventTouchUpInside];
+    [scalingView addSubview:increaseButton];
+    decreaseButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 39, 39, 39)];
+    [decreaseButton setImage:[UIImage imageNamed:@"缩小140x156"] forState:UIControlStateNormal];
+    [decreaseButton addTarget:self action:@selector(decreaseScaling:) forControlEvents:UIControlEventTouchUpInside];
+    [scalingView addSubview:decreaseButton];
+    
+    [myMapView addSubview:scalingView];
+    
     //构造AMapNavigationSearchRequest对象，配置查询参数
     AMapNavigationSearchRequest *naviRequest= [[AMapNavigationSearchRequest alloc] init];
     naviRequest.searchType = AMapSearchType_NaviBus;
@@ -61,156 +85,94 @@
     //发起路径搜索
     [search AMapNavigationSearch: naviRequest];
     
-    textWithBikeTransDV = [[textWithBikeTransDetailsView alloc] initWithFrame:CGRectMake(-1, myMapView.bounds.size.height - 134, myMapView.bounds.size.width + 2, self.view.bounds.size.height - 64 - 2)];
+    textWithBikeTransDV = [[textWithBikeTransDetailsView alloc] initWithFrame:CGRectMake(-1, myMapView.bounds.size.height - 134 - 14, myMapView.bounds.size.width + 2, self.view.bounds.size.height - 64 + 1 )];
     textWithBikeTransDV.dragEnable = YES;
     textWithBikeTransDV.startName = startName;
     textWithBikeTransDV.endName = endName;
     [myMapView addSubview:textWithBikeTransDV];
+    
 }
 
-/*
-- (void)onNavigationSearchDone:(AMapNavigationSearchRequest *)request response:(AMapNavigationSearchResponse *)response
-{
-    //[self callBicyclePOI:startPoint rasius:800];
-    //flag2 = 1;
-    //获取起始换乘总距离
-    if (isGetOriginDis == NO) {
-        originTotalDis = [self caculateTotalDis:response.route.transits[0]];
-        isGetOriginDis = YES;
+# pragma button
+- (void)getIndicator:(id)sender {
+    //NSLog(@"%ld",(long)indicatorTag);
+    if (indicatorTag == 0) {
+        //必须先调用用户模式，否则indicatorbutton等会被初始化！！
+        myMapView.userTrackingMode = MAUserTrackingModeFollow;
+        indicatorButton.selected = YES;
+        [indicatorButton setImage:[UIImage imageNamed:@"指南140x140选中"] forState:UIControlStateSelected];
+        indicatorTag = 1;
+        //mapView.zoomLevel = 15.0f;
+        //mapView.showsCompass = NO;
+    } else if (indicatorTag == 1) {
+        myMapView.zoomLevel = 15.0f;
+        myMapView.userTrackingMode = MAUserTrackingModeFollowWithHeading;
+        indicatorButton.selected = NO;
+        [indicatorButton setImage:[UIImage imageNamed:@"140x140px"] forState:UIControlStateNormal];
+        indicatorTag = 2;
+        //mapView.showsCompass = YES;
+    } else if (indicatorTag == 2) {
+        //myMapView.zoomLevel = 15.0f;
+        myMapView.userTrackingMode = MAUserTrackingModeFollow;
+        indicatorButton.selected = YES;
+        [indicatorButton setImage:[UIImage imageNamed:@"指南140x140选中"] forState:UIControlStateSelected];
+        indicatorTag = 1;
+        //mapView.showsCompass = NO;
     }
     
-    if (flag2 == 0) {
-        //NSLog(@"bus route result");
-        //flag2 = 1;
-        //[self callBicyclePOI:startPoint rasius:800];
-        
-        if (isFind == NO) {
-            if (flag == 0) {
-                
-                if ([self getTransCount:response.route] > 1) {
-                    [self callBicyclePOI:startPoint rasius:800];   //搜寻起点3000m范围内的所有自行车站点
-                    flag = 1;
-                    //poiNum = 0;
-                } else {
-                    NSLog(@"包含换乘次数小于1的情况，直接采用此公交换乘策略");
-                }
-            } else if (flag == 1) {
-                
-                int transCount = [self getTransCount:response.route];
-                
-                [findFromOriginArray addObject:[NSString stringWithFormat:@"%d",transCount]];
-                
-                NSLog(@"origin transit count = %d;",transCount);
-                
-                [self processBusResultData:response];
-                
-                //如果换乘次数减少了
-                if (transCount <= 1) {
-                    NSLog(@"find it!");
-                    
-                    AMapPOI *findPOI = [bicyclePOIArray objectAtIndex:poiNum];
-                    NSLog(@"the bicyce station is:%@",findPOI.name);
-                    
-                    isFind = YES;
-                    POIIndex = poiNum;
-                    
-                    bicyclePOI = findPOI;
-                    
-                    busRoute = response.route;
-                    
-                    //最后查找自行车线路
-                    AMapNavigationSearchRequest *naviRequest= [[AMapNavigationSearchRequest alloc] init];
-                    naviRequest.searchType = AMapSearchType_NaviWalking;
-                    //naviRequest.requireExtension = YES;
-                    naviRequest.origin = bikeStartPoint;
-                    naviRequest.destination = findPOI.location;
-                    naviRequest.city = @"杭州";
-                    //发起路径搜索
-                    [search AMapNavigationSearch: naviRequest];
-                }
-                
-                poiNum --;
-                
-                //如何总的距离减少了
-                NSInteger curTotalDis = [self caculateTotalDis:response.route.transits[0]];
-                if (curTotalDis < originTotalDis) {
-                    NSLog(@"get more near station!!");
-                }
-                
-            } else if (flag == 2) {
-                int transCount = [self getTransCount:response.route];
-                
-                [findFromDesArray addObject:[NSString stringWithFormat:@"%d",transCount]];
-                
-                NSLog(@"destination transit count = %d",transCount);
-                [self processBusResultData:response];
-                
-                if (transCount <= 1) {
-                    NSLog(@"find it!");
-                    isFind = YES;
-                    
-                    AMapPOI *findPOI = [bicyclePOIArray objectAtIndex:poiNum];
-                    NSLog(@"the bicyce station is:%@",findPOI.name);
-                    
-                    bicyclePOI = findPOI;
-                    
-                    busRoute = response.route;
-                    
-                    //最后查找自行车线路
-                    AMapNavigationSearchRequest *naviRequest= [[AMapNavigationSearchRequest alloc] init];
-                    naviRequest.searchType = AMapSearchType_NaviWalking;
-                    //naviRequest.requireExtension = YES;
-                    naviRequest.destination = bikeStartPoint;
-                    naviRequest.origin = findPOI.location;
-                    naviRequest.city = @"杭州";
-                    //发起路径搜索
-                    [search AMapNavigationSearch: naviRequest];
-                }
-                
-                //如何总的距离减少了
-                NSInteger curTotalDis = [self caculateTotalDis:response.route.transits[0]];
-                if (curTotalDis < originTotalDis) {
-                    NSLog(@"get more near station!!");
-                }
-                
-            }
-            
-            //从终点开始找
-            if ([self isAllMoreThan1:findFromOriginArray]==YES && [findFromOriginArray count] == POICount) {
-                [self callBicyclePOI:endPoint rasius:800];
-                //findFromOriginArray = [[NSMutableArray alloc] init];
-                [findFromOriginArray removeAllObjects];
-                
-                //bicyclePOIArray = [[NSArray alloc] init];
-                flag3 = 0;
-                
-                flag = 2;
-            }
-            
-            if ([self isAllMoreThan1:findFromDesArray] == YES && [findFromDesArray count] == POICount) {
-                [findFromDesArray removeAllObjects];
-                NSLog(@"Not Found");
-            }
-        } else if (isFind == YES && isBreak == NO) {
-            NSLog(@"bike route result");
-            //NSLog(@"bike route = %@",response.route.paths);
-            isBreak = YES;
-            
-            bikeRoute = response.route;
-            
-            [self drawAnnotationAndOverlay];
-        }
+    //indicatorButton.selected = YES;
+    //NSLog(@"Hello!");
+    
+}
 
-        
+- (void)increaseScaling:(id)sender {
+    float curZoomlevel = myMapView.zoomLevel;
+    NSLog(@"%f",curZoomlevel);
+    if (curZoomlevel < myMapView.maxZoomLevel && curZoomlevel >= 2.0) {
+        [increaseButton setEnabled:YES];
+        [decreaseButton setEnabled:YES];
+        myMapView.zoomLevel = curZoomlevel + 1;
     } else {
-        NSLog(@"walking result");
-        flag2 = 0;
-        walkingRoute = response.route;  //存储步行路线
-        //NSLog(@"walking route = %@",response.route.paths);
+        [increaseButton setEnabled:NO];
+        //increaseButton.enabled = NO;
     }
 }
-*/
 
+- (void)decreaseScaling:(id)sender {
+    
+    float curZoomlevel = myMapView.zoomLevel;
+    NSLog(@"%f",curZoomlevel);
+    if (curZoomlevel <= myMapView.maxZoomLevel && curZoomlevel > 2.0) {
+        [increaseButton setEnabled:YES];
+        [decreaseButton setEnabled:YES];
+        myMapView.zoomLevel = curZoomlevel - 1;
+    } else {
+        [decreaseButton setEnabled:NO];
+    }
+}
+
+//点击地图以后调用
+- (void)singleTap:(UIGestureRecognizer *)recognizer
+{
+    //NSLog(@"Tap!");
+    myMapView.userTrackingMode = MAUserTrackingModeNone;
+    indicatorButton.selected = NO;
+    [indicatorButton setImage:[UIImage imageNamed:@"指南140x140"] forState:UIControlStateNormal];
+    indicatorTag = 0;
+    
+}
+
+- (void)mapView:(MAMapView *)mapView regionWillChangeAnimated:(BOOL)animated
+{
+    //NSLog(@"change!");
+    myMapView.userTrackingMode = MAUserTrackingModeNone;
+    indicatorButton.selected = NO;
+    [indicatorButton setImage:[UIImage imageNamed:@"指南140x140"] forState:UIControlStateNormal];
+    indicatorTag = 0;
+    
+}
+
+# pragma searchDelegate
 - (void)onNavigationSearchDone:(AMapNavigationSearchRequest *)request response:(AMapNavigationSearchResponse *)response
 {
     //[self callBicyclePOI:startPoint rasius:800];
@@ -230,8 +192,16 @@
             if (flag == 0) {
                 
                 if ([self getTransCount:response.route] > 1) {
-                    [self callBicyclePOI:startPoint rasius:800];   //搜寻起点3000m范围内的所有自行车站点
+                    //修改次数用于改变策略！！
+                    //如果flag为1，则从起点搜索，flag为2，则从终点搜索，确定选择的按钮在哪儿
                     flag = 1;
+                    
+                    if (flag == 1) {
+                        [self callBicyclePOI:startPoint rasius:800];   //搜寻起点3000m范围内的所有自行车站点
+                    } else {
+                        [self callBicyclePOI:endPoint rasius:800];   //搜寻起点3000m范围内的所有自行车站点
+                    }
+                    
                     poiNum = 0;
                 } else {
                     NSLog(@"包含换乘次数小于1的情况，直接采用此公交换乘策略");
@@ -241,8 +211,8 @@
                     
                     textWithBikeTransDV.flag = flag;
                     textWithBikeTransDV.busName             = busName;
-                    textWithBikeTransDV.startBikeStopName   = startBikeStopName;
-                    textWithBikeTransDV.endBikeStopName     = endBikeStopName;
+                    //textWithBikeTransDV.startBikeStopName   = startBikeStopName;
+                    //textWithBikeTransDV.endBikeStopName     = endBikeStopName;
                     textWithBikeTransDV.busName = [self processBusResultData:response];
                     textWithBikeTransDV.allRoutesDictionary = allRoutesDictionary;
                     [textWithBikeTransDV buildingView];
@@ -258,10 +228,10 @@
                 
                 //如果换乘次数减少了
                 if (transCount <= 1) {
-                    NSLog(@"find it!");
+                    //NSLog(@"find it!");
                     
                     AMapPOI *findPOI = [bicyclePOIArray objectAtIndex:poiNum];
-                    NSLog(@"the bicyce station is:%@",findPOI.name);
+                    //NSLog(@"the bicyce station is:%@",findPOI.name);
                     endBikeStopName = findPOI.name;
                     isFind = YES;
                     POIIndex = poiNum;
@@ -285,10 +255,10 @@
                 //如何总的距离减少了
                 NSInteger curTotalDis = [self caculateTotalDis:response.route.transits[0]];
                 if (curTotalDis < originTotalDis) {
-                    NSLog(@"get more near station!!");
+                    //NSLog(@"get more near station!!");
                     
                     AMapPOI *findPOI = [bicyclePOIArray objectAtIndex:poiNum];
-                    NSLog(@"the bicyce station is:%@",findPOI.name);
+                    //NSLog(@"the bicyce station is:%@",findPOI.name);
                     endBikeStopName = findPOI.name;
                     isFind = YES;
                     POIIndex = poiNum;
@@ -296,7 +266,7 @@
                     bicyclePOI = findPOI;
                     
                     busRoute = response.route;
-                    NSLog(@"find bike Point = %@",findPOI.location);
+                    //NSLog(@"find bike Point = %@",findPOI.location);
                     
                     [allRoutesDictionary setObject:response.route forKey:@"bus"];
                     busName = [self processBusResultData:response];
@@ -330,18 +300,18 @@
                 [self processBusResultData:response];
                 
                 if (transCount <= 1) {
-                    NSLog(@"find it!");
+                    //NSLog(@"find it!");
                     isFind = YES;
                     
                     AMapPOI *findPOI = [bicyclePOIArray objectAtIndex:poiNum];
-                    NSLog(@"the bicyce station is:%@",findPOI.name);
+                    //NSLog(@"the bicyce station is:%@",findPOI.name);
                     
                     endBikeStopName = findPOI.name;
                     
                     bicyclePOI = findPOI;
                     
                     busRoute = response.route;
-                    NSLog(@"find bike Point = %@",findPOI.location);
+                    //NSLog(@"find bike Point = %@",findPOI.location);
                     busName = [self processBusResultData:response];
                     [allRoutesDictionary setObject:response.route forKey:@"bus"];
                     
@@ -360,16 +330,16 @@
                 //如何总的距离减少了
                 NSInteger curTotalDis = [self caculateTotalDis:response.route.transits[0]];
                 if (curTotalDis < originTotalDis) {
-                    NSLog(@"get more near station!!");
+                    //NSLog(@"get more near station!!");
                     
                     isFind = YES;
                     
                     AMapPOI *findPOI = [bicyclePOIArray objectAtIndex:poiNum];
-                    NSLog(@"the bicyce station is:%@",findPOI.name);
+                    //NSLog(@"the bicyce station is:%@",findPOI.name);
                     endBikeStopName = findPOI.name;
                     bicyclePOI = findPOI;
                     busRoute = response.route;
-                    NSLog(@"find bike Point = %@",findPOI.location);
+                    //NSLog(@"find bike Point = %@",findPOI.location);
                     [allRoutesDictionary setObject:response.route forKey:@"bus"];
                     busName = [self processBusResultData:response];
                     
@@ -427,7 +397,7 @@
         
         
     } else {
-        NSLog(@"walking result");
+        //NSLog(@"walking result");
         flag2 = 0;
         walkingRoute = response.route;  //存储步行路线
         
@@ -465,6 +435,7 @@
                 AMapPOI *poi = response.pois[0];
                 
                 bikeStartPoint = poi.location;
+                startBikeStopName = poi.name;
                 
                 [self callBicyclePOI:poi.location rasius:3000];
                 
@@ -588,6 +559,7 @@
     walkingPolylineArray = [[NSMutableArray alloc] init];
     bikePolylineArray    = [[NSMutableArray alloc] init];
     busPolylineArray     = [[NSMutableArray alloc] init];
+    wayIndexArray        = [[NSMutableArray alloc] init];
     
     //处理步行线路
     for (AMapPath *p in walkingRoute.paths) {
@@ -597,6 +569,13 @@
             MAPolyline *polyline = [self polylineStrToGeoPoint:polylineStr];
             [walkingPolylineArray addObject:polyline];
         }
+        
+        AMapGeoPoint *walkingPoint = walkingRoute.origin;
+        MAPointAnnotation *walkingAnnotation = [[MAPointAnnotation alloc] init];
+        walkingAnnotation.coordinate = CLLocationCoordinate2DMake(walkingPoint.latitude, walkingPoint.longitude);
+        [pointAnnotationArray addObject:walkingAnnotation];
+        [wayIndexArray addObject:@"2"];      // 2-步行
+        
     }
     
     //处理自行车线路
@@ -607,6 +586,13 @@
             MAPolyline *polyline = [self polylineStrToGeoPoint:polylineStr];
             [bikePolylineArray addObject:polyline];
         }
+        
+        AMapGeoPoint *bikePoint = bikeRoute.origin;
+        MAPointAnnotation *bikeAnnotation = [[MAPointAnnotation alloc] init];
+        bikeAnnotation.coordinate = CLLocationCoordinate2DMake(bikePoint.latitude, bikePoint.longitude);
+        [pointAnnotationArray addObject:bikeAnnotation];
+        [wayIndexArray addObject:@"4"];      // 2-步行
+        
     }
     
     //处理公交线路
@@ -621,58 +607,38 @@
                 MAPolyline *polyline = [self polylineStrToGeoPoint:polylineStr];
                 [walkingPolylineArray addObject:polyline];
             }
+            
+            AMapGeoPoint *walkingPoint = walkingRoute.origin;
+            MAPointAnnotation *walkingAnnotation = [[MAPointAnnotation alloc] init];
+            walkingAnnotation.coordinate = CLLocationCoordinate2DMake(walkingPoint.latitude, walkingPoint.longitude);
+            [pointAnnotationArray addObject:walkingAnnotation];
+            [wayIndexArray addObject:@"2"];      // 2-步行
         }
         //处理公交路线轨迹
         if (s.busline != nil) {
             NSString *polylineStr = s.busline.polyline;
             MAPolyline *polyline = [self polylineStrToGeoPoint:polylineStr];
             [busPolylineArray addObject:polyline];
+            
+            AMapGeoPoint *busPoint = s.busline.departureStop.location;
+            MAPointAnnotation *busAnnotation = [[MAPointAnnotation alloc] init];
+            busAnnotation.coordinate = CLLocationCoordinate2DMake(busPoint.latitude, busPoint.longitude);
+            [pointAnnotationArray addObject:busAnnotation];
+            [wayIndexArray addObject:@"3"];      // 3-公交
         }
     }
     
     //添加标注
+    MAPointAnnotation *originAnnotation = [[MAPointAnnotation alloc] init];
+    originAnnotation.coordinate = CLLocationCoordinate2DMake(startPoint.latitude, startPoint.longitude);
+    [pointAnnotationArray addObject:originAnnotation];
+    [wayIndexArray addObject:@"0"];        //0-起点
     
-    AMapGeoPoint *walkOrigin = walkingRoute.origin;
-    MAPointAnnotation *walkOriginAnnotation = [[MAPointAnnotation alloc] init];
-    walkOriginAnnotation.coordinate = CLLocationCoordinate2DMake(walkOrigin.latitude, walkOrigin.longitude);
-    [pointAnnotationArray addObject:walkOriginAnnotation];
+    MAPointAnnotation *desAnnotation = [[MAPointAnnotation alloc] init];
+    desAnnotation.coordinate = CLLocationCoordinate2DMake(endPoint.latitude, endPoint.longitude);
+    [pointAnnotationArray addObject:desAnnotation];
+    [wayIndexArray addObject:@"1"];        //1-终点
     
-    AMapGeoPoint *walkDes = walkingRoute.destination;
-    MAPointAnnotation *walkDesAnnotation = [[MAPointAnnotation alloc] init];
-    walkDesAnnotation.coordinate = CLLocationCoordinate2DMake(walkDes.latitude, walkDes.longitude);
-    [pointAnnotationArray addObject:walkDesAnnotation];
-    
-    AMapGeoPoint *bikeOrigin = bikeRoute.origin;
-    MAPointAnnotation *bikeOriginAnnotation = [[MAPointAnnotation alloc] init];
-    bikeOriginAnnotation.coordinate = CLLocationCoordinate2DMake(bikeOrigin.latitude, bikeOrigin.longitude);
-    [pointAnnotationArray addObject:bikeOriginAnnotation];
-    
-    AMapGeoPoint *bikeDes = bikeRoute.destination;
-    MAPointAnnotation *bikeDesAnnotation = [[MAPointAnnotation alloc] init];
-    bikeDesAnnotation.coordinate = CLLocationCoordinate2DMake(bikeDes.latitude, bikeDes.longitude);
-    [pointAnnotationArray addObject:bikeDesAnnotation];
-    
-    AMapGeoPoint *busOrigin = busRoute.origin;
-    MAPointAnnotation *busOriginAnnotation = [[MAPointAnnotation alloc] init];
-    busOriginAnnotation.coordinate = CLLocationCoordinate2DMake(busOrigin.latitude, busOrigin.longitude);
-    [pointAnnotationArray addObject:busOriginAnnotation];
-    
-    AMapGeoPoint *busDes = busRoute.destination;
-    MAPointAnnotation *busDesAnnotation = [[MAPointAnnotation alloc] init];
-    busDesAnnotation.coordinate = CLLocationCoordinate2DMake(busDes.latitude, busDes.longitude);
-    [pointAnnotationArray addObject:busDesAnnotation];
-    
-    /*
-    AMapGeoPoint *busOrigin = startPoint;
-    MAPointAnnotation *busOriginAnnotation = [[MAPointAnnotation alloc] init];
-    busOriginAnnotation.coordinate = CLLocationCoordinate2DMake(busOrigin.latitude, busOrigin.longitude);
-    [pointAnnotationArray addObject:busOriginAnnotation];
-    
-    AMapGeoPoint *busDes = endPoint;
-    MAPointAnnotation *busDesAnnotation = [[MAPointAnnotation alloc] init];
-    busDesAnnotation.coordinate = CLLocationCoordinate2DMake(busDes.latitude, busDes.longitude);
-    [pointAnnotationArray addObject:busDesAnnotation];
-    */
     
     [myMapView addOverlays:walkingPolylineArray];
     [myMapView addOverlays:bikePolylineArray];
@@ -690,16 +656,35 @@
     if ([annotation isKindOfClass:[MAPointAnnotation class]])
     {
         static NSString *pointReuseIndetifier = @"pointReuseIndetifier";
-        MAPinAnnotationView*annotationView = (MAPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:pointReuseIndetifier];
+        MAPinAnnotationView *annotationView = (MAPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:pointReuseIndetifier];
         if (annotationView == nil)
         {
             annotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pointReuseIndetifier];
         }
-        annotationView.canShowCallout= YES;       //设置气泡可以弹出，默认为NO
-        //annotationView.animatesDrop = YES;        //设置标注动画显示，默认为NO
-        //annotationView.draggable = YES;           //设置标注可以拖动，默认为NO
-        annotationView.pinColor = MAPinAnnotationColorPurple;
-        return annotationView;
+        
+        NSString *wayReuslt = [self findWayInAnnotationArray:pointAnnotationArray targetAnnotation:annotation];
+        //NSLog(@"%@",wayReuslt);
+        if ([wayReuslt isEqualToString:@"0"]) {    //起点
+            annotationView.canShowCallout= NO;
+            annotationView.image = [UIImage imageNamed:@"起点38x60px"];
+            return annotationView;
+        } else if ([wayReuslt isEqualToString:@"1"]) {
+            annotationView.canShowCallout= NO;            //终点
+            annotationView.image = [UIImage imageNamed:@"终点38x60px"];
+            return annotationView;
+        } else  if ([wayReuslt isEqualToString:@"2"]){
+            annotationView.canShowCallout= NO;            //步行
+            annotationView.image = [UIImage imageNamed:@"行走转换22x22px"];
+            return annotationView;
+        } else  if ([wayReuslt isEqualToString:@"3"]){
+            annotationView.canShowCallout= NO;            //公交车
+            annotationView.image = [UIImage imageNamed:@"公交转换22x22px"];
+            return annotationView;
+        }  else  if ([wayReuslt isEqualToString:@"4"]){
+            annotationView.canShowCallout= NO;            //公交车
+            annotationView.image = [UIImage imageNamed:@"骑车转换22x22px"];
+            return annotationView;
+        }
     }
     return nil;
 }
@@ -712,16 +697,16 @@
         MAPolylineView *polylineView = [[MAPolylineView alloc] initWithPolyline:overlay];
         if ([self isInArray:walkingPolylineArray target:overlay]) {
             polylineView.lineWidth = 10.f;
-            polylineView.strokeColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:0.6];
+            polylineView.strokeColor = myColor;
             //polylineView.lineJoin = kCALineJoinRound;//连接类型
             //polylineView.lineCapType = kCALineCapRound;//端点类型
         } else if ([self isInArray:bikePolylineArray target:overlay]) {
             polylineView.lineWidth = 10.f;
-            polylineView.strokeColor = [UIColor colorWithRed:0 green:1 blue:0 alpha:0.6];
+            polylineView.strokeColor = [UIColor cyanColor];
             
         } else {
             polylineView.lineWidth = 10.f;
-            polylineView.strokeColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:0.6];
+            polylineView.strokeColor = [UIColor orangeColor];
         }
         
         return polylineView;
@@ -819,6 +804,16 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSString *)findWayInAnnotationArray:(NSMutableArray *)annotationArray targetAnnotation:(MAPointAnnotation *)annotation
+{
+    for (int i = 0; i < annotationArray.count; i++) {
+        if ([annotation isEqual:[annotationArray objectAtIndex:i]]) {
+            return [wayIndexArray objectAtIndex:i];
+        }
+    }
+    return nil;
 }
 
 /*

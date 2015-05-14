@@ -1,8 +1,7 @@
-//
-// PSCollectionViewCell.h
-//
-// Copyright (c) 2012 Peter Shih (http://petershih.com)
+// UIImage+AspectFit.h
 // 
+// Copyright (c) 2013 Guillermo Gonzalez
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
@@ -23,14 +22,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PSCollectionViewCell : UIView
+@interface UIImage (AspectFit)
 
-@property (nonatomic, strong) id object;
-@property (nonatomic, strong) NSString *textStr;
-
-- (void)prepareForReuse;
-- (void)fillViewWithObject:(id)object;
-- (void)fillViewWithText:(id)str;
-+ (CGFloat)heightForViewWithObject:(id)object withCapitionStr:(NSString *)str inColumnWidth:(CGFloat)columnWidth;
+- (CGRect)tgr_aspectFitRectForSize:(CGSize)size;
 
 @end
+

@@ -1,8 +1,7 @@
-//
-// PSCollectionViewCell.h
-//
-// Copyright (c) 2012 Peter Shih (http://petershih.com)
+// TGRImageZoomAnimationController.h
 // 
+// Copyright (c) 2013 Guillermo Gonzalez
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
@@ -21,16 +20,16 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@interface PSCollectionViewCell : UIView
+// Image zoom custom transition.
+@interface TGRImageZoomAnimationController : NSObject <UIViewControllerAnimatedTransitioning>
 
-@property (nonatomic, strong) id object;
-@property (nonatomic, strong) NSString *textStr;
+// The image view that will be used as the source (zoom in) or destination
+// (zoom out) of the transition.
+@property (weak, nonatomic, readonly) UIImageView *referenceImageView;
 
-- (void)prepareForReuse;
-- (void)fillViewWithObject:(id)object;
-- (void)fillViewWithText:(id)str;
-+ (CGFloat)heightForViewWithObject:(id)object withCapitionStr:(NSString *)str inColumnWidth:(CGFloat)columnWidth;
+// Initializes the receiver with the specified reference image view.
+- (id)initWithReferenceImageView:(UIImageView *)referenceImageView;
 
 @end

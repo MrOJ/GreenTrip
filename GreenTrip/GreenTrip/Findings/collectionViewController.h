@@ -14,6 +14,7 @@
 @interface collectionViewController : UIViewController <PSCollectionViewDelegate, PSCollectionViewDataSource>
 {
     NSMutableArray *itemsArray;
+    NSMutableArray *capitionArray;
 }
 
 @property (nonatomic, strong) PSCollectionView *collectionView;

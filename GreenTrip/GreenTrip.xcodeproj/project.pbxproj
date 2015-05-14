@@ -123,6 +123,18 @@
 		18586CBF1AFAEB5F00045A42 /* 下拉箭头19x11px.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586CBC1AFAEB5F00045A42 /* 下拉箭头19x11px.png */; };
 		18586CC01AFAEB5F00045A42 /* 下拉箭头19x11px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586CBD1AFAEB5F00045A42 /* 下拉箭头19x11px@2x.png */; };
 		18586CC11AFAEB5F00045A42 /* 下拉箭头19x11px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586CBE1AFAEB5F00045A42 /* 下拉箭头19x11px@3x.png */; };
+		1884F5331B0372C000F4DE19 /* showBikeOnlyRoutesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1884F5321B0372C000F4DE19 /* showBikeOnlyRoutesViewController.m */; };
+		1884F5361B03786500F4DE19 /* textBikeOnlyRoutesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1884F5351B03786500F4DE19 /* textBikeOnlyRoutesView.m */; };
+		1884F53A1B04342400F4DE19 /* trip1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1884F5371B04342400F4DE19 /* trip1.jpg */; };
+		1884F53C1B04342400F4DE19 /* trip3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1884F5391B04342400F4DE19 /* trip3.jpg */; };
+		1884F53E1B04361400F4DE19 /* trip2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1884F53D1B04361400F4DE19 /* trip2.jpg */; };
+		1884F5451B046E8800F4DE19 /* 12x10px.png in Resources */ = {isa = PBXBuildFile; fileRef = 1884F53F1B046E8800F4DE19 /* 12x10px.png */; };
+		1884F5461B046E8800F4DE19 /* 12x10px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1884F5401B046E8800F4DE19 /* 12x10px@2x.png */; };
+		1884F5471B046E8800F4DE19 /* 12x10px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1884F5411B046E8800F4DE19 /* 12x10px@3x.png */; };
+		1884F5481B046E8800F4DE19 /* 12x10px未激活.png in Resources */ = {isa = PBXBuildFile; fileRef = 1884F5421B046E8800F4DE19 /* 12x10px未激活.png */; };
+		1884F5491B046E8800F4DE19 /* 12x10px未激活@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1884F5431B046E8800F4DE19 /* 12x10px未激活@2x.png */; };
+		1884F54A1B046E8800F4DE19 /* 12x10px未激活@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1884F5441B046E8800F4DE19 /* 12x10px未激活@3x.png */; };
+		1884F5581B04957A00F4DE19 /* PSCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1884F5571B04957A00F4DE19 /* PSCollectionView.m */; };
 		18A6C2861AE3E1FE00452140 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A6C2741AE3E1FE00452140 /* AFHTTPRequestOperation.m */; };
 		18A6C2871AE3E1FE00452140 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A6C2761AE3E1FE00452140 /* AFHTTPRequestOperationManager.m */; };
 		18A6C2881AE3E1FE00452140 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A6C2781AE3E1FE00452140 /* AFHTTPSessionManager.m */; };
@@ -307,19 +319,9 @@
 		18F6B3E11AF34849000D9A40 /* 缩小140x156@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F6B3D81AF34849000D9A40 /* 缩小140x156@3x.png */; };
 		18F769711AB42C6A00705FBA /* finding_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F769701AB42C6A00705FBA /* finding_logo.png */; };
 		18F769851AB45C8800705FBA /* collectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F769841AB45C8800705FBA /* collectionViewController.m */; };
-		18F76A0A1AB5B30D00705FBA /* PSCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F76A071AB5B30D00705FBA /* PSCollectionView.m */; };
 		18F76A0B1AB5B30D00705FBA /* PSCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F76A091AB5B30D00705FBA /* PSCollectionViewCell.m */; };
 		18F76A0E1AB5B7D700705FBA /* PSBroView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F76A0D1AB5B7D700705FBA /* PSBroView.m */; };
-		18F76A1A1AB5BB0B00705FBA /* 1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 18F76A101AB5BB0B00705FBA /* 1.jpeg */; };
-		18F76A1B1AB5BB0B00705FBA /* 10.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 18F76A111AB5BB0B00705FBA /* 10.jpeg */; };
-		18F76A1C1AB5BB0B00705FBA /* 2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 18F76A121AB5BB0B00705FBA /* 2.jpeg */; };
 		18F76A1D1AB5BB0B00705FBA /* 3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 18F76A131AB5BB0B00705FBA /* 3.jpeg */; };
-		18F76A1E1AB5BB0B00705FBA /* 4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 18F76A141AB5BB0B00705FBA /* 4.jpeg */; };
-		18F76A1F1AB5BB0B00705FBA /* 5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 18F76A151AB5BB0B00705FBA /* 5.jpeg */; };
-		18F76A201AB5BB0B00705FBA /* 6.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 18F76A161AB5BB0B00705FBA /* 6.jpeg */; };
-		18F76A211AB5BB0B00705FBA /* 7.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 18F76A171AB5BB0B00705FBA /* 7.jpeg */; };
-		18F76A221AB5BB0B00705FBA /* 8.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 18F76A181AB5BB0B00705FBA /* 8.jpeg */; };
-		18F76A231AB5BB0B00705FBA /* 9.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 18F76A191AB5BB0B00705FBA /* 9.jpeg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -468,6 +470,20 @@
 		18586CBC1AFAEB5F00045A42 /* 下拉箭头19x11px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "下拉箭头19x11px.png"; sourceTree = "<group>"; };
 		18586CBD1AFAEB5F00045A42 /* 下拉箭头19x11px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "下拉箭头19x11px@2x.png"; sourceTree = "<group>"; };
 		18586CBE1AFAEB5F00045A42 /* 下拉箭头19x11px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "下拉箭头19x11px@3x.png"; sourceTree = "<group>"; };
+		1884F5311B0372C000F4DE19 /* showBikeOnlyRoutesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = showBikeOnlyRoutesViewController.h; sourceTree = "<group>"; };
+		1884F5321B0372C000F4DE19 /* showBikeOnlyRoutesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = showBikeOnlyRoutesViewController.m; sourceTree = "<group>"; };
+		1884F5341B03786500F4DE19 /* textBikeOnlyRoutesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = textBikeOnlyRoutesView.h; sourceTree = "<group>"; };
+		1884F5351B03786500F4DE19 /* textBikeOnlyRoutesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = textBikeOnlyRoutesView.m; sourceTree = "<group>"; };
+		1884F5371B04342400F4DE19 /* trip1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = trip1.jpg; sourceTree = "<group>"; };
+		1884F5391B04342400F4DE19 /* trip3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = trip3.jpg; sourceTree = "<group>"; };
+		1884F53D1B04361400F4DE19 /* trip2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = trip2.jpg; sourceTree = "<group>"; };
+		1884F53F1B046E8800F4DE19 /* 12x10px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 12x10px.png; sourceTree = "<group>"; };
+		1884F5401B046E8800F4DE19 /* 12x10px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "12x10px@2x.png"; sourceTree = "<group>"; };
+		1884F5411B046E8800F4DE19 /* 12x10px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "12x10px@3x.png"; sourceTree = "<group>"; };
+		1884F5421B046E8800F4DE19 /* 12x10px未激活.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "12x10px未激活.png"; sourceTree = "<group>"; };
+		1884F5431B046E8800F4DE19 /* 12x10px未激活@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "12x10px未激活@2x.png"; sourceTree = "<group>"; };
+		1884F5441B046E8800F4DE19 /* 12x10px未激活@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "12x10px未激活@3x.png"; sourceTree = "<group>"; };
+		1884F5571B04957A00F4DE19 /* PSCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCollectionView.m; sourceTree = "<group>"; };
 		18A6C2731AE3E1FE00452140 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		18A6C2741AE3E1FE00452140 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		18A6C2751AE3E1FE00452140 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -713,21 +729,11 @@
 		18F769831AB45C8800705FBA /* collectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = collectionViewController.h; sourceTree = "<group>"; };
 		18F769841AB45C8800705FBA /* collectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = collectionViewController.m; sourceTree = "<group>"; };
 		18F76A061AB5B30D00705FBA /* PSCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCollectionView.h; sourceTree = "<group>"; };
-		18F76A071AB5B30D00705FBA /* PSCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCollectionView.m; sourceTree = "<group>"; };
 		18F76A081AB5B30D00705FBA /* PSCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCollectionViewCell.h; sourceTree = "<group>"; };
 		18F76A091AB5B30D00705FBA /* PSCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCollectionViewCell.m; sourceTree = "<group>"; };
 		18F76A0C1AB5B7D700705FBA /* PSBroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSBroView.h; sourceTree = "<group>"; };
 		18F76A0D1AB5B7D700705FBA /* PSBroView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSBroView.m; sourceTree = "<group>"; };
-		18F76A101AB5BB0B00705FBA /* 1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpeg; sourceTree = "<group>"; };
-		18F76A111AB5BB0B00705FBA /* 10.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 10.jpeg; sourceTree = "<group>"; };
-		18F76A121AB5BB0B00705FBA /* 2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpeg; sourceTree = "<group>"; };
 		18F76A131AB5BB0B00705FBA /* 3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpeg; sourceTree = "<group>"; };
-		18F76A141AB5BB0B00705FBA /* 4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.jpeg; sourceTree = "<group>"; };
-		18F76A151AB5BB0B00705FBA /* 5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 5.jpeg; sourceTree = "<group>"; };
-		18F76A161AB5BB0B00705FBA /* 6.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 6.jpeg; sourceTree = "<group>"; };
-		18F76A171AB5BB0B00705FBA /* 7.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7.jpeg; sourceTree = "<group>"; };
-		18F76A181AB5BB0B00705FBA /* 8.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 8.jpeg; sourceTree = "<group>"; };
-		18F76A191AB5BB0B00705FBA /* 9.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 9.jpeg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -970,6 +976,10 @@
 				18B340F61AA6D58300B19ED4 /* textRoutesDetailsScrollView.m */,
 				18B340F71AA6D58300B19ED4 /* textWalkingRoutesDetailsView.h */,
 				18B340F81AA6D58300B19ED4 /* textWalkingRoutesDetailsView.m */,
+				1884F5311B0372C000F4DE19 /* showBikeOnlyRoutesViewController.h */,
+				1884F5321B0372C000F4DE19 /* showBikeOnlyRoutesViewController.m */,
+				1884F5341B03786500F4DE19 /* textBikeOnlyRoutesView.h */,
+				1884F5351B03786500F4DE19 /* textBikeOnlyRoutesView.m */,
 				18B341041AA6D58300B19ED4 /* withBikeTransViewController.h */,
 				18B341051AA6D58300B19ED4 /* withBikeTransViewController.m */,
 				18B340F91AA6D58300B19ED4 /* textWithBikeTransDetailsView.h */,
@@ -1285,6 +1295,12 @@
 		18B539F61AE7C5C200B6F344 /* finding */ = {
 			isa = PBXGroup;
 			children = (
+				1884F53F1B046E8800F4DE19 /* 12x10px.png */,
+				1884F5401B046E8800F4DE19 /* 12x10px@2x.png */,
+				1884F5411B046E8800F4DE19 /* 12x10px@3x.png */,
+				1884F5421B046E8800F4DE19 /* 12x10px未激活.png */,
+				1884F5431B046E8800F4DE19 /* 12x10px未激活@2x.png */,
+				1884F5441B046E8800F4DE19 /* 12x10px未激活@3x.png */,
 				18B539F71AE7C5C200B6F344 /* 排行榜208x66.png */,
 				18B539F81AE7C5C200B6F344 /* 排行榜208x66@2x.png */,
 				18B539F91AE7C5C200B6F344 /* 排行榜208x66@3x.png */,
@@ -1406,8 +1422,8 @@
 		18F76A051AB5B30D00705FBA /* PSCollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				1884F5571B04957A00F4DE19 /* PSCollectionView.m */,
 				18F76A061AB5B30D00705FBA /* PSCollectionView.h */,
-				18F76A071AB5B30D00705FBA /* PSCollectionView.m */,
 				18F76A081AB5B30D00705FBA /* PSCollectionViewCell.h */,
 				18F76A091AB5B30D00705FBA /* PSCollectionViewCell.m */,
 				18F76A0C1AB5B7D700705FBA /* PSBroView.h */,
@@ -1419,16 +1435,10 @@
 		18F76A0F1AB5BB0B00705FBA /* images */ = {
 			isa = PBXGroup;
 			children = (
-				18F76A101AB5BB0B00705FBA /* 1.jpeg */,
-				18F76A111AB5BB0B00705FBA /* 10.jpeg */,
-				18F76A121AB5BB0B00705FBA /* 2.jpeg */,
+				1884F53D1B04361400F4DE19 /* trip2.jpg */,
+				1884F5371B04342400F4DE19 /* trip1.jpg */,
+				1884F5391B04342400F4DE19 /* trip3.jpg */,
 				18F76A131AB5BB0B00705FBA /* 3.jpeg */,
-				18F76A141AB5BB0B00705FBA /* 4.jpeg */,
-				18F76A151AB5BB0B00705FBA /* 5.jpeg */,
-				18F76A161AB5BB0B00705FBA /* 6.jpeg */,
-				18F76A171AB5BB0B00705FBA /* 7.jpeg */,
-				18F76A181AB5BB0B00705FBA /* 8.jpeg */,
-				18F76A191AB5BB0B00705FBA /* 9.jpeg */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -1526,13 +1536,14 @@
 				18048C7C1AF65B4C00E68A54 /* 自行车50x44px.png in Resources */,
 				18B539CE1AE7BC7C00B6F344 /* 五角星56x56@2x.png in Resources */,
 				1817483F1AF0F39F00F1DFE8 /* 选择56x56px@3x.png in Resources */,
-				18F76A221AB5BB0B00705FBA /* 8.jpeg in Resources */,
 				18B53A131AE7C5CC00B6F344 /* 1箭头154x152@2x.png in Resources */,
 				18B539D41AE7BC7C00B6F344 /* 摄像头166x200.png in Resources */,
 				18048C7D1AF65B4C00E68A54 /* 自行车50x44px@2x.png in Resources */,
 				18586CC01AFAEB5F00045A42 /* 下拉箭头19x11px@2x.png in Resources */,
 				18B341581AA6D81A00B19ED4 /* bikeIcon.png in Resources */,
+				1884F5461B046E8800F4DE19 /* 12x10px@2x.png in Resources */,
 				18040EDC1AEBBB6200844F0C /* 3-144x92未激活@3x.png in Resources */,
+				1884F5451B046E8800F4DE19 /* 12x10px.png in Resources */,
 				18B538C91AE7BB9100B6F344 /* 3我的未激活130x80@4x.png in Resources */,
 				18B5399A1AE7BC7C00B6F344 /* 1出发未激活130x80@2x.png in Resources */,
 				18F6B3DF1AF34849000D9A40 /* 缩小140x156.png in Resources */,
@@ -1541,7 +1552,6 @@
 				1817483E1AF0F39F00F1DFE8 /* 选择56x56px@2x.png in Resources */,
 				18048C661AF5E26F00E68A54 /* 指南140x140@3x.png in Resources */,
 				18B538D11AE7BB9100B6F344 /* 箭头中+420x84@4x.png in Resources */,
-				18F76A1F1AB5BB0B00705FBA /* 5.jpeg in Resources */,
 				18586C6F1AFA354500045A42 /* 反转92x124px@3x.png in Resources */,
 				18B539A81AE7BC7C00B6F344 /* 3-144x92.png in Resources */,
 				18F6B3DE1AF34849000D9A40 /* 放大140x156@3x.png in Resources */,
@@ -1568,7 +1578,6 @@
 				18B539C81AE7BC7C00B6F344 /* 68x84.png in Resources */,
 				18040EBD1AEA603500844F0C /* reduce58x70@3x.png in Resources */,
 				18586CA61AFA579200045A42 /* 公交转换22x22px@3x.png in Resources */,
-				18F76A1C1AB5BB0B00705FBA /* 2.jpeg in Resources */,
 				18B539A31AE7BC7C00B6F344 /* 2-70x110@2x.png in Resources */,
 				18B539A71AE7BC7C00B6F344 /* 2发现未激活130x80@3x.png in Resources */,
 				18B539DA1AE7BC7C00B6F344 /* 箭头38x22.png in Resources */,
@@ -1604,11 +1613,11 @@
 				18B539D91AE7BC7C00B6F344 /* 箭头3-54x30px.png in Resources */,
 				18B539C51AE7BC7C00B6F344 /* 6-100x98.png in Resources */,
 				18B539A51AE7BC7C00B6F344 /* 2发现未激活130x80.png in Resources */,
-				18F76A1A1AB5BB0B00705FBA /* 1.jpeg in Resources */,
 				18CE37C51AC673D400EF6141 /* YDRegistrationViewController.xib in Resources */,
 				18586CB51AFA579200045A42 /* 行走路线描边50x6px@3x.png in Resources */,
 				18B53A141AE7C5CC00B6F344 /* 1箭头154x152@3x.png in Resources */,
 				18048C641AF5E26F00E68A54 /* 指南140x140.png in Resources */,
+				1884F5481B046E8800F4DE19 /* 12x10px未激活.png in Resources */,
 				18586CAB1AFA579200045A42 /* 骑车转换22x22px@2x.png in Resources */,
 				18B538C61AE7BB9100B6F344 /* 2发现130x80@4x.png in Resources */,
 				18B341631AA6D81A00B19ED4 /* 向下选择18x10px.png in Resources */,
@@ -1631,6 +1640,7 @@
 				18040ECC1AEBAC9A00844F0C /* 4设置130x80@2x.png in Resources */,
 				18586CBA1AFA579200045A42 /* 终点38x60px@2x.png in Resources */,
 				18040EC31AEA603500844F0C /* weibo188x188@3x.png in Resources */,
+				1884F53C1B04342400F4DE19 /* trip3.jpg in Resources */,
 				18040EC21AEA603500844F0C /* weibo188x188@2x.png in Resources */,
 				18B539DB1AE7BC7C00B6F344 /* 箭头38x22@2x.png in Resources */,
 				1846F9251AC18C95006067BA /* 4设置未激活130x80@4x副本.png in Resources */,
@@ -1642,23 +1652,24 @@
 				18586C781AFA36E100045A42 /* 路线选择箭头36x68px@3x.png in Resources */,
 				18586CAD1AFA579200045A42 /* 起点38x60px.png in Resources */,
 				18B538CF1AE7BB9100B6F344 /* 放缩140x310@4x.png in Resources */,
-				18F76A1B1AB5BB0B00705FBA /* 10.jpeg in Resources */,
 				18B53A081AE7C5C200B6F344 /* 箭头30x56@3x.png in Resources */,
 				18586CA91AFA579200045A42 /* 骑车路线描边50x6px@3x.png in Resources */,
 				18B341601AA6D81A00B19ED4 /* truck.png in Resources */,
 				18B539BF1AE7BC7C00B6F344 /* 4设置未激活130x80@2x.png in Resources */,
 				18040ECD1AEBAC9A00844F0C /* 4设置130x80@3x.png in Resources */,
+				1884F53A1B04342400F4DE19 /* trip1.jpg in Resources */,
 				1817483A1AF0F39F00F1DFE8 /* 未选择56x56px.png in Resources */,
 				18B341611AA6D81A00B19ED4 /* walkingIcon.png in Resources */,
 				18B538C81AE7BB9100B6F344 /* 3我的130x80@4x.png in Resources */,
 				18B539BE1AE7BC7C00B6F344 /* 4设置未激活130x80.png in Resources */,
 				18B539A21AE7BC7C00B6F344 /* 2-70x110.png in Resources */,
-				18F76A231AB5BB0B00705FBA /* 9.jpeg in Resources */,
 				18040EBA1AEA603500844F0C /* QQ188x188@3x.png in Resources */,
 				18B539C71AE7BC7C00B6F344 /* 6-100x98@3x.png in Resources */,
 				18B340BE1AA6D4CC00B19ED4 /* Images.xcassets in Resources */,
 				18B539D81AE7BC7C00B6F344 /* 箭头2-76x44px.png in Resources */,
 				18586CA81AFA579200045A42 /* 骑车路线描边50x6px@2x.png in Resources */,
+				1884F53E1B04361400F4DE19 /* trip2.jpg in Resources */,
+				1884F5471B046E8800F4DE19 /* 12x10px@3x.png in Resources */,
 				18040EB21AEA603500844F0C /* bike104x66.png in Resources */,
 				18B539AA1AE7BC7C00B6F344 /* 3-144x92@3x.png in Resources */,
 				18586CB61AFA579200045A42 /* 行走转换22x22px.png in Resources */,
@@ -1705,13 +1716,13 @@
 				18B341621AA6D81A00B19ED4 /* 出发按钮160x160px.png in Resources */,
 				18B539CC1AE7BC7C00B6F344 /* 五角星2-56x56.png in Resources */,
 				18040EB31AEA603500844F0C /* bike104x66@2x.png in Resources */,
-				18F76A211AB5BB0B00705FBA /* 7.jpeg in Resources */,
 				18BCABA61AA9EA1E00827C66 /* tabBar3.png in Resources */,
 				18B53A151AE7C5CC00B6F344 /* 2箭头154x152.png in Resources */,
 				18B53A051AE7C5C200B6F344 /* 搜搜86x90@3x.png in Resources */,
 				18B53A181AE7C5CC00B6F344 /* 车164x166.png in Resources */,
 				1817483B1AF0F39F00F1DFE8 /* 未选择56x56px@2x.png in Resources */,
 				18048C761AF631F400E68A54 /* 搜索18x19px.png in Resources */,
+				1884F54A1B046E8800F4DE19 /* 12x10px未激活@3x.png in Resources */,
 				18F6B3D91AF34849000D9A40 /* 出发按钮312x312px.png in Resources */,
 				18040EB71AEA603500844F0C /* bus68x84@3x.png in Resources */,
 				1840802A1AB8449B00E89AB3 /* MJRefresh.bundle in Resources */,
@@ -1720,7 +1731,6 @@
 				18B539D21AE7BC7C00B6F344 /* 分享48x52@2x.png in Resources */,
 				18B539C31AE7BC7C00B6F344 /* 5-76x92@3x.png in Resources */,
 				18B53A041AE7C5C200B6F344 /* 搜搜86x90@2x.png in Resources */,
-				18F76A1E1AB5BB0B00705FBA /* 4.jpeg in Resources */,
 				18F6B3DC1AF34849000D9A40 /* 放大140x156.png in Resources */,
 				18B539951AE7BC7C00B6F344 /* 1-70x110.png in Resources */,
 				18040EB91AEA603500844F0C /* QQ188x188@2x.png in Resources */,
@@ -1728,9 +1738,9 @@
 				18586C7A1AFA36E100045A42 /* 偏好箭头36x68px@2x.png in Resources */,
 				18B53A061AE7C5C200B6F344 /* 箭头30x56.png in Resources */,
 				18586CA51AFA579200045A42 /* 公交转换22x22px@2x.png in Resources */,
-				18F76A201AB5BB0B00705FBA /* 6.jpeg in Resources */,
 				18048C681AF5E26F00E68A54 /* 指南140x140选中@2x.png in Resources */,
 				18B538CB1AE7BB9100B6F344 /* 4设置未激活130x80@4x.png in Resources */,
+				1884F5491B046E8800F4DE19 /* 12x10px未激活@2x.png in Resources */,
 				18040EDA1AEBBB6200844F0C /* 3-144x92未激活.png in Resources */,
 				18040EE41AEBBB6200844F0C /* 6-100x98未激活@2x.png in Resources */,
 				1817483C1AF0F39F00F1DFE8 /* 未选择56x56px@3x.png in Resources */,
@@ -1761,6 +1771,7 @@
 				184080331AB8449B00E89AB3 /* UIScrollView+MJExtension.m in Sources */,
 				18CE37BE1AC673D400EF6141 /* NSString+MD5.m in Sources */,
 				18B341101AA6D58300B19ED4 /* SearchRoutesViewController.m in Sources */,
+				1884F5331B0372C000F4DE19 /* showBikeOnlyRoutesViewController.m in Sources */,
 				18B3410C1AA6D58300B19ED4 /* choosePreferViewController.m in Sources */,
 				18586C841AFA416700045A42 /* CustomAnnotationView.m in Sources */,
 				18A6C28B1AE3E1FE00452140 /* AFURLConnectionOperation.m in Sources */,
@@ -1769,6 +1780,7 @@
 				18F6B3C91AF24AC0000D9A40 /* UIImage+MultiFormat.m in Sources */,
 				1840802B1AB8449B00E89AB3 /* MJRefreshComponent.m in Sources */,
 				18F769851AB45C8800705FBA /* collectionViewController.m in Sources */,
+				1884F5361B03786500F4DE19 /* textBikeOnlyRoutesView.m in Sources */,
 				18B3411A1AA6D58300B19ED4 /* withBikeTransViewController.m in Sources */,
 				18CE37C41AC673D400EF6141 /* YDRegistrationViewController.m in Sources */,
 				18B341091AA6D58300B19ED4 /* ARGeoCoordinate.m in Sources */,
@@ -1799,7 +1811,6 @@
 				18CE37BF1AC673D400EF6141 /* YDCrashHandler.m in Sources */,
 				184080341AB8449B00E89AB3 /* UIScrollView+MJRefresh.m in Sources */,
 				18F76A0B1AB5B30D00705FBA /* PSCollectionViewCell.m in Sources */,
-				18F76A0A1AB5B30D00705FBA /* PSCollectionView.m in Sources */,
 				18B340B01AA6D4CC00B19ED4 /* main.m in Sources */,
 				18A6C2861AE3E1FE00452140 /* AFHTTPRequestOperation.m in Sources */,
 				1817482D1AEE5D4C00F1DFE8 /* VPImageCropperViewController.m in Sources */,
@@ -1821,6 +1832,7 @@
 				184080311AB8449B00E89AB3 /* MJRefreshLegendFooter.m in Sources */,
 				18B341261AA6D5C600B19ED4 /* SettingMainViewController.m in Sources */,
 				18CE37A71AC5982100EF6141 /* loginViewController.m in Sources */,
+				1884F5581B04957A00F4DE19 /* PSCollectionView.m in Sources */,
 				18F6B3C01AF24AC0000D9A40 /* SDImageCache.m in Sources */,
 				18B341131AA6D58300B19ED4 /* textRoutesDetailsScrollView.m in Sources */,
 				18F6B3BE1AF24AC0000D9A40 /* MKAnnotationView+WebCache.m in Sources */,

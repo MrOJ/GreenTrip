@@ -420,15 +420,18 @@
             [activityIndicatorView startAnimating];//启动
             
             //测试
+            [self pushShowBikeOnlyRoutesViewControllerStartPoint:[AMapGeoPoint locationWithLatitude:30.223387 longitude:120.042572] endPoint:[AMapGeoPoint locationWithLatitude:30.270498 longitude:120.138268]];
+            /*
             //构造AMapNavigationSearchRequest对象，配置查询参数
             AMapNavigationSearchRequest *naviRequest= [[AMapNavigationSearchRequest alloc] init];
             naviRequest.searchType = AMapSearchType_NaviWalking;
             //naviRequest.requireExtension = YES;
             naviRequest.origin = [AMapGeoPoint locationWithLatitude:30.223387 longitude:120.042572];
-            naviRequest.destination = [AMapGeoPoint locationWithLatitude:30.270498 longitude:120.138268];
+            naviRequest.destination = [AMapGeoPoint locationWithLatitude:30.223387 longitude:120.042572];
             naviRequest.city = @"杭州";
             //发起路径搜索
             [search AMapNavigationSearch: naviRequest];
+            */
         }
             break;
         
@@ -456,7 +459,7 @@
             */
             
             //指示启动
-            //[activityIndicatorView startAnimating];//启动
+            [activityIndicatorView startAnimating];//启动
             
             //测试 西溪湿地周家村->长乐路（公交站）
             /*
@@ -739,6 +742,21 @@ updatingLocation:(BOOL)updatingLocation
     [self.navigationController pushViewController:chooserPreferVC animated:YES];
 }
 
+- (void)pushShowBikeOnlyRoutesViewControllerStartPoint:(AMapGeoPoint *)start endPoint:(AMapGeoPoint *)end
+{
+    showBikeOnlyRoutesViewController *showBikeOnlyRoutesVC = [[showBikeOnlyRoutesViewController alloc] init];
+    
+    showBikeOnlyRoutesVC.startPoint = start;
+    showBikeOnlyRoutesVC.endPoint   = end;
+    showBikeOnlyRoutesVC.startName  = startTextView.text;
+    showBikeOnlyRoutesVC.endName    = endTextView.text;
+    showBikeOnlyRoutesVC.navigationItem.title = @"自行车路线";
+    
+    [self.navigationController pushViewController:showBikeOnlyRoutesVC animated:YES];
+    
+    [activityIndicatorView stopAnimating];
+}
+
 - (void)pushWithBikeTransViewControllerStartPonit:(AMapGeoPoint *)start endPoint:(AMapGeoPoint *)end
 {
     withBikeTransViewController *withBikeTransVC = [[withBikeTransViewController alloc] init];
@@ -749,6 +767,8 @@ updatingLocation:(BOOL)updatingLocation
     withBikeTransVC.navigationItem.title = @"混合模式换乘结果";
     
     [self.navigationController pushViewController:withBikeTransVC animated:NO];
+    [activityIndicatorView stopAnimating];
+
 }
 
 //执行公交路线搜索函数

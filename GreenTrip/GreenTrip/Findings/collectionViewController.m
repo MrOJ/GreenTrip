@@ -25,6 +25,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,[UIFont systemFontOfSize:22.0f], NSFontAttributeName, nil];
+    
     self.navigationItem.title = @"绿出行圈";
     
     UIView *itemView = [[UIView alloc] initWithFrame:CGRectMake((self.view.bounds.size.width - 100) / 2, 10, 100, 30)];
@@ -79,9 +81,11 @@
     //[self.collectionView.legendHeader beginRefreshing];
     
     itemsArray = [[NSMutableArray alloc] init];
-    for (int i = 1; i < 11; i ++) {
-        [itemsArray addObject:[NSString stringWithFormat:@"%d.jpeg",i]];
+    for (int i = 1; i < 4; i ++) {
+        [itemsArray addObject:[NSString stringWithFormat:@"trip%d.jpg",i]];
     }
+    
+    capitionArray = [[NSMutableArray alloc] initWithObjects:@"面朝大海，春暖花开",@"春天踏春，来一次说走就走的旅行.",@"放飞心情~" ,nil];
     
     [self.collectionView reloadData];
 }
@@ -105,10 +109,12 @@
 }
 
 - (void)loadMoreData {
-    for (int i = 1; i < 5; i ++) {
-        [itemsArray addObject:[NSString stringWithFormat:@"%d.jpeg",i]];
+    for (int i = 1; i < 4; i ++) {
+        [itemsArray addObject:[NSString stringWithFormat:@"trip%d.jpg",i]];
     }
-    
+    [capitionArray addObject:@"面朝大海，春暖花开"];
+    [capitionArray addObject:@"春天踏春，来一次说走就走的旅行."];
+    [capitionArray addObject:@"放飞心情~"];
     [self.collectionView reloadData];
     
     [self.collectionView.legendFooter endRefreshing];
@@ -126,11 +132,12 @@
     PSBroView *v = (PSBroView *)[self.collectionView dequeueReusableView];
     if (!v) {
         v = [[PSBroView alloc] initWithFrame:CGRectZero];
-        v.layer.cornerRadius = 5.0f;
+        v.layer.cornerRadius = 3.0f;
         v.layer.masksToBounds = YES;
     }
     
     [v fillViewWithObject:[itemsArray objectAtIndex:index]];
+    [v fillViewWithText:[capitionArray objectAtIndex:index]];
     
     return v;
     
@@ -141,7 +148,9 @@
     
     //NSDictionary *item = [self.items objectAtIndex:index];
     
-    return [PSBroView heightForViewWithObject:[itemsArray objectAtIndex:index] inColumnWidth:self.collectionView.colWidth];
+    //NSLog(@"self.collectionView.colWidth = %f".self.collectionView.colWidth.height);
+    
+    return [PSBroView heightForViewWithObject:[itemsArray objectAtIndex:index] withCapitionStr:[capitionArray objectAtIndex:index] inColumnWidth:self.collectionView.colWidth];
     
     //return 0.0;
 }

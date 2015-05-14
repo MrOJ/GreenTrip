@@ -60,6 +60,9 @@
     NSString *busName;
     
     //AMapNavigationSearchRequest *naviBikeRequest;
+    
+    NSMutableArray *wayIndexArray;
+    NSInteger indicatorTag;
 }
 
 @property(nonatomic, strong) AMapGeoPoint *startPoint;
@@ -69,5 +72,10 @@
 @property(nonatomic, strong) NSString *endName;
 
 @property(nonatomic, strong) AMapPOI *bicyclePOI;
+
+@property (nonatomic, strong) UIButton *indicatorButton;
+@property (nonatomic, strong) UIView *scalingView;
+@property (strong, nonatomic) UIButton *increaseButton;
+@property (strong, nonatomic) UIButton *decreaseButton;
 
 @end

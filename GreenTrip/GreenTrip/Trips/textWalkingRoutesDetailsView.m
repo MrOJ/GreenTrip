@@ -23,7 +23,7 @@
         self.layer.borderColor = [[UIColor lightGrayColor] CGColor];
         self.layer.shadowOffset = CGSizeMake(0, 2);
         self.layer.shadowOpacity = 1;
-        self.layer.shadowColor = [UIColor blackColor].CGColor;
+        self.layer.shadowColor = [UIColor lightGrayColor].CGColor;
         
         //添加点击响应
         UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
@@ -92,14 +92,14 @@
             
         }];
         
-        arrowImageView.image = [UIImage imageNamed:@"disclosure_arrow_180"];
+        arrowImageView.image = [UIImage imageNamed:@"下拉箭头19x11px"];
         
     } else {
         [UIView animateWithDuration:0.6 animations:^{
             self.center = CGPointMake(self.center.x, initPoint.y);
         }];
         
-        arrowImageView.image = [UIImage imageNamed:@"disclosure_arrow"];
+        arrowImageView.image = [UIImage imageNamed:@"上拉箭头19x11px"];
     }
     
 }
@@ -111,14 +111,14 @@
             self.center = CGPointMake(self.center.x, self.superview.center.y);
         }];
         
-        arrowImageView.image = [UIImage imageNamed:@"disclosure_arrow_180"];
+        arrowImageView.image = [UIImage imageNamed:@"下拉箭头19x11px"];
         
     } else {
         [UIView animateWithDuration:0.6 animations:^{
             self.center = CGPointMake(self.center.x, initPoint.y);
         }];
         
-        arrowImageView.image = [UIImage imageNamed:@"disclosure_arrow"];
+        arrowImageView.image = [UIImage imageNamed:@"上拉箭头19x11px"];
     }
     
 }
@@ -137,7 +137,7 @@
     CGPoint point = [touch locationInView:self];
     
     // 判断是不是点击顶部的brief栏，如果不是,则tap手势不响应事件
-    if ((point.y >= 0.0 && point.y <= 84.0)) {
+    if ((point.y >= 0.0 && point.y <= 90.0)) {
         return YES;
     }
     //self.scrollEnabled = YES;
@@ -152,8 +152,8 @@
     [self addSubview:briefView];
     
     //添加箭头
-    arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake((self.center.x - 8), 5, 16, 10)];
-    arrowImageView.image = [UIImage imageNamed:@"disclosure_arrow"];
+    arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake((self.center.x - 10), 13, 19, 11)];
+    arrowImageView.image = [UIImage imageNamed:@"上拉箭头19x11px"];
     [briefView addSubview:arrowImageView];
     
     NSInteger totalDistance = 0;
@@ -163,7 +163,7 @@
         totalDuration += p.duration;
     }
     
-    UILabel *walkingDetailsLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 30, 200, 20)];
+    UILabel *walkingDetailsLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 38, 200, 20)];
     walkingDetailsLabel.text = [NSString stringWithFormat:@"%@ | 约%@", [self distanceFormatted:totalDistance],[self timeFormatted:totalDuration]];
     walkingDetailsLabel.font = [UIFont fontWithName:@"Heiti SC-Bold" size:14.0f];
     [briefView addSubview:walkingDetailsLabel];
@@ -283,7 +283,7 @@
         self.center = CGPointMake(self.center.x, initPoint.y);
     }];
     
-    arrowImageView.image = [UIImage imageNamed:@"disclosure_arrow"];
+    arrowImageView.image = [UIImage imageNamed:@"上拉箭头19x11px"];
     
     MAMapView *myMap = (MAMapView *)[self superview];
     AMapGeoPoint *origin = (AMapGeoPoint *)[originPonitArray objectAtIndex:row];

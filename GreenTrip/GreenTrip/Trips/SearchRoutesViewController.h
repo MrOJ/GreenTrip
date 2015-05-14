@@ -13,6 +13,7 @@
 #import "choosePreferViewController.h"
 #import "showRoutesDetailsViewController.h"
 #import "withBikeTransViewController.h"
+#import "showBikeOnlyRoutesViewController.h"
 
 @interface SearchRoutesViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, AMapSearchDelegate,MAMapViewDelegate,UITextFieldDelegate>
 {

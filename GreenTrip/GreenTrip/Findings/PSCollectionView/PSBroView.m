@@ -17,7 +17,15 @@
 @interface PSBroView ()
 
 @property (nonatomic, strong) UIImageView *imageView;
+
+@property (nonatomic, strong) UIButton *imageButton;
+
 @property (nonatomic, strong) UILabel *captionLabel;
+@property (nonatomic, strong) UIView *profileView;
+@property (nonatomic, strong) UIImageView *profileImge;
+@property (nonatomic, strong) UILabel *nickname;
+@property (nonatomic, strong) UILabel *releaseTime;
+@property (nonatomic, strong) UIButton *likeButton;
 
 @end
 
@@ -25,7 +33,13 @@
 
 @synthesize
 imageView = _imageView,
-captionLabel = _captionLabel;
+imageButton = _imageButton,
+captionLabel = _captionLabel,
+profileView = _profileView,
+profileImge = _profileImge,
+nickname = _nickname,
+releaseTime = _releaseTime,
+likeButton = _likeButton;
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -33,13 +47,51 @@ captionLabel = _captionLabel;
         self.backgroundColor = [UIColor whiteColor];
         
         self.imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
-        self.imageView.clipsToBounds = YES;
-        [self addSubview:self.imageView];
+        //self.imageView.clipsToBounds = YES;
+        //[self addSubview:self.imageView];
+        
+        self.imageButton = [[UIButton alloc] initWithFrame:CGRectZero];
+        self.imageButton.clipsToBounds = YES;
+        [self addSubview:self.imageButton];
         
         self.captionLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        self.captionLabel.font = [UIFont boldSystemFontOfSize:12.0f];
+        self.captionLabel.font = [UIFont boldSystemFontOfSize:13.0f];
         self.captionLabel.numberOfLines = 0;
         [self addSubview:self.captionLabel];
+        
+        self.profileView = [[UIView alloc] initWithFrame:CGRectZero];
+        self.profileView.backgroundColor = [UIColor clearColor];
+        [self addSubview:self.profileView];
+        
+        self.profileImge =  [[UIImageView alloc] initWithFrame:CGRectZero];
+        self.nickname = [[UILabel alloc] init];
+        self.releaseTime = [[UILabel alloc] init];
+        
+        //设置头像
+        self.profileImge.frame = CGRectMake(12, 17, 31, 31);
+        self.profileImge.image = [UIImage imageNamed:@"proxy.png"];
+        self.profileImge.layer.masksToBounds = YES;
+        self.profileImge.layer.borderColor = myColor.CGColor;
+        self.profileImge.layer.cornerRadius = 31 / 2;
+        [self.profileView addSubview:self.profileImge];
+        
+        //设置发布时间
+        //self.releaseTime.frame = CGRectMake(50, 19, self.frame.size.width - 50 - 23, 15);
+        self.releaseTime.text = @"1小时前";
+        self.releaseTime.textColor = [UIColor lightGrayColor];
+        self.releaseTime.font = [UIFont systemFontOfSize:11.0f];
+        [self.profileView addSubview:self.releaseTime];
+        
+        //设置昵称
+        //NSLog(@"%f",self.frame.size.width);
+        //self.nickname.frame = CGRectMake(50, 34, self.frame.size.width - 50 - 23, 15);
+        self.nickname.text = @"MrOJ";
+        self.nickname.textColor = [UIColor blackColor];
+        self.nickname.font = [UIFont systemFontOfSize:12.0f];
+        [self.profileView addSubview:self.nickname];
+        
+        self.likeButton = [[UIButton alloc] initWithFrame:CGRectZero];
+        
     }
     return self;
 }
@@ -53,17 +105,17 @@ captionLabel = _captionLabel;
 
     
     // Image
-    //CGFloat objectWidth = [[self.object objectForKey:@"width"] floatValue];
-    //CGFloat objectHeight = [[self.object objectForKey:@"height"] floatValue];
     CGFloat objectWidth = self.imageView.image.size.width;
     CGFloat objectHeight = self.imageView.image.size.height;
     CGFloat scaledHeight = floorf(objectHeight / (objectWidth / width));
     self.imageView.frame = CGRectMake(left, top, width, scaledHeight);
     
+    self.imageButton.frame = self.imageView.frame;
+    [self.imageButton addTarget:self action:@selector(openImage:) forControlEvents:UIControlEventTouchUpInside];
+    [self.imageButton addSubview:self.imageView];
+    
     // Label
     CGSize labelSize = CGSizeZero;
-    //labelSize = [self.captionLabel.text sizeWithFont:self.captionLabel.font constrainedToSize:CGSizeMake(width, INT_MAX) lineBreakMode:self.captionLabel.lineBreakMode];
-    
     NSAttributedString *attributedText =
     [[NSAttributedString alloc]
      initWithString:self.captionLabel.text
@@ -75,10 +127,40 @@ captionLabel = _captionLabel;
                                                options:NSStringDrawingUsesLineFragmentOrigin
                                                context:nil];
     labelSize = rect.size;
-    
     top = self.imageView.frame.origin.y + self.imageView.frame.size.height + MARGIN;
+    self.captionLabel.frame = CGRectMake(12, top+12, self.frame.size.width - 24, labelSize.height);
     
-    self.captionLabel.frame = CGRectMake(left, top, labelSize.width, labelSize.height);
+    //设置个人信息
+    self.profileView.frame = CGRectMake(0, top + self.captionLabel.frame.size.height + 12, self.frame.size.width, 70);
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 9, self.frame.size.width, 0.5)];
+    line.backgroundColor = myColor;
+    [self.profileView addSubview:line];
+    
+    self.releaseTime.frame = CGRectMake(50, 19, self.frame.size.width - 50 - 38, 15);
+    self.nickname.frame = CGRectMake(50, 34, self.frame.size.width - 50 - 38, 15);
+    
+    self.likeButton.frame = CGRectMake(self.frame.size.width - 50, self.profileView.frame.size.height - 36, 48, 14);
+    //self.likeButton.backgroundColor = [UIColor redColor];
+    [self.likeButton setImage:[UIImage imageNamed:@"12x10px未激活"] forState:UIControlStateNormal];
+    [self.likeButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0.0, 0, 8.0)];
+    self.likeButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+    [self.likeButton setTitle:@"99+" forState:UIControlStateNormal];
+    //[self.likeButton sizeToFit];
+    [self.likeButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 8, 0, 0.0)];
+    self.likeButton.titleLabel.font = [UIFont systemFontOfSize:13.0f];
+    [self.likeButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    [self.likeButton addTarget:self action:@selector(pressLikeButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.profileView addSubview:self.likeButton];
+
+}
+
+- (void)openImage:(id)sender {
+    NSLog(@"open");
+}
+
+- (void)pressLikeButton:(id)sender {
+    NSLog(@"like!");
+    
 }
 
 - (void)fillViewWithObject:(id)str {
@@ -95,11 +177,18 @@ captionLabel = _captionLabel;
     */
     
     self.imageView.image = [UIImage imageNamed:str];
+    //self.captionLabel.text = str;
+    
+}
+
+- (void)fillViewWithText:(id)str {
+    [super fillViewWithText:str];
+    
     self.captionLabel.text = str;
     
 }
 
-+ (CGFloat)heightForViewWithObject:(id)object inColumnWidth:(CGFloat)columnWidth {
++ (CGFloat)heightForViewWithObject:(id)object withCapitionStr:(NSString *)str inColumnWidth:(CGFloat)columnWidth {
     CGFloat height = 0.0;
     CGFloat width = columnWidth - MARGIN * 2;
     
@@ -116,9 +205,10 @@ captionLabel = _captionLabel;
     height += scaledHeight;
     
     // Label
-    NSString *caption = object;
+    NSString *caption = str;
     CGSize labelSize = CGSizeZero;
-    UIFont *labelFont = [UIFont boldSystemFontOfSize:14.0];
+    UIFont *labelFont = [UIFont boldSystemFontOfSize:12.0];
+    
     //labelSize = [caption sizeWithFont:labelFont constrainedToSize:CGSizeMake(width, INT_MAX) lineBreakMode:NSLineBreakByWordWrapping];
     NSAttributedString *attributedText =
     [[NSAttributedString alloc]
@@ -132,9 +222,10 @@ captionLabel = _captionLabel;
                                                context:nil];
     labelSize = rect.size;
     
-    height += labelSize.height;
+    //height += self->captionLabel.frame.size.height;
+    height += rect.size.height;
     
-    height += MARGIN;
+    height += 70;
     
     return height;
 }

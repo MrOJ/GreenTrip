@@ -32,6 +32,8 @@
 @synthesize
 object = _object;
 
+@synthesize textStr;
+
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
@@ -47,7 +49,11 @@ object = _object;
     self.object = object;
 }
 
-+ (CGFloat)heightForViewWithObject:(id)object inColumnWidth:(CGFloat)columnWidth {
+- (void)fillViewWithText:(id)str {
+    self.textStr = str;
+}
+
++ (CGFloat)heightForViewWithObject:(id)object withCapitionStr:(NSString *)str inColumnWidth:(CGFloat)columnWidth {
     return 0.0;
 }
 

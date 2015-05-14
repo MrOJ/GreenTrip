@@ -1,8 +1,7 @@
-//
-// PSCollectionViewCell.h
-//
-// Copyright (c) 2012 Peter Shih (http://petershih.com)
+// UIImage+AspectFit.m
 // 
+// Copyright (c) 2013 Guillermo Gonzalez
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
@@ -21,16 +20,27 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import "UIImage+AspectFit.h"
 
-@interface PSCollectionViewCell : UIView
+@implementation UIImage (AspectFit)
 
-@property (nonatomic, strong) id object;
-@property (nonatomic, strong) NSString *textStr;
-
-- (void)prepareForReuse;
-- (void)fillViewWithObject:(id)object;
-- (void)fillViewWithText:(id)str;
-+ (CGFloat)heightForViewWithObject:(id)object withCapitionStr:(NSString *)str inColumnWidth:(CGFloat)columnWidth;
+- (CGRect)tgr_aspectFitRectForSize:(CGSize)size {
+    CGFloat targetAspect = size.width / size.height;
+    CGFloat sourceAspect = self.size.width / self.size.height;
+    CGRect rect = CGRectZero;
+    
+    if (targetAspect > sourceAspect) {
+        rect.size.height = size.height;
+        rect.size.width = ceilf(rect.size.height * sourceAspect);
+        rect.origin.x = ceilf((size.width - rect.size.width) * 0.5);
+    }
+    else {
+        rect.size.width = size.width;
+        rect.size.height = ceilf(rect.size.width / sourceAspect);
+        rect.origin.y = ceilf((size.height - rect.size.height) * 0.5);
+    }
+    
+    return rect;
+}
 
 @end
