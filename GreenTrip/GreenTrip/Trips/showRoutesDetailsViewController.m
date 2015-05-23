@@ -30,10 +30,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    //self.navigationController.navigationBarHidden = NO;
-    
-    //NSLog(@"Hello@");
     self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:myColor,NSForegroundColorAttributeName,[UIFont systemFontOfSize:22.0f], NSFontAttributeName, nil];
+    
+    UIBarButtonItem *registerButton = [[UIBarButtonItem alloc] initWithTitle:@"结束" style:UIBarButtonItemStylePlain target:self action:@selector(finishTrip:)];
+    //[registerButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:myColor,NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
+    self.navigationItem.rightBarButtonItem = registerButton;
     
     NSString *myKey = @"f57ba48c60c524724d3beff7f7063af9";
     [MAMapServices sharedServices].apiKey = myKey;
@@ -237,6 +238,17 @@
     [indicatorButton setImage:[UIImage imageNamed:@"指南140x140"] forState:UIControlStateNormal];
     indicatorTag = 0;
     
+}
+
+- (void)finishTrip:(id)sender
+{
+    NSLog(@"finish.");
+    finishTripResultView *finishView = [[finishTripResultView alloc] initWithFrame:CGRectMake((self.view.bounds.size.width - 280) / 2, 40, 280, 290 + 90)];
+    finishView.backgroundColor = [UIColor clearColor];
+    [finishView initSubViews];
+    
+    KLCPopup *popup = [KLCPopup popupWithContentView:finishView showType:KLCPopupShowTypeGrowIn dismissType:KLCPopupDismissTypeGrowOut maskType:KLCPopupMaskTypeDimmed dismissOnBackgroundTouch:YES dismissOnContentTouch:NO];
+    [popup show];
 }
 
 #pragma mark 视图切换

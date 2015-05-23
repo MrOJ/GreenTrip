@@ -140,7 +140,7 @@
             if ([startTextView.text isEqualToString:@"我的位置"]) {
                 //收到数据后直接运行路径规划程序
                 AMapGeoPoint *start = [AMapGeoPoint locationWithLatitude:userLatitude longitude:userLongtitude];;
-                [self navigationBusSearchStartLacation:start getLocation:endPoint chooseStategy:[getPattern integerValue] city:@"杭州"];
+                [self navigationBusSearchStartLacation:start getLocation:endPoint chooseStategy:[getPattern integerValue] city:@"杭州"];;
             } else {
                 [self navigationBusSearchStartLacation:startPoint getLocation:endPoint chooseStategy:[getPattern integerValue] city:@"杭州"];
                 
@@ -151,7 +151,7 @@
             NSLog(@"输入不能为空");
             [searchButton setEnabled:NO];
         }
-    } else if (wayFlag == 2 || wayFlag == 3) {
+    } else if (wayFlag == 2) {
         if (![startTextView.text isEqualToString:@""] && ![endTextView.text isEqualToString:@""]) {
             [searchButton setEnabled:YES];
             if ([startTextView.text isEqualToString:@"我的位置"]) {
@@ -161,6 +161,22 @@
             } else {
                 [self navigationWalkingSearchStartLacation:startPoint getLocation:endPoint chooseStategy:[getPattern integerValue] city:@"杭州"];
             }
+        } else {
+            NSLog(@"输入不能为空");
+            [searchButton setEnabled:NO];
+        }
+    }  else if (wayFlag == 3) {
+        if (![startTextView.text isEqualToString:@""] && ![endTextView.text isEqualToString:@""]) {
+            [searchButton setEnabled:YES];
+            
+            //起点搜寻r米范围内的自行车租赁点
+            //由于不能直接继续push视图，因此在这里设置一定的延迟在推入，如果直接点搜索则问题不大
+            AMapPlaceSearchRequest *poiRequest = [[AMapPlaceSearchRequest alloc] init];
+            poiRequest.searchType = AMapSearchType_PlaceAround;
+            poiRequest.location = startPoint;//固定的站点，难怪不会实时动态更新
+            poiRequest.keywords = @"自行车租赁点";
+            poiRequest.radius= 500;
+            [search AMapPlaceSearch: poiRequest];
         } else {
             NSLog(@"输入不能为空");
             [searchButton setEnabled:NO];
@@ -527,19 +543,24 @@
 
 - (void)onPlaceSearchDone:(AMapPlaceSearchRequest *)request response:(AMapPlaceSearchResponse *)response
 {
-    //NSLog(@"Hello");
-    
-    //[self reloadInputViews]
-    
-    //NSLog(@"bicycleName = %@", [withBikeResults getBicyleStation]);
     if ([startTextView.text isEqualToString:@"我的位置"]) {
         //收到数据后直接运行路径规划程序
         AMapGeoPoint *start = [AMapGeoPoint locationWithLatitude:userLatitude longitude:userLongtitude];;
         
-        [self pushWithBikeTransViewControllerStartPonit:start endPoint:endPoint];
+        if (wayFlag == 1) {
+            [self pushWithBikeTransViewControllerStartPonit:start endPoint:endPoint];
+        } else if (wayFlag == 3) {
+            [self pushShowBikeOnlyRoutesViewControllerStartPoint:start endPoint:endPoint];
+        }
+
         
     } else {
-        [self pushWithBikeTransViewControllerStartPonit:startPoint endPoint:endPoint];
+        if (wayFlag == 1) {
+            [self pushWithBikeTransViewControllerStartPonit:startPoint endPoint:endPoint];
+        } else if (wayFlag == 3) {
+            [self pushShowBikeOnlyRoutesViewControllerStartPoint:startPoint endPoint:endPoint];
+
+        }
     }
     
 }
@@ -752,7 +773,7 @@ updatingLocation:(BOOL)updatingLocation
     showBikeOnlyRoutesVC.endName    = endTextView.text;
     showBikeOnlyRoutesVC.navigationItem.title = @"自行车路线";
     
-    [self.navigationController pushViewController:showBikeOnlyRoutesVC animated:YES];
+    [self.navigationController pushViewController:showBikeOnlyRoutesVC animated:NO];
     
     [activityIndicatorView stopAnimating];
 }

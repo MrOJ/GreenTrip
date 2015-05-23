@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <MAMapKit/MAMapKit.h>
 #import <AMapSearchKit/AMapSearchAPI.h>
-//#import "ExtensibleTableView.h"
+#import "ExtensibleTableView.h"
 
+#define iosBlue [UIColor colorWithRed:28.0 / 255.0f green:98 / 255.0f blue:255.0 / 255.0f alpha:1.0f]
 #define myColor [UIColor colorWithRed:119.0 / 255.0f green:185.0 / 255.0f blue:67.0 / 255.0f alpha:1.0f]
 
-@interface textBikeOnlyRoutesView : UIView<UIGestureRecognizerDelegate>
+@interface textBikeOnlyRoutesView : UIView<UIGestureRecognizerDelegate,UITableViewDataSource,UITableViewDelegate>
 {
     CGPoint beginPoint;
     CGPoint initPoint;
@@ -40,10 +41,23 @@
     NSArray *bikeSteps;
     NSString *bikeStr;
     
-    //ExtensibleTableView *listTableView;
+    ExtensibleTableView *listTableView;
 }
 
 @property (nonatomic) BOOL dragEnable;
+@property (nonatomic) int flag;                                   //用于记录是从起点开始还是从终点开始
+@property (nonatomic, strong) AMapRoute *walkingRoute;
+@property (nonatomic, strong) AMapRoute *bikeRoute;
+@property (nonatomic, strong) AMapRoute *busRoute;
+
+@property (nonatomic, strong) NSString *startName;                //起点名称
+@property (nonatomic, strong) NSString *endName;                  //终点名称
+@property (nonatomic, strong) NSString *busName;
+
+@property (nonatomic, strong) NSString *startBikeStopName;
+@property (nonatomic, strong) NSString *endBikeStopName;
+
+@property (nonatomic, strong) NSMutableDictionary *allRoutesDictionary;                //存放总线路
 
 - (void)buildingView;
 - (NSString *)timeFormatted:(NSInteger)totalSeconds;

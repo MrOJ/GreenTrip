@@ -408,7 +408,7 @@
         for (int i = 0; i < stepsArray.count; i ++) {
             AMapStep *s = (AMapStep *)stepsArray[i];
             UILabel *detailsLabel = [[UILabel alloc] initWithFrame:CGRectMake(52, 0 + 20 * i, 200, 12)];
-            detailsLabel.text = s.instruction;
+            detailsLabel.text = [s.instruction stringByReplacingOccurrencesOfString:@"步行" withString:@"骑行"];
             detailsLabel.textColor = [UIColor blackColor];
             detailsLabel.font = [UIFont fontWithName:@"Heiti SC" size:12.0f];
             [detailsButton addSubview:detailsLabel];

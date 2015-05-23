@@ -295,7 +295,7 @@
         [search AMapPlaceSearch: poiRequest];
         
     } else  if (tableView.tag == 2) {    //如果是确认界面
-        //NSLog(@"choose!");
+        NSLog(@"choose!");
         [[NSNotificationCenter defaultCenter] postNotificationName:@"passValue"
                                                             object:self
                                                           userInfo:@{@"name":[nameArray objectAtIndex:row],

@@ -21,6 +21,7 @@
 @synthesize busButton,bikePlaceButton;
 
 @synthesize tipsResultTableView,myUserLocation,POIsArray;
+@synthesize locationButton;
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -31,6 +32,8 @@
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,[UIFont systemFontOfSize:22.0f], NSFontAttributeName, nil];
     //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    //NSLog(@"%@",[NSBundle mainBundle].bundleIdentifier);
 }
 
 - (void)viewDidLoad {
@@ -120,7 +123,6 @@
     
     [myMapView addSubview:tipsResultTableView];
     
-    
     [myMapView addSubview:indicatorButton];
     [myMapView addSubview:startButton];
     [myMapView addSubview:scalingView];
@@ -134,6 +136,8 @@
     [_mapView addGestureRecognizer:tapGesture];
     
     myAlert = [[UIAlertView alloc] initWithTitle:nil message:@"搜索到附近800m范围自行车站点" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil];
+    
+    [locationButton addTarget:self action:@selector(location:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (IBAction)getIndicator:(id)sender {
@@ -209,6 +213,19 @@
     poiRequest.keywords = @"自行车租赁点";
     poiRequest.radius= 800;
     [search AMapPlaceSearch: poiRequest];
+}
+
+- (void)location:(id)sender {
+    NSLog(@"location.");
+    /*
+    finishTripResultView *finishView = [[finishTripResultView alloc] initWithFrame:CGRectMake((self.view.bounds.size.width - 280) / 2, 40, 280, 290 + 90)];
+    finishView.backgroundColor = [UIColor clearColor];
+    [finishView initSubViews];
+    
+    KLCPopup *popup = [KLCPopup popupWithContentView:finishView showType:KLCPopupShowTypeGrowIn dismissType:KLCPopupDismissTypeGrowOut maskType:KLCPopupMaskTypeDimmed dismissOnBackgroundTouch:YES dismissOnContentTouch:NO];
+    [popup show];
+    */
+    
 }
 
 # pragma TextField

@@ -92,7 +92,7 @@
         NSDictionary *dict = @{ @"username":self.usernameTextField.text, @"password":[self.passwordTextField.text MD5] };
         
         //3.请求
-        [manager GET:@"http://localhost:1200/login" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+        [manager GET:@"http://192.168.1.103:1200/login" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"GET --> %@", responseObject); //自动返回主线程
             
             NSString *getLogin = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"login"]];
@@ -108,7 +108,7 @@
                 nicknameLabel.text = getNickname;
                 
                 //利用SDWenImage下载图片
-                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:1200/syncportrait?image=%@",getPortraitImage]];
+                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://192.168.1.103:1200/syncportrait?image=%@",getPortraitImage]];
                 SDWebImageManager *manager = [SDWebImageManager sharedManager];
                 [manager downloadImageWithURL:url options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
                     // progression tracking code
@@ -204,7 +204,7 @@
         if (![usernameStr isEqualToString:@""]) {
             dict = @{ @"username":usernameStr};
             
-            NSMutableURLRequest *urlrequest = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:@"http://localhost:1200/upload" parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+            NSMutableURLRequest *urlrequest = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:@"http://192.168.1.103:1200/upload" parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                 [formData appendPartWithFileData:data name:@"myfile" fileName:fileName mimeType:@"image/png"];
                 
             } error:nil];

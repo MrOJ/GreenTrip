@@ -11,6 +11,8 @@
 #import <AMapSearchKit/AMapSearchAPI.h>
 #import "CommonUtility.h"
 #import "CustomAnnotationView.h"
+#import "finishTripResultView.h"
+#import "KLCPopup.h"
 
 #define myColor [UIColor colorWithRed:119.0 / 255.0f green:185.0 / 255.0f blue:67.0 / 255.0f alpha:1.0f]
 
@@ -53,6 +55,7 @@
 
 @property (strong, nonatomic) UITableView *tipsResultTableView;
 
+@property (strong, nonatomic) IBOutlet UIButton *locationButton;
 @property (strong, nonatomic) MAUserLocation *myUserLocation;;
 
 @property (strong, nonatomic) NSMutableArray *POIsArray;
@@ -65,4 +68,6 @@
 - (IBAction)decreaseScaling:(id)sender;
 
 - (IBAction)bikePointSearch:(id)sender;
+- (void)location:(id)sender;
+
 @end

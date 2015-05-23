@@ -286,6 +286,8 @@
 		18BCABA51AA9EA1E00827C66 /* tabBar2.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BCABA11AA9EA1E00827C66 /* tabBar2.png */; };
 		18BCABA61AA9EA1E00827C66 /* tabBar3.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BCABA21AA9EA1E00827C66 /* tabBar3.png */; };
 		18BCABA71AA9EA1E00827C66 /* tabBar4.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BCABA31AA9EA1E00827C66 /* tabBar4.png */; };
+		18C282571B0B48AC00602CBF /* KLCPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C282561B0B48AC00602CBF /* KLCPopup.m */; };
+		18C2825D1B0B4B4100602CBF /* finishTripResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C2825C1B0B4B4100602CBF /* finishTripResultView.m */; };
 		18CE37A71AC5982100EF6141 /* loginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CE37A61AC5982100EF6141 /* loginViewController.m */; };
 		18CE37BE1AC673D400EF6141 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CE37AA1AC673D400EF6141 /* NSString+MD5.m */; };
 		18CE37BF1AC673D400EF6141 /* YDCrashHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CE37AD1AC673D400EF6141 /* YDCrashHandler.m */; };
@@ -676,6 +678,10 @@
 		18BCABA11AA9EA1E00827C66 /* tabBar2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabBar2.png; sourceTree = "<group>"; };
 		18BCABA21AA9EA1E00827C66 /* tabBar3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabBar3.png; sourceTree = "<group>"; };
 		18BCABA31AA9EA1E00827C66 /* tabBar4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabBar4.png; sourceTree = "<group>"; };
+		18C282551B0B48AC00602CBF /* KLCPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLCPopup.h; sourceTree = "<group>"; };
+		18C282561B0B48AC00602CBF /* KLCPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLCPopup.m; sourceTree = "<group>"; };
+		18C2825B1B0B4B4100602CBF /* finishTripResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = finishTripResultView.h; sourceTree = "<group>"; };
+		18C2825C1B0B4B4100602CBF /* finishTripResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = finishTripResultView.m; sourceTree = "<group>"; };
 		18CE37A51AC5982100EF6141 /* loginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = loginViewController.h; sourceTree = "<group>"; };
 		18CE37A61AC5982100EF6141 /* loginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = loginViewController.m; sourceTree = "<group>"; };
 		18CE37A91AC673D400EF6141 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
@@ -937,6 +943,7 @@
 		18B340AC1AA6D4CC00B19ED4 /* GreenTrip */ = {
 			isa = PBXGroup;
 			children = (
+				18C282541B0B48AC00602CBF /* KLCPopup */,
 				18B340B11AA6D4CC00B19ED4 /* AppDelegate.h */,
 				18B340B21AA6D4CC00B19ED4 /* AppDelegate.m */,
 				18B340D61AA6D55700B19ED4 /* Main.storyboard */,
@@ -995,6 +1002,8 @@
 				18B340E71AA6D58300B19ED4 /* choosePreferViewController.m */,
 				18B340F31AA6D58300B19ED4 /* textFieldEditDetailsViewController.h */,
 				18B340F41AA6D58300B19ED4 /* textFieldEditDetailsViewController.m */,
+				18C2825B1B0B4B4100602CBF /* finishTripResultView.h */,
+				18C2825C1B0B4B4100602CBF /* finishTripResultView.m */,
 				18B340F11AA6D58300B19ED4 /* showRoutesDetailsViewController.h */,
 				18B340F21AA6D58300B19ED4 /* showRoutesDetailsViewController.m */,
 				18B340F51AA6D58300B19ED4 /* textRoutesDetailsScrollView.h */,
@@ -1338,6 +1347,15 @@
 				18B539FF1AE7C5C200B6F344 /* 箭头30x56@3x.png */,
 			);
 			path = finding;
+			sourceTree = "<group>";
+		};
+		18C282541B0B48AC00602CBF /* KLCPopup */ = {
+			isa = PBXGroup;
+			children = (
+				18C282551B0B48AC00602CBF /* KLCPopup.h */,
+				18C282561B0B48AC00602CBF /* KLCPopup.m */,
+			);
+			path = KLCPopup;
 			sourceTree = "<group>";
 		};
 		18CE37A81AC673D400EF6141 /* Categories */ = {
@@ -1844,6 +1862,7 @@
 				1817482D1AEE5D4C00F1DFE8 /* VPImageCropperViewController.m in Sources */,
 				18F6B3C11AF24AC0000D9A40 /* SDWebImageCompat.m in Sources */,
 				18A6C2881AE3E1FE00452140 /* AFHTTPSessionManager.m in Sources */,
+				18C282571B0B48AC00602CBF /* KLCPopup.m in Sources */,
 				18CE37C21AC673D400EF6141 /* YDLoginViewController.m in Sources */,
 				18B341161AA6D58300B19ED4 /* TripsMainViewController.m in Sources */,
 				1884F59C1B04CA6F00F4DE19 /* PSCollectionView.m in Sources */,
@@ -1858,6 +1877,7 @@
 				18B341121AA6D58300B19ED4 /* textFieldEditDetailsViewController.m in Sources */,
 				18040EC61AEA66DC00844F0C /* profilesViewController.m in Sources */,
 				18B3410A1AA6D58300B19ED4 /* ARViewController.m in Sources */,
+				18C2825D1B0B4B4100602CBF /* finishTripResultView.m in Sources */,
 				18B341061AA6D58300B19ED4 /* ARAnnotation.m in Sources */,
 				184080311AB8449B00E89AB3 /* MJRefreshLegendFooter.m in Sources */,
 				18B341261AA6D5C600B19ED4 /* SettingMainViewController.m in Sources */,

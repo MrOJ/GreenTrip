@@ -12,6 +12,8 @@
 #import "CommonUtility.h"
 #import "textRoutesDetailsScrollView.h"
 #import "textWalkingRoutesDetailsView.h"
+#import "finishTripResultView.h"
+#import "KLCPopup.h"
 
 @interface showRoutesDetailsViewController : UIViewController<AMapSearchDelegate,MAMapViewDelegate,UIScrollViewDelegate,UIGestureRecognizerDelegate>
 {

@@ -218,20 +218,6 @@
         cell =[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellTableIdentifier];
         
         if (row == [stepArray count] - 1) {            //最后一个添加额外的收藏与分享按钮
-            //NSLog(@"hello");
-            /*
-            UILabel *stepLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, (50 - 14) / 2, [self superview].bounds.size.width, 14)];
-            stepLabel.text = [stepArray objectAtIndex:row];
-            stepLabel.textColor = [UIColor blackColor];
-            stepLabel.font = [UIFont fontWithName:@"Heiti SC" size:14.0f];
-            
-            UIView *line = [[UIView alloc] initWithFrame:CGRectMake(52, 49, [self superview].bounds.size.width - 50 - 30, 2)];
-            line.backgroundColor = [UIColor groupTableViewBackgroundColor];
-            
-            UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 18, 13, 13)];
-            iconImageView.image = [UIImage imageNamed:@"50x50"];
-            [cell addSubview:iconImageView];
-            */
             UIView *exView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [self superview].bounds.size.width, 80)];
             exView.backgroundColor = [UIColor groupTableViewBackgroundColor];
             [cell addSubview:exView];

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="FYR-EA-tLT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="FYR-EA-tLT">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -470,6 +470,7 @@
                         <outlet property="decreaseButton" destination="KW4-t2-wxR" id="tz7-Gv-60n"/>
                         <outlet property="increaseButton" destination="m4I-yc-XJ6" id="WJn-ig-GLJ"/>
                         <outlet property="indicatorButton" destination="NU8-B4-tgo" id="4ms-1k-Mg5"/>
+                        <outlet property="locationButton" destination="sKR-XF-9dS" id="iTG-QV-ve1"/>
                         <outlet property="scalingView" destination="gp0-Pb-den" id="dA3-qx-Vqv"/>
                         <outlet property="searchDisplayController" destination="Gmw-nh-jGe" id="aAL-6U-7CV"/>
                         <outlet property="searchIconView" destination="1Qc-xY-PXR" id="RWW-zp-xQ0"/>

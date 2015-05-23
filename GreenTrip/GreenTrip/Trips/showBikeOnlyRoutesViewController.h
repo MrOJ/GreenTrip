@@ -27,9 +27,25 @@
     
     double ODDistance;
     
-    AMapPOI *targetStartPOI;
-    AMapPOI *targetEndPOI;
+    AMapPOI *bikeStartPOI;
+    AMapPOI *bikeEndPOI;
+    
+    NSString *startBikeName;
+    NSString *endBikeName;
+    
+    NSMutableDictionary *allRoutesDictionary;     //存放所有线路
+    
+    AMapRoute *startWalkingRoute;    //起始步行路线
+    AMapRoute *endWalkingRoute;      //终点步行的路线
+    AMapRoute *bikeRoute;            //公共自行车行使的路线
+    
+    NSMutableArray *walkingPolylineArray;
+    NSMutableArray *bikePolylineArray;
+    NSMutableArray *busPolylineArray;
+    
+    NSMutableArray *pointAnnotationArray;
 
+    NSMutableArray *wayIndexArray;
 }
 
 @property(nonatomic, strong) AMapGeoPoint *startPoint;
