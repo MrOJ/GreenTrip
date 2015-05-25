@@ -39,6 +39,11 @@
     NSMutableArray *wayIndexArray;
     
     NSInteger indicatorTag;
+    
+    NSInteger totalDistance;    //行程总路程
+    NSInteger busDistance;      //公交车路程
+    NSInteger walkingDistance;  //步行总距离
+    NSInteger transCount;       //换乘次数
 }
 
 @property (nonatomic) NSInteger index;

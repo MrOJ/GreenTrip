@@ -288,6 +288,10 @@
 		18BCABA71AA9EA1E00827C66 /* tabBar4.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BCABA31AA9EA1E00827C66 /* tabBar4.png */; };
 		18C282571B0B48AC00602CBF /* KLCPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C282561B0B48AC00602CBF /* KLCPopup.m */; };
 		18C2825D1B0B4B4100602CBF /* finishTripResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C2825C1B0B4B4100602CBF /* finishTripResultView.m */; };
+		18C81BE91B10A139009F3E3F /* 相机25x21px.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C81BE61B10A139009F3E3F /* 相机25x21px.png */; };
+		18C81BEA1B10A13A009F3E3F /* 相机25x21px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C81BE71B10A139009F3E3F /* 相机25x21px@2x.png */; };
+		18C81BEB1B10A13A009F3E3F /* 相机25x21px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C81BE81B10A139009F3E3F /* 相机25x21px@3x.png */; };
+		18C81BED1B10ACB8009F3E3F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C81BEC1B10ACB8009F3E3F /* MobileCoreServices.framework */; };
 		18CE37A71AC5982100EF6141 /* loginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CE37A61AC5982100EF6141 /* loginViewController.m */; };
 		18CE37BE1AC673D400EF6141 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CE37AA1AC673D400EF6141 /* NSString+MD5.m */; };
 		18CE37BF1AC673D400EF6141 /* YDCrashHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CE37AD1AC673D400EF6141 /* YDCrashHandler.m */; };
@@ -297,6 +301,7 @@
 		18CE37C31AC673D400EF6141 /* YDLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CE37BA1AC673D400EF6141 /* YDLoginViewController.xib */; };
 		18CE37C41AC673D400EF6141 /* YDRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CE37BC1AC673D400EF6141 /* YDRegistrationViewController.m */; };
 		18CE37C51AC673D400EF6141 /* YDRegistrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CE37BD1AC673D400EF6141 /* YDRegistrationViewController.xib */; };
+		18D1DB9A1B13358D004E0A36 /* sendMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D1DB991B13358D004E0A36 /* sendMessagesViewController.m */; };
 		18F6B3BE1AF24AC0000D9A40 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F6B39E1AF24AC0000D9A40 /* MKAnnotationView+WebCache.m */; };
 		18F6B3BF1AF24AC0000D9A40 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F6B3A01AF24AC0000D9A40 /* NSData+ImageContentType.m */; };
 		18F6B3C01AF24AC0000D9A40 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F6B3A21AF24AC0000D9A40 /* SDImageCache.m */; };
@@ -682,6 +687,10 @@
 		18C282561B0B48AC00602CBF /* KLCPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLCPopup.m; sourceTree = "<group>"; };
 		18C2825B1B0B4B4100602CBF /* finishTripResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = finishTripResultView.h; sourceTree = "<group>"; };
 		18C2825C1B0B4B4100602CBF /* finishTripResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = finishTripResultView.m; sourceTree = "<group>"; };
+		18C81BE61B10A139009F3E3F /* 相机25x21px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "相机25x21px.png"; sourceTree = "<group>"; };
+		18C81BE71B10A139009F3E3F /* 相机25x21px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "相机25x21px@2x.png"; sourceTree = "<group>"; };
+		18C81BE81B10A139009F3E3F /* 相机25x21px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "相机25x21px@3x.png"; sourceTree = "<group>"; };
+		18C81BEC1B10ACB8009F3E3F /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		18CE37A51AC5982100EF6141 /* loginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = loginViewController.h; sourceTree = "<group>"; };
 		18CE37A61AC5982100EF6141 /* loginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = loginViewController.m; sourceTree = "<group>"; };
 		18CE37A91AC673D400EF6141 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
@@ -699,6 +708,8 @@
 		18CE37BB1AC673D400EF6141 /* YDRegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDRegistrationViewController.h; sourceTree = "<group>"; };
 		18CE37BC1AC673D400EF6141 /* YDRegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDRegistrationViewController.m; sourceTree = "<group>"; };
 		18CE37BD1AC673D400EF6141 /* YDRegistrationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YDRegistrationViewController.xib; sourceTree = "<group>"; };
+		18D1DB981B13358D004E0A36 /* sendMessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sendMessagesViewController.h; sourceTree = "<group>"; };
+		18D1DB991B13358D004E0A36 /* sendMessagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = sendMessagesViewController.m; sourceTree = "<group>"; };
 		18F6B39D1AF24AC0000D9A40 /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		18F6B39E1AF24AC0000D9A40 /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		18F6B39F1AF24AC0000D9A40 /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
@@ -758,6 +769,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18C81BED1B10ACB8009F3E3F /* MobileCoreServices.framework in Frameworks */,
 				18A6C2901AE3E22200452140 /* CFNetwork.framework in Frameworks */,
 				18B341401AA6D76200B19ED4 /* AMapSearchKit.framework in Frameworks */,
 				18B3413E1AA6D6C800B19ED4 /* Security.framework in Frameworks */,
@@ -1060,6 +1072,8 @@
 				18B3411D1AA6D5A600B19ED4 /* FindingMainViewController.m */,
 				18F769831AB45C8800705FBA /* collectionViewController.h */,
 				18F769841AB45C8800705FBA /* collectionViewController.m */,
+				18D1DB981B13358D004E0A36 /* sendMessagesViewController.h */,
+				18D1DB991B13358D004E0A36 /* sendMessagesViewController.m */,
 			);
 			path = Findings;
 			sourceTree = "<group>";
@@ -1098,6 +1112,7 @@
 		18B3413F1AA6D6EE00B19ED4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18C81BEC1B10ACB8009F3E3F /* MobileCoreServices.framework */,
 				18A6C28F1AE3E22200452140 /* CFNetwork.framework */,
 				18A6C2721AE3E1FE00452140 /* AFNetworking */,
 				18B3413D1AA6D6C800B19ED4 /* Security.framework */,
@@ -1330,10 +1345,13 @@
 		18B539F61AE7C5C200B6F344 /* finding */ = {
 			isa = PBXGroup;
 			children = (
-				1884F53F1B046E8800F4DE19 /* 12x10px.png */,
+				18C81BE61B10A139009F3E3F /* 相机25x21px.png */,
+				18C81BE71B10A139009F3E3F /* 相机25x21px@2x.png */,
+				18C81BE81B10A139009F3E3F /* 相机25x21px@3x.png */,
 				1884F5401B046E8800F4DE19 /* 12x10px@2x.png */,
-				1884F5411B046E8800F4DE19 /* 12x10px@3x.png */,
+				1884F53F1B046E8800F4DE19 /* 12x10px.png */,
 				1884F5421B046E8800F4DE19 /* 12x10px未激活.png */,
+				1884F5411B046E8800F4DE19 /* 12x10px@3x.png */,
 				1884F5431B046E8800F4DE19 /* 12x10px未激活@2x.png */,
 				1884F5441B046E8800F4DE19 /* 12x10px未激活@3x.png */,
 				18B539F71AE7C5C200B6F344 /* 排行榜208x66.png */,
@@ -1569,6 +1587,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18040ECB1AEBAC9A00844F0C /* 4设置130x80.png in Resources */,
+				18C81BEA1B10A13A009F3E3F /* 相机25x21px@2x.png in Resources */,
 				18040EBE1AEA603500844F0C /* wechat188x188.png in Resources */,
 				18B539D31AE7BC7C00B6F344 /* 分享48x52@3x.png in Resources */,
 				18B3415E1AA6D81A00B19ED4 /* expandableImage.png in Resources */,
@@ -1701,6 +1720,7 @@
 				18586CA91AFA579200045A42 /* 骑车路线描边50x6px@3x.png in Resources */,
 				18B341601AA6D81A00B19ED4 /* truck.png in Resources */,
 				18B539BF1AE7BC7C00B6F344 /* 4设置未激活130x80@2x.png in Resources */,
+				18C81BE91B10A139009F3E3F /* 相机25x21px.png in Resources */,
 				18040ECD1AEBAC9A00844F0C /* 4设置130x80@3x.png in Resources */,
 				1884F53A1B04342400F4DE19 /* trip1.jpg in Resources */,
 				1817483A1AF0F39F00F1DFE8 /* 未选择56x56px.png in Resources */,
@@ -1792,6 +1812,7 @@
 				18040EE31AEBBB6200844F0C /* 6-100x98未激活.png in Resources */,
 				18B539BB1AE7BC7C00B6F344 /* 4-54x92@2x.png in Resources */,
 				18586CB01AFA579200045A42 /* 上拉箭头19x11px.png in Resources */,
+				18C81BEB1B10A13A009F3E3F /* 相机25x21px@3x.png in Resources */,
 				18B539981AE7BC7C00B6F344 /* 10x10.png in Resources */,
 				18B3415D1AA6D81A00B19ED4 /* disclosure_arrow_180.png in Resources */,
 			);
@@ -1811,6 +1832,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18D1DB9A1B13358D004E0A36 /* sendMessagesViewController.m in Sources */,
 				18A6C28E1AE3E1FE00452140 /* AFURLSessionManager.m in Sources */,
 				18F6B3C51AF24AC0000D9A40 /* SDWebImageManager.m in Sources */,
 				184080331AB8449B00E89AB3 /* UIScrollView+MJExtension.m in Sources */,

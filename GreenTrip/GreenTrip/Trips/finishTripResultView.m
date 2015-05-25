@@ -10,6 +10,8 @@
 
 @implementation finishTripResultView
 
+@synthesize totalDistance,busDistance,bikeDistance,walkingDistance,transCount;
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -99,6 +101,9 @@
     [shareButton addTarget:self action:@selector(shareButton:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:shareButton];
     
+    NSLog(@"%ld",(long)totalDistance);
+    NSLog(@"%ld",(long)busDistance);
+    NSLog(@"%ld",(long)walkingDistance);
 }
 
 - (void)shareButton:(id)sender

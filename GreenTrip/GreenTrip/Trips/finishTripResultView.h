@@ -12,6 +12,12 @@
 
 @interface finishTripResultView : UIView
 
+@property (nonatomic) NSInteger totalDistance;
+@property (nonatomic) NSInteger busDistance;
+@property (nonatomic) NSInteger bikeDistance;
+@property (nonatomic) NSInteger walkingDistance;
+@property (nonatomic) NSInteger transCount;
+
 - (void)initSubViews;
 
 @end

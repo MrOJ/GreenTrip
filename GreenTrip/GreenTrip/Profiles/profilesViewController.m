@@ -92,7 +92,7 @@
         NSDictionary *dict = @{ @"username":self.usernameTextField.text, @"password":[self.passwordTextField.text MD5] };
         
         //3.请求
-        [manager GET:@"http://192.168.1.103:1200/login" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+        [manager GET:@"http://localhost:1200/login" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"GET --> %@", responseObject); //自动返回主线程
             
             NSString *getLogin = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"login"]];
@@ -108,7 +108,7 @@
                 nicknameLabel.text = getNickname;
                 
                 //利用SDWenImage下载图片
-                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://192.168.1.103:1200/syncportrait?image=%@",getPortraitImage]];
+                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:1200/syncportrait?image=%@",getPortraitImage]];
                 SDWebImageManager *manager = [SDWebImageManager sharedManager];
                 [manager downloadImageWithURL:url options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
                     // progression tracking code
@@ -175,7 +175,8 @@
                                                     cancelButtonTitle:@"取消"
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:@"拍照",@"从手机相册选择", nil];
-    actionSheet.tintColor = myColor;
+    //actionSheet.tintColor = myColor;
+    actionSheet.delegate = self;
     [actionSheet showInView:self.view];
     
 }
@@ -204,7 +205,7 @@
         if (![usernameStr isEqualToString:@""]) {
             dict = @{ @"username":usernameStr};
             
-            NSMutableURLRequest *urlrequest = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:@"http://192.168.1.103:1200/upload" parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+            NSMutableURLRequest *urlrequest = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:@"http://localhost:1200/upload" parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                 [formData appendPartWithFileData:data name:@"myfile" fileName:fileName mimeType:@"image/png"];
                 
             } error:nil];
@@ -281,6 +282,13 @@
         default:
             break;
     }
+}
+
+// 修改ActionSheet按钮字体
+- (void)willPresentActionSheet:(UIActionSheet *)actionSheet
+{
+    //ios 8的设定方案
+    [[UIView appearanceWhenContainedIn:[UIAlertController class], nil] setTintColor:[UIColor lightGrayColor]];
 }
 
 //登录的状态改变函数

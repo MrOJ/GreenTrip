@@ -245,6 +245,10 @@
     NSLog(@"finish.");
     finishTripResultView *finishView = [[finishTripResultView alloc] initWithFrame:CGRectMake((self.view.bounds.size.width - 280) / 2, 40, 280, 290 + 90)];
     finishView.backgroundColor = [UIColor clearColor];
+    finishView.totalDistance   = totalDistance;
+    finishView.busDistance     = busDistance;
+    finishView.walkingDistance = walkingDistance;
+    finishView.transCount      = transCount;
     [finishView initSubViews];
     
     KLCPopup *popup = [KLCPopup popupWithContentView:finishView showType:KLCPopupShowTypeGrowIn dismissType:KLCPopupDismissTypeGrowOut maskType:KLCPopupMaskTypeDimmed dismissOnBackgroundTouch:YES dismissOnContentTouch:NO];
@@ -366,6 +370,11 @@
     pointAnnotationArray = [[NSMutableArray alloc] init];
     wayIndexArray        = [[NSMutableArray alloc] init];
     
+    totalDistance   = 0;
+    busDistance     = 0;
+    walkingDistance = 0;
+    transCount      = 0;
+    
     switch (wayFlag) {
         case 1: {
             AMapTransit *transOfIndex = allRoutes.transits[pageIndex];
@@ -387,6 +396,9 @@
                     [pointAnnotationArray addObject:walkingAnnotation];
                     [wayIndexArray addObject:@"2"];      // 2-步行
                     
+                    totalDistance += s.walking.distance;
+                    walkingDistance += s.walking.distance;
+                    
                 }
                 //处理公交路线轨迹
                 if (s.busline != nil) {
@@ -401,6 +413,10 @@
                     [pointAnnotationArray addObject:busAnnotation];
                     [wayIndexArray addObject:@"3"];      // 3-公交
                     
+                    totalDistance += s.busline.distance;
+                    busDistance   += s.busline.distance;
+                    
+                    transCount += 1;
                 }
             }
         }
@@ -413,6 +429,8 @@
                     MAPolyline *polyline = [self polylineStrToGeoPoint:polylineStr];
                     [walkingPolylineArray addObject:polyline];
                 }
+                
+                walkingDistance += p.distance;
             }
         }
             break;

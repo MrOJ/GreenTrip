@@ -10,8 +10,14 @@
 #import "PSCollectionView.h"
 #import "PSBroView.h"
 #import "MJRefresh.h"
+#import "UIButton+WebCache.h"
 
-@interface collectionViewController : UIViewController <PSCollectionViewDelegate, PSCollectionViewDataSource>
+#import "VPImageCropperViewController.h"
+#import <MobileCoreServices/MobileCoreServices.h>
+
+#import "sendMessagesViewController.h"
+
+@interface collectionViewController : UIViewController <PSCollectionViewDelegate, PSCollectionViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
     NSMutableArray *itemsArray;
     NSMutableArray *capitionArray;
