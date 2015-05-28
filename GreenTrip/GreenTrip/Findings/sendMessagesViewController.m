@@ -37,7 +37,7 @@
     [navigationBar addSubview:sendButton];
     
     //UITextField *msgTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 10 + 64, self.view.bounds.size.width - 10 * 2 - 90 - 10, 200)];
-    UITextView *msgTextView = [[UITextView alloc]initWithFrame:CGRectMake(10, 20 + 64, self.view.bounds.size.width - 10 * 2 - 90 - 10, 200)];
+    msgTextView = [[UITextView alloc]initWithFrame:CGRectMake(10, 20 + 64, self.view.bounds.size.width - 10 * 2 - 90 - 10, 200)];
     msgTextView.font = [UIFont systemFontOfSize:15.0f];
     msgTextView.textColor = [UIColor darkGrayColor];
     msgTextView.tintColor = myColor;
@@ -68,6 +68,13 @@
 
 - (void)goSending:(id)sender {
     NSLog(@"send");
+    [msgTextView resignFirstResponder];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"passValue"
+                                                            object:self
+                                                          userInfo:@{@"message":msgTextView.text}];
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning {

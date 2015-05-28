@@ -69,7 +69,7 @@ likeButton = _likeButton;
         
         //设置头像
         self.profileImge.frame = CGRectMake(12, 17, 31, 31);
-        self.profileImge.image = [UIImage imageNamed:@"proxy.png"];
+        //self.profileImge.image = [UIImage imageNamed:@"proxy.png"];
         self.profileImge.layer.masksToBounds = YES;
         self.profileImge.layer.borderColor = myColor.CGColor;
         self.profileImge.layer.cornerRadius = 31 / 2;
@@ -85,7 +85,7 @@ likeButton = _likeButton;
         //设置昵称
         //NSLog(@"%f",self.frame.size.width);
         //self.nickname.frame = CGRectMake(50, 34, self.frame.size.width - 50 - 23, 15);
-        self.nickname.text = @"MrOJ";
+        //self.nickname.text = @"MrOJ";
         self.nickname.textColor = [UIColor blackColor];
         self.nickname.font = [UIFont systemFontOfSize:12.0f];
         [self.profileView addSubview:self.nickname];
@@ -183,8 +183,8 @@ likeButton = _likeButton;
     
 }
 
-- (void)fillViewWithObject:(id)str {
-    [super fillViewWithObject:str];
+- (void)fillViewWithObject:(id)image {
+    [super fillViewWithObject:image];
     
     /*
     NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://imgur.com/%@%@", [object objectForKey:@"hash"], [object objectForKey:@"ext"]]];
@@ -196,8 +196,8 @@ likeButton = _likeButton;
     self.captionLabel.text = [object objectForKey:@"title"];
     */
     
-    self.imageView.image = [UIImage imageNamed:str];
-    [self.imageButton setImage:[UIImage imageNamed:str] forState:UIControlStateNormal];
+    self.imageView.image = image;
+    [self.imageButton setImage:image forState:UIControlStateNormal];
     //self.captionLabel.text = str;
     
 }
@@ -209,13 +209,21 @@ likeButton = _likeButton;
     
 }
 
+- (void)fillViewWithCaption:(id)caption Nickname:(id)nickname PortraitImg:(id)portrait Time:(id)time Like:(id)like {
+    [super fillViewWithCaption:caption Nickname:nickname PortraitImg:portrait Time:time Like:like];
+    
+    self.captionLabel.text = caption;
+    self.nickname.text = nickname;
+    self.profileImge.image = portrait;
+}
+
 + (CGFloat)heightForViewWithObject:(id)object withCapitionStr:(NSString *)str inColumnWidth:(CGFloat)columnWidth {
     CGFloat height = 0.0;
     CGFloat width = columnWidth - MARGIN * 2;
     
     height += MARGIN;
     
-    UIImage *img = [UIImage imageNamed:object];
+    UIImage *img = object;
     
     // Image
     //CGFloat objectWidth = [[object objectForKey:@"width"] floatValue];

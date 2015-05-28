@@ -19,10 +19,8 @@
 {
     [super viewWillAppear:YES];
     
-    NSLog(@"collectionView");
-    
     //头部主动刷新
-    [self.collectionView.header beginRefreshing];
+    //[self.collectionView.header beginRefreshing];
     
 }
 
@@ -76,42 +74,134 @@
     
     itemsArray = [[NSMutableArray alloc] init];
     for (int i = 1; i < 4; i ++) {
-        [itemsArray addObject:[NSString stringWithFormat:@"trip%d.jpg",i]];
+        [itemsArray addObject:[UIImage imageNamed:[NSString stringWithFormat:@"trip%d.jpg",i]]];
     }
     
     capitionArray = [[NSMutableArray alloc] initWithObjects:@"面朝大海，春暖花开",@"春天踏春，来一次说走就走的旅行.",@"放飞心情~" ,nil];
     
+    nicknameArray = [[NSMutableArray alloc] initWithObjects:@"MrOJ",@"OJ",@"飞翔", nil];
+    
+    portraitImgArray = [[NSMutableArray alloc] initWithObjects:[UIImage imageNamed:@"proxy.png"],[UIImage imageNamed:@"default_image.png"],[UIImage imageNamed:@"default_image.png"], nil];
+    
     [self.collectionView reloadData];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recNotification:) name:@"passValue" object:nil];
+}
+
+- (void)recNotification:(NSNotification *)notification {
+    NSDictionary *getDic = [notification userInfo];
+    textComments = [getDic objectForKey:@"message"];
+    
+    [itemsArray insertObject:sendingImg atIndex:0];
+    [capitionArray insertObject:textComments atIndex:0];
+    [nicknameArray insertObject:[YDConfigurationHelper getStringValueForConfigurationKey:@"username"] atIndex:0];
+    NSData *imageData = [YDConfigurationHelper getObjectValueForConfigurationKey:@"portrait"];
+    if (imageData != nil) {
+        [portraitImgArray insertObject:[UIImage imageWithData:imageData] atIndex:0];
+    } else {
+        [portraitImgArray insertObject:[UIImage imageNamed:@"default_image"] atIndex:0];
+    }
+    
+
+    
+    //上传操作
+    [self uploadFindingsInfo];
+    
+    [self.collectionView reloadData];
+    [self.collectionView.header beginRefreshing];;
 }
 
 - (void)loadNewData {
-    NSLog(@"refresh!");
     
-    self.collectionView.collectionViewDelegate = self;
-    self.collectionView.collectionViewDataSource = self;
-    self.collectionView.showsVerticalScrollIndicator = NO;
-    self.collectionView.backgroundColor = [UIColor clearColor];
-    self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    
-    self.collectionView.numColsPortrait = 2;
-    self.collectionView.numColsLandscape = 3;
-    
-    [self.collectionView reloadData];
-    
-    [self.collectionView.legendHeader endRefreshing];   //结束刷新
+    if (![[YDConfigurationHelper getStringValueForConfigurationKey:@"username"] isEqualToString:@""]) {
+        self.collectionView.collectionViewDelegate = self;
+        self.collectionView.collectionViewDataSource = self;
+        self.collectionView.showsVerticalScrollIndicator = NO;
+        self.collectionView.backgroundColor = [UIColor clearColor];
+        self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        
+        self.collectionView.numColsPortrait = 2;
+        self.collectionView.numColsLandscape = 3;
+        
+        [self.collectionView reloadData];
+        
+        [self.collectionView.legendHeader endRefreshing];   //结束刷新
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        // 设置时间格式
+        formatter.dateFormat = @"yyyyMMddHHmmss";
+        NSString *dateStr = [formatter stringFromDate:[NSDate date]];
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        //2.设置登录参数
+        NSDictionary *dict = @{ @"username":[YDConfigurationHelper getStringValueForConfigurationKey:@"username"], @"push_time": dateStr,@"index":@"0"};  //此处index需要修改
+        //3.请求
+        [manager GET:@"http://121.40.218.33:1200/syncFindingInfo" parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"GET --> %@", responseObject); //自动返回主线程
+            
+            NSArray *getUsernameArray = [[NSArray alloc] init];
+            getUsernameArray = [responseObject objectForKey:@"username_list"];
+            NSLog(@"array = %@",getUsernameArray);
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"%@",error);
+        }];
+    } else {
+        [self showErrorWithMessage:@"请登录"];
+    }
     
 }
 
 - (void)loadMoreData {
+    /*
     for (int i = 1; i < 4; i ++) {
-        [itemsArray addObject:[NSString stringWithFormat:@"trip%d.jpg",i]];
+        [itemsArray addObject:[UIImage imageNamed:[NSString stringWithFormat:@"trip%d.jpg",i]]];
     }
     [capitionArray addObject:@"面朝大海，春暖花开"];
     [capitionArray addObject:@"春天踏春，来一次说走就走的旅行."];
     [capitionArray addObject:@"放飞心情~"];
+    
+    [nicknameArray addObject:@"1"];
+    [nicknameArray addObject:@"2"];
+    [nicknameArray addObject:@"3"];
+    
+    [portraitImgArray addObject:[UIImage imageNamed:@"default_image.png"]];
+    [portraitImgArray addObject:[UIImage imageNamed:@"default_image.png"]];
+    [portraitImgArray addObject:[UIImage imageNamed:@"default_image.png"]];
+    
     [self.collectionView reloadData];
     
     [self.collectionView.legendFooter endRefreshing];
+    */
+    
+    if (![[YDConfigurationHelper getStringValueForConfigurationKey:@"username"] isEqualToString:@""]) {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        // 设置时间格式
+        formatter.dateFormat = @"yyyyMMddHHmmss";
+        NSString *dateStr = [formatter stringFromDate:[NSDate date]];
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        //2.设置登录参数
+        NSDictionary *dict = @{ @"username":[YDConfigurationHelper getStringValueForConfigurationKey:@"username"], @"push_time": dateStr,@"index":[NSString stringWithFormat:@"%lu",(unsigned long)itemsArray.count]};  //此处index需要修改
+        //3.请求
+        [manager GET:@"http://121.40.218.33:1200/syncFindingInfo" parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"GET --> %@", responseObject); //自动返回主线程
+            
+            NSString *getState = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"state"]];
+            NSLog(@"state = %@",getState);
+            
+            if ([getState isEqualToString:@"0"]) {
+                [self.collectionView.legendFooter setTitle:@"暂无更多" forState:MJRefreshFooterStateIdle];
+                [self.collectionView.legendFooter endRefreshing];
+            } else {
+                NSLog(@"load more");
+            }
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"%@",error);
+        }];
+    } else {
+        [self showErrorWithMessage:@"请登录"];
+    }
+    
 }
 
 - (void)openCamera:(id)sender
@@ -189,9 +279,9 @@
 #pragma mark - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     [picker dismissViewControllerAnimated:YES completion:^() {
-        UIImage *portraitImg = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+        sendingImg = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
         sendMessagesViewController *sendMessageVC = [[sendMessagesViewController alloc] init];
-        sendMessageVC.image = portraitImg;
+        sendMessageVC.image = sendingImg;
         [self presentViewController:sendMessageVC animated:YES completion:^{
             
         }];
@@ -232,7 +322,9 @@
     }
     
     [v fillViewWithObject:[itemsArray objectAtIndex:index]];
-    [v fillViewWithText:[capitionArray objectAtIndex:index]];
+    //[v fillViewWithText:[capitionArray objectAtIndex:index]];
+    //[v fillViewWithCaption:[capitionArray objectAtIndex:index] Nickname:[nicknameArray objectAtIndex:index] Time:nil Like:nil];
+    [v fillViewWithCaption:[capitionArray objectAtIndex:index] Nickname:[nicknameArray objectAtIndex:index] PortraitImg:[portraitImgArray objectAtIndex:index] Time:nil Like:nil];
     
     return v;
     
@@ -302,10 +394,49 @@
     return result;
 }
 
+//上传相关资料
+- (void)uploadFindingsInfo {
+    NSData *data = UIImagePNGRepresentation(sendingImg);
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    // 设置时间格式
+    formatter.dateFormat = @"yyyyMMddHHmmss";
+    NSString *dateStr = [formatter stringFromDate:[NSDate date]];
+    NSString *fileName = [NSString stringWithFormat:@"finding_%@.png", dateStr];
+    
+    NSString *usernameStr = [NSString stringWithFormat:@"%@",[YDConfigurationHelper getStringValueForConfigurationKey:@"username"]];
+    
+    NSDictionary *dict = [[NSDictionary alloc] init];
+    
+    dict = @{ @"username":usernameStr, @"text_comment":textComments,@"push_time":dateStr, @"likes_number":@"0"};
+    
+    NSMutableURLRequest *urlrequest = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:@"http://121.40.218.33:1200/uploadFindingInfo" parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileData:data name:@"myfile" fileName:fileName mimeType:@"image/png"];
+        
+    } error:nil];
+    
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSProgress *progress = nil;
+    AFJSONResponseSerializer *jsonResponseSerializer = [AFJSONResponseSerializer serializer];
+    
+    NSMutableSet *jsonAcceptableContentTypes = [NSMutableSet setWithSet:jsonResponseSerializer.acceptableContentTypes];
+    [jsonAcceptableContentTypes addObject:@"text/plain"];
+    jsonResponseSerializer.acceptableContentTypes = jsonAcceptableContentTypes;
+    manager.responseSerializer = jsonResponseSerializer;
+    
+    NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:urlrequest progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        } else {
+            NSLog(@"finding上传成功！");
+        }
+    }];
+    [uploadTask resume];
+}
+
 -(void)showErrorWithMessage:(NSString *)msg
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:msg delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-    
     [alert show];
 }
 

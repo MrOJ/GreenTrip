@@ -26,7 +26,8 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     //self.navigationItem.title = @"绿出行";
     self.navigationController.navigationBar.barTintColor = myColor;
     self.navigationController.navigationBar.translucent = NO;
@@ -34,6 +35,7 @@
     //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     //NSLog(@"%@",[NSBundle mainBundle].bundleIdentifier);
+    //NSLog(@"Hello");
 }
 
 - (void)viewDidLoad {

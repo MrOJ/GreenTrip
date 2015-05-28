@@ -33,6 +33,11 @@
 object = _object;
 
 @synthesize textStr;
+@synthesize captionStr;
+@synthesize nicknameStr;
+@synthesize likeStr;
+@synthesize timeStr;
+@synthesize portraitImage;
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -40,7 +45,6 @@ object = _object;
     }
     return self;
 }
-
 
 - (void)prepareForReuse {
 }
@@ -51,6 +55,14 @@ object = _object;
 
 - (void)fillViewWithText:(id)str {
     self.textStr = str;
+}
+
+- (void)fillViewWithCaption:(id)caption Nickname:(id)nickname PortraitImg:(id)portrait Time:(id)time Like:(id)like {
+    self.captionStr = caption;
+    self.nicknameStr = nickname;
+    self.timeStr = time;
+    self.likeStr = like;
+    self.portraitImage = portrait;
 }
 
 + (CGFloat)heightForViewWithObject:(id)object withCapitionStr:(NSString *)str inColumnWidth:(CGFloat)columnWidth {

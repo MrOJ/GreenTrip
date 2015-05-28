@@ -82,7 +82,7 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
     //发起请求
-    [manager GET:@"http://localhost:1210/" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:@"http://121.40.218.33:1210/" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"%@", responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@", error);
@@ -96,7 +96,7 @@
     NSDictionary *dict = @{ @"username":@"xn", @"password":@"123" };
     
     //3.请求
-    [manager GET:@"http://121.40.218.33:1200/" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:@"121.40.218.33:1200/" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"GET --> %@, %@", responseObject, [NSThread currentThread]); //自动返回主线程
     } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@", error);

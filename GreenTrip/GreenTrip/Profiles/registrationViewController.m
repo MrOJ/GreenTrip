@@ -54,7 +54,7 @@
         NSDictionary *dict = @{ @"username":self.usernameTextField.text, @"password":[self.passwordTextField.text MD5]};
         
         //3.请求
-        [manager GET:@"http://localhost:1200/register" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+        [manager GET:@"http://121.40.218.33:1200/register" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"GET --> %@", responseObject); //自动返回主线程
             
             NSString *getRegister = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"register"]];

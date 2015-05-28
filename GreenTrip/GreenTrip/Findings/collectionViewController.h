@@ -11,6 +11,7 @@
 #import "PSBroView.h"
 #import "MJRefresh.h"
 #import "UIButton+WebCache.h"
+#import "AFNetworking.h"
 
 #import "VPImageCropperViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
@@ -21,6 +22,12 @@
 {
     NSMutableArray *itemsArray;
     NSMutableArray *capitionArray;
+    NSMutableArray *nicknameArray;
+    NSMutableArray *portraitImgArray;
+    
+    UIImage *sendingImg;
+    NSString *textComments;
+
 }
 
 @property (nonatomic, strong) PSCollectionView *collectionView;

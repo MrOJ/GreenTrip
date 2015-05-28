@@ -52,7 +52,9 @@
 @synthesize busStopArray,alert;
 
 - (id)initWithViewController:(UIViewController *)viewController {
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    //[[UIApplication sharedApplication] setStatusBarHidden:NO];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     
     search = [[AMapSearchAPI alloc] initWithSearchKey:@"f57ba48c60c524724d3beff7f7063af9" Delegate:self];
     
