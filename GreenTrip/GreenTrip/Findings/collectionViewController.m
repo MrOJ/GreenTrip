@@ -15,13 +15,21 @@
 @implementation collectionViewController
 
 @synthesize collectionView;
+@synthesize getFindingsNum;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
     
+    UIBarButtonItem *cameraButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"相机25x21px"] landscapeImagePhone:[UIImage imageNamed:@"相机25x21px"]  style:UIBarButtonItemStylePlain target:self action:@selector(openCamera:)];
+    self.navigationItem.rightBarButtonItem = cameraButton;
+    
     //头部主动刷新
     //[self.collectionView.header beginRefreshing];
-    
+    refreshTime    = 0;
+    refreshIndex   = 0;
+    loadMoreIndex  = 0;
+    loadMoreTime   = 0;
+    getFindingsNum = @"0";
 }
 
 - (void)viewDidLoad {
@@ -30,32 +38,12 @@
     self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,[UIFont systemFontOfSize:22.0f], NSFontAttributeName, nil];
     self.navigationItem.title = @"绿出行圈";
     
-    UIBarButtonItem *cameraButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"相机25x21px"] landscapeImagePhone:[UIImage imageNamed:@"相机25x21px"]  style:UIBarButtonItemStylePlain target:self action:@selector(openCamera:)];
-    self.navigationItem.rightBarButtonItem = cameraButton;
-    
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
     self.collectionView = [[PSCollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 114)];
     //self.collectionView = [[PSCollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100)];
     [self.view addSubview:self.collectionView];
     self.collectionView.showsVerticalScrollIndicator = NO;
-    //NSLog(@"%f",self.tabBarController.tabBar.bounds.size.height);
-    
-    /*
-    self.collectionView.collectionViewDelegate = self;
-    self.collectionView.collectionViewDataSource = self;
-    self.collectionView.showsVerticalScrollIndicator = NO;
-    self.collectionView.backgroundColor = [UIColor clearColor];
-    self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    
-    self.collectionView.numColsPortrait = 2;
-    self.collectionView.numColsLandscape = 3;
-    
-    UILabel *loadingLabel = [[UILabel alloc] initWithFrame:self.collectionView.bounds];
-    loadingLabel.text = @"Loading...";
-    loadingLabel.textAlignment = NSTextAlignmentCenter;
-    self.collectionView.loadingView = loadingLabel;
-    */
     
     __weak typeof(self) weakSelf = self;
     [self.collectionView addLegendHeaderWithRefreshingBlock:^{
@@ -68,24 +56,17 @@
         [weakSelf loadMoreData];
     }];
     
-    
+    [self.collectionView.legendFooter setHidden:YES];
     // 马上进入刷新状态
-    //[self.collectionView.legendHeader beginRefreshing];
-    
     itemsArray = [[NSMutableArray alloc] init];
-    for (int i = 1; i < 4; i ++) {
-        [itemsArray addObject:[UIImage imageNamed:[NSString stringWithFormat:@"trip%d.jpg",i]]];
-    }
-    
-    capitionArray = [[NSMutableArray alloc] initWithObjects:@"面朝大海，春暖花开",@"春天踏春，来一次说走就走的旅行.",@"放飞心情~" ,nil];
-    
-    nicknameArray = [[NSMutableArray alloc] initWithObjects:@"MrOJ",@"OJ",@"飞翔", nil];
-    
-    portraitImgArray = [[NSMutableArray alloc] initWithObjects:[UIImage imageNamed:@"proxy.png"],[UIImage imageNamed:@"default_image.png"],[UIImage imageNamed:@"default_image.png"], nil];
-    
-    [self.collectionView reloadData];
+    capitionArray = [[NSMutableArray alloc] init];
+    nicknameArray = [[NSMutableArray alloc] init];
+    portraitImgArray = [[NSMutableArray alloc] init];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recNotification:) name:@"passValue" object:nil];
+    
+    [self.collectionView.legendHeader beginRefreshing];
+    
 }
 
 - (void)recNotification:(NSNotification *)notification {
@@ -102,16 +83,19 @@
         [portraitImgArray insertObject:[UIImage imageNamed:@"default_image"] atIndex:0];
     }
     
-
-    
-    //上传操作
+    //上传图片至数据库
     [self uploadFindingsInfo];
+    
+    refreshTime += 1;
     
     [self.collectionView reloadData];
     [self.collectionView.header beginRefreshing];;
 }
 
 - (void)loadNewData {
+    NSLog(@"refresh time = %ld",(long)refreshTime);
+    NSLog(@"refresh index = %ld",(long)refreshIndex);
+    NSLog(@"finding num = %@",getFindingsNum);
     
     if (![[YDConfigurationHelper getStringValueForConfigurationKey:@"username"] isEqualToString:@""]) {
         self.collectionView.collectionViewDelegate = self;
@@ -123,9 +107,9 @@
         self.collectionView.numColsPortrait = 2;
         self.collectionView.numColsLandscape = 3;
         
-        [self.collectionView reloadData];
+        //[self.collectionView reloadData];
         
-        [self.collectionView.legendHeader endRefreshing];   //结束刷新
+        //[self.collectionView.legendHeader endRefreshing];   //结束刷新
         
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         // 设置时间格式
@@ -133,17 +117,49 @@
         NSString *dateStr = [formatter stringFromDate:[NSDate date]];
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         //2.设置登录参数
-        NSDictionary *dict = @{ @"username":[YDConfigurationHelper getStringValueForConfigurationKey:@"username"], @"push_time": dateStr,@"index":@"0"};  //此处index需要修改
+        NSDictionary *dict = @{ @"username":[YDConfigurationHelper getStringValueForConfigurationKey:@"username"],
+                                @"push_time": dateStr,
+                                @"index":[NSString stringWithFormat:@"%ld",(long)refreshIndex],
+                                @"refresh_times":[NSString stringWithFormat:@"%ld",(long)refreshTime],
+                                @"load_more":@"0",
+                                @"findings_num":getFindingsNum};  //此处index需要修改  load_more：0-刷新 1-加载更多
         //3.请求
-        [manager GET:@"http://121.40.218.33:1200/syncFindingInfo" parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [manager GET:@"http://192.168.1.123:1200/syncFindingInfo" parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"GET --> %@", responseObject); //自动返回主线程
             
             NSArray *getUsernameArray = [[NSArray alloc] init];
             getUsernameArray = [responseObject objectForKey:@"username_list"];
-            NSLog(@"array = %@",getUsernameArray);
+            
+            NSString *stateStr = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"state"]];
+            if ([stateStr isEqualToString:@"0"]) {
+                
+                if (itemsArray.count == 0) {
+                    [capitionArray addObjectsFromArray:[responseObject objectForKey:@"text_comment_list"]];
+                    [nicknameArray addObjectsFromArray:[responseObject objectForKey:@"username_list"]];
+                    [portraitImgArray addObjectsFromArray:[responseObject objectForKey:@"portrait_image_list"]];
+                    [itemsArray addObjectsFromArray:[responseObject objectForKey:@"finding_image_list"]];
+                } else {
+                    [capitionArray insertObjects:[responseObject objectForKey:@"text_comment_list"] atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, getUsernameArray.count)]];
+                    [nicknameArray insertObjects:[responseObject objectForKey:@"username_list"] atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, getUsernameArray.count)]];
+                    [portraitImgArray insertObjects:[responseObject objectForKey:@"portrait_image_list"] atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, getUsernameArray.count)]];
+                    [itemsArray insertObjects:[responseObject objectForKey:@"finding_image_list"] atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, getUsernameArray.count)]];
+                }
+                
+                getFindingsNum = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"findings_num"]];
+                
+                refreshIndex += getUsernameArray.count;
+            } else {
+                NSLog(@"已无更多！");
+            }
+            refreshTime  += 1;
+            [self.collectionView reloadData];
+            [self.collectionView.legendHeader endRefreshing];   //结束刷新
+            
+            [self.collectionView.legendFooter setHidden:NO];
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"%@",error);
+            [self showErrorWithMessage:@"连接失败，请重试"];
         }];
     } else {
         [self showErrorWithMessage:@"请登录"];
@@ -153,25 +169,11 @@
 
 - (void)loadMoreData {
     /*
-    for (int i = 1; i < 4; i ++) {
-        [itemsArray addObject:[UIImage imageNamed:[NSString stringWithFormat:@"trip%d.jpg",i]]];
-    }
-    [capitionArray addObject:@"面朝大海，春暖花开"];
-    [capitionArray addObject:@"春天踏春，来一次说走就走的旅行."];
-    [capitionArray addObject:@"放飞心情~"];
-    
-    [nicknameArray addObject:@"1"];
-    [nicknameArray addObject:@"2"];
-    [nicknameArray addObject:@"3"];
-    
-    [portraitImgArray addObject:[UIImage imageNamed:@"default_image.png"]];
-    [portraitImgArray addObject:[UIImage imageNamed:@"default_image.png"]];
-    [portraitImgArray addObject:[UIImage imageNamed:@"default_image.png"]];
-    
     [self.collectionView reloadData];
     
     [self.collectionView.legendFooter endRefreshing];
     */
+    NSLog(@"refresh index = %ld",(long)refreshIndex);
     
     if (![[YDConfigurationHelper getStringValueForConfigurationKey:@"username"] isEqualToString:@""]) {
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -180,23 +182,44 @@
         NSString *dateStr = [formatter stringFromDate:[NSDate date]];
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         //2.设置登录参数
-        NSDictionary *dict = @{ @"username":[YDConfigurationHelper getStringValueForConfigurationKey:@"username"], @"push_time": dateStr,@"index":[NSString stringWithFormat:@"%lu",(unsigned long)itemsArray.count]};  //此处index需要修改
+        NSDictionary *dict = @{ @"username":[YDConfigurationHelper getStringValueForConfigurationKey:@"username"],
+                                @"push_time": dateStr,
+                                @"index":[NSString stringWithFormat:@"%lu",loadMoreIndex + itemsArray.count ],
+                                @"refresh_times":[NSString stringWithFormat:@"%ld",(long)loadMoreTime],
+                                @"load_more":@"1"};  //此处index需要修改
         //3.请求
-        [manager GET:@"http://121.40.218.33:1200/syncFindingInfo" parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [manager GET:@"http://192.168.1.123:1200/syncFindingInfo" parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"GET --> %@", responseObject); //自动返回主线程
+            
+            NSArray *getUsernameArray = [[NSArray alloc] init];
+            getUsernameArray = [responseObject objectForKey:@"username_list"];
             
             NSString *getState = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"state"]];
             NSLog(@"state = %@",getState);
             
             if ([getState isEqualToString:@"0"]) {
-                [self.collectionView.legendFooter setTitle:@"暂无更多" forState:MJRefreshFooterStateIdle];
-                [self.collectionView.legendFooter endRefreshing];
-            } else {
                 NSLog(@"load more");
+                [capitionArray addObjectsFromArray:[responseObject objectForKey:@"text_comment_list"]];
+                [nicknameArray addObjectsFromArray:[responseObject objectForKey:@"username_list"]];
+                [portraitImgArray addObjectsFromArray:[responseObject objectForKey:@"portrait_image_list"]];
+                [itemsArray addObjectsFromArray:[responseObject objectForKey:@"finding_image_list"]];
+                
+                loadMoreIndex += getUsernameArray.count;
+                [self.collectionView reloadData];
+                [self.collectionView.legendFooter endRefreshing];   //结束刷新
+                
+            } else {
+                //[self.collectionView.legendFooter setTitle:@"暂无更多" forState:MJRefreshFooterStateNoMoreData];
+                //[self.collectionView.legendFooter setState:MJRefreshFooterStateNoMoreData];
+                //已经全部加载完毕
+                [self.collectionView.legendFooter noticeNoMoreData];
             }
+            
+            loadMoreTime += 1;
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"%@",error);
+            [self showErrorWithMessage:@"连接失败，请重试"];
         }];
     } else {
         [self showErrorWithMessage:@"请登录"];
@@ -410,7 +433,7 @@
     
     dict = @{ @"username":usernameStr, @"text_comment":textComments,@"push_time":dateStr, @"likes_number":@"0"};
     
-    NSMutableURLRequest *urlrequest = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:@"http://121.40.218.33:1200/uploadFindingInfo" parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    NSMutableURLRequest *urlrequest = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:@"http://192.168.1.123:1200/uploadFindingInfo" parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:data name:@"myfile" fileName:fileName mimeType:@"image/png"];
         
     } error:nil];
@@ -427,6 +450,7 @@
     NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:urlrequest progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
+            [self showErrorWithMessage:@"连接失败，请重试"];
         } else {
             NSLog(@"finding上传成功！");
         }

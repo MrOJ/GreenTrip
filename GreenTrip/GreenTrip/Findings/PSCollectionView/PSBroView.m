@@ -196,8 +196,13 @@ likeButton = _likeButton;
     self.captionLabel.text = [object objectForKey:@"title"];
     */
     
-    self.imageView.image = image;
-    [self.imageButton setImage:image forState:UIControlStateNormal];
+    if ([image isKindOfClass:[NSString class]]) {
+        self.imageView.image = [UIImage imageNamed:image];
+        [self.imageButton setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
+    } else if ([image isKindOfClass:[UIImage class]]) {
+        self.imageView.image = image;
+        [self.imageButton setImage:image forState:UIControlStateNormal];
+    }
     //self.captionLabel.text = str;
     
 }
@@ -214,7 +219,13 @@ likeButton = _likeButton;
     
     self.captionLabel.text = caption;
     self.nickname.text = nickname;
-    self.profileImge.image = portrait;
+
+    
+    if ([portrait isKindOfClass:[NSString class]]) {
+        self.profileImge.image = [UIImage imageNamed:portrait];
+    } else {
+        self.profileImge.image = portrait;
+    }
 }
 
 + (CGFloat)heightForViewWithObject:(id)object withCapitionStr:(NSString *)str inColumnWidth:(CGFloat)columnWidth {
@@ -223,8 +234,12 @@ likeButton = _likeButton;
     
     height += MARGIN;
     
-    UIImage *img = object;
-    
+    UIImage *img = [[UIImage alloc] init];
+    if ([object isKindOfClass:[NSString class]]) {
+        img = [UIImage imageNamed:object];
+    } else if ([object isKindOfClass:[UIImage class]]) {
+        img = object;
+    }
     // Image
     //CGFloat objectWidth = [[object objectForKey:@"width"] floatValue];
     //CGFloat objectHeight = [[object objectForKey:@"height"] floatValue];

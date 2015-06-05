@@ -153,7 +153,6 @@
 		18B340B01AA6D4CC00B19ED4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B340AF1AA6D4CC00B19ED4 /* main.m */; };
 		18B340B31AA6D4CC00B19ED4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B340B21AA6D4CC00B19ED4 /* AppDelegate.m */; };
 		18B340BE1AA6D4CC00B19ED4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18B340BD1AA6D4CC00B19ED4 /* Images.xcassets */; };
-		18B340C11AA6D4CC00B19ED4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18B340BF1AA6D4CC00B19ED4 /* LaunchScreen.xib */; };
 		18B340CD1AA6D4CC00B19ED4 /* GreenTripTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B340CC1AA6D4CC00B19ED4 /* GreenTripTests.m */; };
 		18B340D71AA6D55700B19ED4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18B340D61AA6D55700B19ED4 /* Main.storyboard */; };
 		18B341061AA6D58300B19ED4 /* ARAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B340DB1AA6D58300B19ED4 /* ARAnnotation.m */; };
@@ -401,7 +400,6 @@
 		18048C811AF65F0300E68A54 /* 租赁点12x18px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "租赁点12x18px@3x.png"; sourceTree = "<group>"; };
 		1817482B1AEE5D4C00F1DFE8 /* VPImageCropperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VPImageCropperViewController.h; sourceTree = "<group>"; };
 		1817482C1AEE5D4C00F1DFE8 /* VPImageCropperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VPImageCropperViewController.m; sourceTree = "<group>"; };
-		1817482E1AEE74EB00F1DFE8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		1817482F1AF0EE4100F1DFE8 /* registrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = registrationViewController.h; sourceTree = "<group>"; };
 		181748301AF0EE4100F1DFE8 /* registrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = registrationViewController.m; sourceTree = "<group>"; };
 		181748311AF0EE4100F1DFE8 /* registrationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = registrationViewController.xib; sourceTree = "<group>"; };
@@ -529,7 +527,6 @@
 		18B340B11AA6D4CC00B19ED4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		18B340B21AA6D4CC00B19ED4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		18B340BD1AA6D4CC00B19ED4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		18B340C01AA6D4CC00B19ED4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		18B340C61AA6D4CC00B19ED4 /* GreenTripTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GreenTripTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18B340CB1AA6D4CC00B19ED4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18B340CC1AA6D4CC00B19ED4 /* GreenTripTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GreenTripTests.m; sourceTree = "<group>"; };
@@ -960,7 +957,6 @@
 				18B340B21AA6D4CC00B19ED4 /* AppDelegate.m */,
 				18B340D61AA6D55700B19ED4 /* Main.storyboard */,
 				18B340BD1AA6D4CC00B19ED4 /* Images.xcassets */,
-				18B340BF1AA6D4CC00B19ED4 /* LaunchScreen.xib */,
 				18B340D81AA6D58300B19ED4 /* Trips */,
 				18B3411B1AA6D5A600B19ED4 /* Findings */,
 				18B3411F1AA6D5BF00B19ED4 /* Profiles */,
@@ -1661,7 +1657,6 @@
 				18040EE21AEBBB6200844F0C /* 5-76x92未激活@3x.png in Resources */,
 				18048C651AF5E26F00E68A54 /* 指南140x140@2x.png in Resources */,
 				18B539961AE7BC7C00B6F344 /* 1-70x110@2x.png in Resources */,
-				18B340C11AA6D4CC00B19ED4 /* LaunchScreen.xib in Resources */,
 				18B539A41AE7BC7C00B6F344 /* 2-70x110@3x.png in Resources */,
 				18586CA31AFA579200045A42 /* 公交路线描边50x6px@3x.png in Resources */,
 				18048C781AF631F400E68A54 /* 搜索18x19px@3x.png in Resources */,
@@ -1934,18 +1929,6 @@
 			targetProxy = 18B340C71AA6D4CC00B19ED4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		18B340BF1AA6D4CC00B19ED4 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				18B340C01AA6D4CC00B19ED4 /* Base */,
-				1817482E1AEE74EB00F1DFE8 /* zh-Hans */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		18B340CE1AA6D4CC00B19ED4 /* Debug */ = {

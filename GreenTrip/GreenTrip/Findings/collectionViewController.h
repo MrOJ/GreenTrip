@@ -27,9 +27,16 @@
     
     UIImage *sendingImg;
     NSString *textComments;
-
+    
+    NSInteger refreshTime;
+    NSInteger refreshIndex;
+    NSInteger loadMoreIndex;
+    NSInteger loadMoreTime;
+    
 }
 
 @property (nonatomic, strong) PSCollectionView *collectionView;
+
+@property (nonatomic, strong) NSString *getFindingsNum;
 
 @end
