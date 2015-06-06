@@ -30,6 +30,9 @@
     loadMoreIndex  = 0;
     loadMoreTime   = 0;
     getFindingsNum = @"0";
+    
+    PSBViewArray = [[NSMutableArray alloc] init];
+    
 }
 
 - (void)viewDidLoad {
@@ -58,10 +61,16 @@
     
     [self.collectionView.legendFooter setHidden:YES];
     // 马上进入刷新状态
-    itemsArray = [[NSMutableArray alloc] init];
+    itemsArray    = [[NSMutableArray alloc] init];
     capitionArray = [[NSMutableArray alloc] init];
     nicknameArray = [[NSMutableArray alloc] init];
+    portraitArray = [[NSMutableArray alloc] init];
+    
+    itemsImgArray = [[NSMutableArray alloc] init];
     portraitImgArray = [[NSMutableArray alloc] init];
+    
+    itemsImgNum = 0;
+    porImgNum   = 0;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recNotification:) name:@"passValue" object:nil];
     
@@ -73,23 +82,13 @@
     NSDictionary *getDic = [notification userInfo];
     textComments = [getDic objectForKey:@"message"];
     
-    [itemsArray insertObject:sendingImg atIndex:0];
-    [capitionArray insertObject:textComments atIndex:0];
-    [nicknameArray insertObject:[YDConfigurationHelper getStringValueForConfigurationKey:@"username"] atIndex:0];
-    NSData *imageData = [YDConfigurationHelper getObjectValueForConfigurationKey:@"portrait"];
-    if (imageData != nil) {
-        [portraitImgArray insertObject:[UIImage imageWithData:imageData] atIndex:0];
-    } else {
-        [portraitImgArray insertObject:[UIImage imageNamed:@"default_image"] atIndex:0];
-    }
-    
     //上传图片至数据库
     [self uploadFindingsInfo];
     
     refreshTime += 1;
     
-    [self.collectionView reloadData];
-    [self.collectionView.header beginRefreshing];;
+    //[self.collectionView reloadData];
+    //[self.collectionView.header beginRefreshing];
 }
 
 - (void)loadNewData {
@@ -136,26 +135,40 @@
                 if (itemsArray.count == 0) {
                     [capitionArray addObjectsFromArray:[responseObject objectForKey:@"text_comment_list"]];
                     [nicknameArray addObjectsFromArray:[responseObject objectForKey:@"username_list"]];
-                    [portraitImgArray addObjectsFromArray:[responseObject objectForKey:@"portrait_image_list"]];
+                    [portraitArray addObjectsFromArray:[responseObject objectForKey:@"portrait_image_list"]];
                     [itemsArray addObjectsFromArray:[responseObject objectForKey:@"finding_image_list"]];
+                    
+                    [itemsImgArray addObjectsFromArray:[responseObject objectForKey:@"finding_image_list"]];
+                    [portraitImgArray addObjectsFromArray:[responseObject objectForKey:@"portrait_image_list"]];
+                    
                 } else {
                     [capitionArray insertObjects:[responseObject objectForKey:@"text_comment_list"] atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, getUsernameArray.count)]];
                     [nicknameArray insertObjects:[responseObject objectForKey:@"username_list"] atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, getUsernameArray.count)]];
-                    [portraitImgArray insertObjects:[responseObject objectForKey:@"portrait_image_list"] atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, getUsernameArray.count)]];
+                    [portraitArray insertObjects:[responseObject objectForKey:@"portrait_image_list"] atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, getUsernameArray.count)]];
                     [itemsArray insertObjects:[responseObject objectForKey:@"finding_image_list"] atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, getUsernameArray.count)]];
+                    
+                    [itemsImgArray insertObjects:[responseObject objectForKey:@"finding_image_list"] atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, getUsernameArray.count)]];
+                    [portraitImgArray insertObjects:[responseObject objectForKey:@"portrait_image_list"] atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, getUsernameArray.count)]];
                 }
                 
                 getFindingsNum = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"findings_num"]];
                 
                 refreshIndex += getUsernameArray.count;
+                
+                //加载图片
+                [self downloadImge:0];
+                
             } else {
                 NSLog(@"已无更多！");
+                [self.collectionView.legendHeader endRefreshing];   //结束刷新
+                [self.collectionView.legendFooter setHidden:NO];
             }
-            refreshTime  += 1;
-            [self.collectionView reloadData];
-            [self.collectionView.legendHeader endRefreshing];   //结束刷新
             
-            [self.collectionView.legendFooter setHidden:NO];
+            refreshTime  += 1;
+            
+            //[self.collectionView reloadData];
+            //[self.collectionView.legendHeader endRefreshing];   //结束刷新
+            //[self.collectionView.legendFooter setHidden:NO];
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"%@",error);
@@ -201,12 +214,16 @@
                 NSLog(@"load more");
                 [capitionArray addObjectsFromArray:[responseObject objectForKey:@"text_comment_list"]];
                 [nicknameArray addObjectsFromArray:[responseObject objectForKey:@"username_list"]];
-                [portraitImgArray addObjectsFromArray:[responseObject objectForKey:@"portrait_image_list"]];
+                [portraitArray addObjectsFromArray:[responseObject objectForKey:@"portrait_image_list"]];
                 [itemsArray addObjectsFromArray:[responseObject objectForKey:@"finding_image_list"]];
                 
+                [itemsImgArray addObjectsFromArray:[responseObject objectForKey:@"finding_image_list"]];
+                [portraitImgArray addObjectsFromArray:[responseObject objectForKey:@"portrait_image_list"]];
+                
                 loadMoreIndex += getUsernameArray.count;
-                [self.collectionView reloadData];
-                [self.collectionView.legendFooter endRefreshing];   //结束刷新
+                //[self.collectionView reloadData];
+                //[self.collectionView.legendFooter endRefreshing];   //结束刷新
+                [self downloadImge:1];
                 
             } else {
                 //[self.collectionView.legendFooter setTitle:@"暂无更多" forState:MJRefreshFooterStateNoMoreData];
@@ -335,7 +352,6 @@
 
 - (PSCollectionViewCell *)collectionView:(PSCollectionView *)collectionView viewAtIndex:(NSInteger)index {
     
-    //NSDictionary *item = [self.items objectAtIndex:index];
     
     PSBroView *v = (PSBroView *)[self.collectionView dequeueReusableView];
     if (!v) {
@@ -344,25 +360,25 @@
         v.layer.masksToBounds = YES;
     }
     
-    [v fillViewWithObject:[itemsArray objectAtIndex:index]];
-    //[v fillViewWithText:[capitionArray objectAtIndex:index]];
-    //[v fillViewWithCaption:[capitionArray objectAtIndex:index] Nickname:[nicknameArray objectAtIndex:index] Time:nil Like:nil];
+    //NSLog(@"get iterm%@",[itemsArray objectAtIndex:index]);
+    
+    [v fillViewWithObject:[itemsImgArray objectAtIndex:index]];
     [v fillViewWithCaption:[capitionArray objectAtIndex:index] Nickname:[nicknameArray objectAtIndex:index] PortraitImg:[portraitImgArray objectAtIndex:index] Time:nil Like:nil];
     
+    //PSBroView *v = (PSBroView *)[PSBViewArray objectAtIndex:index];
+    
     return v;
+    
     
     //return nil;
 }
 
 - (CGFloat)heightForViewAtIndex:(NSInteger)index {
     
-    //NSDictionary *item = [self.items objectAtIndex:index];
+    //得到图片后直接导入
     
-    //NSLog(@"self.collectionView.colWidth = %f".self.collectionView.colWidth.height);
-    
-    return [PSBroView heightForViewWithObject:[itemsArray objectAtIndex:index] withCapitionStr:[capitionArray objectAtIndex:index] inColumnWidth:self.collectionView.colWidth];
-    
-    //return 0.0;
+    return [PSBroView heightForViewWithObject:[itemsImgArray objectAtIndex:index] withCapitionStr:[capitionArray objectAtIndex:index] inColumnWidth:self.collectionView.colWidth];
+
 }
 
 - (void)collectionView:(PSCollectionView *)collectionView didSelectView:(PSCollectionViewCell *)view atIndex:(NSInteger)index {
@@ -419,7 +435,7 @@
 
 //上传相关资料
 - (void)uploadFindingsInfo {
-    NSData *data = UIImagePNGRepresentation(sendingImg);
+    NSData *data = UIImageJPEGRepresentation(sendingImg, 0.001);
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     // 设置时间格式
@@ -453,9 +469,132 @@
             [self showErrorWithMessage:@"连接失败，请重试"];
         } else {
             NSLog(@"finding上传成功！");
+            [self.collectionView reloadData];
+            [self.collectionView.header beginRefreshing];
         }
     }];
     [uploadTask resume];
+    
+}
+
+- (void)downloadImge:(NSInteger)flag
+{
+    //========================加载图片==========================
+    for (NSString *imageName in itemsArray) {
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://192.168.1.123:1200/syncFindingImg?image=%@",imageName]];
+        SDWebImageManager *manager = [SDWebImageManager sharedManager];
+        [manager downloadImageWithURL:url options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+            // progression tracking code
+        } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+            if (error) {
+                NSLog(@"图片加载出错error %@",error);
+            } else {
+                if (image) {
+                    
+                    //根据url获得当前的图片名称
+                    NSString *urlStr = [NSString stringWithFormat:@"%@",imageURL];
+                    NSRange range = [urlStr rangeOfString:@"="];
+                    NSString *imageNameStr = [urlStr substringFromIndex:range.location + 1];
+                    //NSLog(@"%@",imageNameStr);
+                    NSLog(@"%ld",(long)[self getIndexFromArray:itemsImgArray originArray:itemsArray withTarget:imageNameStr]);
+                    
+                    NSInteger getIndex = [self getIndexFromArray:itemsImgArray originArray:itemsArray withTarget:imageNameStr];
+                    if (getIndex > -1 ) {
+                        [itemsImgArray replaceObjectAtIndex:getIndex withObject:image];
+                    }
+                    
+                    itemsImgNum = [self calImageNumber:itemsImgArray];
+                    
+                    if (itemsImgNum + porImgNum == itemsArray.count * 2) {
+                        //if (itemsImgNum == itemsArray.count) {
+                        NSLog( @"图片和头像加载完毕！");
+                        
+                        [self.collectionView reloadData];
+                        if (flag == 0) {
+                            [self.collectionView.legendHeader endRefreshing];   //结束刷新
+                        } else {
+                            [self.collectionView.legendFooter endRefreshing];
+                        }
+
+                        [self.collectionView.legendFooter setHidden:NO];
+                    }
+                }
+            }
+        }];
+    }
+    //========================================================
+    
+    
+    //========================加载头像==========================
+    for (NSString *imageName in portraitArray) {
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://192.168.1.123:1200/syncportrait?image=%@",imageName]];
+        SDWebImageManager *manager = [SDWebImageManager sharedManager];
+        [manager downloadImageWithURL:url options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+            // progression tracking code
+        } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+            if (error) {
+                NSLog(@"头像加载出错error %@",error);
+            } else {
+                if (image) {
+                    NSLog(@"image = %@",image);
+                    //根据url获得当前的图片名称
+                    NSString *urlStr = [NSString stringWithFormat:@"%@",imageURL];
+                    NSRange range = [urlStr rangeOfString:@"="];
+                    NSString *imageNameStr = [urlStr substringFromIndex:range.location + 1];
+                    //NSLog(@"%@",imageNameStr);
+                    //NSLog(@"%ld",(long)[self getIndexFromArray:itemsArray withTarget:imageNameStr]);
+                    [portraitImgArray replaceObjectAtIndex:[self getIndexFromArray:portraitArray originArray:portraitArray withTarget:imageNameStr] withObject:image];
+                    
+                    NSInteger getIndex = [self getIndexFromArray:portraitImgArray originArray:portraitArray withTarget:imageNameStr];
+                    if (getIndex > -1 ) {
+                        [portraitImgArray replaceObjectAtIndex:getIndex withObject:image];
+                    }
+                    
+                    porImgNum = [self calImageNumber:portraitImgArray];
+                    
+                    if (itemsImgNum + porImgNum == portraitImgArray.count * 2) {
+                        NSLog( @"图片和头像加载完毕！");
+                        
+                        [self.collectionView reloadData];
+                        if (flag == 0) {
+                            [self.collectionView.legendHeader endRefreshing];   //结束刷新
+                        } else {
+                            [self.collectionView.legendFooter endRefreshing];
+                        }
+                        [self.collectionView.legendFooter setHidden:NO];
+                    }
+                }
+            }
+        }];
+    }
+    //========================================================
+}
+
+//根据数组中的值获得索引
+- (NSInteger)getIndexFromArray:(NSMutableArray *)array originArray:(NSMutableArray*)oriArray withTarget:(NSString *)target
+{
+    for (int i=0; i < array.count; i++) {
+        if ([array[i] isKindOfClass:[NSString class]] && [oriArray[i] isKindOfClass:[NSString class]]) {
+            if ([array[i] isEqualToString:target]) {
+                return i;
+            }
+        }
+    }
+    
+    return -1;
+}
+
+//计算数组中UIImage的格式
+- (NSInteger)calImageNumber:(NSMutableArray *)array
+{
+    int i = 0;
+    for (id oj in array) {
+        if ([oj isKindOfClass:[UIImage class]]) {
+            i++;
+        }
+    }
+    
+    return i;
 }
 
 -(void)showErrorWithMessage:(NSString *)msg

@@ -21,9 +21,12 @@
 @interface collectionViewController : UIViewController <PSCollectionViewDelegate, PSCollectionViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
     NSMutableArray *itemsArray;
+    NSMutableArray *itemsImgArray;     //用于存放实际图片
+    
     NSMutableArray *capitionArray;
     NSMutableArray *nicknameArray;
-    NSMutableArray *portraitImgArray;
+    NSMutableArray *portraitArray;
+    NSMutableArray *portraitImgArray;  //用于存放实际头像图片
     
     UIImage *sendingImg;
     NSString *textComments;
@@ -33,10 +36,14 @@
     NSInteger loadMoreIndex;
     NSInteger loadMoreTime;
     
+    NSMutableArray *PSBViewArray;
+    
+    NSInteger itemsImgNum;
+    NSInteger porImgNum;
+    
 }
 
 @property (nonatomic, strong) PSCollectionView *collectionView;
-
 @property (nonatomic, strong) NSString *getFindingsNum;
 
 @end

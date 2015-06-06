@@ -47,14 +47,13 @@ likeButton = _likeButton;
         self.backgroundColor = [UIColor whiteColor];
         
         self.imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
-        //self.imageView.clipsToBounds = YES;
-        //[self addSubview:self.imageView];
         
         self.imageButton = [[UIButton alloc] initWithFrame:CGRectZero];
         self.imageButton.clipsToBounds = YES;
         [self addSubview:self.imageButton];
         
         self.captionLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        self.captionLabel.text = @" ";
         self.captionLabel.font = [UIFont boldSystemFontOfSize:13.0f];
         self.captionLabel.numberOfLines = 0;
         [self addSubview:self.captionLabel];
@@ -99,16 +98,22 @@ likeButton = _likeButton;
 - (void)layoutSubviews {
     [super layoutSubviews];
     
+    [self drawSubViews];
+}
+
+- (void)drawSubViews{
     CGFloat width = self.frame.size.width - MARGIN * 2;
     CGFloat top = MARGIN;
     CGFloat left = MARGIN;
-
+    
+    //NSLog(@"绘制图片%@",self.imageView.image);
     
     // Image
     CGFloat objectWidth = self.imageView.image.size.width;
     CGFloat objectHeight = self.imageView.image.size.height;
     CGFloat scaledHeight = floorf(objectHeight / (objectWidth / width));
     self.imageView.frame = CGRectMake(left, top, width, scaledHeight);
+    //NSLog(@"imageFrame = %@",NSStringFromCGRect(self.imageView.frame));
     
     self.imageButton.frame = self.imageView.frame;
     [self.imageButton addTarget:self action:@selector(openImage:) forControlEvents:UIControlEventTouchUpInside];
@@ -152,7 +157,10 @@ likeButton = _likeButton;
     [self.likeButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     [self.likeButton addTarget:self action:@selector(pressLikeButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.profileView addSubview:self.likeButton];
-
+    
+    //[self addSubview:self.imageButton];
+    //[self addSubview:self.captionLabel];
+    //[self addSubview:self.profileView];
 }
 
 - (void)openImage:(id)sender {
@@ -187,23 +195,19 @@ likeButton = _likeButton;
     [super fillViewWithObject:image];
     
     /*
-    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://imgur.com/%@%@", [object objectForKey:@"hash"], [object objectForKey:@"ext"]]];
+    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://192.168.1.123:1200/syncFindingImg?image=%@",image]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        NSLog(@"加载图片%@（%@）成功！",image,self.imageView.image);
         self.imageView.image = [UIImage imageWithData:data];
+        [self.imageButton setImage:[UIImage imageWithData:data] forState:UIControlStateNormal];
     }];
-    
-    self.captionLabel.text = [object objectForKey:@"title"];
     */
     
-    if ([image isKindOfClass:[NSString class]]) {
-        self.imageView.image = [UIImage imageNamed:image];
-        [self.imageButton setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
-    } else if ([image isKindOfClass:[UIImage class]]) {
-        self.imageView.image = image;
-        [self.imageButton setImage:image forState:UIControlStateNormal];
-    }
-    //self.captionLabel.text = str;
+    //self.captionLabel.text = [object objectForKey:@"title"];
+
+    self.imageView.image = image;
+    [self.imageButton setImage:image forState:UIControlStateNormal];
     
 }
 
@@ -221,28 +225,22 @@ likeButton = _likeButton;
     self.nickname.text = nickname;
 
     
-    if ([portrait isKindOfClass:[NSString class]]) {
-        self.profileImge.image = [UIImage imageNamed:portrait];
-    } else {
-        self.profileImge.image = portrait;
-    }
+    self.profileImge.image = portrait;
 }
 
+
 + (CGFloat)heightForViewWithObject:(id)object withCapitionStr:(NSString *)str inColumnWidth:(CGFloat)columnWidth {
+//- (CGFloat)heightForViewWithObject:(id)object withCapitionStr:(NSString *)str inColumnWidth:(CGFloat)columnWidth {
     CGFloat height = 0.0;
     CGFloat width = columnWidth - MARGIN * 2;
     
     height += MARGIN;
     
+    
     UIImage *img = [[UIImage alloc] init];
-    if ([object isKindOfClass:[NSString class]]) {
-        img = [UIImage imageNamed:object];
-    } else if ([object isKindOfClass:[UIImage class]]) {
-        img = object;
-    }
-    // Image
-    //CGFloat objectWidth = [[object objectForKey:@"width"] floatValue];
-    //CGFloat objectHeight = [[object objectForKey:@"height"] floatValue];
+    
+    img = object;
+    
     CGFloat objectWidth = img.size.width;
     CGFloat objectHeight = img.size.height;
     CGFloat scaledHeight = floorf(objectHeight / (objectWidth / width));
@@ -270,6 +268,8 @@ likeButton = _likeButton;
     height += rect.size.height;
     
     height += 70;
+    
+    NSLog(@"%f",height);
     
     return height;
 }
