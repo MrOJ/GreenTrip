@@ -321,7 +321,7 @@
             UIImage *image = [UIImage imageWithData:imageData];
             [portraitButton setImage:image forState:UIControlStateNormal];
         } else {
-            [portraitButton setImage:[UIImage imageNamed:@"default_image.png"] forState:UIControlStateNormal];
+            [portraitButton setImage:[UIImage imageNamed:@"62x62默认头像"] forState:UIControlStateNormal];
         }
 
         

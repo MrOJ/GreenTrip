@@ -222,7 +222,6 @@
             exView.backgroundColor = [UIColor groupTableViewBackgroundColor];
             [cell addSubview:exView];
            
-            
             UIButton *collectButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 20, ([self superview].bounds.size.width - 10 * 2) / 2, 40)];
             collectButton.backgroundColor = myColor;
             [collectButton setTitle:@" 收藏" forState:UIControlStateNormal];

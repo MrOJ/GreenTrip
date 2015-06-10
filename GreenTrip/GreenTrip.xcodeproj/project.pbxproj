@@ -81,6 +81,15 @@
 		184080341AB8449B00E89AB3 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 184080271AB8449B00E89AB3 /* UIScrollView+MJRefresh.m */; };
 		184080351AB8449B00E89AB3 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 184080291AB8449B00E89AB3 /* UIView+MJExtension.m */; };
 		1846F9251AC18C95006067BA /* 4设置未激活130x80@4x副本.png in Resources */ = {isa = PBXBuildFile; fileRef = 1846F9241AC18C95006067BA /* 4设置未激活130x80@4x副本.png */; };
+		184D6BCA1B287C0900D597EA /* 62x62默认头像.png in Resources */ = {isa = PBXBuildFile; fileRef = 184D6BC41B287C0900D597EA /* 62x62默认头像.png */; };
+		184D6BCB1B287C0900D597EA /* 62x62默认头像@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184D6BC51B287C0900D597EA /* 62x62默认头像@2x.png */; };
+		184D6BCC1B287C0900D597EA /* 62x62默认头像@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184D6BC61B287C0900D597EA /* 62x62默认头像@3x.png */; };
+		184D6BCD1B287C0900D597EA /* 箭头9x17px.png in Resources */ = {isa = PBXBuildFile; fileRef = 184D6BC71B287C0900D597EA /* 箭头9x17px.png */; };
+		184D6BCE1B287C0900D597EA /* 箭头9x17px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184D6BC81B287C0900D597EA /* 箭头9x17px@2x.png */; };
+		184D6BCF1B287C0900D597EA /* 箭头9x17px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184D6BC91B287C0900D597EA /* 箭头9x17px@3x.png */; };
+		184D6BDF1B28863A00D597EA /* 绿色箭头9x17px.png in Resources */ = {isa = PBXBuildFile; fileRef = 184D6BDC1B28863A00D597EA /* 绿色箭头9x17px.png */; };
+		184D6BE01B28863A00D597EA /* 绿色箭头9x17px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184D6BDD1B28863A00D597EA /* 绿色箭头9x17px@2x.png */; };
+		184D6BE11B28863A00D597EA /* 绿色箭头9x17px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184D6BDE1B28863A00D597EA /* 绿色箭头9x17px@3x.png */; };
 		18586C6D1AFA354500045A42 /* 反转92x124px.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C6A1AFA354500045A42 /* 反转92x124px.png */; };
 		18586C6E1AFA354500045A42 /* 反转92x124px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C6B1AFA354500045A42 /* 反转92x124px@2x.png */; };
 		18586C6F1AFA354500045A42 /* 反转92x124px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C6C1AFA354500045A42 /* 反转92x124px@3x.png */; };
@@ -291,7 +300,6 @@
 		18C81BEA1B10A13A009F3E3F /* 相机25x21px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C81BE71B10A139009F3E3F /* 相机25x21px@2x.png */; };
 		18C81BEB1B10A13A009F3E3F /* 相机25x21px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18C81BE81B10A139009F3E3F /* 相机25x21px@3x.png */; };
 		18C81BED1B10ACB8009F3E3F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C81BEC1B10ACB8009F3E3F /* MobileCoreServices.framework */; };
-		18CE37A71AC5982100EF6141 /* loginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CE37A61AC5982100EF6141 /* loginViewController.m */; };
 		18CE37BE1AC673D400EF6141 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CE37AA1AC673D400EF6141 /* NSString+MD5.m */; };
 		18CE37BF1AC673D400EF6141 /* YDCrashHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CE37AD1AC673D400EF6141 /* YDCrashHandler.m */; };
 		18CE37C01AC673D400EF6141 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CE37B31AC673D400EF6141 /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -434,6 +442,15 @@
 		184080281AB8449B00E89AB3 /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		184080291AB8449B00E89AB3 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
 		1846F9241AC18C95006067BA /* 4设置未激活130x80@4x副本.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "4设置未激活130x80@4x副本.png"; path = "images/4设置未激活130x80@4x副本.png"; sourceTree = "<group>"; };
+		184D6BC41B287C0900D597EA /* 62x62默认头像.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "62x62默认头像.png"; sourceTree = "<group>"; };
+		184D6BC51B287C0900D597EA /* 62x62默认头像@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "62x62默认头像@2x.png"; sourceTree = "<group>"; };
+		184D6BC61B287C0900D597EA /* 62x62默认头像@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "62x62默认头像@3x.png"; sourceTree = "<group>"; };
+		184D6BC71B287C0900D597EA /* 箭头9x17px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "箭头9x17px.png"; sourceTree = "<group>"; };
+		184D6BC81B287C0900D597EA /* 箭头9x17px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "箭头9x17px@2x.png"; sourceTree = "<group>"; };
+		184D6BC91B287C0900D597EA /* 箭头9x17px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "箭头9x17px@3x.png"; sourceTree = "<group>"; };
+		184D6BDC1B28863A00D597EA /* 绿色箭头9x17px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "绿色箭头9x17px.png"; sourceTree = "<group>"; };
+		184D6BDD1B28863A00D597EA /* 绿色箭头9x17px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "绿色箭头9x17px@2x.png"; sourceTree = "<group>"; };
+		184D6BDE1B28863A00D597EA /* 绿色箭头9x17px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "绿色箭头9x17px@3x.png"; sourceTree = "<group>"; };
 		18586C6A1AFA354500045A42 /* 反转92x124px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "反转92x124px.png"; sourceTree = "<group>"; };
 		18586C6B1AFA354500045A42 /* 反转92x124px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "反转92x124px@2x.png"; sourceTree = "<group>"; };
 		18586C6C1AFA354500045A42 /* 反转92x124px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "反转92x124px@3x.png"; sourceTree = "<group>"; };
@@ -688,8 +705,6 @@
 		18C81BE71B10A139009F3E3F /* 相机25x21px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "相机25x21px@2x.png"; sourceTree = "<group>"; };
 		18C81BE81B10A139009F3E3F /* 相机25x21px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "相机25x21px@3x.png"; sourceTree = "<group>"; };
 		18C81BEC1B10ACB8009F3E3F /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		18CE37A51AC5982100EF6141 /* loginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = loginViewController.h; sourceTree = "<group>"; };
-		18CE37A61AC5982100EF6141 /* loginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = loginViewController.m; sourceTree = "<group>"; };
 		18CE37A91AC673D400EF6141 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		18CE37AA1AC673D400EF6141 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		18CE37AC1AC673D400EF6141 /* YDCrashHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDCrashHandler.h; sourceTree = "<group>"; };
@@ -1085,8 +1100,6 @@
 				18CE37B01AC673D400EF6141 /* Externals */,
 				18CE37B41AC673D400EF6141 /* Helpers */,
 				18CE37B71AC673D400EF6141 /* VC */,
-				18CE37A51AC5982100EF6141 /* loginViewController.h */,
-				18CE37A61AC5982100EF6141 /* loginViewController.m */,
 				18040EC41AEA66DC00844F0C /* profilesViewController.h */,
 				18040EC51AEA66DC00844F0C /* profilesViewController.m */,
 				1817482F1AF0EE4100F1DFE8 /* registrationViewController.h */,
@@ -1134,6 +1147,15 @@
 				18F76A0F1AB5BB0B00705FBA /* images */,
 				18F769701AB42C6A00705FBA /* finding_logo.png */,
 				18AE83281AB1CE4400384C47 /* proxy.png */,
+				184D6BC41B287C0900D597EA /* 62x62默认头像.png */,
+				184D6BC51B287C0900D597EA /* 62x62默认头像@2x.png */,
+				184D6BC61B287C0900D597EA /* 62x62默认头像@3x.png */,
+				184D6BC71B287C0900D597EA /* 箭头9x17px.png */,
+				184D6BC81B287C0900D597EA /* 箭头9x17px@2x.png */,
+				184D6BC91B287C0900D597EA /* 箭头9x17px@3x.png */,
+				184D6BDC1B28863A00D597EA /* 绿色箭头9x17px.png */,
+				184D6BDD1B28863A00D597EA /* 绿色箭头9x17px@2x.png */,
+				184D6BDE1B28863A00D597EA /* 绿色箭头9x17px@3x.png */,
 				18BCABA01AA9EA1E00827C66 /* tabBar1.png */,
 				18BCABA11AA9EA1E00827C66 /* tabBar2.png */,
 				18BCABA21AA9EA1E00827C66 /* tabBar3.png */,
@@ -1585,6 +1607,7 @@
 				18040ECB1AEBAC9A00844F0C /* 4设置130x80.png in Resources */,
 				18C81BEA1B10A13A009F3E3F /* 相机25x21px@2x.png in Resources */,
 				18040EBE1AEA603500844F0C /* wechat188x188.png in Resources */,
+				184D6BCA1B287C0900D597EA /* 62x62默认头像.png in Resources */,
 				18B539D31AE7BC7C00B6F344 /* 分享48x52@3x.png in Resources */,
 				18B3415E1AA6D81A00B19ED4 /* expandableImage.png in Resources */,
 				18B539991AE7BC7C00B6F344 /* 1出发未激活130x80.png in Resources */,
@@ -1595,7 +1618,9 @@
 				18048C7C1AF65B4C00E68A54 /* 自行车50x44px.png in Resources */,
 				18B539CE1AE7BC7C00B6F344 /* 五角星56x56@2x.png in Resources */,
 				1817483F1AF0F39F00F1DFE8 /* 选择56x56px@3x.png in Resources */,
+				184D6BE11B28863A00D597EA /* 绿色箭头9x17px@3x.png in Resources */,
 				18B53A131AE7C5CC00B6F344 /* 1箭头154x152@2x.png in Resources */,
+				184D6BCC1B287C0900D597EA /* 62x62默认头像@3x.png in Resources */,
 				18B539D41AE7BC7C00B6F344 /* 摄像头166x200.png in Resources */,
 				18048C7D1AF65B4C00E68A54 /* 自行车50x44px@2x.png in Resources */,
 				18586CC01AFAEB5F00045A42 /* 下拉箭头19x11px@2x.png in Resources */,
@@ -1606,6 +1631,7 @@
 				18B538C91AE7BB9100B6F344 /* 3我的未激活130x80@4x.png in Resources */,
 				18B5399A1AE7BC7C00B6F344 /* 1出发未激活130x80@2x.png in Resources */,
 				18F6B3DF1AF34849000D9A40 /* 缩小140x156.png in Resources */,
+				184D6BCE1B287C0900D597EA /* 箭头9x17px@2x.png in Resources */,
 				18B539B31AE7BC7C00B6F344 /* 3我的未激活130x80@3x.png in Resources */,
 				18BCABA51AA9EA1E00827C66 /* tabBar2.png in Resources */,
 				1817483E1AF0F39F00F1DFE8 /* 选择56x56px@2x.png in Resources */,
@@ -1641,8 +1667,10 @@
 				18B539A71AE7BC7C00B6F344 /* 2发现未激活130x80@3x.png in Resources */,
 				18B539DA1AE7BC7C00B6F344 /* 箭头38x22.png in Resources */,
 				18048C7E1AF65B4C00E68A54 /* 自行车50x44px@3x.png in Resources */,
+				184D6BCB1B287C0900D597EA /* 62x62默认头像@2x.png in Resources */,
 				1884F5981B04B9A300F4DE19 /* TGRImageViewController.xib in Resources */,
 				18B539C41AE7BC7C00B6F344 /* 50x50.png in Resources */,
+				184D6BE01B28863A00D597EA /* 绿色箭头9x17px@2x.png in Resources */,
 				18586C791AFA36E100045A42 /* 偏好箭头36x68px.png in Resources */,
 				18B340D71AA6D55700B19ED4 /* Main.storyboard in Resources */,
 				18B539C21AE7BC7C00B6F344 /* 5-76x92@2x.png in Resources */,
@@ -1716,6 +1744,7 @@
 				18B341601AA6D81A00B19ED4 /* truck.png in Resources */,
 				18B539BF1AE7BC7C00B6F344 /* 4设置未激活130x80@2x.png in Resources */,
 				18C81BE91B10A139009F3E3F /* 相机25x21px.png in Resources */,
+				184D6BCD1B287C0900D597EA /* 箭头9x17px.png in Resources */,
 				18040ECD1AEBAC9A00844F0C /* 4设置130x80@3x.png in Resources */,
 				1884F53A1B04342400F4DE19 /* trip1.jpg in Resources */,
 				1817483A1AF0F39F00F1DFE8 /* 未选择56x56px.png in Resources */,
@@ -1726,6 +1755,7 @@
 				18040EBA1AEA603500844F0C /* QQ188x188@3x.png in Resources */,
 				18B539C71AE7BC7C00B6F344 /* 6-100x98@3x.png in Resources */,
 				18B340BE1AA6D4CC00B19ED4 /* Images.xcassets in Resources */,
+				184D6BDF1B28863A00D597EA /* 绿色箭头9x17px.png in Resources */,
 				18B539D81AE7BC7C00B6F344 /* 箭头2-76x44px.png in Resources */,
 				18586CA81AFA579200045A42 /* 骑车路线描边50x6px@2x.png in Resources */,
 				1884F53E1B04361400F4DE19 /* trip2.jpg in Resources */,
@@ -1788,6 +1818,7 @@
 				1840802A1AB8449B00E89AB3 /* MJRefresh.bundle in Resources */,
 				18040EBC1AEA603500844F0C /* reduce58x70@2x.png in Resources */,
 				18B539B21AE7BC7C00B6F344 /* 3我的未激活130x80@2x.png in Resources */,
+				184D6BCF1B287C0900D597EA /* 箭头9x17px@3x.png in Resources */,
 				18B539D21AE7BC7C00B6F344 /* 分享48x52@2x.png in Resources */,
 				18B539C31AE7BC7C00B6F344 /* 5-76x92@3x.png in Resources */,
 				18B53A041AE7C5C200B6F344 /* 搜搜86x90@2x.png in Resources */,
@@ -1898,7 +1929,6 @@
 				18B341061AA6D58300B19ED4 /* ARAnnotation.m in Sources */,
 				184080311AB8449B00E89AB3 /* MJRefreshLegendFooter.m in Sources */,
 				18B341261AA6D5C600B19ED4 /* SettingMainViewController.m in Sources */,
-				18CE37A71AC5982100EF6141 /* loginViewController.m in Sources */,
 				18F6B3C01AF24AC0000D9A40 /* SDImageCache.m in Sources */,
 				18B341131AA6D58300B19ED4 /* textRoutesDetailsScrollView.m in Sources */,
 				18F6B3BE1AF24AC0000D9A40 /* MKAnnotationView+WebCache.m in Sources */,

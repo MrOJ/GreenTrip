@@ -571,7 +571,7 @@
                                                                     <constraint firstAttribute="height" constant="75" id="KaM-j7-q41"/>
                                                                     <constraint firstAttribute="width" constant="75" id="Tq4-9e-agC"/>
                                                                 </constraints>
-                                                                <state key="normal" image="default_image.png">
+                                                                <state key="normal" image="62x62默认头像">
                                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </state>
                                                                 <connections>
@@ -1154,10 +1154,10 @@
         <image name="4-54x92未激活.png" width="18" height="31"/>
         <image name="5-76x92未激活.png" width="25" height="31"/>
         <image name="6-100x98未激活.png" width="33" height="33"/>
+        <image name="62x62默认头像" width="23" height="37"/>
         <image name="QQ188x188.png" width="63" height="63"/>
         <image name="bike104x66.png" width="35" height="22"/>
         <image name="bus68x84.png" width="23" height="28"/>
-        <image name="default_image.png" width="150" height="150"/>
         <image name="reduce58x70.png" width="19" height="23"/>
         <image name="wechat188x188.png" width="63" height="63"/>
         <image name="weibo188x188.png" width="63" height="63"/>

@@ -21,44 +21,67 @@
     // Do any additional setup after loading the view.
     //self.navigationController.navigationBarHidden = NO;
     //设置下一个页面的返回键。
+    /*
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
     backItem.title = @"";
     self.navigationItem.backBarButtonItem = backItem;
+    */
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"箭头9x17px"] style:UIBarButtonItemStylePlain target:self action:@selector(back:)];
+    self.navigationItem.leftBarButtonItem  = backButton;
+    
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,[UIFont systemFontOfSize:22.0f], NSFontAttributeName, nil];
+    self.navigationItem.title = @"设置";
+    
+    self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
     self.tabBarController.tabBar.hidden = YES;
     
-    myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStyleGrouped];
-    
+    myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, -20, self.view.bounds.size.width, self.view.bounds.size.height - 120) style:UITableViewStyleGrouped];
+    myTableView.layer.shadowOffset = CGSizeMake(0, 0.5);
+    myTableView.layer.shadowOpacity = 0.15;
+    myTableView.separatorStyle = NO;
     myTableView.delegate = self;
     myTableView.dataSource = self;
-    
     [self.view addSubview:myTableView];
-
+    
+    UIButton *logoutButton = [[UIButton alloc] initWithFrame:CGRectMake(20, self.view.bounds.size.height - 20 - 50 - 70, self.view.bounds.size.width - 20 * 2, 50)];
+    logoutButton.backgroundColor = myColor;
+    logoutButton.layer.shadowOffset = CGSizeMake(0, 0.5);
+    logoutButton.layer.shadowOpacity = 0.15;
+    [logoutButton setTitle:@"退出登录" forState:UIControlStateNormal];
+    [logoutButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [logoutButton addTarget:self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];
+    logoutButton.titleLabel.font = [UIFont systemFontOfSize:18.0f];
+    [self.view addSubview:logoutButton];
+    
 }
 
-/*
- - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
- return 64;
- }
- */
-//设置section行高
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 10;
+- (void)back:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)logout:(id)sender {
+    [self.navigationController popViewControllerAnimated:NO];
+    
+    //清空本地数据
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *dict = [defaults dictionaryRepresentation];
+    for (id key in dict) {
+        [defaults removeObjectForKey:key];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return 30;
-    } else {
-        return 10;
-    }
+
+    return 42;
 
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 4;
+    return 1;
 }
 
 /*
@@ -69,7 +92,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -86,69 +109,69 @@
     
     
     
-    if (indexPath.section == 0) {
-        cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
-        cell.textLabel.text = @"个人资料修改";
+    if (indexPath.row == 0) {
+
+        UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 16, 200, 16)];
+        textLabel.text = @"个人资料修改";
+        textLabel.font = [UIFont systemFontOfSize:16.0f];
+        
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(30, 42, self.view.bounds.size.width - 30 * 2, 1)];
+        lineView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        
+        UIImageView *indicatorImg = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 30 - 9, 16, 9, 17)];
+        indicatorImg.image = [UIImage imageNamed:@"偏好箭头36x68px"];
+        
+        [cell addSubview:textLabel];
+        [cell addSubview:lineView];
+        [cell addSubview:indicatorImg];
+        
+    } else if (indexPath.row == 1) {
+        UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 12, 200, 16)];
+        textLabel.text = @"意见反馈";
+        textLabel.font = [UIFont systemFontOfSize:16.0f];
+        
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(30, 42, self.view.bounds.size.width - 30 * 2, 1)];
+        lineView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        
+        UIImageView *indicatorImg = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 30 - 9, 16, 9, 17)];
+        indicatorImg.image = [UIImage imageNamed:@"偏好箭头36x68px"];
+        
+        [cell addSubview:textLabel];
+        [cell addSubview:lineView];
+        [cell addSubview:indicatorImg];
+        
+    } else if (indexPath.row == 2) {
+        UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 12, 200, 16)];
+        textLabel.text = @"关于我们";
+        textLabel.font = [UIFont systemFontOfSize:16.0f];
+        
+        UIImageView *indicatorImg = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 30 - 9, 16, 9, 17)];
+        indicatorImg.image = [UIImage imageNamed:@"偏好箭头36x68px"];
+        
+        [cell addSubview:textLabel];
+        [cell addSubview:indicatorImg];
+        
+    } else if (indexPath.row == 3) {
         /*
-        UIImageView *findingLogoImgView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 12, 20, 20)];
-        findingLogoImgView.image = [UIImage imageNamed:@"finding_logo"];
-        
-        [cell addSubview:findingLogoImgView];
-        
-        
-        UILabel *findingLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 5, 200, 30)];
-        findingLabel.text = @"个人资料修改";
-        
-        [cell addSubview:findingLabel];
-        */
-        
-    } else if (indexPath.section == 1) {
-        cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
-        cell.textLabel.text = @"意见反馈";
-        /*
-        UILabel *findingLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 5, 200, 30)];
-        findingLabel.text = @"关于";
-        
-        [cell addSubview:findingLabel];
-        */
-    } else if (indexPath.section == 2) {
-        cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
-        cell.textLabel.text = @"关于我们";
-        
-    } else if (indexPath.section == 3) {
         UILabel *deleteLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.bounds.size.width, cell.bounds.size.height)];
         deleteLabel.text = @"退出登录";
         deleteLabel.textAlignment = NSTextAlignmentCenter;
         deleteLabel.textColor = [UIColor redColor];
         
         [cell addSubview:deleteLabel];
-    } else if (indexPath.section == 4) {
-        
+        */
     }
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
-        
-    } else if (indexPath.section == 1) {
-        
-    } else if (indexPath.section == 2) {
+    if (indexPath.row == 0) {
 
-    } else if (indexPath.section == 3) {
-        
-        [self.navigationController popViewControllerAnimated:NO];
-        
-        //清空本地数据
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSDictionary *dict = [defaults dictionaryRepresentation];
-        for (id key in dict) {
-            [defaults removeObjectForKey:key];
-        }
-        
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        
+    } else if (indexPath.row == 1) {
+
+    } else if (indexPath.row == 2) {
+
     }
 }
 

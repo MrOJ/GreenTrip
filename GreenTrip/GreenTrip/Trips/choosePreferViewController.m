@@ -12,9 +12,8 @@
 
 - (void)viewDidLoad {
     
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
-    backItem.title = @"";
-    self.navigationItem.backBarButtonItem = backItem;
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"绿色箭头9x17px"] style:UIBarButtonItemStylePlain target:self action:@selector(back:)];
+    self.navigationItem.leftBarButtonItem  = backButton;
     
     self.navigationItem.title = @"偏好选择";
     
@@ -27,6 +26,9 @@
     
 }
 
+- (void)back:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
