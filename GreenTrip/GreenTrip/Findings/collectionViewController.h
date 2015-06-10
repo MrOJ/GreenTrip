@@ -23,10 +23,14 @@
     NSMutableArray *itemsArray;
     NSMutableArray *itemsImgArray;     //用于存放实际图片
     
+    NSMutableArray *findingIDArray;
     NSMutableArray *capitionArray;
     NSMutableArray *nicknameArray;
     NSMutableArray *portraitArray;
     NSMutableArray *portraitImgArray;  //用于存放实际头像图片
+    
+    NSMutableArray *likeNumArray;
+    NSMutableArray *pushTimeArray;
     
     UIImage *sendingImg;
     NSString *textComments;

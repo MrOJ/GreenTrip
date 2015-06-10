@@ -61,12 +61,15 @@
     
     [self.collectionView.legendFooter setHidden:YES];
     // 马上进入刷新状态
-    itemsArray    = [[NSMutableArray alloc] init];
-    capitionArray = [[NSMutableArray alloc] init];
-    nicknameArray = [[NSMutableArray alloc] init];
-    portraitArray = [[NSMutableArray alloc] init];
+    findingIDArray = [[NSMutableArray alloc] init];
+    itemsArray     = [[NSMutableArray alloc] init];
+    capitionArray  = [[NSMutableArray alloc] init];
+    nicknameArray  = [[NSMutableArray alloc] init];
+    portraitArray  = [[NSMutableArray alloc] init];
+    likeNumArray   = [[NSMutableArray alloc] init];
+    pushTimeArray  = [[NSMutableArray alloc] init];
     
-    itemsImgArray = [[NSMutableArray alloc] init];
+    itemsImgArray    = [[NSMutableArray alloc] init];
     portraitImgArray = [[NSMutableArray alloc] init];
     
     itemsImgNum = 0;
@@ -133,19 +136,25 @@
             if ([stateStr isEqualToString:@"0"]) {
                 
                 if (itemsArray.count == 0) {
+                    [findingIDArray addObjectsFromArray:[responseObject objectForKey:@"finding_ID_list"]];
                     [capitionArray addObjectsFromArray:[responseObject objectForKey:@"text_comment_list"]];
                     [nicknameArray addObjectsFromArray:[responseObject objectForKey:@"username_list"]];
                     [portraitArray addObjectsFromArray:[responseObject objectForKey:@"portrait_image_list"]];
                     [itemsArray addObjectsFromArray:[responseObject objectForKey:@"finding_image_list"]];
+                    [likeNumArray addObjectsFromArray:[responseObject objectForKey:@"likes_number_list"]];
+                    [pushTimeArray addObjectsFromArray:[responseObject objectForKey:@"push_time_list"]];
                     
                     [itemsImgArray addObjectsFromArray:[responseObject objectForKey:@"finding_image_list"]];
                     [portraitImgArray addObjectsFromArray:[responseObject objectForKey:@"portrait_image_list"]];
                     
                 } else {
+                    [findingIDArray insertObjects:[responseObject objectForKey:@"finding_ID_list"] atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, getUsernameArray.count)]];
                     [capitionArray insertObjects:[responseObject objectForKey:@"text_comment_list"] atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, getUsernameArray.count)]];
                     [nicknameArray insertObjects:[responseObject objectForKey:@"username_list"] atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, getUsernameArray.count)]];
                     [portraitArray insertObjects:[responseObject objectForKey:@"portrait_image_list"] atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, getUsernameArray.count)]];
                     [itemsArray insertObjects:[responseObject objectForKey:@"finding_image_list"] atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, getUsernameArray.count)]];
+                    [likeNumArray insertObjects:[responseObject objectForKey:@"likes_number_list"] atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, getUsernameArray.count)]];
+                    [pushTimeArray insertObjects:[responseObject objectForKey:@"push_time_list"] atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, getUsernameArray.count)]];
                     
                     [itemsImgArray insertObjects:[responseObject objectForKey:@"finding_image_list"] atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, getUsernameArray.count)]];
                     [portraitImgArray insertObjects:[responseObject objectForKey:@"portrait_image_list"] atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, getUsernameArray.count)]];
@@ -173,6 +182,7 @@
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"%@",error);
             [self showErrorWithMessage:@"连接失败，请重试"];
+            [self.collectionView.legendHeader endRefreshing];
         }];
     } else {
         [self showErrorWithMessage:@"请登录"];
@@ -212,10 +222,13 @@
             
             if ([getState isEqualToString:@"0"]) {
                 NSLog(@"load more");
+                [findingIDArray addObjectsFromArray:[responseObject objectForKey:@"finding_ID_list"]];
                 [capitionArray addObjectsFromArray:[responseObject objectForKey:@"text_comment_list"]];
                 [nicknameArray addObjectsFromArray:[responseObject objectForKey:@"username_list"]];
                 [portraitArray addObjectsFromArray:[responseObject objectForKey:@"portrait_image_list"]];
                 [itemsArray addObjectsFromArray:[responseObject objectForKey:@"finding_image_list"]];
+                [likeNumArray addObjectsFromArray:[responseObject objectForKey:@"likes_number_list"]];
+                [pushTimeArray addObjectsFromArray:[responseObject objectForKey:@"push_time_list"]];
                 
                 [itemsImgArray addObjectsFromArray:[responseObject objectForKey:@"finding_image_list"]];
                 [portraitImgArray addObjectsFromArray:[responseObject objectForKey:@"portrait_image_list"]];
@@ -237,6 +250,7 @@
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"%@",error);
             [self showErrorWithMessage:@"连接失败，请重试"];
+            [self.collectionView.legendFooter endRefreshing];
         }];
     } else {
         [self showErrorWithMessage:@"请登录"];
@@ -363,7 +377,12 @@
     //NSLog(@"get iterm%@",[itemsArray objectAtIndex:index]);
     
     [v fillViewWithObject:[itemsImgArray objectAtIndex:index]];
-    [v fillViewWithCaption:[capitionArray objectAtIndex:index] Nickname:[nicknameArray objectAtIndex:index] PortraitImg:[portraitImgArray objectAtIndex:index] Time:nil Like:nil];
+    [v fillViewWithFinfdingID:[findingIDArray objectAtIndex:index]
+                      Caption:[capitionArray objectAtIndex:index]
+                     Nickname:[nicknameArray objectAtIndex:index]
+                    PortraitImg:[portraitImgArray objectAtIndex:index]
+                         Time:[pushTimeArray objectAtIndex:index]
+                         Like:[likeNumArray objectAtIndex:index]];
     
     //PSBroView *v = (PSBroView *)[PSBViewArray objectAtIndex:index];
     
@@ -437,17 +456,22 @@
 - (void)uploadFindingsInfo {
     NSData *data = UIImageJPEGRepresentation(sendingImg, 0.001);
     
+    // 设置图片时间格式
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    // 设置时间格式
     formatter.dateFormat = @"yyyyMMddHHmmss";
-    NSString *dateStr = [formatter stringFromDate:[NSDate date]];
-    NSString *fileName = [NSString stringWithFormat:@"finding_%@.png", dateStr];
+    NSString *dateStr1 = [formatter stringFromDate:[NSDate date]];
+    NSString *fileName = [NSString stringWithFormat:@"finding_%@.png", dateStr1];
+    
+    // 设置时间格式
+    NSDateFormatter *formatter2 = [[NSDateFormatter alloc] init];
+    formatter2.dateFormat = @"yyyy-MM-dd HH:mm";
+    NSString *dateStr2 = [formatter2 stringFromDate:[NSDate date]];
     
     NSString *usernameStr = [NSString stringWithFormat:@"%@",[YDConfigurationHelper getStringValueForConfigurationKey:@"username"]];
     
     NSDictionary *dict = [[NSDictionary alloc] init];
     
-    dict = @{ @"username":usernameStr, @"text_comment":textComments,@"push_time":dateStr, @"likes_number":@"0"};
+    dict = @{ @"username":usernameStr, @"text_comment":textComments,@"push_time":dateStr2, @"likes_number":@"0"};
     
     NSMutableURLRequest *urlrequest = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:@"http://192.168.1.123:1200/uploadFindingInfo" parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:data name:@"myfile" fileName:fileName mimeType:@"image/png"];

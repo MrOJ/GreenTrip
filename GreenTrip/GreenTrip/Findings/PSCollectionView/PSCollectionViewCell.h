@@ -32,13 +32,14 @@
 @property (nonatomic, strong) NSString *nicknameStr;
 @property (nonatomic, strong) NSString *timeStr;
 @property (nonatomic, strong) NSString *likeStr;
+@property (nonatomic, strong) NSString *findingIDStr;
 
 @property (nonatomic, strong)UIImage *portraitImage;
 
 - (void)prepareForReuse;
 - (void)fillViewWithObject:(id)object;
 - (void)fillViewWithText:(id)str;
-- (void)fillViewWithCaption:(id)caption Nickname:(id)nickname PortraitImg:(id)portrait Time:(id)time Like:(id)like;
+- (void)fillViewWithFinfdingID:(id)ID Caption:(id)caption Nickname:(id)nickname PortraitImg:(id)portrait Time:(id)time Like:(id)like;
 + (CGFloat)heightForViewWithObject:(id)object withCapitionStr:(NSString *)str inColumnWidth:(CGFloat)columnWidth;
 //- (CGFloat)heightForViewWithObject:(id)object withCapitionStr:(NSString *)str inColumnWidth:(CGFloat)columnWidth;
 

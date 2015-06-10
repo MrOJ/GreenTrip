@@ -38,6 +38,7 @@ object = _object;
 @synthesize likeStr;
 @synthesize timeStr;
 @synthesize portraitImage;
+@synthesize findingIDStr;
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -57,7 +58,8 @@ object = _object;
     self.textStr = str;
 }
 
-- (void)fillViewWithCaption:(id)caption Nickname:(id)nickname PortraitImg:(id)portrait Time:(id)time Like:(id)like {
+- (void)fillViewWithFinfdingID:(id)ID Caption:(id)caption Nickname:(id)nickname PortraitImg:(id)portrait Time:(id)time Like:(id)like {
+    self.findingIDStr = ID;
     self.captionStr = caption;
     self.nicknameStr = nickname;
     self.timeStr = time;

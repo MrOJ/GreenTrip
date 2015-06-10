@@ -76,7 +76,7 @@ likeButton = _likeButton;
         
         //设置发布时间
         //self.releaseTime.frame = CGRectMake(50, 19, self.frame.size.width - 50 - 23, 15);
-        self.releaseTime.text = @"1小时前";
+        //self.releaseTime.text = @"1小时前";
         self.releaseTime.textColor = [UIColor lightGrayColor];
         self.releaseTime.font = [UIFont systemFontOfSize:11.0f];
         [self.profileView addSubview:self.releaseTime];
@@ -150,7 +150,7 @@ likeButton = _likeButton;
     [self.likeButton setImage:[UIImage imageNamed:@"12x10px未激活"] forState:UIControlStateNormal];
     [self.likeButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0.0, 0, 8.0)];
     self.likeButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-    [self.likeButton setTitle:@"99+" forState:UIControlStateNormal];
+    //[self.likeButton setTitle:@"99+" forState:UIControlStateNormal];
     //[self.likeButton sizeToFit];
     [self.likeButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 8, 0, 0.0)];
     self.likeButton.titleLabel.font = [UIFont systemFontOfSize:13.0f];
@@ -187,24 +187,44 @@ likeButton = _likeButton;
 }
 
 - (void)pressLikeButton:(id)sender {
-    NSLog(@"like!");
+    //NSLog(@"like!");
+    NSLog(@"tag = %ld",(long)self.likeButton.tag);
+    NSLog(@"findingID = %@",findingID);
+    NSLog(@"like num = %ld",(long)likeNum);
+    if (i == 0) {
+        likeNum += 1;
+        [self.likeButton setImage:[UIImage imageNamed:@"12x10px"] forState:UIControlStateNormal];
+        [self.likeButton setTitle:[NSString stringWithFormat:@"%ld",likeNum] forState:UIControlStateNormal];
+        i = 1;
+    } else {
+        likeNum -= 1;
+        [self.likeButton setImage:[UIImage imageNamed:@"12x10px未激活"] forState:UIControlStateNormal];
+        if (likeNum == 0) {
+            [self.likeButton setTitle:@"" forState:UIControlStateNormal];
+        } else {
+            [self.likeButton setTitle:[NSString stringWithFormat:@"%ld",likeNum] forState:UIControlStateNormal];
+        }
+
+        i = 0;
+    }
     
+    //更新数据库数据
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    //2.设置登录参数
+    NSDictionary *dict = @{ @"findingID":findingID, @"likes_number":[NSString stringWithFormat:@"%ld",(long)likeNum] };
+    
+    //3.请求
+    [manager GET:@"http://192.168.1.123:1200/updateLikeNum" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"GET --> %@", responseObject); //自动返回主线程
+        
+    } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorWithMessage:@"连接失败，请检测网络"];
+    }];
 }
 
 - (void)fillViewWithObject:(id)image {
     [super fillViewWithObject:image];
-    
-    /*
-    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://192.168.1.123:1200/syncFindingImg?image=%@",image]];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        NSLog(@"加载图片%@（%@）成功！",image,self.imageView.image);
-        self.imageView.image = [UIImage imageWithData:data];
-        [self.imageButton setImage:[UIImage imageWithData:data] forState:UIControlStateNormal];
-    }];
-    */
-    
-    //self.captionLabel.text = [object objectForKey:@"title"];
 
     self.imageView.image = image;
     [self.imageButton setImage:image forState:UIControlStateNormal];
@@ -218,14 +238,27 @@ likeButton = _likeButton;
     
 }
 
-- (void)fillViewWithCaption:(id)caption Nickname:(id)nickname PortraitImg:(id)portrait Time:(id)time Like:(id)like {
-    [super fillViewWithCaption:caption Nickname:nickname PortraitImg:portrait Time:time Like:like];
+- (void)fillViewWithFinfdingID:(id)ID Caption:(id)caption Nickname:(id)nickname PortraitImg:(id)portrait Time:(id)time Like:(id)like{
+    [super fillViewWithFinfdingID:ID Caption:caption Nickname:nickname PortraitImg:portrait Time:time Like:like];
     
     self.captionLabel.text = caption;
     self.nickname.text = nickname;
-
-    
     self.profileImge.image = portrait;
+    
+    self.likeButton.tag = [ID integerValue];
+    findingID = ID;
+    
+    if ([like isEqualToString:@"0"]) {
+        [self.likeButton setTitle:@"" forState:UIControlStateNormal];
+    } else {
+        [self.likeButton setTitle:like forState:UIControlStateNormal];
+    }
+    
+    i = 0;
+    likeNum = [like integerValue];
+    
+    self.releaseTime.text = [self getUTCFormateDate:time];
+    //NSLog( @"push time = %@",[self getUTCFormateDate:timeStr]);
 }
 
 
@@ -288,6 +321,53 @@ likeButton = _likeButton;
         return [[TGRImageZoomAnimationController alloc] initWithReferenceImageView:self.imageButton.imageView];
     }
     return nil;
+}
+
+-(void)showErrorWithMessage:(NSString *)msg
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:msg delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alert show];
+}
+
+//计算某个时间到现在是多少月／天／时
+-(NSString *)getUTCFormateDate:(NSString *)newsDate
+{
+    //    newsDate = @"2013-08-09 17:01";
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    
+    NSLog(@"newsDate = %@",newsDate);
+    NSDate *newsDateFormatted = [dateFormatter dateFromString:newsDate];
+    NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+    [dateFormatter setTimeZone:timeZone];
+    
+    NSDate* current_date = [[NSDate alloc] init];
+    
+    NSTimeInterval time=[current_date timeIntervalSinceDate:newsDateFormatted];//间隔的秒数
+    int month=((int)time)/(3600*24*30);
+    int days=((int)time)/(3600*24);
+    int hours=((int)time)%(3600*24)/3600;
+    int minute=((int)time)%(3600*24)/60;
+    NSLog(@"time=%f",(double)time);
+    
+    NSString *dateContent;
+    
+    if(month!=0){
+        
+        dateContent = [NSString stringWithFormat:@"%@%i%@",@"   ",month,@"个月前"];
+        
+    }else if(days!=0){
+        
+        dateContent = [NSString stringWithFormat:@"%@%i%@",@"   ",days,@"天前"];
+    }else if(hours!=0){
+        
+        dateContent = [NSString stringWithFormat:@"%@%i%@",@"   ",hours,@"小时前"];
+    }else {
+        
+        dateContent = [NSString stringWithFormat:@"%@%i%@",@"   ",minute,@"分钟前"];
+    }
+    
+    return dateContent;
 }
 
 @end
