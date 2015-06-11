@@ -33,8 +33,6 @@
     
     self.navigationItem.title = @"注册";
     
-    myAlert = [[UIAlertView alloc] initWithTitle:nil message:@"注册成功!" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil];
-    
 }
 
 - (void)back:(id)sender {
@@ -46,26 +44,27 @@
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注册失败" message:@"输入不能为空" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alert show];
-    }
-    else
-    {
+    } else if ([self.passwordTextField.text length] < 6) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注册失败" message:@"密码长度不得小于6，请重试！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+        [self.passwordTextField becomeFirstResponder];
+    } else {
         
         //上传至服务器
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         
         //2.设置登录参数
-        NSDictionary *dict = @{ @"username":self.usernameTextField.text, @"password":[self.passwordTextField.text MD5]};
+        NSDictionary *dict = @{ @"username":self.usernameTextField.text,
+                                @"password":[self.passwordTextField.text MD5],
+                                @"sex":@"男"};
         
         //3.请求
-        [manager GET:@"http://192.168.1.123:1200/register" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+        [manager GET:@"http://192.168.1.104:1200/register" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"GET --> %@", responseObject); //自动返回主线程
             
             NSString *getRegister = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"register"]];
             if ([getRegister isEqualToString:@"0"]) {
                 NSLog(@"注册成功.");
-                [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector: @selector(performDismiss:)  userInfo:nil repeats:NO];
-                [myAlert show];
-                
                 KeychainItemWrapper* keychain = [[KeychainItemWrapper alloc] initWithIdentifier:@"YDAPPNAME" accessGroup:nil];
                 [keychain setObject:self.usernameTextField.text forKey:(__bridge id)kSecAttrAccount];
                 [keychain setObject:[self.passwordTextField.text MD5] forKey:(__bridge id)kSecValueData];
@@ -75,9 +74,20 @@
                 
                 [YDConfigurationHelper setBoolValueForConfigurationKey:bYDRegistered withValue:YES];
                 [YDConfigurationHelper setStringValueForConfigurationKey:self.usernameTextField.text withValue:@"username"];
+                [YDConfigurationHelper setStringValueForConfigurationKey:@"男" withValue:@"sex"];
                 
-                [self.navigationController popViewControllerAnimated:YES];
+                HUD = [[MBProgressHUD alloc] initWithView:self.view];
+                [self.view addSubview:HUD];
+                HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
                 
+                // Set custom view mode
+                HUD.mode = MBProgressHUDModeCustomView;
+                
+                HUD.delegate = self;
+                HUD.labelText = @"注册成功";
+                [HUD show:YES];
+                [HUD hide:YES afterDelay:1];
+
             } else {
                 UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"注册失败" message:@"用户名已经存在！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [errorAlert show];
@@ -87,15 +97,17 @@
         }];
         
     }
+}
 
+#pragma mark - MBProgressHUDDelegate
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+    // Remove HUD from screen when the HUD was hidded
+    [HUD removeFromSuperview];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)protocol:(id)sender {
     
-}
-
-- (void) performDismiss: (NSTimer *)timer {
-    [myAlert dismissWithClickedButtonIndex:0 animated:NO];//important
 }
 
 - (void)didReceiveMemoryWarning {

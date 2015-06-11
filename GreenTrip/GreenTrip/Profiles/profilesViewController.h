@@ -14,13 +14,16 @@
 #import "SettingMainViewController.h"
 #import "registrationViewController.h"
 #import "UIImageView+WebCache.h"
+#import "MBProgressHUD.h"
 
 #import "VPImageCropperViewController.h"
 
 #define myColor [UIColor colorWithRed:119.0 / 255.0f green:185.0 / 255.0f blue:67.0 / 255.0f alpha:1.0f]
 #define ORIGINAL_MAX_WIDTH 640.0f
 
-@interface profilesViewController : UIViewController<UITextFieldDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,VPImageCropperDelegate>
+@interface profilesViewController : UIViewController<UITextFieldDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,VPImageCropperDelegate,MBProgressHUDDelegate> {
+    MBProgressHUD *HUD;
+}
 
 
 @property (strong, nonatomic) IBOutlet UIView *LoginView;

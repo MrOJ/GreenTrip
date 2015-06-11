@@ -215,7 +215,7 @@ likeButton = _likeButton;
     NSDictionary *dict = @{ @"findingID":findingID, @"likes_number":[NSString stringWithFormat:@"%ld",(long)likeNum] };
     
     //3.请求
-    [manager GET:@"http://192.168.1.123:1200/updateLikeNum" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:@"http://192.168.1.104:1200/updateLikeNum" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"GET --> %@", responseObject); //自动返回主线程
         
     } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {

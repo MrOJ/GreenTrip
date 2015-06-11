@@ -90,6 +90,15 @@
 		184D6BDF1B28863A00D597EA /* 绿色箭头9x17px.png in Resources */ = {isa = PBXBuildFile; fileRef = 184D6BDC1B28863A00D597EA /* 绿色箭头9x17px.png */; };
 		184D6BE01B28863A00D597EA /* 绿色箭头9x17px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184D6BDD1B28863A00D597EA /* 绿色箭头9x17px@2x.png */; };
 		184D6BE11B28863A00D597EA /* 绿色箭头9x17px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184D6BDE1B28863A00D597EA /* 绿色箭头9x17px@3x.png */; };
+		184D6BE41B29182E00D597EA /* updateProfilesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184D6BE31B29182E00D597EA /* updateProfilesViewController.m */; };
+		184D6BF41B29B7FE00D597EA /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 184D6BED1B29B7FE00D597EA /* 37x-Checkmark.png */; };
+		184D6BF51B29B7FE00D597EA /* 37x-Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184D6BEE1B29B7FE00D597EA /* 37x-Checkmark@2x.png */; };
+		184D6BF61B29B7FE00D597EA /* Icon-iOS7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184D6BEF1B29B7FE00D597EA /* Icon-iOS7@2x.png */; };
+		184D6BF71B29B7FE00D597EA /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 184D6BF01B29B7FE00D597EA /* Icon-Small.png */; };
+		184D6BF81B29B7FE00D597EA /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184D6BF11B29B7FE00D597EA /* Icon-Small@2x.png */; };
+		184D6BF91B29B7FE00D597EA /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 184D6BF21B29B7FE00D597EA /* Icon.png */; };
+		184D6BFA1B29B7FE00D597EA /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184D6BF31B29B7FE00D597EA /* Icon@2x.png */; };
+		184D6BFE1B29BAAC00D597EA /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 184D6BFD1B29BAAC00D597EA /* MBProgressHUD.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		18586C6D1AFA354500045A42 /* 反转92x124px.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C6A1AFA354500045A42 /* 反转92x124px.png */; };
 		18586C6E1AFA354500045A42 /* 反转92x124px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C6B1AFA354500045A42 /* 反转92x124px@2x.png */; };
 		18586C6F1AFA354500045A42 /* 反转92x124px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C6C1AFA354500045A42 /* 反转92x124px@3x.png */; };
@@ -451,6 +460,17 @@
 		184D6BDC1B28863A00D597EA /* 绿色箭头9x17px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "绿色箭头9x17px.png"; sourceTree = "<group>"; };
 		184D6BDD1B28863A00D597EA /* 绿色箭头9x17px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "绿色箭头9x17px@2x.png"; sourceTree = "<group>"; };
 		184D6BDE1B28863A00D597EA /* 绿色箭头9x17px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "绿色箭头9x17px@3x.png"; sourceTree = "<group>"; };
+		184D6BE21B29182E00D597EA /* updateProfilesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = updateProfilesViewController.h; sourceTree = "<group>"; };
+		184D6BE31B29182E00D597EA /* updateProfilesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = updateProfilesViewController.m; sourceTree = "<group>"; };
+		184D6BED1B29B7FE00D597EA /* 37x-Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark.png"; sourceTree = "<group>"; };
+		184D6BEE1B29B7FE00D597EA /* 37x-Checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark@2x.png"; sourceTree = "<group>"; };
+		184D6BEF1B29B7FE00D597EA /* Icon-iOS7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-iOS7@2x.png"; sourceTree = "<group>"; };
+		184D6BF01B29B7FE00D597EA /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		184D6BF11B29B7FE00D597EA /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		184D6BF21B29B7FE00D597EA /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		184D6BF31B29B7FE00D597EA /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		184D6BFC1B29BAAC00D597EA /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		184D6BFD1B29BAAC00D597EA /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		18586C6A1AFA354500045A42 /* 反转92x124px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "反转92x124px.png"; sourceTree = "<group>"; };
 		18586C6B1AFA354500045A42 /* 反转92x124px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "反转92x124px@2x.png"; sourceTree = "<group>"; };
 		18586C6C1AFA354500045A42 /* 反转92x124px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "反转92x124px@3x.png"; sourceTree = "<group>"; };
@@ -894,6 +914,15 @@
 			path = MJRefresh;
 			sourceTree = "<group>";
 		};
+		184D6BFB1B29BAAC00D597EA /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				184D6BFC1B29BAAC00D597EA /* MBProgressHUD.h */,
+				184D6BFD1B29BAAC00D597EA /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
 		18586C7F1AFA416700045A42 /* CustomAnn&Overlay */ = {
 			isa = PBXGroup;
 			children = (
@@ -1092,6 +1121,7 @@
 		18B3411F1AA6D5BF00B19ED4 /* Profiles */ = {
 			isa = PBXGroup;
 			children = (
+				184D6BFB1B29BAAC00D597EA /* MBProgressHUD */,
 				18F6B39C1AF24AC0000D9A40 /* SDWebImage */,
 				1817482A1AEE5D4C00F1DFE8 /* VPImageCropper */,
 				18CE37A81AC673D400EF6141 /* Categories */,
@@ -1114,6 +1144,8 @@
 			children = (
 				18B341241AA6D5C600B19ED4 /* SettingMainViewController.h */,
 				18B341251AA6D5C600B19ED4 /* SettingMainViewController.m */,
+				184D6BE21B29182E00D597EA /* updateProfilesViewController.h */,
+				184D6BE31B29182E00D597EA /* updateProfilesViewController.m */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1146,6 +1178,13 @@
 				183205F01AC8151F00FA4B34 /* TripMainImg */,
 				18F76A0F1AB5BB0B00705FBA /* images */,
 				18F769701AB42C6A00705FBA /* finding_logo.png */,
+				184D6BED1B29B7FE00D597EA /* 37x-Checkmark.png */,
+				184D6BEE1B29B7FE00D597EA /* 37x-Checkmark@2x.png */,
+				184D6BEF1B29B7FE00D597EA /* Icon-iOS7@2x.png */,
+				184D6BF01B29B7FE00D597EA /* Icon-Small.png */,
+				184D6BF11B29B7FE00D597EA /* Icon-Small@2x.png */,
+				184D6BF21B29B7FE00D597EA /* Icon.png */,
+				184D6BF31B29B7FE00D597EA /* Icon@2x.png */,
 				18AE83281AB1CE4400384C47 /* proxy.png */,
 				184D6BC41B287C0900D597EA /* 62x62默认头像.png */,
 				184D6BC51B287C0900D597EA /* 62x62默认头像@2x.png */,
@@ -1606,6 +1645,7 @@
 			files = (
 				18040ECB1AEBAC9A00844F0C /* 4设置130x80.png in Resources */,
 				18C81BEA1B10A13A009F3E3F /* 相机25x21px@2x.png in Resources */,
+				184D6BF41B29B7FE00D597EA /* 37x-Checkmark.png in Resources */,
 				18040EBE1AEA603500844F0C /* wechat188x188.png in Resources */,
 				184D6BCA1B287C0900D597EA /* 62x62默认头像.png in Resources */,
 				18B539D31AE7BC7C00B6F344 /* 分享48x52@3x.png in Resources */,
@@ -1622,6 +1662,7 @@
 				18B53A131AE7C5CC00B6F344 /* 1箭头154x152@2x.png in Resources */,
 				184D6BCC1B287C0900D597EA /* 62x62默认头像@3x.png in Resources */,
 				18B539D41AE7BC7C00B6F344 /* 摄像头166x200.png in Resources */,
+				184D6BF71B29B7FE00D597EA /* Icon-Small.png in Resources */,
 				18048C7D1AF65B4C00E68A54 /* 自行车50x44px@2x.png in Resources */,
 				18586CC01AFAEB5F00045A42 /* 下拉箭头19x11px@2x.png in Resources */,
 				18B341581AA6D81A00B19ED4 /* bikeIcon.png in Resources */,
@@ -1658,6 +1699,7 @@
 				18CE37C31AC673D400EF6141 /* YDLoginViewController.xib in Resources */,
 				18586CB41AFA579200045A42 /* 行走路线描边50x6px@2x.png in Resources */,
 				18B539A91AE7BC7C00B6F344 /* 3-144x92@2x.png in Resources */,
+				184D6BF51B29B7FE00D597EA /* 37x-Checkmark@2x.png in Resources */,
 				18586CB81AFA579200045A42 /* 行走转换22x22px@3x.png in Resources */,
 				18F769711AB42C6A00705FBA /* finding_logo.png in Resources */,
 				18B539C81AE7BC7C00B6F344 /* 68x84.png in Resources */,
@@ -1709,6 +1751,7 @@
 				18B538C61AE7BB9100B6F344 /* 2发现130x80@4x.png in Resources */,
 				18B341631AA6D81A00B19ED4 /* 向下选择18x10px.png in Resources */,
 				18586CA21AFA579200045A42 /* 公交路线描边50x6px@2x.png in Resources */,
+				184D6BF91B29B7FE00D597EA /* Icon.png in Resources */,
 				18F6B3CF1AF26469000D9A40 /* default_image.png in Resources */,
 				18B341421AA6D7CE00B19ED4 /* AMap.bundle in Resources */,
 				18586CAE1AFA579200045A42 /* 起点38x60px@2x.png in Resources */,
@@ -1732,6 +1775,7 @@
 				18B539DB1AE7BC7C00B6F344 /* 箭头38x22@2x.png in Resources */,
 				1846F9251AC18C95006067BA /* 4设置未激活130x80@4x副本.png in Resources */,
 				18B539BD1AE7BC7C00B6F344 /* 48x84.png in Resources */,
+				184D6BF81B29B7FE00D597EA /* Icon-Small@2x.png in Resources */,
 				18B538C41AE7BB9100B6F344 /* 1出发130x80@4x.png in Resources */,
 				18048C841AF65F0300E68A54 /* 租赁点12x18px@3x.png in Resources */,
 				18B539A61AE7BC7C00B6F344 /* 2发现未激活130x80@2x.png in Resources */,
@@ -1767,6 +1811,7 @@
 				18048C6F1AF5E34A00E68A54 /* 140x140px@3x.png in Resources */,
 				18040EBF1AEA603500844F0C /* wechat188x188@2x.png in Resources */,
 				18586CA41AFA579200045A42 /* 公交转换22x22px.png in Resources */,
+				184D6BF61B29B7FE00D597EA /* Icon-iOS7@2x.png in Resources */,
 				18B539971AE7BC7C00B6F344 /* 1-70x110@3x.png in Resources */,
 				18F6B3DB1AF34849000D9A40 /* 出发按钮312x312px@3x.png in Resources */,
 				18F6B3DA1AF34849000D9A40 /* 出发按钮312x312px@2x.png in Resources */,
@@ -1791,6 +1836,7 @@
 				18B539DC1AE7BC7C00B6F344 /* 箭头38x22@3x.png in Resources */,
 				18B53A021AE7C5C200B6F344 /* 排行榜208x66@3x.png in Resources */,
 				18040EB81AEA603500844F0C /* QQ188x188.png in Resources */,
+				184D6BFA1B29B7FE00D597EA /* Icon@2x.png in Resources */,
 				18B53A001AE7C5C200B6F344 /* 排行榜208x66.png in Resources */,
 				18B53A191AE7C5CC00B6F344 /* 车164x166@2x.png in Resources */,
 				18040EDD1AEBBB6200844F0C /* 4-54x92未激活.png in Resources */,
@@ -1889,6 +1935,7 @@
 				18A6C2871AE3E1FE00452140 /* AFHTTPRequestOperationManager.m in Sources */,
 				18B340B31AA6D4CC00B19ED4 /* AppDelegate.m in Sources */,
 				18A6C28D1AE3E1FE00452140 /* AFURLResponseSerialization.m in Sources */,
+				184D6BE41B29182E00D597EA /* updateProfilesViewController.m in Sources */,
 				18586C7E1AFA414400045A42 /* customActionSheet.m in Sources */,
 				18B341181AA6D58300B19ED4 /* LineDashPolyline.m in Sources */,
 				184080351AB8449B00E89AB3 /* UIView+MJExtension.m in Sources */,
@@ -1911,6 +1958,7 @@
 				18F6B3C11AF24AC0000D9A40 /* SDWebImageCompat.m in Sources */,
 				18A6C2881AE3E1FE00452140 /* AFHTTPSessionManager.m in Sources */,
 				18C282571B0B48AC00602CBF /* KLCPopup.m in Sources */,
+				184D6BFE1B29BAAC00D597EA /* MBProgressHUD.m in Sources */,
 				18CE37C21AC673D400EF6141 /* YDLoginViewController.m in Sources */,
 				18B341161AA6D58300B19ED4 /* TripsMainViewController.m in Sources */,
 				1884F59C1B04CA6F00F4DE19 /* PSCollectionView.m in Sources */,
@@ -2042,6 +2090,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2062,6 +2111,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (

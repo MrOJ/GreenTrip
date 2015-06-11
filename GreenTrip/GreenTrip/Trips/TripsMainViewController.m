@@ -40,6 +40,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     textStr = [[NSString alloc] init];
     search = [[AMapSearchAPI alloc] initWithSearchKey:@"f57ba48c60c524724d3beff7f7063af9" Delegate:self];
     
@@ -409,8 +410,24 @@
     //[myAlert show];
 }
 
+//实现逆地理编码的回调函数
+- (void)onReGeocodeSearchDone:(AMapReGeocodeSearchRequest *)request response:(AMapReGeocodeSearchResponse *)response
+{
+    //根据位置获得当前城市在这儿！
+    if(response.regeocode != nil)
+    {
+        //通过AMapReGeocodeSearchResponse对象处理搜索结果
+        NSString *result = [NSString stringWithFormat:@"ReGeocode: %@", response.regeocode];
+        NSLog(@"ReGeo: %@", result);
+    }
+    
+    AMapReGeocode *reGeocode = response.regeocode;
+    NSLog(@"当前城市：%@", reGeocode.addressComponent.city);
+    
+}
+
 - (void) performDismiss: (NSTimer *)timer {
-    [myAlert dismissWithClickedButtonIndex:0 animated:NO];//important
+    [myAlert dismissWithClickedButtonIndex:0 animated:NO]; //important
 }
 
 # pragma annotationsDelegate
@@ -563,6 +580,12 @@ updatingLocation:(BOOL)updatingLocation
             myMapView.visibleMapRect = MAMapRectMake(usrloc.x, usrloc.y, 0.25f, 0.25f);
             myMapView.zoomLevel = 15.0f;
             isFirstView = 1;
+            
+            userLocationRequest = [[AMapReGeocodeSearchRequest alloc] init];
+            userLocationRequest.searchType = AMapSearchType_ReGeocode;
+            userLocationRequest.location = [AMapGeoPoint locationWithLatitude:userLocation.coordinate.latitude longitude:userLocation.coordinate.longitude];//固定的站点，难怪不会实时动态更新
+
+            [search AMapReGoecodeSearch: userLocationRequest];
         }
         self.myUserLocation = userLocation;
         

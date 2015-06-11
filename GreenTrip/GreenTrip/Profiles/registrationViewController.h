@@ -9,8 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "YDConfigurationHelper.h"
 #import "AFNetworking.h"
+#import "MBProgressHUD.h"
 
-@interface registrationViewController : UIViewController
+@interface registrationViewController : UIViewController<MBProgressHUDDelegate>
+{
+    MBProgressHUD *HUD;
+
+}
 
 @property (strong, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordTextField;

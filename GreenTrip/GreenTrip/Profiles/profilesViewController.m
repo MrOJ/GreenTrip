@@ -92,7 +92,7 @@
         NSDictionary *dict = @{ @"username":self.usernameTextField.text, @"password":[self.passwordTextField.text MD5] };
         
         //3.请求
-        [manager GET:@"http://192.168.1.123:1200/login" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+        [manager GET:@"http://192.168.1.104:1200/login" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"GET --> %@", responseObject); //自动返回主线程
             
             NSString *getLogin = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"login"]];
@@ -104,11 +104,17 @@
                 NSString *getUsername = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"username"]];
                 NSString *getNickname = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"nickname"]];
                 NSString *getPortraitImage = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"portrait_image"]];
+                NSString *getPhoneNumber = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"phone_number"]];
+                NSString *getEmail = [responseObject objectForKey:@"email"];
+                NSString *getSex = [responseObject objectForKey:@"sex"];
+                NSString *getAge = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"age"]];
+                NSString *getSignature = [responseObject objectForKey:@"signature"];
+                NSString *getBirthday = [responseObject objectForKey:@"birthday"];
                 
                 nicknameLabel.text = getNickname;
-                
+                messageLabel.text  = getSignature;
                 //利用SDWenImage下载图片
-                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://192.168.1.123:1200/syncportrait?image=%@",getPortraitImage]];
+                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://192.168.1.104:1200/syncportrait?image=%@",getPortraitImage]];
                 SDWebImageManager *manager = [SDWebImageManager sharedManager];
                 [manager downloadImageWithURL:url options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
                     // progression tracking code
@@ -129,10 +135,15 @@
                 
                 [YDConfigurationHelper setStringValueForConfigurationKey:getUsername withValue:@"username"];
                 [YDConfigurationHelper setStringValueForConfigurationKey:getNickname withValue:@"nickname"];
+                [YDConfigurationHelper setStringValueForConfigurationKey:getPhoneNumber withValue:@"phone_number"];
+                [YDConfigurationHelper setStringValueForConfigurationKey:getEmail withValue:@"email"];
+                [YDConfigurationHelper setStringValueForConfigurationKey:getSex withValue:@"sex"];
+                [YDConfigurationHelper setStringValueForConfigurationKey:getAge withValue:@"age"];
+                [YDConfigurationHelper setStringValueForConfigurationKey:getSignature withValue:@"signature"];
+                [YDConfigurationHelper setStringValueForConfigurationKey:getBirthday withValue:@"birthday"];
                 
                 //改变登录状态
                 [self loginState];
-                
                 
             } else if ([getLogin isEqualToString:@"1"]) {
                 self.passwordTextField.text = @"";
@@ -152,19 +163,48 @@
 }
 
 - (IBAction)forgetPassword:(id)sender {
-    
+
 }
 
 - (IBAction)useQQ:(id)sender {
+    HUD = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:HUD];
+    HUD.yOffset = -100;     //改变位置
+    HUD.mode = MBProgressHUDModeText;
     
+    HUD.delegate = self;
+    HUD.labelText = @"接口即将接入，尽请期待！";
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:1];
 }
 
 - (IBAction)useWeChat:(id)sender {
+    HUD = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:HUD];
+    HUD.yOffset = -100;     //改变位置
+    HUD.mode = MBProgressHUDModeText;
     
-}
+    HUD.delegate = self;
+    HUD.labelText = @"接口即将接入，尽请期待！";
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:1];}
 
 - (IBAction)useWeibo:(id)sender {
+    HUD = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:HUD];
+    HUD.yOffset = -100;     //改变位置
+    HUD.mode = MBProgressHUDModeText;
     
+    HUD.delegate = self;
+    HUD.labelText = @"接口即将接入，尽请期待！";
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:1];
+}
+
+#pragma mark - MBProgressHUDDelegate
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+    // Remove HUD from screen when the HUD was hidded
+    [HUD removeFromSuperview];
 }
 
 //点击头像上传头像
@@ -205,7 +245,7 @@
         if (![usernameStr isEqualToString:@""]) {
             dict = @{ @"username":usernameStr};
             
-            NSMutableURLRequest *urlrequest = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:@"http://192.168.1.123:1200/upload" parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+            NSMutableURLRequest *urlrequest = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:@"http://192.168.1.104:1200/upload" parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                 [formData appendPartWithFileData:data name:@"myfile" fileName:fileName mimeType:@"image/png"];
                 
             } error:nil];
@@ -308,7 +348,7 @@
         //NSLog(@"nickname = %@",nicknameStr);
         //NSLog(@"username = %@",[YDConfigurationHelper getStringValueForConfigurationKey:@"username"]);
         //获取本地用户名信息
-        if ([nicknameStr isEqualToString:@"<null>"]) {
+        if ([nicknameStr isEqualToString:@"<null>"] || [nicknameStr isEqualToString:@""]) {
             nicknameLabel.text = [YDConfigurationHelper getStringValueForConfigurationKey:@"username"];
         } else {
             nicknameLabel.text = nicknameStr;

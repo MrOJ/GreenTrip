@@ -31,6 +31,8 @@
     int buttonFlag;
 
     int isFirstView;
+    
+    AMapReGeocodeSearchRequest *userLocationRequest;
 }
 
 @property (strong, nonatomic) MAMapView *myMapView;

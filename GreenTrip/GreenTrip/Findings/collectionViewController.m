@@ -133,7 +133,7 @@
                                 @"load_more":@"0",
                                 @"findings_num":getFindingsNum};  //此处index需要修改  load_more：0-刷新 1-加载更多
         //3.请求
-        [manager GET:@"http://192.168.1.123:1200/syncFindingInfo" parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [manager GET:@"http://192.168.1.104:1200/syncFindingInfo" parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"GET --> %@", responseObject); //自动返回主线程
             
             NSArray *getUsernameArray = [[NSArray alloc] init];
@@ -218,7 +218,7 @@
                                 @"refresh_times":[NSString stringWithFormat:@"%ld",(long)loadMoreTime],
                                 @"load_more":@"1"};  //此处index需要修改
         //3.请求
-        [manager GET:@"http://192.168.1.123:1200/syncFindingInfo" parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [manager GET:@"http://192.168.1.104:1200/syncFindingInfo" parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"GET --> %@", responseObject); //自动返回主线程
             
             NSArray *getUsernameArray = [[NSArray alloc] init];
@@ -480,7 +480,7 @@
     
     dict = @{ @"username":usernameStr, @"text_comment":textComments,@"push_time":dateStr2, @"likes_number":@"0"};
     
-    NSMutableURLRequest *urlrequest = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:@"http://192.168.1.123:1200/uploadFindingInfo" parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    NSMutableURLRequest *urlrequest = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:@"http://192.168.1.104:1200/uploadFindingInfo" parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:data name:@"myfile" fileName:fileName mimeType:@"image/png"];
         
     } error:nil];
@@ -512,7 +512,7 @@
 {
     //========================加载图片==========================
     for (NSString *imageName in itemsArray) {
-        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://192.168.1.123:1200/syncFindingImg?image=%@",imageName]];
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://192.168.1.104:1200/syncFindingImg?image=%@",imageName]];
         SDWebImageManager *manager = [SDWebImageManager sharedManager];
         [manager downloadImageWithURL:url options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
             // progression tracking code
@@ -558,7 +558,7 @@
     
     //========================加载头像==========================
     for (NSString *imageName in portraitArray) {
-        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://192.168.1.123:1200/syncportrait?image=%@",imageName]];
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://192.168.1.104:1200/syncportrait?image=%@",imageName]];
         SDWebImageManager *manager = [SDWebImageManager sharedManager];
         [manager downloadImageWithURL:url options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
             // progression tracking code

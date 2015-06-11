@@ -21,11 +21,6 @@
     // Do any additional setup after loading the view.
     //self.navigationController.navigationBarHidden = NO;
     //设置下一个页面的返回键。
-    /*
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
-    backItem.title = @"";
-    self.navigationItem.backBarButtonItem = backItem;
-    */
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"箭头9x17px"] style:UIBarButtonItemStylePlain target:self action:@selector(back:)];
     self.navigationItem.leftBarButtonItem  = backButton;
     
@@ -151,15 +146,6 @@
         [cell addSubview:textLabel];
         [cell addSubview:indicatorImg];
         
-    } else if (indexPath.row == 3) {
-        /*
-        UILabel *deleteLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.bounds.size.width, cell.bounds.size.height)];
-        deleteLabel.text = @"退出登录";
-        deleteLabel.textAlignment = NSTextAlignmentCenter;
-        deleteLabel.textColor = [UIColor redColor];
-        
-        [cell addSubview:deleteLabel];
-        */
     }
     
     return cell;
@@ -167,6 +153,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
+        updateProfilesViewController *updateProfilesVC = [[updateProfilesViewController alloc] init];
+        [self.navigationController pushViewController:updateProfilesVC animated:YES];
 
     } else if (indexPath.row == 1) {
 
