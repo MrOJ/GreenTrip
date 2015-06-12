@@ -7,6 +7,7 @@
 //
 
 #import "SearchRoutesViewController.h"
+#import "YDConfigurationHelper.h"
 #define TOEDGELEFT 60
 #define MyKey "f57ba48c60c524724d3beff7f7063af9"
 #define iosBlue [UIColor colorWithRed:28.0 / 255.0f green:98 / 255.0f blue:255.0 / 255.0f alpha:1.0f]
@@ -104,8 +105,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recPattern:) name:@"passPattern" object:nil];
     
     //正在加载指示视图
-    activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(100, 300, self.view.bounds.size.width - 100 * 2, 80)];
-    //activityIndicatorView.layer.cornerRadius = 2.0f;
+    activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(100, 200, self.view.bounds.size.width - 100 * 2, 80)];
     activityIndicatorView.backgroundColor = [UIColor darkGrayColor];
     activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
     activityIndicatorView.hidesWhenStopped = YES;
@@ -144,9 +144,9 @@
             if ([startTextView.text isEqualToString:@"我的位置"]) {
                 //收到数据后直接运行路径规划程序
                 AMapGeoPoint *start = [AMapGeoPoint locationWithLatitude:userLatitude longitude:userLongtitude];;
-                [self navigationBusSearchStartLacation:start getLocation:endPoint chooseStategy:[getPattern integerValue] city:@"杭州"];;
+                [self navigationBusSearchStartLacation:start getLocation:endPoint chooseStategy:[getPattern integerValue] city:[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];;
             } else {
-                [self navigationBusSearchStartLacation:startPoint getLocation:endPoint chooseStategy:[getPattern integerValue] city:@"杭州"];
+                [self navigationBusSearchStartLacation:startPoint getLocation:endPoint chooseStategy:[getPattern integerValue] city:[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];
                 
                 //NSLog(@"起点 = %@；终点 = %@",startPoint,endPoint);
                 
@@ -161,9 +161,9 @@
             if ([startTextView.text isEqualToString:@"我的位置"]) {
                 //收到数据后直接运行路径规划程序
                 AMapGeoPoint *start = [AMapGeoPoint locationWithLatitude:userLatitude longitude:userLongtitude];;
-                [self navigationWalkingSearchStartLacation:start getLocation:endPoint chooseStategy:[getPattern integerValue] city:@"杭州"];
+                [self navigationWalkingSearchStartLacation:start getLocation:endPoint chooseStategy:[getPattern integerValue] city:[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];
             } else {
-                [self navigationWalkingSearchStartLacation:startPoint getLocation:endPoint chooseStategy:[getPattern integerValue] city:@"杭州"];
+                [self navigationWalkingSearchStartLacation:startPoint getLocation:endPoint chooseStategy:[getPattern integerValue] city:[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];
             }
         } else {
             NSLog(@"输入不能为空");
@@ -215,9 +215,9 @@
         if ([startTextView.text isEqualToString:@"我的位置"]) {
             //收到数据后直接运行路径规划程序
             AMapGeoPoint *start = [AMapGeoPoint locationWithLatitude:userLatitude longitude:userLongtitude];;
-            [self navigationBusSearchStartLacation:start getLocation:endPoint chooseStategy:[getPattern integerValue] city:@"杭州"];
+            [self navigationBusSearchStartLacation:start getLocation:endPoint chooseStategy:[getPattern integerValue] city:[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];
         } else {
-            [self navigationBusSearchStartLacation:startPoint getLocation:endPoint chooseStategy:[getPattern integerValue] city:@"杭州"];
+            [self navigationBusSearchStartLacation:startPoint getLocation:endPoint chooseStategy:[getPattern integerValue] city:[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];
         }
     } else {
         NSLog(@"输入不能为空");
@@ -244,9 +244,9 @@
         if ([startTextView.text isEqualToString:@"我的位置"]) {
             //收到数据后直接运行路径规划程序
             AMapGeoPoint *start = [AMapGeoPoint locationWithLatitude:userLatitude longitude:userLongtitude];;
-            [self navigationBusSearchStartLacation:start getLocation:endPoint chooseStategy:[getPattern integerValue] city:@"杭州"];
+            [self navigationBusSearchStartLacation:start getLocation:endPoint chooseStategy:[getPattern integerValue] city:[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];
         } else {
-            [self navigationBusSearchStartLacation:startPoint getLocation:endPoint chooseStategy:[getPattern integerValue] city:@"杭州"];
+            [self navigationBusSearchStartLacation:startPoint getLocation:endPoint chooseStategy:[getPattern integerValue] city:[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];
         }
     } else {
         NSLog(@"输入不能为空");
@@ -272,9 +272,9 @@
         if ([startTextView.text isEqualToString:@"我的位置"]) {
             //收到数据后直接运行路径规划程序
             AMapGeoPoint *start = [AMapGeoPoint locationWithLatitude:userLatitude longitude:userLongtitude];;
-            [self navigationWalkingSearchStartLacation:start getLocation:endPoint chooseStategy:[getPattern integerValue] city:@"杭州"];
+            [self navigationWalkingSearchStartLacation:start getLocation:endPoint chooseStategy:[getPattern integerValue] city:[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];
         } else {
-            [self navigationWalkingSearchStartLacation:startPoint getLocation:endPoint chooseStategy:[getPattern integerValue] city:@"杭州"];
+            [self navigationWalkingSearchStartLacation:startPoint getLocation:endPoint chooseStategy:[getPattern integerValue] city:[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];
         }
     } else {
         NSLog(@"输入不能为空");
@@ -300,9 +300,9 @@
         if ([startTextView.text isEqualToString:@"我的位置"]) {
             //收到数据后直接运行路径规划程序
             AMapGeoPoint *start = [AMapGeoPoint locationWithLatitude:userLatitude longitude:userLongtitude];;
-            [self navigationWalkingSearchStartLacation:start getLocation:endPoint chooseStategy:[getPattern integerValue] city:@"杭州"];
+            [self navigationWalkingSearchStartLacation:start getLocation:endPoint chooseStategy:[getPattern integerValue] city:[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];
         } else {
-            [self navigationWalkingSearchStartLacation:startPoint getLocation:endPoint chooseStategy:[getPattern integerValue] city:@"杭州"];
+            [self navigationWalkingSearchStartLacation:startPoint getLocation:endPoint chooseStategy:[getPattern integerValue] city:[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];
         }
     } else {
         NSLog(@"输入不能为空");
@@ -356,9 +356,9 @@
                 if ([startTextView.text isEqualToString:@"我的位置"]) {
                     //收到数据后直接运行路径规划程序
                     AMapGeoPoint *start = [AMapGeoPoint locationWithLatitude:userLatitude longitude:userLongtitude];;
-                    [self navigationSearchStartLacation:start getLocation:endPoint chooseStategy:0 city:@"杭州"];
+                    [self navigationSearchStartLacation:start getLocation:endPoint chooseStategy:0 city:[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];
                 } else {
-                    [self navigationSearchStartLacation:startPoint getLocation:endPoint chooseStategy:0 city:@"杭州"];
+                    [self navigationSearchStartLacation:startPoint getLocation:endPoint chooseStategy:0 city:[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];
                 }
             } else {
                 NSLog(@"输入不能为空");
@@ -376,7 +376,7 @@
             //naviRequest.requireExtension = YES;
             naviRequest.origin = [AMapGeoPoint locationWithLatitude:30.223387 longitude:120.042572];
             naviRequest.destination = [AMapGeoPoint locationWithLatitude:30.270498 longitude:120.138268];
-            naviRequest.city = @"杭州";
+            naviRequest.city = [YDConfigurationHelper getStringValueForConfigurationKey:@"city"];
             //发起路径搜索
             [search AMapNavigationSearch: naviRequest];
         }
@@ -390,9 +390,9 @@
                 if ([startTextView.text isEqualToString:@"我的位置"]) {
                     //收到数据后直接运行路径规划程序
                     AMapGeoPoint *start = [AMapGeoPoint locationWithLatitude:userLatitude longitude:userLongtitude];;
-                    [self navigationWalkingSearchStartLacation:start getLocation:endPoint chooseStategy:[getPattern integerValue] city:@"杭州"];
+                    [self navigationWalkingSearchStartLacation:start getLocation:endPoint chooseStategy:[getPattern integerValue] city:[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];
                 } else {
-                    [self navigationWalkingSearchStartLacation:startPoint getLocation:endPoint chooseStategy:[getPattern integerValue] city:@"杭州"];
+                    [self navigationWalkingSearchStartLacation:startPoint getLocation:endPoint chooseStategy:[getPattern integerValue] city:[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];
                 }
             } else {
                 NSLog(@"输入不能为空");
@@ -410,7 +410,7 @@
             //naviRequest.requireExtension = YES;
             naviRequest.origin = [AMapGeoPoint locationWithLatitude:30.223387 longitude:120.042572];
             naviRequest.destination = [AMapGeoPoint locationWithLatitude:30.270498 longitude:120.138268];
-            naviRequest.city = @"杭州";
+            naviRequest.city = [YDConfigurationHelper getStringValueForConfigurationKey:@"city"];
             //发起路径搜索
             [search AMapNavigationSearch: naviRequest];
             
@@ -426,9 +426,9 @@
                 if ([startTextView.text isEqualToString:@"我的位置"]) {
                     //收到数据后直接运行路径规划程序
                     AMapGeoPoint *start = [AMapGeoPoint locationWithLatitude:userLatitude longitude:userLongtitude];;
-                    [self navigationWalkingSearchStartLacation:start getLocation:endPoint chooseStategy:[getPattern integerValue] city:@"杭州"];
+                    [self navigationWalkingSearchStartLacation:start getLocation:endPoint chooseStategy:[getPattern integerValue] city:[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];
                 } else {
-                    [self navigationWalkingSearchStartLacation:startPoint getLocation:endPoint chooseStategy:[getPattern integerValue] city:@"杭州"];
+                    [self navigationWalkingSearchStartLacation:startPoint getLocation:endPoint chooseStategy:[getPattern integerValue] city:[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];
                 }
             } else {
                 NSLog(@"输入不能为空");
@@ -448,7 +448,7 @@
             //naviRequest.requireExtension = YES;
             naviRequest.origin = [AMapGeoPoint locationWithLatitude:30.223387 longitude:120.042572];
             naviRequest.destination = [AMapGeoPoint locationWithLatitude:30.223387 longitude:120.042572];
-            naviRequest.city = @"杭州";
+            naviRequest.city = [YDConfigurationHelper getStringValueForConfigurationKey:@"city"];
             //发起路径搜索
             [search AMapNavigationSearch: naviRequest];
             */

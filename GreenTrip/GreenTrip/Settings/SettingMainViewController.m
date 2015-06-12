@@ -62,7 +62,10 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *dict = [defaults dictionaryRepresentation];
     for (id key in dict) {
-        [defaults removeObjectForKey:key];
+        //除城市信息外，其全部删除
+        if (![key isEqualToString:@"city"]) {
+            [defaults removeObjectForKey:key];
+        }
     }
     
     [[NSUserDefaults standardUserDefaults] synchronize];

@@ -99,6 +99,9 @@
 		184D6BF91B29B7FE00D597EA /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 184D6BF21B29B7FE00D597EA /* Icon.png */; };
 		184D6BFA1B29B7FE00D597EA /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184D6BF31B29B7FE00D597EA /* Icon@2x.png */; };
 		184D6BFE1B29BAAC00D597EA /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 184D6BFD1B29BAAC00D597EA /* MBProgressHUD.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		184D6C021B2ABD4000D597EA /* 公交图标41x42px.png in Resources */ = {isa = PBXBuildFile; fileRef = 184D6BFF1B2ABD4000D597EA /* 公交图标41x42px.png */; };
+		184D6C031B2ABD4000D597EA /* 公交图标41x42px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184D6C001B2ABD4000D597EA /* 公交图标41x42px@2x.png */; };
+		184D6C041B2ABD4000D597EA /* 公交图标41x42px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184D6C011B2ABD4000D597EA /* 公交图标41x42px@3x.png */; };
 		18586C6D1AFA354500045A42 /* 反转92x124px.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C6A1AFA354500045A42 /* 反转92x124px.png */; };
 		18586C6E1AFA354500045A42 /* 反转92x124px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C6B1AFA354500045A42 /* 反转92x124px@2x.png */; };
 		18586C6F1AFA354500045A42 /* 反转92x124px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18586C6C1AFA354500045A42 /* 反转92x124px@3x.png */; };
@@ -296,9 +299,6 @@
 		18B53A151AE7C5CC00B6F344 /* 2箭头154x152.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B53A0C1AE7C5CC00B6F344 /* 2箭头154x152.png */; };
 		18B53A161AE7C5CC00B6F344 /* 2箭头154x152@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B53A0D1AE7C5CC00B6F344 /* 2箭头154x152@2x.png */; };
 		18B53A171AE7C5CC00B6F344 /* 2箭头154x152@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B53A0E1AE7C5CC00B6F344 /* 2箭头154x152@3x.png */; };
-		18B53A181AE7C5CC00B6F344 /* 车164x166.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B53A0F1AE7C5CC00B6F344 /* 车164x166.png */; };
-		18B53A191AE7C5CC00B6F344 /* 车164x166@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B53A101AE7C5CC00B6F344 /* 车164x166@2x.png */; };
-		18B53A1A1AE7C5CC00B6F344 /* 车164x166@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B53A111AE7C5CC00B6F344 /* 车164x166@3x.png */; };
 		18BCABA41AA9EA1E00827C66 /* tabBar1.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BCABA01AA9EA1E00827C66 /* tabBar1.png */; };
 		18BCABA51AA9EA1E00827C66 /* tabBar2.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BCABA11AA9EA1E00827C66 /* tabBar2.png */; };
 		18BCABA61AA9EA1E00827C66 /* tabBar3.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BCABA21AA9EA1E00827C66 /* tabBar3.png */; };
@@ -471,6 +471,9 @@
 		184D6BF31B29B7FE00D597EA /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		184D6BFC1B29BAAC00D597EA /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		184D6BFD1B29BAAC00D597EA /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		184D6BFF1B2ABD4000D597EA /* 公交图标41x42px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公交图标41x42px.png"; sourceTree = "<group>"; };
+		184D6C001B2ABD4000D597EA /* 公交图标41x42px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公交图标41x42px@2x.png"; sourceTree = "<group>"; };
+		184D6C011B2ABD4000D597EA /* 公交图标41x42px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公交图标41x42px@3x.png"; sourceTree = "<group>"; };
 		18586C6A1AFA354500045A42 /* 反转92x124px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "反转92x124px.png"; sourceTree = "<group>"; };
 		18586C6B1AFA354500045A42 /* 反转92x124px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "反转92x124px@2x.png"; sourceTree = "<group>"; };
 		18586C6C1AFA354500045A42 /* 反转92x124px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "反转92x124px@3x.png"; sourceTree = "<group>"; };
@@ -710,9 +713,6 @@
 		18B53A0C1AE7C5CC00B6F344 /* 2箭头154x152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2箭头154x152.png"; sourceTree = "<group>"; };
 		18B53A0D1AE7C5CC00B6F344 /* 2箭头154x152@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2箭头154x152@2x.png"; sourceTree = "<group>"; };
 		18B53A0E1AE7C5CC00B6F344 /* 2箭头154x152@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2箭头154x152@3x.png"; sourceTree = "<group>"; };
-		18B53A0F1AE7C5CC00B6F344 /* 车164x166.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "车164x166.png"; sourceTree = "<group>"; };
-		18B53A101AE7C5CC00B6F344 /* 车164x166@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "车164x166@2x.png"; sourceTree = "<group>"; };
-		18B53A111AE7C5CC00B6F344 /* 车164x166@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "车164x166@3x.png"; sourceTree = "<group>"; };
 		18BCABA01AA9EA1E00827C66 /* tabBar1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabBar1.png; sourceTree = "<group>"; };
 		18BCABA11AA9EA1E00827C66 /* tabBar2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabBar2.png; sourceTree = "<group>"; };
 		18BCABA21AA9EA1E00827C66 /* tabBar3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabBar3.png; sourceTree = "<group>"; };
@@ -1284,6 +1284,9 @@
 		18B5393A1AE7BC7B00B6F344 /* searchRoutes */ = {
 			isa = PBXGroup;
 			children = (
+				184D6BFF1B2ABD4000D597EA /* 公交图标41x42px.png */,
+				184D6C001B2ABD4000D597EA /* 公交图标41x42px@2x.png */,
+				184D6C011B2ABD4000D597EA /* 公交图标41x42px@3x.png */,
 				18586C701AFA36E100045A42 /* 路线选择箭头36x68px.png */,
 				18586C711AFA36E100045A42 /* 路线选择箭头36x68px@2x.png */,
 				18586C721AFA36E100045A42 /* 路线选择箭头36x68px@3x.png */,
@@ -1308,9 +1311,6 @@
 				18B53A0C1AE7C5CC00B6F344 /* 2箭头154x152.png */,
 				18B53A0D1AE7C5CC00B6F344 /* 2箭头154x152@2x.png */,
 				18B53A0E1AE7C5CC00B6F344 /* 2箭头154x152@3x.png */,
-				18B53A0F1AE7C5CC00B6F344 /* 车164x166.png */,
-				18B53A101AE7C5CC00B6F344 /* 车164x166@2x.png */,
-				18B53A111AE7C5CC00B6F344 /* 车164x166@3x.png */,
 				18B539411AE7BC7B00B6F344 /* 1-70x110.png */,
 				18B539421AE7BC7B00B6F344 /* 1-70x110@2x.png */,
 				18B539431AE7BC7B00B6F344 /* 1-70x110@3x.png */,
@@ -1671,6 +1671,7 @@
 				1884F5451B046E8800F4DE19 /* 12x10px.png in Resources */,
 				18B538C91AE7BB9100B6F344 /* 3我的未激活130x80@4x.png in Resources */,
 				18B5399A1AE7BC7C00B6F344 /* 1出发未激活130x80@2x.png in Resources */,
+				184D6C021B2ABD4000D597EA /* 公交图标41x42px.png in Resources */,
 				18F6B3DF1AF34849000D9A40 /* 缩小140x156.png in Resources */,
 				184D6BCE1B287C0900D597EA /* 箭头9x17px@2x.png in Resources */,
 				18B539B31AE7BC7C00B6F344 /* 3我的未激活130x80@3x.png in Resources */,
@@ -1798,6 +1799,7 @@
 				18B539A21AE7BC7C00B6F344 /* 2-70x110.png in Resources */,
 				18040EBA1AEA603500844F0C /* QQ188x188@3x.png in Resources */,
 				18B539C71AE7BC7C00B6F344 /* 6-100x98@3x.png in Resources */,
+				184D6C031B2ABD4000D597EA /* 公交图标41x42px@2x.png in Resources */,
 				18B340BE1AA6D4CC00B19ED4 /* Images.xcassets in Resources */,
 				184D6BDF1B28863A00D597EA /* 绿色箭头9x17px.png in Resources */,
 				18B539D81AE7BC7C00B6F344 /* 箭头2-76x44px.png in Resources */,
@@ -1837,8 +1839,8 @@
 				18B53A021AE7C5C200B6F344 /* 排行榜208x66@3x.png in Resources */,
 				18040EB81AEA603500844F0C /* QQ188x188.png in Resources */,
 				184D6BFA1B29B7FE00D597EA /* Icon@2x.png in Resources */,
+				184D6C041B2ABD4000D597EA /* 公交图标41x42px@3x.png in Resources */,
 				18B53A001AE7C5C200B6F344 /* 排行榜208x66.png in Resources */,
-				18B53A191AE7C5CC00B6F344 /* 车164x166@2x.png in Resources */,
 				18040EDD1AEBBB6200844F0C /* 4-54x92未激活.png in Resources */,
 				18586CB91AFA579200045A42 /* 终点38x60px.png in Resources */,
 				18586CB11AFA579200045A42 /* 上拉箭头19x11px@2x.png in Resources */,
@@ -1847,7 +1849,6 @@
 				18B539D51AE7BC7C00B6F344 /* 摄像头166x200@2x.png in Resources */,
 				18040EB41AEA603500844F0C /* bike104x66@3x.png in Resources */,
 				18048C771AF631F400E68A54 /* 搜索18x19px@2x.png in Resources */,
-				18B53A1A1AE7C5CC00B6F344 /* 车164x166@3x.png in Resources */,
 				18586CA11AFA579200045A42 /* 公交路线描边50x6px.png in Resources */,
 				18B341621AA6D81A00B19ED4 /* 出发按钮160x160px.png in Resources */,
 				18B539CC1AE7BC7C00B6F344 /* 五角星2-56x56.png in Resources */,
@@ -1855,7 +1856,6 @@
 				18BCABA61AA9EA1E00827C66 /* tabBar3.png in Resources */,
 				18B53A151AE7C5CC00B6F344 /* 2箭头154x152.png in Resources */,
 				18B53A051AE7C5C200B6F344 /* 搜搜86x90@3x.png in Resources */,
-				18B53A181AE7C5CC00B6F344 /* 车164x166.png in Resources */,
 				1817483B1AF0F39F00F1DFE8 /* 未选择56x56px@2x.png in Resources */,
 				18048C761AF631F400E68A54 /* 搜索18x19px.png in Resources */,
 				1884F54A1B046E8800F4DE19 /* 12x10px未激活@3x.png in Resources */,

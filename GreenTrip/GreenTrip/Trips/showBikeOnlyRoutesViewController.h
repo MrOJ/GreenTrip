@@ -11,6 +11,9 @@
 #import <AMapSearchKit/AMapSearchAPI.h>
 #import "CommonUtility.h"
 #import "textBikeOnlyRoutesView.h"
+#import "finishTripResultView.h"
+#import "KLCPopup.h"
+#import "YDConfigurationHelper.h"
 
 #define myColor [UIColor colorWithRed:119.0 / 255.0f green:185.0 / 255.0f blue:67.0 / 255.0f alpha:1.0f]
 
@@ -46,6 +49,14 @@
     NSMutableArray *pointAnnotationArray;
 
     NSMutableArray *wayIndexArray;
+    
+    NSInteger totalDistance;    //行程总路程
+    NSInteger busDistance;      //公交车路程
+    NSInteger walkingDistance;  //步行总距离
+    NSInteger bikeDistance;     //自行车距离
+    NSInteger transCount;       //换乘次数
+    
+    MAUserLocation *myUserLocation;
 }
 
 @property(nonatomic, strong) AMapGeoPoint *startPoint;

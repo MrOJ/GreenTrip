@@ -154,6 +154,8 @@
     detailWaysArray = [[NSMutableArray alloc] init];
     flagArray       = [[NSMutableArray alloc] init];
     
+    busStopArray    = [[NSMutableArray alloc] init];
+    
     bikeSteps = [[NSArray alloc] init];
     
     UIView * briefView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [self superview].bounds.size.width, 84)];
@@ -192,6 +194,10 @@
     detailsLabel.font = [UIFont fontWithName:@"Heiti SC" size:12.0f];
     [briefView addSubview:detailsLabel];
     
+    UIButton *goARButton = [[UIButton alloc] initWithFrame:CGRectMake([self superview].bounds.size.width - 20 - 42, 19, 42, 50)];
+    [goARButton setImage:[UIImage imageNamed:@"摄像头166x200"] forState:UIControlStateNormal];
+    [goARButton addTarget:self action:@selector(go:) forControlEvents:UIControlEventTouchUpInside];
+    [briefView addSubview:goARButton];
     
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 84, [self superview].bounds.size.width, 2)];
     line.backgroundColor = [UIColor groupTableViewBackgroundColor];
@@ -488,6 +494,41 @@
     }
 }
 
+//进入AR导航
+- (void)go:(UIButton *)sender
+{
+    //NSLog(@"go!");
+    ARViewController *ARVC = [[ARViewController alloc] init];
+    
+    //通过uiview 获取这个view的viewcontroller
+    id object = [self nextResponder];
+    while (![object isKindOfClass:[UIViewController class]] &&object != nil) {
+        
+        object = [object nextResponder];
+        
+    }
+    
+    UIViewController *uc=(UIViewController*)object;
+    
+    ARVC.busStopArray = busStopArray;
+    
+    [uc.navigationController pushViewController:ARVC animated:NO];
+    
+    [UIView animateWithDuration:0.6 animations:^{
+        self.center = CGPointMake(self.center.x, initPoint.y);
+    }];
+    
+    /*
+    MAMapView *myMap = (MAMapView *)[self superview];
+    //myMap.visibleMapRect = [CommonUtility minMapRectForAnnotations:[self getAnnotationsFromSteps:[detailWaysArray objectAtIndex:sender.tag]]];
+    AMapTransit *t = allRoutes.transits[currentIndex];
+    AMapSegment *seg = t.segments[0];
+    AMapWalking *w = seg.walking;
+    
+    //设置显示范围
+    myMap.region = MACoordinateRegionMake(CLLocationCoordinate2DMake(w.origin.latitude, w.origin.longitude), MACoordinateSpanMake(0.003f, 0.003f));
+    */
+}
 
 - (void)processData:(AMapRoute *)route
 {
@@ -587,6 +628,9 @@
                 
                 if (s.busline != nil) {
                     totalDistance += s.busline.distance;
+                    
+                    [busStopArray addObject:s.busline.departureStop];
+                    [busStopArray addObject:s.busline.arrivalStop];
                     
                     [stopArray addObject:s.busline.departureStop.name];
                     [stopArray addObject:s.busline.arrivalStop.name];

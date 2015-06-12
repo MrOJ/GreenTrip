@@ -34,7 +34,7 @@
         
         UIButton *shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [shareButton setFrame:CGRectMake(0, 0, 50, 50)];
-        [shareButton setBackgroundImage:[UIImage imageNamed:@"车164x166"] forState:UIControlStateNormal];
+        [shareButton setBackgroundImage:[UIImage imageNamed:@"公交图标41x42px"] forState:UIControlStateNormal];
         [shareButton addTarget:self action:@selector(shareButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [labelView addSubview:shareButton];
         

@@ -13,10 +13,11 @@
 #import "CustomAnnotationView.h"
 #import "finishTripResultView.h"
 #import "KLCPopup.h"
+#import "YDConfigurationHelper.h"
 
 #define myColor [UIColor colorWithRed:119.0 / 255.0f green:185.0 / 255.0f blue:67.0 / 255.0f alpha:1.0f]
 
-@interface TripsMainViewController : UIViewController <MAMapViewDelegate,UIGestureRecognizerDelegate,UISearchBarDelegate,UISearchDisplayDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,AMapSearchDelegate>
+@interface TripsMainViewController : UIViewController <MAMapViewDelegate,UIGestureRecognizerDelegate,UISearchBarDelegate,UISearchDisplayDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,AMapSearchDelegate,UIAlertViewDelegate>
 {
     UIView *testView;
     //NSInteger indicatorTag;
@@ -33,6 +34,7 @@
     int isFirstView;
     
     AMapReGeocodeSearchRequest *userLocationRequest;
+    NSString *curCity;
 }
 
 @property (strong, nonatomic) MAMapView *myMapView;
@@ -58,7 +60,7 @@
 @property (strong, nonatomic) UITableView *tipsResultTableView;
 
 @property (strong, nonatomic) IBOutlet UIButton *locationButton;
-@property (strong, nonatomic) MAUserLocation *myUserLocation;;
+@property (strong, nonatomic) MAUserLocation *myUserLocation;
 
 @property (strong, nonatomic) NSMutableArray *POIsArray;
 

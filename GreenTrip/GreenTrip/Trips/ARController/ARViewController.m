@@ -39,14 +39,19 @@
     //myMapView.showsUserLocation = YES;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [[UIApplication sharedApplication] setStatusBarHidden:NO];
     
     [self.arController presentModalARControllerAnimated:NO];
     
-    
+    /*
     UINavigationBar *navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
     //navigationBar.backgroundColor = myColor;
     navigationBar.barTintColor = myColor;
@@ -61,7 +66,7 @@
     [exitButton addSubview:imgView];
     [exitButton  addTarget:self action:@selector(exit:) forControlEvents:UIControlEventTouchUpInside];
     [navigationBar addSubview:exitButton];
-    
+    */
     
     /*
     UIView *navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, -50, self.view.bounds.size.width, 64)];

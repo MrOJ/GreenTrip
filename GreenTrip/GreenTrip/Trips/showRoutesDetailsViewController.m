@@ -37,8 +37,7 @@
     
     self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:myColor,NSForegroundColorAttributeName,[UIFont systemFontOfSize:22.0f], NSFontAttributeName, nil];
     
-    UIBarButtonItem *registerButton = [[UIBarButtonItem alloc] initWithTitle:@"结束" style:UIBarButtonItemStylePlain target:self action:@selector(finishTrip:)];
-    //[registerButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:myColor,NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
+    UIBarButtonItem *registerButton = [[UIBarButtonItem alloc] initWithTitle:@"结束行程" style:UIBarButtonItemStylePlain target:self action:@selector(finishTrip:)];
     self.navigationItem.rightBarButtonItem = registerButton;
     
     NSString *myKey = @"f57ba48c60c524724d3beff7f7063af9";
@@ -252,16 +251,44 @@
 - (void)finishTrip:(id)sender
 {
     NSLog(@"finish.");
-    finishTripResultView *finishView = [[finishTripResultView alloc] initWithFrame:CGRectMake((self.view.bounds.size.width - 280) / 2, 40, 280, 290 + 90)];
-    finishView.backgroundColor = [UIColor clearColor];
-    finishView.totalDistance   = totalDistance;
-    finishView.busDistance     = busDistance;
-    finishView.walkingDistance = walkingDistance;
-    finishView.transCount      = transCount;
-    [finishView initSubViews];
+    // 获取到达终点时间
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    NSString *Timestr = [formatter stringFromDate:[NSDate date]];
     
-    KLCPopup *popup = [KLCPopup popupWithContentView:finishView showType:KLCPopupShowTypeGrowIn dismissType:KLCPopupDismissTypeGrowOut maskType:KLCPopupMaskTypeDimmed dismissOnBackgroundTouch:YES dismissOnContentTouch:NO];
-    [popup show];
+    CLLocation *destinationLocation = [[CLLocation alloc] initWithLatitude:allRoutes.destination.latitude longitude:allRoutes.destination.longitude];
+    double distance = [myUserLocation.location distanceFromLocation:destinationLocation];
+    NSLog(@"%f",distance);
+    
+    if (![[YDConfigurationHelper getStringValueForConfigurationKey:@"username"] isEqualToString:@""]) {
+        
+        //距离1000之类才能结束行程
+        if (distance < 1000.0 && distance > 0.0) {
+            finishTripResultView *finishView = [[finishTripResultView alloc] initWithFrame:CGRectMake((self.view.bounds.size.width - 280) / 2, 40, 280, 290 + 90)];
+            finishView.backgroundColor = [UIColor clearColor];
+            finishView.totalDistance   = totalDistance;
+            finishView.busDistance     = busDistance;
+            finishView.walkingDistance = walkingDistance;
+            finishView.transCount      = transCount;
+            
+            finishView.departurePoint  = allRoutes.origin;
+            finishView.arrivalTime     = Timestr;
+            finishView.arrivalPoint    = allRoutes.destination;
+            finishView.strategy        = wayFlag;
+            [finishView initSubViews];
+            
+            KLCPopup *popup = [KLCPopup popupWithContentView:finishView showType:KLCPopupShowTypeGrowIn dismissType:KLCPopupDismissTypeGrowOut maskType:KLCPopupMaskTypeDimmed dismissOnBackgroundTouch:YES dismissOnContentTouch:NO];
+            [popup show];
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"未到达终点，请即将到达终点后结束行程" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+        
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"登录后即可制定个性化行程" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    
 }
 
 #pragma mark 视图切换
@@ -364,6 +391,20 @@
         return polylineView;
     }
     return nil;
+}
+
+//位置更新回调函数
+-(void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation
+updatingLocation:(BOOL)updatingLocation
+{
+    if(updatingLocation)
+    {
+        //取出当前位置的坐标
+        //NSLog(@"latitude : %f,longitude: %f",userLocation.coordinate.latitude,userLocation.coordinate.longitude);
+
+        myUserLocation = userLocation;
+        
+    }
 }
 
 //绘制线路和标注的函数

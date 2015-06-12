@@ -36,6 +36,9 @@
     
     //NSLog(@"%@",[NSBundle mainBundle].bundleIdentifier);
     //NSLog(@"Hello");
+    if (myMapView) {
+        
+    }
 }
 
 - (void)viewDidLoad {
@@ -228,6 +231,7 @@
     KLCPopup *popup = [KLCPopup popupWithContentView:finishView showType:KLCPopupShowTypeGrowIn dismissType:KLCPopupDismissTypeGrowOut maskType:KLCPopupMaskTypeDimmed dismissOnBackgroundTouch:YES dismissOnContentTouch:NO];
     [popup show];
     */
+    NSLog(@"city:%@",[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]);
     
 }
 
@@ -248,7 +252,7 @@
 
         AMapInputTipsSearchRequest *tipsRequest= [[AMapInputTipsSearchRequest alloc] init];
         tipsRequest.searchType = AMapSearchType_InputTips;
-        tipsRequest.city = @[@"杭州"];    //之后会修改
+        tipsRequest.city = @[[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];    //之后会修改
         
         if (buttonFlag == 0) {
             tipsRequest.keywords = textStr;
@@ -300,7 +304,7 @@
     AMapInputTipsSearchRequest *tipsRequest= [[AMapInputTipsSearchRequest alloc] init];
     tipsRequest.searchType = AMapSearchType_InputTips;
     tipsRequest.keywords = textStr;
-    tipsRequest.city = @[@"杭州"];    //之后会修改
+    tipsRequest.city = @[[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];    //之后会修改
     
     [search AMapInputTipsSearch:tipsRequest];
 }
@@ -319,7 +323,7 @@
     AMapInputTipsSearchRequest *tipsRequest= [[AMapInputTipsSearchRequest alloc] init];
     tipsRequest.searchType = AMapSearchType_InputTips;
     tipsRequest.keywords = bikeTextStr;
-    tipsRequest.city = @[@"杭州"];    //之后会修改
+    tipsRequest.city = @[[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];    //之后会修改
     
     [search AMapInputTipsSearch:tipsRequest];
 }
@@ -423,11 +427,27 @@
     
     AMapReGeocode *reGeocode = response.regeocode;
     NSLog(@"当前城市：%@", reGeocode.addressComponent.city);
+    curCity = reGeocode.addressComponent.city;
+    NSString *preCity = [YDConfigurationHelper getStringValueForConfigurationKey:@"city"];
+    
+    if (![curCity isEqualToString:preCity]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"是否定位到当前城市？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [alert show];
+    } else {
+        [locationButton setTitle:preCity forState:UIControlStateNormal];
+    }
     
 }
 
-- (void) performDismiss: (NSTimer *)timer {
-    [myAlert dismissWithClickedButtonIndex:0 animated:NO]; //important
+#pragma marks -- UIAlertViewDelegate --
+//根据被点击按钮的索引处理点击事件
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"clickButtonAtIndex:%ld",(long)buttonIndex);
+    if (buttonIndex == 1) {
+        [YDConfigurationHelper setStringValueForConfigurationKey:curCity withValue:@"city"];
+        [locationButton setTitle:curCity forState:UIControlStateNormal];
+    }
 }
 
 # pragma annotationsDelegate
@@ -495,7 +515,7 @@
         AMapPlaceSearchRequest *poiRequest = [[AMapPlaceSearchRequest alloc] init];
         poiRequest.searchType = AMapSearchType_PlaceKeyword;
         poiRequest.keywords = [nameArray objectAtIndex:row];
-        poiRequest.city = @[@"杭州"];                 //暂定
+        poiRequest.city = @[[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];                 //暂定
         poiRequest.requireExtension = YES;
         
         //发起POI搜索

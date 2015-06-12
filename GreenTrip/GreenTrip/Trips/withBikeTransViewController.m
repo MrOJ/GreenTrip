@@ -8,6 +8,7 @@
 //  主要的思路：首先从起点搜寻800米范围内距离起点最近的自行车站点，同时获取到达该站点的线路。接着在该自行车的3000米范围找出所有的自行车站点，之后与终点进行匹配，假如换乘次数有从大于2的变为1的，则获取该公交线路。假如没有，则从终点开始用同样的方法进行遍历
 
 #import "withBikeTransViewController.h"
+#import "YDConfigurationHelper.h"
 
 @interface withBikeTransViewController ()
 
@@ -22,6 +23,8 @@
 {
     [super viewWillAppear:YES];
     
+    self.navigationController.navigationBarHidden = NO;
+    
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
 }
@@ -34,6 +37,9 @@
     self.navigationItem.leftBarButtonItem  = backButton;
     
     self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:myColor,NSForegroundColorAttributeName,[UIFont systemFontOfSize:22.0f], NSFontAttributeName, nil];
+    
+    UIBarButtonItem *registerButton = [[UIBarButtonItem alloc] initWithTitle:@"结束行程" style:UIBarButtonItemStylePlain target:self action:@selector(finishTrip:)];
+    self.navigationItem.rightBarButtonItem = registerButton;
     
     search = [[AMapSearchAPI alloc] initWithSearchKey:@"f57ba48c60c524724d3beff7f7063af9" Delegate:self];
     
@@ -53,6 +59,12 @@
     //poiNum   = 0;
     POICount = 0;
     POIIndex = 0;
+    
+    myTotalDistance = 0;
+    myBusDistance   = 0;
+    myWalkingDistance = 0;
+    myBikeDistance    = 0;
+    myTransCount      = 0;
     
     myMapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 0,self.view.bounds.size.width, self.view.bounds.size.height)];
     myMapView.delegate = self;
@@ -92,7 +104,7 @@
     //naviRequest.requireExtension = YES;
     naviRequest.origin = startPoint;
     naviRequest.destination = endPoint;
-    naviRequest.city = @"杭州";
+    naviRequest.city = [YDConfigurationHelper getStringValueForConfigurationKey:@"city"];
     //发起路径搜索
     [search AMapNavigationSearch: naviRequest];
     
@@ -101,6 +113,15 @@
     textWithBikeTransDV.startName = startName;
     textWithBikeTransDV.endName = endName;
     [myMapView addSubview:textWithBikeTransDV];
+    
+    //正在加载指示视图
+    activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(100, 200, self.view.bounds.size.width - 100 * 2, 80)];
+    activityIndicatorView.backgroundColor = [UIColor darkGrayColor];
+    activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
+    activityIndicatorView.hidesWhenStopped = YES;
+    [self.view addSubview:activityIndicatorView];
+    
+    [activityIndicatorView startAnimating];
     
 }
 - (void)back:(id)sender {
@@ -186,6 +207,48 @@
     
 }
 
+- (void)finishTrip:(id)sender
+{
+    NSLog(@"finish.");
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    NSString *Timestr = [formatter stringFromDate:[NSDate date]];
+    
+    CLLocation *destinationLocation = [[CLLocation alloc] initWithLatitude:endPoint.latitude longitude:endPoint.longitude];
+    double distance = [myUserLocation.location distanceFromLocation:destinationLocation];
+    //NSLog(@"%f",distance);
+    
+    if (![[YDConfigurationHelper getStringValueForConfigurationKey:@"username"] isEqualToString:@""]) {
+        
+        if (distance < 1000.0 && distance > 0.0) {
+            finishTripResultView *finishView = [[finishTripResultView alloc] initWithFrame:CGRectMake((self.view.bounds.size.width - 280) / 2, 40, 280, 290 + 90)];
+            finishView.backgroundColor = [UIColor clearColor];
+            finishView.totalDistance   = myTotalDistance;
+            finishView.busDistance     = myBusDistance;
+            finishView.walkingDistance = myWalkingDistance;
+            finishView.bikeDistance    = myBikeDistance;
+            finishView.transCount      = myTransCount;
+            
+            finishView.departurePoint  = startPoint;
+            finishView.arrivalTime     = Timestr;
+            finishView.arrivalPoint    = endPoint;
+            finishView.strategy        = 4;     //4表示混合
+            [finishView initSubViews];
+            
+            KLCPopup *popup = [KLCPopup popupWithContentView:finishView showType:KLCPopupShowTypeGrowIn dismissType:KLCPopupDismissTypeGrowOut maskType:KLCPopupMaskTypeDimmed dismissOnBackgroundTouch:YES dismissOnContentTouch:NO];
+            [popup show];
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"未到达终点，请即将到达终点后结束行程" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"登录后即可制定个性化行程" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    
+}
+
 # pragma searchDelegate
 - (void)onNavigationSearchDone:(AMapNavigationSearchRequest *)request response:(AMapNavigationSearchResponse *)response
 {
@@ -261,7 +324,7 @@
                     //naviRequest.requireExtension = YES;
                     naviRequest.origin = bikeStartPoint;
                     naviRequest.destination = response.route.origin;
-                    naviRequest.city = @"杭州";
+                    naviRequest.city = [YDConfigurationHelper getStringValueForConfigurationKey:@"city"];
                     //发起路径搜索
                     [search AMapNavigationSearch: naviRequest];
                 }
@@ -294,7 +357,7 @@
                     //naviRequest.requireExtension = YES;
                     naviRequest.origin = bikeStartPoint;
                     naviRequest.destination = response.route.origin;
-                    naviRequest.city = @"杭州";
+                    naviRequest.city = [YDConfigurationHelper getStringValueForConfigurationKey:@"city"];
                     //发起路径搜索
                     [search AMapNavigationSearch: naviRequest];
                     
@@ -336,7 +399,7 @@
                     //naviRequest.requireExtension = YES;
                     naviRequest.destination = bikeStartPoint;
                     naviRequest.origin = response.route.destination;
-                    naviRequest.city = @"杭州";
+                    naviRequest.city = [YDConfigurationHelper getStringValueForConfigurationKey:@"city"];
                     //发起路径搜索
                     [search AMapNavigationSearch: naviRequest];
                 }
@@ -365,7 +428,7 @@
                     //naviRequest.requireExtension = YES;
                     naviRequest.destination = bikeStartPoint;
                     naviRequest.origin = response.route.destination;
-                    naviRequest.city = @"杭州";
+                    naviRequest.city = [YDConfigurationHelper getStringValueForConfigurationKey:@"city"];
                     //发起路径搜索
                     [search AMapNavigationSearch: naviRequest];
                     
@@ -394,6 +457,7 @@
             //NSLog(@"bike route = %@",response.route);
             //NSLog(@"request = %@",request);
             //isBreak = YES;
+            [activityIndicatorView stopAnimating];
             
             bikeRoute = response.route;
             
@@ -442,7 +506,7 @@
                 //naviRequest.requireExtension = YES;
                 naviRequest.origin = startPoint;
                 naviRequest.destination = poi.location;
-                naviRequest.city = @"杭州";
+                naviRequest.city = [YDConfigurationHelper getStringValueForConfigurationKey:@"city"];
                 //发起路径搜索
                 [search AMapNavigationSearch: naviRequest];
             } else if (flag == 2) {
@@ -458,7 +522,7 @@
                 //naviRequest.requireExtension = YES;
                 naviRequest.origin = poi.location;
                 naviRequest.destination = endPoint;
-                naviRequest.city = @"杭州";
+                naviRequest.city = [YDConfigurationHelper getStringValueForConfigurationKey:@"city"];
                 //发起路径搜索
                 [search AMapNavigationSearch: naviRequest];
             }
@@ -518,7 +582,7 @@
     //naviRequest.requireExtension = YES;
     naviRequest.origin = originPoint;
     naviRequest.destination = desPoint;
-    naviRequest.city = @"杭州";
+    naviRequest.city = [YDConfigurationHelper getStringValueForConfigurationKey:@"city"];
     //发起路径搜索
     [search AMapNavigationSearch: naviRequest];
 }
@@ -590,6 +654,9 @@
         [pointAnnotationArray addObject:walkingAnnotation];
         [wayIndexArray addObject:@"2"];      // 2-步行
         
+        myTotalDistance   += p.distance;
+        myWalkingDistance += p.distance;
+        
     }
     
     //处理自行车线路
@@ -606,6 +673,9 @@
         bikeAnnotation.coordinate = CLLocationCoordinate2DMake(bikePoint.latitude, bikePoint.longitude);
         [pointAnnotationArray addObject:bikeAnnotation];
         [wayIndexArray addObject:@"4"];      // 2-步行
+        
+        myTotalDistance += p.distance;
+        myBikeDistance  += p.distance;
         
     }
     
@@ -627,6 +697,9 @@
             walkingAnnotation.coordinate = CLLocationCoordinate2DMake(walkingPoint.latitude, walkingPoint.longitude);
             [pointAnnotationArray addObject:walkingAnnotation];
             [wayIndexArray addObject:@"2"];      // 2-步行
+            
+            myTotalDistance   += s.walking.distance;
+            myWalkingDistance += s.walking.distance;
         }
         //处理公交路线轨迹
         if (s.busline != nil) {
@@ -639,6 +712,11 @@
             busAnnotation.coordinate = CLLocationCoordinate2DMake(busPoint.latitude, busPoint.longitude);
             [pointAnnotationArray addObject:busAnnotation];
             [wayIndexArray addObject:@"3"];      // 3-公交
+            
+            myTotalDistance += s.busline.distance;
+            myBusDistance   += s.busline.distance;
+            
+            myTransCount += 1;
         }
     }
     
@@ -726,6 +804,20 @@
         return polylineView;
     }
     return nil;
+}
+
+//位置更新回调函数
+-(void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation
+updatingLocation:(BOOL)updatingLocation
+{
+    if(updatingLocation)
+    {
+        //取出当前位置的坐标
+        //NSLog(@"latitude : %f,longitude: %f",userLocation.coordinate.latitude,userLocation.coordinate.longitude);
+        
+        myUserLocation = userLocation;
+        
+    }
 }
 
 //计算总路程

@@ -79,19 +79,26 @@
     self.pickerController.navigationBar.hidden = NO;
 	self.pickerController.cameraOverlayView = _hudView;
     
-    noticeView = [[UIView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 50, [UIScreen mainScreen].bounds.size.width, 50)];
+    noticeView = [[UIView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 64, [UIScreen mainScreen].bounds.size.width, 64)];
     //noticeView.layer.cornerRadius = 5.0;
     //noticeView.layer.masksToBounds = YES;
-    noticeView.layer.shadowColor = [UIColor grayColor].CGColor;
-    noticeView.layer.shadowOffset = CGSizeMake(1, 1);
+    //noticeView.layer.shadowColor = [UIColor grayColor].CGColor;
+    noticeView.layer.shadowOffset = CGSizeMake(0, 0.5);
     noticeView.layer.shadowOpacity = 0.3;
     //设置背景透明度
-    [noticeView setBackgroundColor:[UIColor whiteColor]];
+    [noticeView setBackgroundColor:myColor];
     
-    descLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 15, [UIScreen mainScreen].bounds.size.width, 20)];
+    descLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 23, [UIScreen mainScreen].bounds.size.width, 20)];
     descLabel.text = @"正在查找目标站点...";
-    [descLabel setTextColor:[UIColor blackColor]];
+    descLabel.font = [UIFont systemFontOfSize:18.0f];
+    [descLabel setTextColor:[UIColor whiteColor]];
     [noticeView addSubview:descLabel];
+    
+    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 18, 20, 30)];
+    //backButton.image = [UIImage imageNamed:@"箭头9x17px"];
+    [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+    [backButton setImage:[UIImage imageNamed:@"箭头9x17px"] forState:UIControlStateNormal];
+    [noticeView addSubview:backButton];
     
     [_hudView addSubview:noticeView];
     
@@ -122,6 +129,11 @@
     [_hudView addSubview:arrowImageView];
     
     return self;
+}
+
+- (void)back:(id)sender {
+    NSLog(@"back");
+    [self dismissModalARController:YES];
 }
 
 - (void)presentModalARControllerAnimated:(BOOL)animated {
@@ -202,7 +214,7 @@ updatingLocation:(BOOL)updatingLocation
 {
     if (updatingLocation) {
         //[_coordinates removeAllObjects];
-        NSLog(@"latitude : %f,longitude: %f",userLocation.coordinate.latitude,userLocation.coordinate.longitude);
+        //NSLog(@"latitude : %f,longitude: %f",userLocation.coordinate.latitude,userLocation.coordinate.longitude);
         AMapPlaceSearchRequest *poiRequest = [[AMapPlaceSearchRequest alloc] init];
         poiRequest.searchType = AMapSearchType_PlaceAround;
         poiRequest.location = [AMapGeoPoint locationWithLatitude:userLocation.coordinate.latitude longitude:userLocation.coordinate.longitude];//固定的站点，难怪不会实时动态更新
@@ -237,7 +249,6 @@ updatingLocation:(BOOL)updatingLocation
             }
         }
     }
-
 }
 
 - (void)onPlaceSearchDone:(AMapPlaceSearchRequest *)request response:(AMapPlaceSearchResponse *)response

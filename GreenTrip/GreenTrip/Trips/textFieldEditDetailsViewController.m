@@ -7,6 +7,7 @@
 //
 
 #import "textFieldEditDetailsViewController.h"
+#import "YDConfigurationHelper.h"
 
 @interface textFieldEditDetailsViewController ()
 
@@ -93,7 +94,7 @@
         AMapPlaceSearchRequest *poiRequest = [[AMapPlaceSearchRequest alloc] init];
         poiRequest.searchType = AMapSearchType_PlaceKeyword;
         poiRequest.keywords = editText.text;
-        poiRequest.city = @[@"杭州"];                 //暂定
+        poiRequest.city = @[[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];                 //暂定
         poiRequest.requireExtension = YES;
         
         //发起POI搜索
@@ -118,7 +119,7 @@
         AMapInputTipsSearchRequest *tipsRequest= [[AMapInputTipsSearchRequest alloc] init];
         tipsRequest.searchType = AMapSearchType_InputTips;
         tipsRequest.keywords = textStr;
-        tipsRequest.city = @[@"杭州"];    //之后会修改
+        tipsRequest.city = @[[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];    //之后会修改
         
         [search AMapInputTipsSearch:tipsRequest];
     }
@@ -177,7 +178,7 @@
         AMapPlaceSearchRequest *poiRequest = [[AMapPlaceSearchRequest alloc] init];
         poiRequest.searchType = AMapSearchType_PlaceKeyword;
         poiRequest.keywords = textField.text;
-        poiRequest.city = @[@"杭州"];                 //暂定
+        poiRequest.city = @[[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];                 //暂定
         poiRequest.requireExtension = YES;
         
         //发起POI搜索
@@ -288,7 +289,7 @@
         AMapPlaceSearchRequest *poiRequest = [[AMapPlaceSearchRequest alloc] init];
         poiRequest.searchType = AMapSearchType_PlaceKeyword;
         poiRequest.keywords = [nameArray objectAtIndex:row];
-        poiRequest.city = @[@"杭州"];                 //暂定
+        poiRequest.city = @[[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];                 //暂定
         poiRequest.requireExtension = YES;
         
         //发起POI搜索

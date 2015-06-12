@@ -11,6 +11,7 @@
 @implementation finishTripResultView
 
 @synthesize totalDistance,busDistance,bikeDistance,walkingDistance,transCount;
+@synthesize departureTime,departurePoint,arrivalPoint,arrivalTime,strategy;
 
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -40,15 +41,34 @@
     [self addSubview:portraitImgView];
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 115, 200, 20)];
-    titleLabel.text = @"恭喜您！此次行程：";
+    titleLabel.text = @"行程结束，此次行程：";
     titleLabel.textColor = [UIColor blackColor];
     titleLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:titleLabel];
     
+    NSLog(@"总路程：%ldm",(long)totalDistance);
+    NSLog(@"公交路程：%ldm",(long)busDistance);
+    NSLog(@"步行路程：%ldm",(long)walkingDistance);
+    NSLog(@"骑行路程：%ldm",(long)bikeDistance);
+    
+    NSLog(@"出发时间：%@",departureTime);
+    NSLog(@"到达时间：%@",arrivalTime);
+    NSLog(@"%@",departurePoint);
+    NSLog(@"%@",arrivalPoint);
+    NSLog(@"%ld",(long)strategy);
+    
+    consumeCalStr = [NSString stringWithFormat:@"%.1f", (walkingDistance / 1000.0) * 117 + (bikeDistance / 1000.0) *66];
+    //小汽车一般碳排放在每km 0.4kg二氧化碳左右,公交2.1kg/km。假如一辆公交车50人，那么节省的碳排就是   0.4 * (50 / 5) - 2.1 = 1.9
+    reduceCarbonStr = [NSString stringWithFormat:@"%.1f", 1.9 * (busDistance / 1000.0) + 0.4 * (walkingDistance + bikeDistance) / 1000];
+    
     NSArray *iconImgsArray    = [[NSArray alloc] initWithObjects:@"4-54x92",@"5-76x92",@"3-144x92",@"",@"", nil];
     NSArray *iconLabelsArray  = [[NSArray alloc] initWithObjects:@"行走：",@"乘坐公交：",@"骑行：",@"燃烧热量：",@"减排：", nil];
     NSArray *unitsArray       = [[NSArray alloc] initWithObjects:@"km",@"趟",@"km",@"cal",@"kg", nil];
-    NSArray *valuesArray      = [[NSArray alloc] initWithObjects:@"1.4",@"1",@"2",@"134.2",@"2.4", nil];
+    NSArray *valuesArray      = [[NSArray alloc] initWithObjects:[NSString stringWithFormat:@"%.1f",walkingDistance / 1000.0],
+                                                                 [NSString stringWithFormat:@"%ld",(long)transCount],
+                                                                 [NSString stringWithFormat:@"%.1f",bikeDistance / 1000.0],
+                                                                  consumeCalStr,
+                                                                  reduceCarbonStr, nil];
     
     for (int i = 0; i < 5; i ++) {
         UIImageView *iconImgView = [[UIImageView alloc] initWithFrame:CGRectMake(38, 120 + i * 32, 14, 14)];
@@ -101,14 +121,48 @@
     [shareButton addTarget:self action:@selector(shareButton:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:shareButton];
     
-    NSLog(@"%ld",(long)totalDistance);
-    NSLog(@"%ld",(long)busDistance);
-    NSLog(@"%ld",(long)walkingDistance);
+    [self uploadInfo];
+    
+}
+
+- (void)uploadInfo {
+
+    //更新数据库数据
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    //2.设置登录参数
+    NSDictionary *dict = @{ @"username":[YDConfigurationHelper getStringValueForConfigurationKey:@"username"],
+                            //@"departure_time":departureTime,
+                            @"departure_point":departurePoint,
+                            @"arrival_time":arrivalTime,
+                            @"arrival_point":arrivalPoint,
+                            @"strategy":[NSString stringWithFormat:@"%ld", (long)strategy],
+                            @"total_distance":[NSString stringWithFormat:@"%.1f", totalDistance / 1000.0],
+                            @"walking_distance":[NSString stringWithFormat:@"%.1f", walkingDistance / 1000.0],
+                            @"bike_distance":[NSString stringWithFormat:@"%.1f", bikeDistance / 1000.0],
+                            @"trans_count":[NSString stringWithFormat:@"%ld", (long)transCount],
+                            @"consume_cal":consumeCalStr,
+                            @"reduce_carbon":reduceCarbonStr};
+    
+    //3.请求
+    [manager GET:@"http://192.168.1.104:1200/uploadTripsInfo" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"GET --> %@", responseObject); //自动返回主线程
+        
+    } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showErrorWithMessage:@"信息上传失败"];
+    }];
+
 }
 
 - (void)shareButton:(id)sender
 {
     NSLog(@"SHARE");
+}
+
+-(void)showErrorWithMessage:(NSString *)msg
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:msg delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alert show];
 }
 
 @end

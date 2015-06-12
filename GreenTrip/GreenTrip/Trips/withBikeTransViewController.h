@@ -11,6 +11,9 @@
 #import <AMapSearchKit/AMapSearchAPI.h>
 #import "CommonUtility.h"
 #import "textWithBikeTransDetailsView.h"
+#import "finishTripResultView.h"
+#import "KLCPopup.h"
+#import "YDConfigurationHelper.h"
 
 @interface withBikeTransViewController : UIViewController<AMapSearchDelegate,MAMapViewDelegate>
 {
@@ -63,6 +66,16 @@
     
     NSMutableArray *wayIndexArray;
     NSInteger indicatorTag;
+    
+    NSInteger myTotalDistance;    //行程总路程
+    NSInteger myBusDistance;      //公交车路程
+    NSInteger myWalkingDistance;  //步行总距离
+    NSInteger myBikeDistance;     //自行车距离
+    NSInteger myTransCount;       //换乘次数
+    
+    MAUserLocation *myUserLocation;
+    
+    UIActivityIndicatorView *activityIndicatorView;
 }
 
 @property(nonatomic, strong) AMapGeoPoint *startPoint;

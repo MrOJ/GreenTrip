@@ -14,6 +14,7 @@
 #import "textWalkingRoutesDetailsView.h"
 #import "finishTripResultView.h"
 #import "KLCPopup.h"
+#import "YDConfigurationHelper.h"
 
 @interface showRoutesDetailsViewController : UIViewController<AMapSearchDelegate,MAMapViewDelegate,UIScrollViewDelegate,UIGestureRecognizerDelegate>
 {
@@ -44,6 +45,10 @@
     NSInteger busDistance;      //公交车路程
     NSInteger walkingDistance;  //步行总距离
     NSInteger transCount;       //换乘次数
+    
+    MAUserLocation *myUserLocation;
+    
+    UIActivityIndicatorView *activityIndicatorView;
 }
 
 @property (nonatomic) NSInteger index;

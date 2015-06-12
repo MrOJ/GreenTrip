@@ -439,15 +439,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="绿出行" id="ihW-cN-peM">
-                        <barButtonItem key="rightBarButtonItem" id="Clr-K9-ahd">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="sKR-XF-9dS">
-                                <rect key="frame" x="255" y="11" width="46" height="17"/>
+                        <barButtonItem key="rightBarButtonItem" id="w2i-me-Xsu">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lHh-ej-eBC">
+                                <rect key="frame" x="-23" y="-15" width="71" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <inset key="titleEdgeInsets" minX="-35" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="-66" maxY="0.0"/>
-                                <state key="normal" title=" 杭州" image="箭头38x22.png">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="切换城市">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                         </barButtonItem>
@@ -458,7 +455,7 @@
                         <outlet property="decreaseButton" destination="KW4-t2-wxR" id="tz7-Gv-60n"/>
                         <outlet property="increaseButton" destination="m4I-yc-XJ6" id="WJn-ig-GLJ"/>
                         <outlet property="indicatorButton" destination="NU8-B4-tgo" id="4ms-1k-Mg5"/>
-                        <outlet property="locationButton" destination="sKR-XF-9dS" id="iTG-QV-ve1"/>
+                        <outlet property="locationButton" destination="lHh-ej-eBC" id="fy4-hn-iZA"/>
                         <outlet property="scalingView" destination="gp0-Pb-den" id="dA3-qx-Vqv"/>
                         <outlet property="searchDisplayController" destination="Gmw-nh-jGe" id="aAL-6U-7CV"/>
                         <outlet property="searchIconView" destination="1Qc-xY-PXR" id="RWW-zp-xQ0"/>
@@ -1154,7 +1151,7 @@
         <image name="4-54x92未激活.png" width="18" height="31"/>
         <image name="5-76x92未激活.png" width="25" height="31"/>
         <image name="6-100x98未激活.png" width="33" height="33"/>
-        <image name="62x62默认头像" width="23" height="37"/>
+        <image name="62x62默认头像" width="19" height="18"/>
         <image name="QQ188x188.png" width="63" height="63"/>
         <image name="bike104x66.png" width="35" height="22"/>
         <image name="bus68x84.png" width="23" height="28"/>
@@ -1165,7 +1162,6 @@
         <image name="反转92x124px.png" width="31" height="41"/>
         <image name="搜索18x19px.png" width="24" height="25"/>
         <image name="放大140x156.png" width="47" height="52"/>
-        <image name="箭头38x22.png" width="13" height="7"/>
         <image name="缩小140x156.png" width="47" height="52"/>
         <image name="自行车50x44px.png" width="67" height="53"/>
     </resources>
