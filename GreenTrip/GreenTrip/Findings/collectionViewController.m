@@ -20,8 +20,37 @@
 {
     [super viewWillAppear:YES];
     
+    /*
     UIBarButtonItem *cameraButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"相机25x21px"] landscapeImagePhone:[UIImage imageNamed:@"相机25x21px"]  style:UIBarButtonItemStylePlain target:self action:@selector(openCamera:)];
     self.navigationItem.rightBarButtonItem = cameraButton;
+    
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"箭头9x17px"] style:UIBarButtonItemStylePlain target:self action:@selector(back:)];
+    self.navigationItem.leftBarButtonItem  = backButton;
+    
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,[UIFont systemFontOfSize:22.0f], NSFontAttributeName, nil];
+    self.navigationItem.title = @"绿出行圈";
+    */
+    //self.navigationItem.backBarButtonItem.title = @"返回";
+    //self.navigationController.navigationBar.backItem.title = @"";
+    //self.navigationController.navigationBar.backItem.title = @"返回";
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,[UIFont systemFontOfSize:22.0f], NSFontAttributeName, nil];
+    self.navigationItem.title = @"绿出行圈";
+    
+    UIButton *cameraButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 10 - 25, 14, 25, 21)];
+    [cameraButton setImage:[UIImage imageNamed:@"相机25x21px"] forState:UIControlStateNormal];
+    [cameraButton addTarget:self action:@selector(openCamera:) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigationController.navigationBar addSubview:cameraButton];
+    
+    //将原先的bar隐藏起来
+    UIBarButtonItem *nilButton = [[UIBarButtonItem alloc] init];
+    nilButton.title = @"";
+    self.navigationItem.leftBarButtonItem = nilButton;
+    
+    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 20, 25)];
+    [backButton setImage:[UIImage imageNamed:@"箭头9x17px"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigationController.navigationBar addSubview:backButton];
+    
     
     //头部主动刷新
     //[self.collectionView.header beginRefreshing];
@@ -38,11 +67,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"箭头9x17px"] style:UIBarButtonItemStylePlain target:self action:@selector(back:)];
-    self.navigationItem.leftBarButtonItem  = backButton;
-    
-    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,[UIFont systemFontOfSize:22.0f], NSFontAttributeName, nil];
-    self.navigationItem.title = @"绿出行圈";
     
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     

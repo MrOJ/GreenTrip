@@ -19,8 +19,17 @@
 {
     [super viewWillAppear:YES];
     
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
     self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,[UIFont systemFontOfSize:22.0f], NSFontAttributeName, nil];
     self.navigationItem.title = @"发现";
+    
+    for (id object in self.navigationController.navigationBar.subviews) {
+        if ([object isKindOfClass:[UIButton class]]) {
+            //NSLog(@"hello!!");
+            [(UIButton *)object removeFromSuperview];
+        }
+    }
 }
 
 - (void)viewDidLoad {
@@ -114,9 +123,24 @@
         self.navigationItem.backBarButtonItem = backItem;
         
         
+    } else if (indexPath.section == 1) {
+        HUD = [[MBProgressHUD alloc] initWithView:self.view];
+        [self.view addSubview:HUD];
+        HUD.yOffset = -100;     //改变位置
+        HUD.mode = MBProgressHUDModeText;
+        
+        HUD.delegate = self;
+        HUD.labelText = @"功能完善中，尽请期待！";
+        [HUD show:YES];
+        [HUD hide:YES afterDelay:1];
     }
 }
 
+#pragma mark - MBProgressHUDDelegate
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+    // Remove HUD from screen when the HUD was hidded
+    [HUD removeFromSuperview];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

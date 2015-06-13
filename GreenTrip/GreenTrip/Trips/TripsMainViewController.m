@@ -21,7 +21,7 @@
 @synthesize busButton,bikePlaceButton;
 
 @synthesize tipsResultTableView,myUserLocation,POIsArray;
-@synthesize locationButton;
+//@synthesize locationButton;
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -34,8 +34,32 @@
     self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,[UIFont systemFontOfSize:22.0f], NSFontAttributeName, nil];
     //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
-    //NSLog(@"%@",[NSBundle mainBundle].bundleIdentifier);
+    /*
+    if ([YDConfigurationHelper getStringValueForConfigurationKey:@"city"]) {
+        locationButton = [[UIBarButtonItem alloc] initWithTitle:[YDConfigurationHelper getStringValueForConfigurationKey:@"city"] style:UIBarButtonItemStylePlain target:self action:@selector(location:)];
+        locationButton.tintColor = [UIColor whiteColor];
+        self.navigationItem.rightBarButtonItem = locationButton;
+    } else {
+        locationButton = [[UIBarButtonItem alloc] initWithTitle:@"切换城市" style:UIBarButtonItemStylePlain target:self action:@selector(location:)];
+        locationButton.tintColor = [UIColor whiteColor];
+        self.navigationItem.rightBarButtonItem = locationButton;
+    }
+    */
+    locationButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 10 - 80, 15, 80, 20)];
+    locationButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
+    [locationButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [locationButton addTarget:self action:@selector(location:) forControlEvents:UIControlEventTouchUpInside];
+    [locationButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
+    [self.navigationController.navigationBar addSubview:locationButton];
+    
+    if ([YDConfigurationHelper getStringValueForConfigurationKey:@"city"]) {
+        [locationButton setTitle:[YDConfigurationHelper getStringValueForConfigurationKey:@"city"] forState:UIControlStateNormal];
+    } else {
+        [locationButton setTitle:@"切换城市" forState:UIControlStateNormal];
+    }
+    
     //NSLog(@"Hello");
+    
     if (myMapView) {
         
     }
@@ -142,8 +166,6 @@
     [_mapView addGestureRecognizer:tapGesture];
     
     myAlert = [[UIAlertView alloc] initWithTitle:nil message:@"搜索到附近800m范围自行车站点" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil];
-    
-    [locationButton addTarget:self action:@selector(location:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (IBAction)getIndicator:(id)sender {
@@ -435,6 +457,7 @@
         [alert show];
     } else {
         [locationButton setTitle:preCity forState:UIControlStateNormal];
+        //locationButton.title = preCity;
     }
     
 }
@@ -447,6 +470,7 @@
     if (buttonIndex == 1) {
         [YDConfigurationHelper setStringValueForConfigurationKey:curCity withValue:@"city"];
         [locationButton setTitle:curCity forState:UIControlStateNormal];
+        //locationButton.title = curCity;
     }
 }
 

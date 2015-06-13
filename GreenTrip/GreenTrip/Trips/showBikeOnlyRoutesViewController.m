@@ -43,6 +43,8 @@
     bikeDistance    = 0;
     transCount      = 0;
     
+    isFinishTrip = 0;
+    
     search = [[AMapSearchAPI alloc] initWithSearchKey:@"f57ba48c60c524724d3beff7f7063af9" Delegate:self];
     allRoutesDictionary = [[NSMutableDictionary alloc] init];
 
@@ -88,6 +90,17 @@
     flag = 0;
     
     ODDistance = [self distanceBetweenOrderByA:startPoint B:endPoint];
+    
+    //正在加载指示视图
+    activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(100, 200, self.view.bounds.size.width - 100 * 2, 80)];
+    activityIndicatorView.backgroundColor = [UIColor darkGrayColor];
+    activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
+    activityIndicatorView.hidesWhenStopped = YES;
+    [self.view addSubview:activityIndicatorView];
+    
+    [activityIndicatorView startAnimating];
+    
+    
     
 }
 
@@ -166,44 +179,52 @@
 - (void)finishTrip:(id)sender
 {
     NSLog(@"finish.");
-    // 获取到达终点时间
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-    NSString *Timestr = [formatter stringFromDate:[NSDate date]];
     
-    CLLocation *destinationLocation = [[CLLocation alloc] initWithLatitude:endPoint.latitude longitude:endPoint.longitude];
-    double distance = [myUserLocation.location distanceFromLocation:destinationLocation];
-    //NSLog(@"%f",distance);
-    
-    if (![[YDConfigurationHelper getStringValueForConfigurationKey:@"username"] isEqualToString:@""]) {
+    if (isFinishTrip == 0) {
+        // 获取到达终点时间
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+        NSString *Timestr = [formatter stringFromDate:[NSDate date]];
         
-        if (distance < 1000.0 && distance > 0.0) {
+        CLLocation *destinationLocation = [[CLLocation alloc] initWithLatitude:endPoint.latitude longitude:endPoint.longitude];
+        double distance = [myUserLocation.location distanceFromLocation:destinationLocation];
+        //NSLog(@"%f",distance);
+        
+        if (![[YDConfigurationHelper getStringValueForConfigurationKey:@"username"] isEqualToString:@""]) {
             
-            finishTripResultView *finishView = [[finishTripResultView alloc] initWithFrame:CGRectMake((self.view.bounds.size.width - 280) / 2, 40, 280, 290 + 90)];
-            finishView.backgroundColor = [UIColor clearColor];
-            finishView.totalDistance   = totalDistance;
-            finishView.busDistance     = busDistance;
-            finishView.walkingDistance = walkingDistance;
-            finishView.bikeDistance    = bikeDistance;
-            finishView.transCount      = transCount;
-            
-            finishView.departurePoint  = startPoint;
-            finishView.arrivalTime     = Timestr;
-            finishView.arrivalPoint    = endPoint;
-            finishView.strategy        = 3;     //3表示自行车
-            
-            [finishView initSubViews];
-            
-            KLCPopup *popup = [KLCPopup popupWithContentView:finishView showType:KLCPopupShowTypeGrowIn dismissType:KLCPopupDismissTypeGrowOut maskType:KLCPopupMaskTypeDimmed dismissOnBackgroundTouch:YES dismissOnContentTouch:NO];
-            [popup show];
+            if (distance < 1000.0 && distance > 0.0) {
+                
+                finishTripResultView *finishView = [[finishTripResultView alloc] initWithFrame:CGRectMake((self.view.bounds.size.width - 280) / 2, 40, 280, 290 + 90)];
+                finishView.backgroundColor = [UIColor clearColor];
+                finishView.totalDistance   = totalDistance;
+                finishView.busDistance     = busDistance;
+                finishView.walkingDistance = walkingDistance;
+                finishView.bikeDistance    = bikeDistance;
+                finishView.transCount      = transCount;
+                
+                finishView.departurePoint  = startPoint;
+                finishView.arrivalTime     = Timestr;
+                finishView.arrivalPoint    = endPoint;
+                finishView.strategy        = 3;     //3表示自行车
+                
+                [finishView initSubViews];
+                
+                KLCPopup *popup = [KLCPopup popupWithContentView:finishView showType:KLCPopupShowTypeGrowIn dismissType:KLCPopupDismissTypeGrowOut maskType:KLCPopupMaskTypeDimmed dismissOnBackgroundTouch:YES dismissOnContentTouch:NO];
+                [popup show];
+                
+            } else {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"未到达终点，请即将到达终点后结束行程" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alert show];
+            }
             
         } else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"未到达终点，请即将到达终点后结束行程" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"登录后即可制定个性化行程" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
         }
         
+        isFinishTrip = 1;
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"登录后即可制定个性化行程" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"此次行程已经结束" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alert show];
     }
     
@@ -228,6 +249,8 @@
         textBikeOnlyView.startBikeStopName = startBikeName;
         textBikeOnlyView.endBikeStopName = endBikeName;
         [textBikeOnlyView buildingView];
+        
+        [activityIndicatorView stopAnimating];
         
     } else if ([self getSegmentsWithTarget:request.origin] == 2) {
         [allRoutesDictionary setObject:response.route forKey:@"endWalking"];
@@ -391,11 +414,11 @@
         //NSLog(@"%@",wayReuslt);
         if ([wayReuslt isEqualToString:@"0"]) {    //起点
             annotationView.canShowCallout= NO;
-            annotationView.image = [UIImage imageNamed:@"起点38x60px"];
+            annotationView.image = [UIImage imageNamed:@"38x60px-01"];
             return annotationView;
         } else if ([wayReuslt isEqualToString:@"1"]) {
             annotationView.canShowCallout= NO;            //终点
-            annotationView.image = [UIImage imageNamed:@"终点38x60px"];
+            annotationView.image = [UIImage imageNamed:@"38x60px-02"];
             return annotationView;
         } else  if ([wayReuslt isEqualToString:@"2"]){
             annotationView.canShowCallout= NO;            //步行

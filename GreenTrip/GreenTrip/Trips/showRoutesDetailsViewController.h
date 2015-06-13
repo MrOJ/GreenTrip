@@ -49,6 +49,8 @@
     MAUserLocation *myUserLocation;
     
     UIActivityIndicatorView *activityIndicatorView;
+    
+    int isFinishTrip;
 }
 
 @property (nonatomic) NSInteger index;

@@ -10,11 +10,12 @@
 #import <MAMapKit/MAMapKit.h>
 #import <AMapSearchKit/AMapSearchAPI.h>
 #import "ExtensibleTableView.h"
+#import "MBProgressHUD.h"
 
 #define iosBlue [UIColor colorWithRed:28.0 / 255.0f green:98 / 255.0f blue:255.0 / 255.0f alpha:1.0f]
 #define myColor [UIColor colorWithRed:119.0 / 255.0f green:185.0 / 255.0f blue:67.0 / 255.0f alpha:1.0f]
 
-@interface textBikeOnlyRoutesView : UIView<UIGestureRecognizerDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface textBikeOnlyRoutesView : UIView<UIGestureRecognizerDelegate,UITableViewDataSource,UITableViewDelegate,MBProgressHUDDelegate>
 {
     CGPoint beginPoint;
     CGPoint initPoint;
@@ -42,6 +43,9 @@
     NSString *bikeStr;
     
     ExtensibleTableView *listTableView;
+    
+    MBProgressHUD *HUD;
+
 }
 
 @property (nonatomic) BOOL dragEnable;

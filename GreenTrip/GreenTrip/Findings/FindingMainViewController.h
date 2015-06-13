@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "collectionViewController.h"
+#import "MBProgressHUD.h"
 
-@interface FindingMainViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface FindingMainViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,MBProgressHUDDelegate>
 {
     NSArray *titleArray;
+    
+    MBProgressHUD *HUD;
 }
 
 @property (strong, nonatomic) IBOutlet UITableView *findingTableViewController;

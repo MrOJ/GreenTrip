@@ -26,6 +26,7 @@
     
     NSMutableArray *stepArray;
     NSMutableArray *originPonitArray;
+    
 }
 
 @property (nonatomic) BOOL dragEnable;

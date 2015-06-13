@@ -162,6 +162,7 @@
     tapGesture.delegate = self;
     [self.view addGestureRecognizer:tapGesture];
     */
+    isFinishTrip = 0;
     
 }
 
@@ -252,40 +253,48 @@
 {
     NSLog(@"finish.");
     // 获取到达终点时间
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-    NSString *Timestr = [formatter stringFromDate:[NSDate date]];
-    
-    CLLocation *destinationLocation = [[CLLocation alloc] initWithLatitude:allRoutes.destination.latitude longitude:allRoutes.destination.longitude];
-    double distance = [myUserLocation.location distanceFromLocation:destinationLocation];
-    NSLog(@"%f",distance);
-    
-    if (![[YDConfigurationHelper getStringValueForConfigurationKey:@"username"] isEqualToString:@""]) {
+    if (isFinishTrip == 0) {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+        NSString *Timestr = [formatter stringFromDate:[NSDate date]];
         
-        //距离1000之类才能结束行程
-        if (distance < 1000.0 && distance > 0.0) {
-            finishTripResultView *finishView = [[finishTripResultView alloc] initWithFrame:CGRectMake((self.view.bounds.size.width - 280) / 2, 40, 280, 290 + 90)];
-            finishView.backgroundColor = [UIColor clearColor];
-            finishView.totalDistance   = totalDistance;
-            finishView.busDistance     = busDistance;
-            finishView.walkingDistance = walkingDistance;
-            finishView.transCount      = transCount;
+        CLLocation *destinationLocation = [[CLLocation alloc] initWithLatitude:allRoutes.destination.latitude longitude:allRoutes.destination.longitude];
+        double distance = [myUserLocation.location distanceFromLocation:destinationLocation];
+        NSLog(@"%f",distance);
+        
+        if (![[YDConfigurationHelper getStringValueForConfigurationKey:@"username"] isEqualToString:@""]) {
             
-            finishView.departurePoint  = allRoutes.origin;
-            finishView.arrivalTime     = Timestr;
-            finishView.arrivalPoint    = allRoutes.destination;
-            finishView.strategy        = wayFlag;
-            [finishView initSubViews];
+            //距离1000之类才能结束行程
+            if (distance >= 0.0) {
+                //if (distance < 1000.0 && distance > 0.0) {
+                finishTripResultView *finishView = [[finishTripResultView alloc] initWithFrame:CGRectMake((self.view.bounds.size.width - 280) / 2, 40, 280, 290 + 90)];
+                finishView.backgroundColor = [UIColor clearColor];
+                finishView.totalDistance   = totalDistance;
+                finishView.busDistance     = busDistance;
+                finishView.walkingDistance = walkingDistance;
+                finishView.transCount      = transCount;
+                
+                finishView.departurePoint  = allRoutes.origin;
+                finishView.arrivalTime     = Timestr;
+                finishView.arrivalPoint    = allRoutes.destination;
+                finishView.strategy        = wayFlag;
+                [finishView initSubViews];
+                
+                KLCPopup *popup = [KLCPopup popupWithContentView:finishView showType:KLCPopupShowTypeGrowIn dismissType:KLCPopupDismissTypeGrowOut maskType:KLCPopupMaskTypeDimmed dismissOnBackgroundTouch:YES dismissOnContentTouch:NO];
+                [popup show];
+            } else {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"未到达终点，请即将到达终点后结束行程" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alert show];
+            }
             
-            KLCPopup *popup = [KLCPopup popupWithContentView:finishView showType:KLCPopupShowTypeGrowIn dismissType:KLCPopupDismissTypeGrowOut maskType:KLCPopupMaskTypeDimmed dismissOnBackgroundTouch:YES dismissOnContentTouch:NO];
-            [popup show];
         } else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"未到达终点，请即将到达终点后结束行程" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"登录后即可制定个性化行程" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
         }
         
+        isFinishTrip = 1;
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"登录后即可制定个性化行程" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"此次行程已经结束" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alert show];
     }
     
@@ -339,11 +348,11 @@
         //NSLog(@"%@",wayReuslt);
         if ([wayReuslt isEqualToString:@"0"]) {    //起点
             annotationView.canShowCallout= NO;
-            annotationView.image = [UIImage imageNamed:@"起点38x60px"];
+            annotationView.image = [UIImage imageNamed:@"38x60px-01"];
             return annotationView;
         } else if ([wayReuslt isEqualToString:@"1"]) {
             annotationView.canShowCallout= NO;            //终点
-            annotationView.image = [UIImage imageNamed:@"终点38x60px"];
+            annotationView.image = [UIImage imageNamed:@"38x60px-02"];
             return annotationView;
         } else  if ([wayReuslt isEqualToString:@"2"]){
             annotationView.canShowCallout= NO;            //步行

@@ -166,9 +166,10 @@
     UILabel *walkingDetailsLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 38, 200, 20)];
     walkingDetailsLabel.text = [NSString stringWithFormat:@"%@ | 约%@", [self distanceFormatted:totalDistance],[self timeFormatted:totalDuration]];
     walkingDetailsLabel.font = [UIFont fontWithName:@"Heiti SC-Bold" size:14.0f];
+    walkingDetailsLabel.textColor = myColor;
     [briefView addSubview:walkingDetailsLabel];
     
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 84, [self superview].bounds.size.width - 10, 2)];
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 85, [self superview].bounds.size.width, 2)];
     line.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [self addSubview:line];
     
@@ -244,7 +245,7 @@
             stepLabel.textColor = [UIColor blackColor];
             stepLabel.font = [UIFont fontWithName:@"Heiti SC" size:14.0f];
             
-            UIView *line = [[UIView alloc] initWithFrame:CGRectMake(52, 49, [self superview].bounds.size.width - 50 - 30, 2)];
+            UIView *line = [[UIView alloc] initWithFrame:CGRectMake(52, 50, [self superview].bounds.size.width - 50 - 30, 1)];
             line.backgroundColor = [UIColor groupTableViewBackgroundColor];
             
             UIImageView *iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 18, 13, 13)];

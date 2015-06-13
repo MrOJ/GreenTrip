@@ -12,11 +12,12 @@
 #import "ExtensibleTableView.h"
 #import "CommonUtility.h"
 #import "ARViewController.h"
+#import "MBProgressHUD.h"
 
 #define iosBlue [UIColor colorWithRed:28.0 / 255.0f green:98 / 255.0f blue:255.0 / 255.0f alpha:1.0f]
 #define myColor [UIColor colorWithRed:119.0 / 255.0f green:185.0 / 255.0f blue:67.0 / 255.0f alpha:1.0f]
 
-@interface textRoutesDetailsScrollView : UIScrollView<UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate>
+@interface textRoutesDetailsScrollView : UIScrollView<UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate,MBProgressHUDDelegate>
 {
     CGPoint beginPoint;
     CGPoint initPoint;
@@ -45,6 +46,8 @@
     
     //UIImageView *megeImg;              //箭头图片
     //ExtensibleTableView *exTableView;
+    
+    MBProgressHUD *HUD;
 }
 
 @property (nonatomic) BOOL dragEnable;

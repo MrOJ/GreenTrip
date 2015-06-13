@@ -438,24 +438,13 @@
                             <constraint firstAttribute="trailing" secondItem="IgP-gY-BCs" secondAttribute="trailing" id="iow-5v-wzg"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="绿出行" id="ihW-cN-peM">
-                        <barButtonItem key="rightBarButtonItem" id="w2i-me-Xsu">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lHh-ej-eBC">
-                                <rect key="frame" x="-23" y="-15" width="71" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="切换城市">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="绿出行" id="ihW-cN-peM"/>
                     <connections>
                         <outlet property="_mapView" destination="IgP-gY-BCs" id="BaN-OJ-zvQ"/>
                         <outlet property="bikeSearchButton" destination="et7-gw-tX3" id="llj-c2-QCo"/>
                         <outlet property="decreaseButton" destination="KW4-t2-wxR" id="tz7-Gv-60n"/>
                         <outlet property="increaseButton" destination="m4I-yc-XJ6" id="WJn-ig-GLJ"/>
                         <outlet property="indicatorButton" destination="NU8-B4-tgo" id="4ms-1k-Mg5"/>
-                        <outlet property="locationButton" destination="lHh-ej-eBC" id="fy4-hn-iZA"/>
                         <outlet property="scalingView" destination="gp0-Pb-den" id="dA3-qx-Vqv"/>
                         <outlet property="searchDisplayController" destination="Gmw-nh-jGe" id="aAL-6U-7CV"/>
                         <outlet property="searchIconView" destination="1Qc-xY-PXR" id="RWW-zp-xQ0"/>

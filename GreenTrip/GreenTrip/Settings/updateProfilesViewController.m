@@ -16,14 +16,46 @@
 
 @synthesize datePick,sexPicker;
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    
+    /*
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"箭头9x17px"] style:UIBarButtonItemStylePlain target:self action:@selector(back:)];
     self.navigationItem.leftBarButtonItem  = backButton;
     
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(save:)];
     self.navigationItem.rightBarButtonItem = saveButton;
+    */
+    for (id object in self.navigationController.navigationBar.subviews) {
+        if ([object isKindOfClass:[UIButton class]]) {
+            //NSLog(@"hello!!");
+            [(UIButton *)object removeFromSuperview];
+        }
+    }
+    
+    //设置返回按钮 将原先的bar隐藏起来
+    UIBarButtonItem *nilButton = [[UIBarButtonItem alloc] init];
+    nilButton.title = @"";
+    self.navigationItem.leftBarButtonItem = nilButton;
+    
+    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 20, 25)];
+    [backButton setImage:[UIImage imageNamed:@"箭头9x17px"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigationController.navigationBar addSubview:backButton];
+    
+    UIButton *saveButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 10 - 80, 15, 80, 20)];
+    saveButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
+    [saveButton setTitle:@"保存" forState:UIControlStateNormal];
+    [saveButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [saveButton addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
+    [saveButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
+    [self.navigationController.navigationBar addSubview:saveButton];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
     
     self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,[UIFont systemFontOfSize:22.0f], NSFontAttributeName, nil];
     self.navigationItem.title = @"个人资料修改";

@@ -26,6 +26,13 @@
     self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:myColor,NSForegroundColorAttributeName,[UIFont systemFontOfSize:22.0f], NSFontAttributeName, nil];
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    
+    for (id object in self.navigationController.navigationBar.subviews) {
+        if ([object isKindOfClass:[UIButton class]]) {
+            //NSLog(@"hello!!");
+            [(UIButton *)object removeFromSuperview];
+        }
+    }
 }
 
 - (void)viewDidLoad {
@@ -62,7 +69,7 @@
     [searchButton setTintColor:myColor];
     
     //测试的时候注释掉了,测试完记得加上！
-    //[searchButton setEnabled:NO];
+    [searchButton setEnabled:NO];
     
     self.navigationItem.rightBarButtonItem = searchButton;
 
@@ -248,6 +255,8 @@
         } else {
             [self navigationBusSearchStartLacation:startPoint getLocation:endPoint chooseStategy:[getPattern integerValue] city:[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];
         }
+        //指示启动
+        [activityIndicatorView startAnimating];//启动
     } else {
         NSLog(@"输入不能为空");
         [searchButton setEnabled:NO];
@@ -266,7 +275,6 @@
     bikeButton.selected = NO;
     mixButton.selected = NO;
     
-    /*
     if (![startTextView.text isEqualToString:@""] && ![endTextView.text isEqualToString:@""]) {
         [searchButton setEnabled:YES];
         if ([startTextView.text isEqualToString:@"我的位置"]) {
@@ -276,11 +284,12 @@
         } else {
             [self navigationWalkingSearchStartLacation:startPoint getLocation:endPoint chooseStategy:[getPattern integerValue] city:[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];
         }
+        //指示启动
+        [activityIndicatorView startAnimating];//启动
     } else {
         NSLog(@"输入不能为空");
         [searchButton setEnabled:NO];
     }
-    */
     
 }
 
@@ -294,21 +303,22 @@
     bikeButton.selected = YES;
     mixButton.selected = NO;
     
-    /*
     if (![startTextView.text isEqualToString:@""] && ![endTextView.text isEqualToString:@""]) {
         [searchButton setEnabled:YES];
         if ([startTextView.text isEqualToString:@"我的位置"]) {
             //收到数据后直接运行路径规划程序
             AMapGeoPoint *start = [AMapGeoPoint locationWithLatitude:userLatitude longitude:userLongtitude];;
-            [self navigationWalkingSearchStartLacation:start getLocation:endPoint chooseStategy:[getPattern integerValue] city:[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];
+            [self pushShowBikeOnlyRoutesViewControllerStartPoint:start endPoint:endPoint];
         } else {
-            [self navigationWalkingSearchStartLacation:startPoint getLocation:endPoint chooseStategy:[getPattern integerValue] city:[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];
+            [self pushShowBikeOnlyRoutesViewControllerStartPoint:startPoint endPoint:endPoint];
         }
+        //指示启动
+        //[activityIndicatorView startAnimating];//启动
     } else {
         NSLog(@"输入不能为空");
         [searchButton setEnabled:NO];
     }
-    */
+    
 }
 
 - (void)chooseMix:(id)sender {
@@ -321,26 +331,22 @@
     bikeButton.selected = NO;
     mixButton.selected = YES;
     
-    /*
     if (![startTextView.text isEqualToString:@""] && ![endTextView.text isEqualToString:@""]) {
         [searchButton setEnabled:YES];
         if ([startTextView.text isEqualToString:@"我的位置"]) {
             //收到数据后直接运行路径规划程序
             AMapGeoPoint *start = [AMapGeoPoint locationWithLatitude:userLatitude longitude:userLongtitude];;
-            withBikeTransResults *withBikeResults = [[withBikeTransResults alloc] init];
-            withBikeResults.startPoint = start;
-            withBikeResults.endPoint = endPoint;
+            [self pushWithBikeTransViewControllerStartPonit:start endPoint:endPoint];
             
         } else {
-            withBikeTransResults *withBikeResults = [[withBikeTransResults alloc] init];
-            withBikeResults.startPoint = startPoint;
-            withBikeResults.endPoint = endPoint;
+            [self pushWithBikeTransViewControllerStartPonit:startPoint endPoint:endPoint];
         }
+        //指示启动
+        //[activityIndicatorView startAnimating];//启动
     } else {
         NSLog(@"输入不能为空");
         [searchButton setEnabled:NO];
     }
-    */
     
 }
 
@@ -350,26 +356,25 @@
     switch (wayFlag) {
         case 1: {
             //实际运行
-            /*
+            
             if (![startTextView.text isEqualToString:@""] && ![endTextView.text isEqualToString:@""]) {
                 [searchButton setEnabled:YES];
                 if ([startTextView.text isEqualToString:@"我的位置"]) {
                     //收到数据后直接运行路径规划程序
                     AMapGeoPoint *start = [AMapGeoPoint locationWithLatitude:userLatitude longitude:userLongtitude];;
-                    [self navigationSearchStartLacation:start getLocation:endPoint chooseStategy:0 city:[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];
+                    [self navigationBusSearchStartLacation:start getLocation:endPoint chooseStategy:[getPattern integerValue] city:[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];
                 } else {
-                    [self navigationSearchStartLacation:startPoint getLocation:endPoint chooseStategy:0 city:[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];
+                    [self navigationBusSearchStartLacation:startPoint getLocation:endPoint chooseStategy:[getPattern integerValue] city:[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];
                 }
+                //指示启动
+                [activityIndicatorView startAnimating];//启动
             } else {
                 NSLog(@"输入不能为空");
                 [searchButton setEnabled:NO];
             }
-            */
-            
-            //指示启动
-            [activityIndicatorView startAnimating];//启动
             
             //测试
+            /*
             //构造AMapNavigationSearchRequest对象，配置查询参数
             AMapNavigationSearchRequest *naviRequest= [[AMapNavigationSearchRequest alloc] init];
             naviRequest.searchType = AMapSearchType_NaviBus;
@@ -379,12 +384,12 @@
             naviRequest.city = [YDConfigurationHelper getStringValueForConfigurationKey:@"city"];
             //发起路径搜索
             [search AMapNavigationSearch: naviRequest];
+            */
         }
             break;
         
         case 2: {
-            //NSLog(@"2");
-            /*
+
             if (![startTextView.text isEqualToString:@""] && ![endTextView.text isEqualToString:@""]) {
                 [searchButton setEnabled:YES];
                 if ([startTextView.text isEqualToString:@"我的位置"]) {
@@ -394,15 +399,14 @@
                 } else {
                     [self navigationWalkingSearchStartLacation:startPoint getLocation:endPoint chooseStategy:[getPattern integerValue] city:[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];
                 }
+                //指示启动
+                [activityIndicatorView startAnimating];//启动
             } else {
                 NSLog(@"输入不能为空");
                 [searchButton setEnabled:NO];
             }
-            */
             
-            //指示启动
-            [activityIndicatorView startAnimating];//启动
-            
+            /*
             //测试
             //构造AMapNavigationSearchRequest对象，配置查询参数
             AMapNavigationSearchRequest *naviRequest= [[AMapNavigationSearchRequest alloc] init];
@@ -413,84 +417,54 @@
             naviRequest.city = [YDConfigurationHelper getStringValueForConfigurationKey:@"city"];
             //发起路径搜索
             [search AMapNavigationSearch: naviRequest];
-            
+            */
         }
             break;
             
         
         case 3: {
-            NSLog(@"3");
-            /*
             if (![startTextView.text isEqualToString:@""] && ![endTextView.text isEqualToString:@""]) {
                 [searchButton setEnabled:YES];
                 if ([startTextView.text isEqualToString:@"我的位置"]) {
                     //收到数据后直接运行路径规划程序
                     AMapGeoPoint *start = [AMapGeoPoint locationWithLatitude:userLatitude longitude:userLongtitude];;
-                    [self navigationWalkingSearchStartLacation:start getLocation:endPoint chooseStategy:[getPattern integerValue] city:[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];
+                    [self pushShowBikeOnlyRoutesViewControllerStartPoint:start endPoint:endPoint];
                 } else {
-                    [self navigationWalkingSearchStartLacation:startPoint getLocation:endPoint chooseStategy:[getPattern integerValue] city:[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];
+                    [self pushShowBikeOnlyRoutesViewControllerStartPoint:startPoint endPoint:endPoint];
                 }
+                //指示启动
+                //[activityIndicatorView startAnimating];//启动
             } else {
                 NSLog(@"输入不能为空");
                 [searchButton setEnabled:NO];
             }
-            */
-            
-            //指示启动
-            [activityIndicatorView startAnimating];//启动
             
             //测试
-            [self pushShowBikeOnlyRoutesViewControllerStartPoint:[AMapGeoPoint locationWithLatitude:30.223387 longitude:120.042572] endPoint:[AMapGeoPoint locationWithLatitude:30.270498 longitude:120.138268]];
-            /*
-            //构造AMapNavigationSearchRequest对象，配置查询参数
-            AMapNavigationSearchRequest *naviRequest= [[AMapNavigationSearchRequest alloc] init];
-            naviRequest.searchType = AMapSearchType_NaviWalking;
-            //naviRequest.requireExtension = YES;
-            naviRequest.origin = [AMapGeoPoint locationWithLatitude:30.223387 longitude:120.042572];
-            naviRequest.destination = [AMapGeoPoint locationWithLatitude:30.223387 longitude:120.042572];
-            naviRequest.city = [YDConfigurationHelper getStringValueForConfigurationKey:@"city"];
-            //发起路径搜索
-            [search AMapNavigationSearch: naviRequest];
-            */
+            //[self pushShowBikeOnlyRoutesViewControllerStartPoint:[AMapGeoPoint locationWithLatitude:30.223387 longitude:120.042572] endPoint:[AMapGeoPoint locationWithLatitude:30.270498 longitude:120.138268]];
+            
         }
             break;
         
         case 4: {
             
-            /*
             if (![startTextView.text isEqualToString:@""] && ![endTextView.text isEqualToString:@""]) {
                 [searchButton setEnabled:YES];
                 if ([startTextView.text isEqualToString:@"我的位置"]) {
                     //收到数据后直接运行路径规划程序
                     AMapGeoPoint *start = [AMapGeoPoint locationWithLatitude:userLatitude longitude:userLongtitude];;
-                    withBikeTransResults *withBikeResults = [[withBikeTransResults alloc] init];
-                    withBikeResults.startPoint = start;
-                    withBikeResults.endPoint = endPoint;
+                    [self pushWithBikeTransViewControllerStartPonit:start endPoint:endPoint];
                     
                 } else {
-                    withBikeTransResults *withBikeResults = [[withBikeTransResults alloc] init];
-                    withBikeResults.startPoint = startPoint;
-                    withBikeResults.endPoint = endPoint;
+                    [self pushWithBikeTransViewControllerStartPonit:startPoint endPoint:endPoint];
                 }
+                //指示启动
+                //[activityIndicatorView startAnimating];//启动
             } else {
                 NSLog(@"输入不能为空");
                 [searchButton setEnabled:NO];
             }
-            */
             
-            //指示启动
-            [activityIndicatorView startAnimating];//启动
-            
-            //测试 西溪湿地周家村->长乐路（公交站）
-            /*
-            withBikeTransViewController *withBikeTransVC = [[withBikeTransViewController alloc] init];
-            withBikeTransVC.startPoint = [AMapGeoPoint locationWithLatitude:30.254080 longitude:120.062393];
-            withBikeTransVC.endPoint = [AMapGeoPoint locationWithLatitude:30.305847 longitude:120.146019];
-            
-            [self.navigationController pushViewController:withBikeTransVC animated:YES];
-            */
-            
-            [self pushWithBikeTransViewControllerStartPonit:[AMapGeoPoint locationWithLatitude:30.254080 longitude:120.062393] endPoint:[AMapGeoPoint locationWithLatitude:30.305847 longitude:120.146019]];
+            //[self pushWithBikeTransViewControllerStartPonit:[AMapGeoPoint locationWithLatitude:30.254080 longitude:120.062393] endPoint:[AMapGeoPoint locationWithLatitude:30.305847 longitude:120.146019]];
             /*
             //起点搜寻r米范围内的自行车租赁点
             AMapPlaceSearchRequest *poiRequest = [[AMapPlaceSearchRequest alloc] init];
@@ -551,7 +525,7 @@
         //收到数据后直接运行路径规划程序
         AMapGeoPoint *start = [AMapGeoPoint locationWithLatitude:userLatitude longitude:userLongtitude];;
         
-        if (wayFlag == 1) {
+        if (wayFlag == 4) {
             [self pushWithBikeTransViewControllerStartPonit:start endPoint:endPoint];
         } else if (wayFlag == 3) {
             [self pushShowBikeOnlyRoutesViewControllerStartPoint:start endPoint:endPoint];
@@ -559,7 +533,7 @@
 
         
     } else {
-        if (wayFlag == 1) {
+        if (wayFlag == 4) {
             [self pushWithBikeTransViewControllerStartPonit:startPoint endPoint:endPoint];
         } else if (wayFlag == 3) {
             [self pushShowBikeOnlyRoutesViewControllerStartPoint:startPoint endPoint:endPoint];
@@ -779,7 +753,7 @@ updatingLocation:(BOOL)updatingLocation
     
     [self.navigationController pushViewController:showBikeOnlyRoutesVC animated:NO];
     
-    [activityIndicatorView stopAnimating];
+    //[activityIndicatorView stopAnimating];
 }
 
 - (void)pushWithBikeTransViewControllerStartPonit:(AMapGeoPoint *)start endPoint:(AMapGeoPoint *)end
@@ -792,7 +766,8 @@ updatingLocation:(BOOL)updatingLocation
     withBikeTransVC.navigationItem.title = @"混合模式换乘结果";
     
     [self.navigationController pushViewController:withBikeTransVC animated:NO];
-    [activityIndicatorView stopAnimating];
+    
+    //[activityIndicatorView stopAnimating];
 
 }
 

@@ -35,6 +35,8 @@
     
     AMapReGeocodeSearchRequest *userLocationRequest;
     NSString *curCity;
+    
+    UIButton *locationButton;
 }
 
 @property (strong, nonatomic) MAMapView *myMapView;
@@ -59,7 +61,7 @@
 
 @property (strong, nonatomic) UITableView *tipsResultTableView;
 
-@property (strong, nonatomic) IBOutlet UIButton *locationButton;
+//@property (strong, nonatomic) IBOutlet UIButton *locationButton;
 @property (strong, nonatomic) MAUserLocation *myUserLocation;
 
 @property (strong, nonatomic) NSMutableArray *POIsArray;

@@ -61,7 +61,7 @@
     //小汽车一般碳排放在每km 0.4kg二氧化碳左右,公交2.1kg/km。假如一辆公交车50人，那么节省的碳排就是   0.4 * (50 / 5) - 2.1 = 1.9
     reduceCarbonStr = [NSString stringWithFormat:@"%.1f", 1.9 * (busDistance / 1000.0) + 0.4 * (walkingDistance + bikeDistance) / 1000];
     
-    NSArray *iconImgsArray    = [[NSArray alloc] initWithObjects:@"4-54x92",@"5-76x92",@"3-144x92",@"",@"", nil];
+    NSArray *iconImgsArray    = [[NSArray alloc] initWithObjects:@"23x19px-01",@"23x19px-02",@"23x19px-03",@"23x19px-04",@"23x19px-05", nil];
     NSArray *iconLabelsArray  = [[NSArray alloc] initWithObjects:@"行走：",@"乘坐公交：",@"骑行：",@"燃烧热量：",@"减排：", nil];
     NSArray *unitsArray       = [[NSArray alloc] initWithObjects:@"km",@"趟",@"km",@"cal",@"kg", nil];
     NSArray *valuesArray      = [[NSArray alloc] initWithObjects:[NSString stringWithFormat:@"%.1f",walkingDistance / 1000.0],
@@ -71,7 +71,7 @@
                                                                   reduceCarbonStr, nil];
     
     for (int i = 0; i < 5; i ++) {
-        UIImageView *iconImgView = [[UIImageView alloc] initWithFrame:CGRectMake(38, 120 + i * 32, 14, 14)];
+        UIImageView *iconImgView = [[UIImageView alloc] initWithFrame:CGRectMake(34, 118 + i * 31, 23, 19)];
         iconImgView.image = [UIImage imageNamed:[iconImgsArray objectAtIndex:i]];
         [buttomView addSubview:iconImgView];
         
@@ -157,6 +157,84 @@
 - (void)shareButton:(id)sender
 {
     NSLog(@"SHARE");
+    
+    NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"ShareSDK" ofType:@"jpg"];
+    
+    NSString *shareContentStr = [NSString stringWithFormat:@"本次公共出行我节省了%@kg的碳排放量，消耗%@cal热量，满满成就感！快来下载绿出行APP，定制你的专属行程吧！https://itunes.apple.com/us/app/lu-chu-xing/id998058478?l=zh&ls=1&mt=8",reduceCarbonStr,consumeCalStr];
+    
+    //1、构造分享内容
+    id<ISSContent> publishContent = [ShareSDK content:shareContentStr
+                                       defaultContent:@"默认内容"
+                                                image:[ShareSDK imageWithPath:imagePath]
+                                                title:@"行程"
+                                                  url:@"http://www.mob.com"
+                                          description:@"出行分享"
+                                            mediaType:SSPublishContentMediaTypeNews];
+    //1+创建弹出菜单容器（iPad必要）
+    id<ISSContainer> container = [ShareSDK container];
+    [container setIPadContainerWithView:sender arrowDirect:UIPopoverArrowDirectionUp];
+    
+    //自定义标题栏相关委托
+    id<ISSAuthOptions> authOptions = [ShareSDK authOptionsWithAutoAuth:YES
+                                                         allowCallback:NO
+                                                         authViewStyle:SSAuthViewStyleFullScreenPopup
+                                                          viewDelegate:nil
+                                               authManagerViewDelegate:nil];
+    //自定义标题栏相关委托
+    id<ISSShareOptions> shareOptions = [ShareSDK defaultShareOptionsWithTitle:@"行程分享"
+                                                              oneKeyShareList:[NSArray defaultOneKeyShareList]
+                                                               qqButtonHidden:YES
+                                                        wxSessionButtonHidden:YES
+                                                       wxTimelineButtonHidden:YES
+                                                         showKeyboardOnAppear:NO
+                                                            shareViewDelegate:self
+                                                          friendsViewDelegate:nil
+                                                        picViewerViewDelegate:nil];
+    
+    //2、弹出分享菜单
+    [ShareSDK showShareActionSheet:container
+                         shareList:nil
+                           content:publishContent
+                     statusBarTips:YES
+                       authOptions:authOptions
+                      shareOptions:shareOptions
+                            result:^(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
+                                
+                                //可以根据回调提示用户。
+                                if (state == SSResponseStateSuccess)
+                                {
+                                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享成功"
+                                                                                    message:nil
+                                                                                   delegate:self
+                                                                          cancelButtonTitle:@"确定"
+                                                                          otherButtonTitles:nil, nil];
+                                    [alert show];
+                                    
+                                    //[self.superview removeFromSuperview];
+                                }
+                                else if (state == SSResponseStateFail)
+                                {
+                                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
+                                                                                    message:[NSString stringWithFormat:@"失败描述：%@",[error errorDescription]]
+                                                                                   delegate:self
+                                                                          cancelButtonTitle:@"确定"
+                                                                          otherButtonTitles:nil, nil];
+                                    [alert show];
+                                }
+                            }];
+}
+
+- (void)viewOnWillDisplay:(UIViewController *)viewController shareType:(ShareType)shareType
+
+{
+    
+    //修改分享编辑框的标题栏颜色
+    viewController.navigationController.navigationBar.barTintColor = myColor;
+    
+    //将分享编辑框的标题栏替换为图片
+    //    UIImage *image = [UIImage imageNamed:@"iPhoneNavigationBarBG.png"];
+    //    [viewController.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+    
 }
 
 -(void)showErrorWithMessage:(NSString *)msg

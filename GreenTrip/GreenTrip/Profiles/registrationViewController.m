@@ -23,13 +23,33 @@
     [super viewWillAppear:YES];
     
     self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,[UIFont systemFontOfSize:22.0f], NSFontAttributeName, nil];
+    
+    for (id object in self.navigationController.navigationBar.subviews) {
+        if ([object isKindOfClass:[UIButton class]]) {
+            //NSLog(@"hello!!");
+            [(UIButton *)object removeFromSuperview];
+        }
+    }
+    
+    //设置返回按钮 将原先的bar隐藏起来
+    UIBarButtonItem *nilButton = [[UIBarButtonItem alloc] init];
+    nilButton.title = @"";
+    self.navigationItem.leftBarButtonItem = nilButton;
+    
+    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 20, 25)];
+    [backButton setImage:[UIImage imageNamed:@"箭头9x17px"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigationController.navigationBar addSubview:backButton];
+    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    /*
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"箭头9x17px"] style:UIBarButtonItemStylePlain target:self action:@selector(back:)];
     self.navigationItem.leftBarButtonItem  = backButton;
+    */
     
     self.navigationItem.title = @"注册";
     

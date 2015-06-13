@@ -27,8 +27,6 @@
     
     self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,[UIFont systemFontOfSize:22.0f], NSFontAttributeName, nil];
     
-    //BOOL isLogout= [YDConfigurationHelper getBoolValueForConfigurationKey:@"isLogout"];
-    //NSLog(@"yes or no = %d",isLogout);
     [self loginState];
 }
 
@@ -111,8 +109,17 @@
                 NSString *getSignature = [responseObject objectForKey:@"signature"];
                 NSString *getBirthday = [responseObject objectForKey:@"birthday"];
                 
+                NSString *getTransCount= [responseObject objectForKey:@"trans_count"];
+                NSString *getBikeDistance = [responseObject objectForKey:@"bike_distance"];
+                NSString *getReduceCarbon = [responseObject objectForKey:@"reduce_carbon"];
+                
                 nicknameLabel.text = getNickname;
                 messageLabel.text  = getSignature;
+                
+                takingbusNumLabel.text = getTransCount;
+                takingbikeNumLabel.text = getBikeDistance;
+                reducingLabel.text = getReduceCarbon;
+                
                 //利用SDWenImage下载图片
                 NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://192.168.1.104:1200/syncportrait?image=%@",getPortraitImage]];
                 SDWebImageManager *manager = [SDWebImageManager sharedManager];
@@ -141,6 +148,10 @@
                 [YDConfigurationHelper setStringValueForConfigurationKey:getAge withValue:@"age"];
                 [YDConfigurationHelper setStringValueForConfigurationKey:getSignature withValue:@"signature"];
                 [YDConfigurationHelper setStringValueForConfigurationKey:getBirthday withValue:@"birthday"];
+                
+                [YDConfigurationHelper setStringValueForConfigurationKey:getTransCount withValue:@"trans_count"];
+                [YDConfigurationHelper setStringValueForConfigurationKey:getBikeDistance withValue:@"bike_distance"];
+                [YDConfigurationHelper setStringValueForConfigurationKey:getReduceCarbon withValue:@"reduce_carbon"];
                 
                 //改变登录状态
                 [self loginState];
@@ -334,6 +345,13 @@
 //登录的状态改变函数
 - (void)loginState
 {
+    for (id object in self.navigationController.navigationBar.subviews) {
+        if ([object isKindOfClass:[UIButton class]]) {
+            //NSLog(@"hello!!");
+            [(UIButton *)object removeFromSuperview];
+        }
+    }
+    
     if (![[YDConfigurationHelper getStringValueForConfigurationKey:@"username"] isEqualToString:@""]) {
         NSLog(@"个人资料界面");
         LoginView.hidden = YES;
@@ -341,8 +359,15 @@
         
         self.navigationItem.title = @"个人资料";
         
+        /*
         UIBarButtonItem *settingButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"4设置130x80"] style:UIBarButtonItemStylePlain target:self action:@selector(goSetting:)];
         self.navigationItem.rightBarButtonItem = settingButton;
+        */
+        
+        UIButton *settingButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 10 - 25, 10, 25, 25)];
+        [settingButton setImage:[UIImage imageNamed:@"4设置130x80"] forState:UIControlStateNormal];
+        [settingButton addTarget:self action:@selector(goSetting:) forControlEvents:UIControlEventTouchUpInside];
+        [self.navigationController.navigationBar addSubview:settingButton];
         
         NSString *nicknameStr = [NSString stringWithFormat:@"%@",[YDConfigurationHelper getStringValueForConfigurationKey:@"nickname"]];
         //NSLog(@"nickname = %@",nicknameStr);
@@ -354,6 +379,11 @@
             nicknameLabel.text = nicknameStr;
         }
         
+        messageLabel.text = [YDConfigurationHelper getStringValueForConfigurationKey:@"signature"];
+        takingbusNumLabel.text = [YDConfigurationHelper getStringValueForConfigurationKey:@"trans_count"];
+        takingbikeNumLabel.text = [YDConfigurationHelper getStringValueForConfigurationKey:@"bike_distance"];
+        reducingLabel.text = [YDConfigurationHelper getStringValueForConfigurationKey:@"reduce_carbon"];
+        
         //获取本地userdefault头像信息
         NSData *imageData = [YDConfigurationHelper getObjectValueForConfigurationKey:@"portrait"];
         //NSLog(@"imageData = %@",imageData);
@@ -363,7 +393,6 @@
         } else {
             [portraitButton setImage:[UIImage imageNamed:@"62x62默认头像"] forState:UIControlStateNormal];
         }
-
         
     } else {
         
@@ -375,8 +404,18 @@
             
             self.navigationItem.title = @"登录帐号";
             
+            /*
             UIBarButtonItem *registerButton = [[UIBarButtonItem alloc] initWithTitle:@"注册" style:UIBarButtonItemStylePlain target:self action:@selector(goRegister:)];
             self.navigationItem.rightBarButtonItem = registerButton;
+            */
+            
+            UIButton *registerButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 10 - 80, 15, 80, 20)];
+            registerButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
+            [registerButton setTitle:@"注册" forState:UIControlStateNormal];
+            [registerButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [registerButton addTarget:self action:@selector(goRegister:) forControlEvents:UIControlEventTouchUpInside];
+            [registerButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
+            [self.navigationController.navigationBar addSubview:registerButton];
             
         }
         

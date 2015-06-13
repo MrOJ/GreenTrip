@@ -176,7 +176,7 @@
     } else {
         busNameLabel.text = [NSString stringWithFormat:@"%@ & 公共自行车",busName];
     }
-
+    busNameLabel.textColor = myColor;
     busNameLabel.font = [UIFont fontWithName:@"Heiti SC-Bold" size:14.0f];
     [briefView addSubview:busNameLabel];
     
@@ -252,7 +252,7 @@
         megeImg.image = [UIImage imageNamed:@"箭头3-54x30px"];
         [cell addSubview:megeImg];
         
-        UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(52, 88 - 2, [self superview].bounds.size.width - 52 - 30, 2)];
+        UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(52, 88 - 1, [self superview].bounds.size.width - 52 - 30, 1)];
         line2.backgroundColor = [UIColor groupTableViewBackgroundColor];
         [cell addSubview:line2];
         
@@ -265,7 +265,7 @@
         megeImg.image = [UIImage imageNamed:@"箭头3-54x30px"];
         [cell addSubview:megeImg];
         
-        UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(52, 102 - 2, [self superview].bounds.size.width - 52 - 30, 2)];
+        UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(52, 102 - 1, [self superview].bounds.size.width - 52 - 30, 1)];
         line2.backgroundColor = [UIColor groupTableViewBackgroundColor];
         
         [cell addSubview:line2];
@@ -278,7 +278,7 @@
         megeImg.image = [UIImage imageNamed:@"箭头3-54x30px"];
         [cell addSubview:megeImg];
         
-        UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(52, 88 - 2, [self superview].bounds.size.width - 52 - 30, 2)];
+        UIView *line2 = [[UIView alloc] initWithFrame:CGRectMake(52, 88 - 1, [self superview].bounds.size.width - 52 - 30, 1)];
         line2.backgroundColor = [UIColor groupTableViewBackgroundColor];
         [cell addSubview:line2];
     }
@@ -735,7 +735,7 @@
     [litteIconView2 addSubview:imgV4];
     [cell addSubview:litteIconView2];
     
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(52, cell.bounds.size.height - 2, [self superview].bounds.size.width - 52 - 30, 2)];
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(52, cell.bounds.size.height - 1, [self superview].bounds.size.width - 52 - 30, 1)];
     line.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [cell addSubview:line];
     
@@ -815,7 +815,7 @@
     [litteIconView2 addSubview:imgV6];
     [cell addSubview:litteIconView2];
     
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(52, cell.bounds.size.height - 2, [self superview].bounds.size.width - 52 - 30, 2)];
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(52, cell.bounds.size.height - 1, [self superview].bounds.size.width - 52 - 30, 1)];
     line.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [cell addSubview:line];
     
@@ -848,7 +848,7 @@
     iconImageView.image = [UIImage imageNamed:@"50x50"];
     [cell addSubview:iconImageView];
     
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, cell.bounds.size.height - 2, [self superview].bounds.size.width, 2)];
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, cell.bounds.size.height - 1, [self superview].bounds.size.width, 1)];
     line.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [cell addSubview:line];
     
@@ -870,6 +870,9 @@
     [shareButton setImage:[UIImage imageNamed:@"分享48x52"] forState:UIControlStateNormal];
     [exView addSubview:shareButton];
     
+    [collectButton addTarget:self action:@selector(collecting:) forControlEvents:UIControlEventTouchUpInside];
+    [shareButton addTarget:self action:@selector(sharing:) forControlEvents:UIControlEventTouchUpInside];
+    
     if (row != 0) {
         UIView *litteIconView2 = [[UIView alloc] initWithFrame:CGRectMake(20, 0, 14, 20)];
         //litteIconView2.backgroundColor = myColor;
@@ -881,6 +884,36 @@
         [litteIconView2 addSubview:imgV4];
         [cell addSubview:litteIconView2];
     }
+}
+
+- (void)collecting:(id)sender {
+    HUD = [[MBProgressHUD alloc] initWithView:self];
+    [self addSubview:HUD];
+    HUD.yOffset = -100;     //改变位置
+    HUD.mode = MBProgressHUDModeText;
+    
+    HUD.delegate = self;
+    HUD.labelText = @"功能完善中，尽请期待！";
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:1];
+}
+
+- (void)sharing:(id)sender {
+    HUD = [[MBProgressHUD alloc] initWithView:self];
+    [self addSubview:HUD];
+    HUD.yOffset = -100;     //改变位置
+    HUD.mode = MBProgressHUDModeText;
+    
+    HUD.delegate = self;
+    HUD.labelText = @"功能完善中，尽请期待！";
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:1];
+}
+
+#pragma mark - MBProgressHUDDelegate
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+    // Remove HUD from screen when the HUD was hidded
+    [HUD removeFromSuperview];
 }
 
 //构建自行车的cell

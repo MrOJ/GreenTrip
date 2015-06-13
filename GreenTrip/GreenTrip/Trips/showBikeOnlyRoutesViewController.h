@@ -57,6 +57,10 @@
     NSInteger transCount;       //换乘次数
     
     MAUserLocation *myUserLocation;
+    
+    UIActivityIndicatorView *activityIndicatorView;
+    
+    int isFinishTrip;
 }
 
 @property(nonatomic, strong) AMapGeoPoint *startPoint;
