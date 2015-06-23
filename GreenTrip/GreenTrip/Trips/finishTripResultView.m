@@ -145,7 +145,7 @@
                             @"reduce_carbon":reduceCarbonStr};
     
     //3.请求
-    [manager GET:@"http://192.168.1.104:1200/uploadTripsInfo" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:@"http://121.40.218.33:1200/uploadTripsInfo" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"GET --> %@", responseObject); //自动返回主线程
         
     } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {

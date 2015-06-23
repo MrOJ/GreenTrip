@@ -22,10 +22,17 @@
 
 #import "TGRImageViewController.h"
 
-@interface TGRImageViewController ()
+#define kScreenWidth  self.view.bounds.size.width
+#define kScreenHeight  self.view.bounds.size.height
+#define kMaxZoom 3.0
+
+@interface TGRImageViewController () {
+    CGFloat lastScale;
+}
 
 @property (weak, nonatomic) IBOutlet UITapGestureRecognizer *singleTapGestureRecognizer;
-@property (weak, nonatomic) IBOutlet UITapGestureRecognizer *doubleTapGestureRecognizer;
+//@property (weak, nonatomic) IBOutlet UITapGestureRecognizer *doubleTapGestureRecognizer;
+@property (strong, nonatomic) IBOutlet UIPinchGestureRecognizer *pinchGestureRecognizer;
 
 @end
 
@@ -42,10 +49,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.singleTapGestureRecognizer requireGestureRecognizerToFail:self.doubleTapGestureRecognizer];
+    //[self.singleTapGestureRecognizer requireGestureRecognizerToFail:self.doubleTapGestureRecognizer];
     //self.imageView.frame = [UIScreen mainScreen].bounds;
     //self.scrollView.frame = [UIScreen mainScreen].bounds;
     self.imageView.image = self.image;
+    
+    [self.pinchGestureRecognizer addTarget:self action:@selector(scale:)];
+    
+    lastScale=1.0;
+    
+    self.scrollView.canCancelContentTouches = NO;
+    self.scrollView.delaysContentTouches = NO;
+    
 }
 
 - (BOOL)prefersStatusBarHidden {
@@ -66,6 +81,7 @@
 
 #pragma mark - Private methods
 
+
 - (IBAction)handleSingleTap:(UITapGestureRecognizer *)tapGestureRecognizer {
     if (self.scrollView.zoomScale == self.scrollView.minimumZoomScale) {
         [self dismissViewControllerAnimated:YES completion:nil];
@@ -76,6 +92,7 @@
     }
 }
 
+/*
 - (IBAction)handleDoubleTap:(UITapGestureRecognizer *)tapGestureRecognizer {
     if (self.scrollView.zoomScale == self.scrollView.minimumZoomScale) {
         // Zoom in
@@ -89,6 +106,23 @@
         // Zoom out
         [self.scrollView zoomToRect:self.scrollView.bounds animated:YES];
     }
+}
+*/
+-(void)scale:(UIPinchGestureRecognizer*)sender {
+    //当手指离开屏幕时,将lastscale设置为1.0
+    if([sender state] == UIGestureRecognizerStateEnded) {
+        lastScale = 1.0;
+        return;
+    }
+    
+    
+    CGFloat scale = 1.0 - (lastScale - [(UIPinchGestureRecognizer*)sender scale]);
+    CGAffineTransform currentTransform = self.imageView.transform;
+    CGAffineTransform newTransform = CGAffineTransformScale(currentTransform, scale, scale);
+    
+    [self.imageView setTransform:newTransform];
+    lastScale = [sender scale];
+    
 }
 
 @end

@@ -265,8 +265,8 @@
         if (![[YDConfigurationHelper getStringValueForConfigurationKey:@"username"] isEqualToString:@""]) {
             
             //距离1000之类才能结束行程
-            if (distance >= 0.0) {
-                //if (distance < 1000.0 && distance > 0.0) {
+            //if (distance >= 0.0) {
+            if (distance < 1000.0 && distance > 0.0) {
                 finishTripResultView *finishView = [[finishTripResultView alloc] initWithFrame:CGRectMake((self.view.bounds.size.width - 280) / 2, 40, 280, 290 + 90)];
                 finishView.backgroundColor = [UIColor clearColor];
                 finishView.totalDistance   = totalDistance;

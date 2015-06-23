@@ -106,6 +106,13 @@
     
     [self.collectionView.legendHeader beginRefreshing];
     
+    //正在加载指示视图
+    activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(100, 200, self.view.bounds.size.width - 100 * 2, 80)];
+    activityIndicatorView.backgroundColor = [UIColor darkGrayColor];
+    activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
+    activityIndicatorView.hidesWhenStopped = YES;
+    [self.view addSubview:activityIndicatorView];
+    
 }
 
 - (void)back:(id)sender {
@@ -157,7 +164,7 @@
                                 @"load_more":@"0",
                                 @"findings_num":getFindingsNum};  //此处index需要修改  load_more：0-刷新 1-加载更多
         //3.请求
-        [manager GET:@"http://192.168.1.104:1200/syncFindingInfo" parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [manager GET:@"http://121.40.218.33:1200/syncFindingInfo" parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"GET --> %@", responseObject); //自动返回主线程
             
             NSArray *getUsernameArray = [[NSArray alloc] init];
@@ -242,7 +249,7 @@
                                 @"refresh_times":[NSString stringWithFormat:@"%ld",(long)loadMoreTime],
                                 @"load_more":@"1"};  //此处index需要修改
         //3.请求
-        [manager GET:@"http://192.168.1.104:1200/syncFindingInfo" parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [manager GET:@"http://121.40.218.33:1200/syncFindingInfo" parameters:dict success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"GET --> %@", responseObject); //自动返回主线程
             
             NSArray *getUsernameArray = [[NSArray alloc] init];
@@ -485,13 +492,16 @@
 
 //上传相关资料
 - (void)uploadFindingsInfo {
+    [activityIndicatorView startAnimating];
+    
     NSData *data = UIImageJPEGRepresentation(sendingImg, 0.001);
     
+    //NSLog(@"data = %@",data);
     // 设置图片时间格式
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"yyyyMMddHHmmss";
     NSString *dateStr1 = [formatter stringFromDate:[NSDate date]];
-    NSString *fileName = [NSString stringWithFormat:@"finding_%@.png", dateStr1];
+    NSString *fileName = [NSString stringWithFormat:@"finding_%@.jpg", dateStr1];
     
     // 设置时间格式
     NSDateFormatter *formatter2 = [[NSDateFormatter alloc] init];
@@ -504,24 +514,21 @@
     
     dict = @{ @"username":usernameStr, @"text_comment":textComments,@"push_time":dateStr2, @"likes_number":@"0"};
     
-    NSMutableURLRequest *urlrequest = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:@"http://192.168.1.104:1200/uploadFindingInfo" parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        [formData appendPartWithFileData:data name:@"myfile" fileName:fileName mimeType:@"image/png"];
+    /*
+    NSMutableURLRequest *urlrequest = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:@"http://121.40.218.33:1200/uploadFindingInfo" parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileData:data name:@"myfile" fileName:fileName mimeType:@"image/jpg"];
         
     } error:nil];
     
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     NSProgress *progress = nil;
-    AFJSONResponseSerializer *jsonResponseSerializer = [AFJSONResponseSerializer serializer];
-    
-    NSMutableSet *jsonAcceptableContentTypes = [NSMutableSet setWithSet:jsonResponseSerializer.acceptableContentTypes];
-    [jsonAcceptableContentTypes addObject:@"text/plain"];
-    jsonResponseSerializer.acceptableContentTypes = jsonAcceptableContentTypes;
-    manager.responseSerializer = jsonResponseSerializer;
     
     NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:urlrequest progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         if (error) {
+            
             NSLog(@"Error: %@", error);
             [self showErrorWithMessage:@"连接失败，请重试"];
+            
         } else {
             NSLog(@"finding上传成功！");
             [self.collectionView reloadData];
@@ -529,14 +536,32 @@
         }
     }];
     [uploadTask resume];
-    
+    */
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:@"http://121.40.218.33:1200/uploadFindingInfo" parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        //[formData appendPartWithFileURL:filePath name:@"image" error:nil];
+        [formData appendPartWithFileData:data name:@"myfile" fileName:fileName mimeType:@"image/jpg"];
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //NSLog(@"Success: %@", responseObject);
+        NSLog(@"finding上传成功！");
+        [self.collectionView reloadData];
+        [self.collectionView.header beginRefreshing];
+        
+        [activityIndicatorView stopAnimating];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        [self showErrorWithMessage:@"上传失败，请重试"];
+        
+        [activityIndicatorView stopAnimating];
+    }];
 }
 
 - (void)downloadImge:(NSInteger)flag
 {
     //========================加载图片==========================
     for (NSString *imageName in itemsArray) {
-        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://192.168.1.104:1200/syncFindingImg?image=%@",imageName]];
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://121.40.218.33:1200/syncFindingImg?image=%@",imageName]];
         SDWebImageManager *manager = [SDWebImageManager sharedManager];
         [manager downloadImageWithURL:url options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
             // progression tracking code
@@ -551,7 +576,7 @@
                     NSRange range = [urlStr rangeOfString:@"="];
                     NSString *imageNameStr = [urlStr substringFromIndex:range.location + 1];
                     //NSLog(@"%@",imageNameStr);
-                    NSLog(@"%ld",(long)[self getIndexFromArray:itemsImgArray originArray:itemsArray withTarget:imageNameStr]);
+                    //NSLog(@"%ld",(long)[self getIndexFromArray:itemsImgArray originArray:itemsArray withTarget:imageNameStr]);
                     
                     NSInteger getIndex = [self getIndexFromArray:itemsImgArray originArray:itemsArray withTarget:imageNameStr];
                     if (getIndex > -1 ) {
@@ -562,7 +587,7 @@
                     
                     if (itemsImgNum + porImgNum == itemsArray.count * 2) {
                         //if (itemsImgNum == itemsArray.count) {
-                        NSLog( @"图片和头像加载完毕！");
+                        //NSLog( @"图片和头像加载完毕！");
                         
                         [self.collectionView reloadData];
                         if (flag == 0) {
@@ -582,7 +607,7 @@
     
     //========================加载头像==========================
     for (NSString *imageName in portraitArray) {
-        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://192.168.1.104:1200/syncportrait?image=%@",imageName]];
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://121.40.218.33:1200/syncportrait?image=%@",imageName]];
         SDWebImageManager *manager = [SDWebImageManager sharedManager];
         [manager downloadImageWithURL:url options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
             // progression tracking code
@@ -591,7 +616,7 @@
                 NSLog(@"头像加载出错error %@",error);
             } else {
                 if (image) {
-                    NSLog(@"image = %@",image);
+                    //NSLog(@"image = %@",image);
                     //根据url获得当前的图片名称
                     NSString *urlStr = [NSString stringWithFormat:@"%@",imageURL];
                     NSRange range = [urlStr rangeOfString:@"="];
@@ -608,7 +633,7 @@
                     porImgNum = [self calImageNumber:portraitImgArray];
                     
                     if (itemsImgNum + porImgNum == portraitImgArray.count * 2) {
-                        NSLog( @"图片和头像加载完毕！");
+                        //NSLog( @"图片和头像加载完毕！");
                         
                         [self.collectionView reloadData];
                         if (flag == 0) {

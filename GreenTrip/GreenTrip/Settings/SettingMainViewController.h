@@ -9,10 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "YDConfigurationHelper.h"
 #import "updateProfilesViewController.h"
+#import "feedbackViewController.h"
+#import "aboutusViewController.h"
+#import "YDConfigurationHelper.h"
 
 #define myColor [UIColor colorWithRed:119.0 / 255.0f green:185.0 / 255.0f blue:67.0 / 255.0f alpha:1.0f]
 
-@interface SettingMainViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface SettingMainViewController : UIViewController<UITableViewDataSource,UITableViewDelegate, MBProgressHUDDelegate> {
+    MBProgressHUD *HUD;
+}
+
 
 @property (strong, nonatomic) UITableView *myTableView;
 @end

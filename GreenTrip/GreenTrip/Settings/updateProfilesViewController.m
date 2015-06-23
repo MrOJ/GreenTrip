@@ -97,7 +97,7 @@
                                     @"phone_number":phoneTextField.text};
             
             //3.请求
-            [manager GET:@"http://192.168.1.104:1200/updateProfiles" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+            [manager GET:@"http://121.40.218.33:1200/updateProfiles" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
                 NSLog(@"GET --> %@", responseObject); //自动返回主线程
                 /*
                 BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:@"勾44x32px"] text:@"保存成功！"];  //图片需要改变

@@ -10,6 +10,17 @@
 
 @implementation choosePreferViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
+    
+    for (id object in self.navigationController.navigationBar.subviews) {
+        if ([object isKindOfClass:[UIButton class]]) {
+            //NSLog(@"hello!!");
+            [(UIButton *)object removeFromSuperview];
+        }
+    }
+}
+
 - (void)viewDidLoad {
     
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"绿色箭头9x17px"] style:UIBarButtonItemStylePlain target:self action:@selector(back:)];

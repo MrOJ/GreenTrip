@@ -180,16 +180,35 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        updateProfilesViewController *updateProfilesVC = [[updateProfilesViewController alloc] init];
-        [self.navigationController pushViewController:updateProfilesVC animated:YES];
+        if (![[YDConfigurationHelper getStringValueForConfigurationKey:@"username"] isEqualToString:@""]) {
+            updateProfilesViewController *updateProfilesVC = [[updateProfilesViewController alloc] init];
+            [self.navigationController pushViewController:updateProfilesVC animated:YES];
+        } else {
+            HUD = [[MBProgressHUD alloc] initWithView:self.view];
+            [self.view addSubview:HUD];
+            HUD.yOffset = -100;     //改变位置
+            HUD.mode = MBProgressHUDModeText;
+            
+            HUD.delegate = self;
+            HUD.labelText = @"请登录";
+            [HUD show:YES];
+            [HUD hide:YES afterDelay:1];
+        }
 
     } else if (indexPath.row == 1) {
-
+        feedbackViewController *feedbackVC = [[feedbackViewController alloc] init];
+        [self.navigationController pushViewController:feedbackVC animated:YES];
     } else if (indexPath.row == 2) {
-
+        aboutusViewController *aboutusVC = [[aboutusViewController alloc] init];
+        [self.navigationController pushViewController:aboutusVC animated:YES];
     }
 }
 
+#pragma mark - MBProgressHUDDelegate
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+    // Remove HUD from screen when the HUD was hidded
+    [HUD removeFromSuperview];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

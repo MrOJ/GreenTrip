@@ -194,7 +194,7 @@ likeButton = _likeButton;
     if (i == 0) {
         likeNum += 1;
         [self.likeButton setImage:[UIImage imageNamed:@"12x10px"] forState:UIControlStateNormal];
-        [self.likeButton setTitle:[NSString stringWithFormat:@"%ld",likeNum] forState:UIControlStateNormal];
+        [self.likeButton setTitle:[NSString stringWithFormat:@"%ld",(long)likeNum] forState:UIControlStateNormal];
         i = 1;
     } else {
         likeNum -= 1;
@@ -202,7 +202,7 @@ likeButton = _likeButton;
         if (likeNum == 0) {
             [self.likeButton setTitle:@"" forState:UIControlStateNormal];
         } else {
-            [self.likeButton setTitle:[NSString stringWithFormat:@"%ld",likeNum] forState:UIControlStateNormal];
+            [self.likeButton setTitle:[NSString stringWithFormat:@"%ld",(long)likeNum] forState:UIControlStateNormal];
         }
 
         i = 0;
@@ -215,7 +215,7 @@ likeButton = _likeButton;
     NSDictionary *dict = @{ @"findingID":findingID, @"likes_number":[NSString stringWithFormat:@"%ld",(long)likeNum] };
     
     //3.请求
-    [manager GET:@"http://192.168.1.104:1200/updateLikeNum" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:@"http://121.40.218.33:1200/updateLikeNum" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"GET --> %@", responseObject); //自动返回主线程
         
     } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -302,7 +302,7 @@ likeButton = _likeButton;
     
     height += 70;
     
-    NSLog(@"%f",height);
+    //NSLog(@"%f",height);
     
     return height;
 }
@@ -336,7 +336,7 @@ likeButton = _likeButton;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
     
-    NSLog(@"newsDate = %@",newsDate);
+    //NSLog(@"newsDate = %@",newsDate);
     NSDate *newsDateFormatted = [dateFormatter dateFromString:newsDate];
     NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
     [dateFormatter setTimeZone:timeZone];
@@ -348,7 +348,7 @@ likeButton = _likeButton;
     int days=((int)time)/(3600*24);
     int hours=((int)time)%(3600*24)/3600;
     int minute=((int)time)%(3600*24)/60;
-    NSLog(@"time=%f",(double)time);
+    //NSLog(@"time=%f",(double)time);
     
     NSString *dateContent;
     

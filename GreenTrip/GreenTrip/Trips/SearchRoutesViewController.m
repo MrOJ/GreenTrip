@@ -305,6 +305,8 @@
     
     if (![startTextView.text isEqualToString:@""] && ![endTextView.text isEqualToString:@""]) {
         [searchButton setEnabled:YES];
+        
+        /*
         if ([startTextView.text isEqualToString:@"我的位置"]) {
             //收到数据后直接运行路径规划程序
             AMapGeoPoint *start = [AMapGeoPoint locationWithLatitude:userLatitude longitude:userLongtitude];;
@@ -314,6 +316,17 @@
         }
         //指示启动
         //[activityIndicatorView startAnimating];//启动
+        */
+        
+        //起点搜寻r米范围内的自行车租赁点
+        //由于不能直接继续push视图，因此在这里设置一定的延迟在推入，如果直接点搜索则问题不大
+        AMapPlaceSearchRequest *poiRequest = [[AMapPlaceSearchRequest alloc] init];
+        poiRequest.searchType = AMapSearchType_PlaceAround;
+        poiRequest.location = startPoint;//固定的站点，难怪不会实时动态更新
+        poiRequest.keywords = @"自行车租赁点";
+        poiRequest.radius= 500;
+        [search AMapPlaceSearch: poiRequest];
+        
     } else {
         NSLog(@"输入不能为空");
         [searchButton setEnabled:NO];
@@ -333,6 +346,7 @@
     
     if (![startTextView.text isEqualToString:@""] && ![endTextView.text isEqualToString:@""]) {
         [searchButton setEnabled:YES];
+        /*
         if ([startTextView.text isEqualToString:@"我的位置"]) {
             //收到数据后直接运行路径规划程序
             AMapGeoPoint *start = [AMapGeoPoint locationWithLatitude:userLatitude longitude:userLongtitude];;
@@ -343,6 +357,16 @@
         }
         //指示启动
         //[activityIndicatorView startAnimating];//启动
+        */
+        
+        //起点搜寻r米范围内的自行车租赁点
+        //由于不能直接继续push视图，因此在这里设置一定的延迟在推入，如果直接点搜索则问题不大
+        AMapPlaceSearchRequest *poiRequest = [[AMapPlaceSearchRequest alloc] init];
+        poiRequest.searchType = AMapSearchType_PlaceAround;
+        poiRequest.location = startPoint;//固定的站点，难怪不会实时动态更新
+        poiRequest.keywords = @"自行车租赁点";
+        poiRequest.radius= 500;
+        [search AMapPlaceSearch: poiRequest];
     } else {
         NSLog(@"输入不能为空");
         [searchButton setEnabled:NO];
@@ -425,6 +449,8 @@
         case 3: {
             if (![startTextView.text isEqualToString:@""] && ![endTextView.text isEqualToString:@""]) {
                 [searchButton setEnabled:YES];
+                
+                /*
                 if ([startTextView.text isEqualToString:@"我的位置"]) {
                     //收到数据后直接运行路径规划程序
                     AMapGeoPoint *start = [AMapGeoPoint locationWithLatitude:userLatitude longitude:userLongtitude];;
@@ -434,6 +460,17 @@
                 }
                 //指示启动
                 //[activityIndicatorView startAnimating];//启动
+                */
+                
+                //起点搜寻r米范围内的自行车租赁点
+                //由于不能直接继续push视图，因此在这里设置一定的延迟在推入，如果直接点搜索则问题不大
+                AMapPlaceSearchRequest *poiRequest = [[AMapPlaceSearchRequest alloc] init];
+                poiRequest.searchType = AMapSearchType_PlaceAround;
+                poiRequest.location = startPoint;//固定的站点，难怪不会实时动态更新
+                poiRequest.keywords = @"自行车租赁点";
+                poiRequest.radius= 500;
+                [search AMapPlaceSearch: poiRequest];
+                
             } else {
                 NSLog(@"输入不能为空");
                 [searchButton setEnabled:NO];
@@ -449,6 +486,8 @@
             
             if (![startTextView.text isEqualToString:@""] && ![endTextView.text isEqualToString:@""]) {
                 [searchButton setEnabled:YES];
+                
+                /*
                 if ([startTextView.text isEqualToString:@"我的位置"]) {
                     //收到数据后直接运行路径规划程序
                     AMapGeoPoint *start = [AMapGeoPoint locationWithLatitude:userLatitude longitude:userLongtitude];;
@@ -459,6 +498,15 @@
                 }
                 //指示启动
                 //[activityIndicatorView startAnimating];//启动
+                */
+                //起点搜寻r米范围内的自行车租赁点
+                //由于不能直接继续push视图，因此在这里设置一定的延迟在推入，如果直接点搜索则问题不大
+                AMapPlaceSearchRequest *poiRequest = [[AMapPlaceSearchRequest alloc] init];
+                poiRequest.searchType = AMapSearchType_PlaceAround;
+                poiRequest.location = startPoint;//固定的站点，难怪不会实时动态更新
+                poiRequest.keywords = @"自行车租赁点";
+                poiRequest.radius= 500;
+                [search AMapPlaceSearch: poiRequest];
             } else {
                 NSLog(@"输入不能为空");
                 [searchButton setEnabled:NO];
@@ -521,24 +569,30 @@
 
 - (void)onPlaceSearchDone:(AMapPlaceSearchRequest *)request response:(AMapPlaceSearchResponse *)response
 {
-    if ([startTextView.text isEqualToString:@"我的位置"]) {
-        //收到数据后直接运行路径规划程序
-        AMapGeoPoint *start = [AMapGeoPoint locationWithLatitude:userLatitude longitude:userLongtitude];;
-        
-        if (wayFlag == 4) {
-            [self pushWithBikeTransViewControllerStartPonit:start endPoint:endPoint];
-        } else if (wayFlag == 3) {
-            [self pushShowBikeOnlyRoutesViewControllerStartPoint:start endPoint:endPoint];
+    
+    if (response.count > 0) {
+        if ([startTextView.text isEqualToString:@"我的位置"]) {
+            //收到数据后直接运行路径规划程序
+            AMapGeoPoint *start = [AMapGeoPoint locationWithLatitude:userLatitude longitude:userLongtitude];;
+            
+            if (wayFlag == 4) {
+                [self pushWithBikeTransViewControllerStartPonit:start endPoint:endPoint];
+            } else if (wayFlag == 3) {
+                [self pushShowBikeOnlyRoutesViewControllerStartPoint:start endPoint:endPoint];
+            }
+            
+            
+        } else {
+            if (wayFlag == 4) {
+                [self pushWithBikeTransViewControllerStartPonit:startPoint endPoint:endPoint];
+            } else if (wayFlag == 3) {
+                [self pushShowBikeOnlyRoutesViewControllerStartPoint:startPoint endPoint:endPoint];
+                
+            }
         }
-
-        
     } else {
-        if (wayFlag == 4) {
-            [self pushWithBikeTransViewControllerStartPonit:startPoint endPoint:endPoint];
-        } else if (wayFlag == 3) {
-            [self pushShowBikeOnlyRoutesViewControllerStartPoint:startPoint endPoint:endPoint];
-
-        }
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"查找失败" message:@"附近未找到自行车站点，请换用其他换乘策略" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
     }
     
 }

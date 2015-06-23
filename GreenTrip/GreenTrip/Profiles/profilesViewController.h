@@ -32,6 +32,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
 
 @property (strong, nonatomic) UIImagePickerController *imagePickerController;
+@property (strong, nonatomic) IBOutlet UIButton *forgetPassButton;
 
 @property (strong, nonatomic) IBOutlet UIView *portraitView;
 @property (strong, nonatomic) IBOutlet UIButton *portraitButton;        //头像

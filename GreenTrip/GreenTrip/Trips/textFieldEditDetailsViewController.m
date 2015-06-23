@@ -25,6 +25,9 @@
     self.view.backgroundColor = [UIColor whiteColor];
     //NSLog(@"backTitle = %@",self.navigationItem.backBarButtonItem.title);
     //self.navigationItem.backBarButtonItem.title = @"返回";
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"绿色箭头9x17px"] style:UIBarButtonItemStylePlain target:self action:@selector(back:)];
+    self.navigationItem.leftBarButtonItem  = backButton;
+    
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
     backItem.title = @"";
     self.navigationItem.backBarButtonItem = backItem;

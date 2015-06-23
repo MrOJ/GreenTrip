@@ -45,6 +45,8 @@
     NSInteger itemsImgNum;
     NSInteger porImgNum;
     
+    UIActivityIndicatorView *activityIndicatorView;
+    
 }
 
 @property (nonatomic, strong) PSCollectionView *collectionView;

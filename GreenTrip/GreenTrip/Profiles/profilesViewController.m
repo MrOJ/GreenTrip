@@ -18,6 +18,7 @@
 @synthesize portraitButton,backgroundImageView,nicknameLabel,messageLabel,portraitView;
 @synthesize takingbikeNumLabel,takingbusNumLabel,reducingLabel,percentLabel;
 @synthesize imagePickerController;
+@synthesize forgetPassButton;
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -60,7 +61,8 @@
     NSData *data = UIImagePNGRepresentation(portraitImg);
     [YDConfigurationHelper setBoolValueForConfigurationKey:@"portrait" withValue:data];
     */
-
+    
+    forgetPassButton.hidden = YES;
 }
 
 //进入注册界面
@@ -90,7 +92,7 @@
         NSDictionary *dict = @{ @"username":self.usernameTextField.text, @"password":[self.passwordTextField.text MD5] };
         
         //3.请求
-        [manager GET:@"http://192.168.1.104:1200/login" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+        [manager GET:@"http://121.40.218.33:1200/login" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"GET --> %@", responseObject); //自动返回主线程
             
             NSString *getLogin = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"login"]];
@@ -116,12 +118,18 @@
                 nicknameLabel.text = getNickname;
                 messageLabel.text  = getSignature;
                 
-                takingbusNumLabel.text = getTransCount;
-                takingbikeNumLabel.text = getBikeDistance;
-                reducingLabel.text = getReduceCarbon;
+                if (getTransCount) {
+                    takingbusNumLabel.text = getTransCount;
+                    takingbikeNumLabel.text = getBikeDistance;
+                    reducingLabel.text = getReduceCarbon;
+                } else {
+                    takingbusNumLabel.text = @"0";
+                    takingbikeNumLabel.text = @"0.0";
+                    reducingLabel.text = @"0.0";
+                }
                 
                 //利用SDWenImage下载图片
-                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://192.168.1.104:1200/syncportrait?image=%@",getPortraitImage]];
+                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://121.40.218.33:1200/syncportrait?image=%@",getPortraitImage]];
                 SDWebImageManager *manager = [SDWebImageManager sharedManager];
                 [manager downloadImageWithURL:url options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
                     // progression tracking code
@@ -240,7 +248,7 @@
     [YDConfigurationHelper setDataValueForConfigurationKey:data withValue:@"portrait"];
     [cropperViewController dismissViewControllerAnimated:YES completion:^{
         // TO DO
-        NSLog(@"修改完成。");
+        //NSLog(@"修改完成。");
         
         // 在网络开发中，上传文件时，是文件不允许被覆盖，文件重名
         // 要解决此问题，可以在上传时使用当前的系统事件作为文件名
@@ -256,28 +264,63 @@
         if (![usernameStr isEqualToString:@""]) {
             dict = @{ @"username":usernameStr};
             
-            NSMutableURLRequest *urlrequest = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:@"http://192.168.1.104:1200/upload" parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+            /*
+            NSMutableURLRequest *urlrequest = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:@"http://121.40.218.33:1200/upload" parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                 [formData appendPartWithFileData:data name:@"myfile" fileName:fileName mimeType:@"image/png"];
                 
             } error:nil];
             
             AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
             NSProgress *progress = nil;
-            AFJSONResponseSerializer *jsonResponseSerializer = [AFJSONResponseSerializer serializer];
-            
-            NSMutableSet *jsonAcceptableContentTypes = [NSMutableSet setWithSet:jsonResponseSerializer.acceptableContentTypes];
-            [jsonAcceptableContentTypes addObject:@"text/plain"];
-            jsonResponseSerializer.acceptableContentTypes = jsonAcceptableContentTypes;
-            manager.responseSerializer = jsonResponseSerializer;
             
             NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:urlrequest progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
                 if (error) {
                     NSLog(@"Error: %@", error);
+                    HUD = [[MBProgressHUD alloc] initWithView:self.view];
+                    [self.view addSubview:HUD];
+                    HUD.yOffset = -100;     //改变位置
+                    HUD.mode = MBProgressHUDModeText;
+                    
+                    HUD.delegate = self;
+                    HUD.labelText = @"头像上传失败，请重试";
+                    [HUD show:YES];
+                    [HUD hide:YES afterDelay:1];
                 } else {
                     NSLog(@"图片修改成功！");
+                    HUD = [[MBProgressHUD alloc] initWithView:self.view];
+                    [self.view addSubview:HUD];
+                    HUD.yOffset = -100;     //改变位置
+                    HUD.mode = MBProgressHUDModeText;
+                    
+                    HUD.delegate = self;
+                    HUD.labelText = @"头像修改成功";
+                    [HUD show:YES];
+                    [HUD hide:YES afterDelay:1];
                 }
             }];
             [uploadTask resume];
+            */
+            AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+            [manager POST:@"http://121.40.218.33:1200/upload" parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+                //[formData appendPartWithFileURL:filePath name:@"image" error:nil];
+                [formData appendPartWithFileData:data name:@"myfile" fileName:fileName mimeType:@"image/png"];
+            } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                //NSLog(@"Success: %@", responseObject);
+                NSLog(@"finding上传成功！");
+                HUD = [[MBProgressHUD alloc] initWithView:self.view];
+                [self.view addSubview:HUD];
+                HUD.yOffset = -100;     //改变位置
+                HUD.mode = MBProgressHUDModeText;
+                
+                HUD.delegate = self;
+                HUD.labelText = @"头像修改成功";
+                [HUD show:YES];
+                [HUD hide:YES afterDelay:1];
+                
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                NSLog(@"Error: %@", error);
+                [self showErrorWithMessage:@"上传失败，请重试"];
+            }];
         } else {
             [self showErrorWithMessage:@"用户名不存在，请重试"];
         }
@@ -379,10 +422,41 @@
             nicknameLabel.text = nicknameStr;
         }
         
+        NSString *getTakingBus = [YDConfigurationHelper getStringValueForConfigurationKey:@"trans_count"];
+        NSString *getBike      = [YDConfigurationHelper getStringValueForConfigurationKey:@"bike_distance"];
+        NSString *getReduce    = [YDConfigurationHelper getStringValueForConfigurationKey:@"reduce_carbon"];
+        NSString *getMsg       = [YDConfigurationHelper getStringValueForConfigurationKey:@"signature"];
+        
+        if (![getTakingBus isEqualToString:@""]) {
+            takingbusNumLabel.text = takingbusNumLabel.text = [YDConfigurationHelper getStringValueForConfigurationKey:@"trans_count"];
+        } else {
+            takingbusNumLabel.text = @"0";
+        }
+        
+        if (![getBike isEqualToString:@""]) {
+            takingbikeNumLabel.text = takingbusNumLabel.text = [YDConfigurationHelper getStringValueForConfigurationKey:@"bike_distance"];
+        } else {
+            takingbikeNumLabel.text = @"0.0";
+        }
+        
+        if (![getReduce isEqualToString:@""]) {
+            reducingLabel.text = takingbusNumLabel.text = [YDConfigurationHelper getStringValueForConfigurationKey:@"reduce_carbon"];
+        } else {
+            reducingLabel.text = @"0.0";
+        }
+        
+        if (![getMsg isEqualToString:@""]) {
+            messageLabel.text = takingbusNumLabel.text = [YDConfigurationHelper getStringValueForConfigurationKey:@"signature"];
+        } else {
+            messageLabel.text = @"这家伙很懒，什么也没留下";
+        }
+
+        /*
         messageLabel.text = [YDConfigurationHelper getStringValueForConfigurationKey:@"signature"];
         takingbusNumLabel.text = [YDConfigurationHelper getStringValueForConfigurationKey:@"trans_count"];
         takingbikeNumLabel.text = [YDConfigurationHelper getStringValueForConfigurationKey:@"bike_distance"];
         reducingLabel.text = [YDConfigurationHelper getStringValueForConfigurationKey:@"reduce_carbon"];
+        */
         
         //获取本地userdefault头像信息
         NSData *imageData = [YDConfigurationHelper getObjectValueForConfigurationKey:@"portrait"];
@@ -409,12 +483,17 @@
             self.navigationItem.rightBarButtonItem = registerButton;
             */
             
-            UIButton *registerButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 10 - 80, 15, 80, 20)];
+            UIButton *settingButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 10 - 25, 10, 25, 25)];
+            [settingButton setImage:[UIImage imageNamed:@"4设置130x80"] forState:UIControlStateNormal];
+            [settingButton addTarget:self action:@selector(goSetting:) forControlEvents:UIControlEventTouchUpInside];
+            [self.navigationController.navigationBar addSubview:settingButton];
+            
+            UIButton *registerButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 12, 80, 20)];
             registerButton.titleLabel.font = [UIFont systemFontOfSize:16.0f];
             [registerButton setTitle:@"注册" forState:UIControlStateNormal];
             [registerButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             [registerButton addTarget:self action:@selector(goRegister:) forControlEvents:UIControlEventTouchUpInside];
-            [registerButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
+            [registerButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
             [self.navigationController.navigationBar addSubview:registerButton];
             
         }
