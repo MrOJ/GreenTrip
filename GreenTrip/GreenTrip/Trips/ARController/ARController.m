@@ -145,6 +145,7 @@
 
 - (void)dismissModalARController:(BOOL)aninated {
     //退出相机pickController
+    [self.pickerController removeFromParentViewController];
     [self.rootViewController dismissViewControllerAnimated:NO completion:nil];
     
     //退出这个视图

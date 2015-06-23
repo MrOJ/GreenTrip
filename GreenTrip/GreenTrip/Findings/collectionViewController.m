@@ -245,7 +245,7 @@
         //2.设置登录参数
         NSDictionary *dict = @{ @"username":[YDConfigurationHelper getStringValueForConfigurationKey:@"username"],
                                 @"push_time": dateStr,
-                                @"index":[NSString stringWithFormat:@"%lu",loadMoreIndex + itemsArray.count ],
+                                @"index":[NSString stringWithFormat:@"%ld",(long)loadMoreIndex + itemsArray.count ],
                                 @"refresh_times":[NSString stringWithFormat:@"%ld",(long)loadMoreTime],
                                 @"load_more":@"1"};  //此处index需要修改
         //3.请求

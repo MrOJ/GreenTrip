@@ -171,7 +171,7 @@
     
     for (int i = 0; i < allRoutes.transits.count; i++) {
         
-        UIImageView *arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake((self.center.x - 10) + [self superview].bounds.size.width * i, 23, 19, 11)];
+        UIImageView *arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake((self.center.x - 10) + [self superview].bounds.size.width * i, 7, 19, 11)];
         arrowImageView.image = [UIImage imageNamed:@"上拉箭头19x11px"];
         //.transform = CGAffineTransformMakeRotation(M_PI);
         [briefView addSubview:arrowImageView];
@@ -780,6 +780,8 @@
     
     [collectButton addTarget:self action:@selector(collecting:) forControlEvents:UIControlEventTouchUpInside];
     [shareButton addTarget:self action:@selector(sharing:) forControlEvents:UIControlEventTouchUpInside];
+    
+    exView.hidden = YES;   //功能有待完善
     
     if (row != 0) {
         UIView *litteIconView2 = [[UIView alloc] initWithFrame:CGRectMake(20, 0, 14, 20)];

@@ -14,10 +14,11 @@
 #import "finishTripResultView.h"
 #import "KLCPopup.h"
 #import "YDConfigurationHelper.h"
+#import "MBProgressHUD.h"
 
 #define myColor [UIColor colorWithRed:119.0 / 255.0f green:185.0 / 255.0f blue:67.0 / 255.0f alpha:1.0f]
 
-@interface showBikeOnlyRoutesViewController : UIViewController<AMapSearchDelegate,MAMapViewDelegate>
+@interface showBikeOnlyRoutesViewController : UIViewController<AMapSearchDelegate,MAMapViewDelegate,MBProgressHUDDelegate>
 {
     AMapSearchAPI *search;
     MAMapView *myMapView;
@@ -61,6 +62,8 @@
     UIActivityIndicatorView *activityIndicatorView;
     
     int isFinishTrip;
+    
+    MBProgressHUD *HUD;
 }
 
 @property(nonatomic, strong) AMapGeoPoint *startPoint;

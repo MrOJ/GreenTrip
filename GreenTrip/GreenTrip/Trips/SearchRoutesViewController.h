@@ -15,7 +15,9 @@
 #import "withBikeTransViewController.h"
 #import "showBikeOnlyRoutesViewController.h"
 
-@interface SearchRoutesViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, AMapSearchDelegate,MAMapViewDelegate,UITextFieldDelegate>
+#import "MBProgressHUD.h"
+
+@interface SearchRoutesViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, AMapSearchDelegate,MAMapViewDelegate,UITextFieldDelegate,MBProgressHUDDelegate>
 {
     UIBarButtonItem *searchButton;
     UIView *busSearchRootView;
@@ -53,6 +55,8 @@
 
 
     AMapRoute *getRoute;                //获得路线
+    
+    MBProgressHUD *HUD;
     
 }
 //@property (strong, nonatomic) IBOutlet UISegmentedControl *chooseWay;

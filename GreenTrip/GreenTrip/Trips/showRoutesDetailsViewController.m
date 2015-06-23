@@ -81,7 +81,6 @@
     [myMapView addSubview:scalingView];
     
     
-    
     //不知为何真机测试数据显示刷要两次，难道是BUG??
     [self drawAnnotationAndOverlay:index];
     [self drawAnnotationAndOverlay:index];

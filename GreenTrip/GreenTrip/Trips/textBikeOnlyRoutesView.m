@@ -836,6 +836,8 @@ return self;
     [collectButton addTarget:self action:@selector(collecting:) forControlEvents:UIControlEventTouchUpInside];
     [shareButton addTarget:self action:@selector(sharing:) forControlEvents:UIControlEventTouchUpInside];
     
+    exView.hidden = YES;   //功能有待完善
+    
     if (row != 0) {
         UIView *litteIconView2 = [[UIView alloc] initWithFrame:CGRectMake(20, 0, 14, 20)];
         //litteIconView2.backgroundColor = myColor;

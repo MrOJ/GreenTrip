@@ -58,55 +58,43 @@
 - (void)send:(id)sender {
     
     if (![contentTextView.text isEqualToString:@""]) {
-        if (![emailTextField.text isEqualToString:@""] || ![phoneTextField.text isEqualToString:@""]) {
-            //更新数据库数据
-            AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        //更新数据库数据
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        
+        //2.设置登录参数
+        NSDictionary *dict = @{ @"username":[YDConfigurationHelper getStringValueForConfigurationKey:@"username"],
+                                @"email":emailTextField.text,
+                                @"phone":phoneTextField.text,
+                                @"content":contentTextView.text};
+        
+        //3.请求
+        [manager GET:@"http://121.40.218.33:1200/uploadfeedbacksInfo" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"GET --> %@", responseObject); //自动返回主线程
             
-            //2.设置登录参数
-            NSDictionary *dict = @{ @"username":[YDConfigurationHelper getStringValueForConfigurationKey:@"username"],
-                                    @"email":emailTextField.text,
-                                    @"phone":phoneTextField.text,
-                                    @"content":contentTextView.text};
+            HUD = [[MBProgressHUD alloc] initWithView:self.view];
+            [self.view addSubview:HUD];
+            HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
             
-            //3.请求
-            [manager GET:@"http://121.40.218.33:1200/uploadfeedbacksInfo" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
-                NSLog(@"GET --> %@", responseObject); //自动返回主线程
-                
-                HUD = [[MBProgressHUD alloc] initWithView:self.view];
-                [self.view addSubview:HUD];
-                HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
-                
-                // Set custom view mode
-                HUD.mode = MBProgressHUDModeCustomView;
-                
-                HUD.delegate = self;
-                HUD.labelText = @"保存成功";
-                [HUD show:YES];
-                [HUD hide:YES afterDelay:1];
-                
-            } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
-                NSLog(@"error = %@",error);
-                HUD = [[MBProgressHUD alloc] initWithView:self.view];
-                [self.view addSubview:HUD];
-                HUD.yOffset = -100;     //改变位置
-                HUD.mode = MBProgressHUDModeText;
-                
-                HUD.delegate = self;
-                HUD.labelText = @"发送失败，请检查网络设置";
-                [HUD show:YES];
-                [HUD hide:YES afterDelay:1];
-            }];
-        } else {
+            // Set custom view mode
+            HUD.mode = MBProgressHUDModeCustomView;
+            
+            HUD.delegate = self;
+            HUD.labelText = @"保存成功";
+            [HUD show:YES];
+            [HUD hide:YES afterDelay:1];
+            
+        } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"error = %@",error);
             HUD = [[MBProgressHUD alloc] initWithView:self.view];
             [self.view addSubview:HUD];
             HUD.yOffset = -100;     //改变位置
             HUD.mode = MBProgressHUDModeText;
             
             HUD.delegate = self;
-            HUD.labelText = @"请留下您的联系方式";
+            HUD.labelText = @"发送失败，请检查网络设置";
             [HUD show:YES];
             [HUD hide:YES afterDelay:1];
-        }
+        }];
     } else {
         HUD = [[MBProgressHUD alloc] initWithView:self.view];
         [self.view addSubview:HUD];

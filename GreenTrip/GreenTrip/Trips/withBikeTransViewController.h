@@ -15,7 +15,9 @@
 #import "KLCPopup.h"
 #import "YDConfigurationHelper.h"
 
-@interface withBikeTransViewController : UIViewController<AMapSearchDelegate,MAMapViewDelegate>
+#import "MBProgressHUD.h"
+
+@interface withBikeTransViewController : UIViewController<AMapSearchDelegate,MAMapViewDelegate,MBProgressHUDDelegate>
 {
     AMapSearchAPI *search;
     MAMapView *myMapView;
@@ -78,6 +80,8 @@
     UIActivityIndicatorView *activityIndicatorView;
     
     int isFinishTrip;
+    
+    MBProgressHUD *HUD;
 }
 
 @property(nonatomic, strong) AMapGeoPoint *startPoint;

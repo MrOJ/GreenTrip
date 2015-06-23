@@ -233,8 +233,26 @@
 # pragma search Delegate
 - (void)onNavigationSearchDone:(AMapNavigationSearchRequest *)request response:(AMapNavigationSearchResponse *)response
 {
-    NSLog(@"responne count =  %ld",(long)response.count);
-    NSLog(@"%ld",(long)[self getSegmentsWithTarget:request.origin]);
+    //NSLog(@"responne count =  %ld",(long)response.count);
+    //NSLog(@"%ld",(long)[self getSegmentsWithTarget:request.origin]);
+    if(response.count == 0)
+    {
+        [activityIndicatorView stopAnimating];
+        
+        NSLog(@"未找到对应线路,请重试!");
+        HUD = [[MBProgressHUD alloc] initWithView:self.view];
+        [self.view addSubview:HUD];
+        //HUD.yOffset = -100;     //改变位置
+        HUD.mode = MBProgressHUDModeText;
+        
+        HUD.delegate = self;
+        HUD.labelText = @"未找到该线路，请尝试其他策略";
+        [HUD show:YES];
+        [HUD hide:YES afterDelay:1];
+        
+        return;
+    }
+    
     if ([self getSegmentsWithTarget:request.origin] == 0) {
         [allRoutesDictionary setObject:response.route forKey:@"startWalking"];
         startWalkingRoute = response.route;
@@ -256,6 +274,12 @@
         [allRoutesDictionary setObject:response.route forKey:@"endWalking"];
         endWalkingRoute = response.route;
     }
+}
+
+#pragma mark - MBProgressHUDDelegate
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+    // Remove HUD from screen when the HUD was hidded
+    [HUD removeFromSuperview];
 }
 
 - (void)onPlaceSearchDone:(AMapPlaceSearchRequest *)request response:(AMapPlaceSearchResponse *)response

@@ -237,6 +237,8 @@
             [shareButton setImage:[UIImage imageNamed:@"分享48x52"] forState:UIControlStateNormal];
             [exView addSubview:shareButton];
             
+            exView.hidden = YES;   //功能有待完善
+            
         } else {
             //cell.selectionStyle = UITableViewCellSelectionStyleNone;
             //UILabel重写会被覆盖，需要写在这个里面

@@ -46,7 +46,7 @@
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 1;   //假如了排行榜以后，这里改成2！
 }
 
 /*

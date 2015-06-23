@@ -209,6 +209,7 @@
     [HUD hide:YES afterDelay:1];}
 
 - (IBAction)useWeibo:(id)sender {
+    /*
     HUD = [[MBProgressHUD alloc] initWithView:self.view];
     [self.view addSubview:HUD];
     HUD.yOffset = -100;     //改变位置
@@ -218,6 +219,7 @@
     HUD.labelText = @"接口即将接入，尽请期待！";
     [HUD show:YES];
     [HUD hide:YES afterDelay:1];
+    */
 }
 
 #pragma mark - MBProgressHUDDelegate

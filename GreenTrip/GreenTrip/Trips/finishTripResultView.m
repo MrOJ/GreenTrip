@@ -160,14 +160,14 @@
     
     NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"ShareSDK" ofType:@"jpg"];
     
-    NSString *shareContentStr = [NSString stringWithFormat:@"本次公共出行我节省了%@kg的碳排放量，消耗%@cal热量，满满成就感！快来下载绿出行APP，定制你的专属行程吧！https://itunes.apple.com/us/app/lu-chu-xing/id998058478?l=zh&ls=1&mt=8",reduceCarbonStr,consumeCalStr];
+    NSString *shareContentStr = [NSString stringWithFormat:@"本次公共出行我节省了%@kg的碳排放量，消耗%@cal热量，满满成就感！快来下载绿出行APP，定制你的专属行程吧！https://itunes.apple.com/us/app/lu-chu-xing/id998058478",reduceCarbonStr,consumeCalStr];
     
     //1、构造分享内容
     id<ISSContent> publishContent = [ShareSDK content:shareContentStr
                                        defaultContent:@"默认内容"
                                                 image:[ShareSDK imageWithPath:imagePath]
-                                                title:@"行程"
-                                                  url:@"http://www.mob.com"
+                                                title:@"绿出行行程分享"
+                                                  url:@"https://itunes.apple.com/us/app/lu-chu-xing/id998058478"
                                           description:@"出行分享"
                                             mediaType:SSPublishContentMediaTypeNews];
     //1+创建弹出菜单容器（iPad必要）

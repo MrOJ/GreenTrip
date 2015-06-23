@@ -265,6 +265,24 @@
     //[self callBicyclePOI:startPoint rasius:800];
     //flag2 = 1;
     //获取起始换乘总距离
+    if(response.count == 0)
+    {
+        [activityIndicatorView stopAnimating];
+        
+        NSLog(@"未找到对应线路,请重试!");
+        HUD = [[MBProgressHUD alloc] initWithView:self.view];
+        [self.view addSubview:HUD];
+        //HUD.yOffset = -100;     //改变位置
+        HUD.mode = MBProgressHUDModeText;
+        
+        HUD.delegate = self;
+        HUD.labelText = @"未找到该线路策略，请尝试其他策略";
+        [HUD show:YES];
+        [HUD hide:YES afterDelay:1];
+        
+        return;
+    }
+    
     if (isGetOriginDis == NO) {
         originTotalDis = [self caculateTotalDis:response.route.transits[0]];
         isGetOriginDis = YES;
@@ -569,6 +587,12 @@
         }
     }
     
+}
+
+#pragma mark - MBProgressHUDDelegate
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+    // Remove HUD from screen when the HUD was hidded
+    [HUD removeFromSuperview];
 }
 
 - (void)callBicyclePOI:(AMapGeoPoint *)point rasius:(NSInteger)r

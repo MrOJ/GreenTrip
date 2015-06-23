@@ -98,6 +98,7 @@
     ResultsTableView.delegate = self;
     ResultsTableView.dataSource = self;
     ResultsTableView.hidden = YES;
+    ResultsTableView.tableFooterView = [[UIView alloc] init];
     
     startTextView.delegate = self;
     startTextView.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -184,9 +185,9 @@
             //由于不能直接继续push视图，因此在这里设置一定的延迟在推入，如果直接点搜索则问题不大
             AMapPlaceSearchRequest *poiRequest = [[AMapPlaceSearchRequest alloc] init];
             poiRequest.searchType = AMapSearchType_PlaceAround;
-            poiRequest.location = startPoint;//固定的站点，难怪不会实时动态更新
+            poiRequest.location = [AMapGeoPoint locationWithLatitude:userLatitude longitude:userLongtitude];
             poiRequest.keywords = @"自行车租赁点";
-            poiRequest.radius= 500;
+            poiRequest.radius= 1000;
             [search AMapPlaceSearch: poiRequest];
         } else {
             NSLog(@"输入不能为空");
@@ -200,9 +201,9 @@
             //由于不能直接继续push视图，因此在这里设置一定的延迟在推入，如果直接点搜索则问题不大
             AMapPlaceSearchRequest *poiRequest = [[AMapPlaceSearchRequest alloc] init];
             poiRequest.searchType = AMapSearchType_PlaceAround;
-            poiRequest.location = startPoint;//固定的站点，难怪不会实时动态更新
+            poiRequest.location = [AMapGeoPoint locationWithLatitude:userLatitude longitude:userLongtitude];
             poiRequest.keywords = @"自行车租赁点";
-            poiRequest.radius= 500;
+            poiRequest.radius= 1000;
             [search AMapPlaceSearch: poiRequest];
         } else {
             NSLog(@"输入不能为空");
@@ -322,9 +323,9 @@
         //由于不能直接继续push视图，因此在这里设置一定的延迟在推入，如果直接点搜索则问题不大
         AMapPlaceSearchRequest *poiRequest = [[AMapPlaceSearchRequest alloc] init];
         poiRequest.searchType = AMapSearchType_PlaceAround;
-        poiRequest.location = startPoint;//固定的站点，难怪不会实时动态更新
+        poiRequest.location = [AMapGeoPoint locationWithLatitude:userLatitude longitude:userLongtitude];
         poiRequest.keywords = @"自行车租赁点";
-        poiRequest.radius= 500;
+        poiRequest.radius= 1000;
         [search AMapPlaceSearch: poiRequest];
         
     } else {
@@ -363,9 +364,9 @@
         //由于不能直接继续push视图，因此在这里设置一定的延迟在推入，如果直接点搜索则问题不大
         AMapPlaceSearchRequest *poiRequest = [[AMapPlaceSearchRequest alloc] init];
         poiRequest.searchType = AMapSearchType_PlaceAround;
-        poiRequest.location = startPoint;//固定的站点，难怪不会实时动态更新
+        poiRequest.location = [AMapGeoPoint locationWithLatitude:userLatitude longitude:userLongtitude];
         poiRequest.keywords = @"自行车租赁点";
-        poiRequest.radius= 500;
+        poiRequest.radius= 1000;
         [search AMapPlaceSearch: poiRequest];
     } else {
         NSLog(@"输入不能为空");
@@ -466,9 +467,9 @@
                 //由于不能直接继续push视图，因此在这里设置一定的延迟在推入，如果直接点搜索则问题不大
                 AMapPlaceSearchRequest *poiRequest = [[AMapPlaceSearchRequest alloc] init];
                 poiRequest.searchType = AMapSearchType_PlaceAround;
-                poiRequest.location = startPoint;//固定的站点，难怪不会实时动态更新
+                poiRequest.location = [AMapGeoPoint locationWithLatitude:userLatitude longitude:userLongtitude];
                 poiRequest.keywords = @"自行车租赁点";
-                poiRequest.radius= 500;
+                poiRequest.radius= 1000;
                 [search AMapPlaceSearch: poiRequest];
                 
             } else {
@@ -503,9 +504,9 @@
                 //由于不能直接继续push视图，因此在这里设置一定的延迟在推入，如果直接点搜索则问题不大
                 AMapPlaceSearchRequest *poiRequest = [[AMapPlaceSearchRequest alloc] init];
                 poiRequest.searchType = AMapSearchType_PlaceAround;
-                poiRequest.location = startPoint;//固定的站点，难怪不会实时动态更新
+                poiRequest.location = [AMapGeoPoint locationWithLatitude:userLatitude longitude:userLongtitude];
                 poiRequest.keywords = @"自行车租赁点";
-                poiRequest.radius= 500;
+                poiRequest.radius= 1000;
                 [search AMapPlaceSearch: poiRequest];
             } else {
                 NSLog(@"输入不能为空");
@@ -569,8 +570,8 @@
 
 - (void)onPlaceSearchDone:(AMapPlaceSearchRequest *)request response:(AMapPlaceSearchResponse *)response
 {
-    
-    if (response.count > 0) {
+    NSLog(@"reponse = %lu",(unsigned long)response.pois.count);
+    if (response.pois.count > 0) {
         if ([startTextView.text isEqualToString:@"我的位置"]) {
             //收到数据后直接运行路径规划程序
             AMapGeoPoint *start = [AMapGeoPoint locationWithLatitude:userLatitude longitude:userLongtitude];;
@@ -601,10 +602,25 @@
 //实现路径搜索的回调函数
 - (void)onNavigationSearchDone:(AMapNavigationSearchRequest *)request response:(AMapNavigationSearchResponse *)response
 {
-    if(response.route == nil)
+    if(response.count == 0)
     {
+        [activityIndicatorView stopAnimating];
+        
+        NSLog(@"未找到对应线路,请重试!");
+        HUD = [[MBProgressHUD alloc] initWithView:self.view];
+        [self.view addSubview:HUD];
+        //HUD.yOffset = -100;     //改变位置
+        HUD.mode = MBProgressHUDModeText;
+        
+        HUD.delegate = self;
+        HUD.labelText = @"未找到该线路，请尝试其他策略";
+        [HUD show:YES];
+        [HUD hide:YES afterDelay:1];
+        
         return;
     }
+    
+    //NSLog(@"%ld",(long)response.count);
     
     switch (wayFlag) {
         case 1: {
@@ -660,6 +676,12 @@
             break;
     }
     
+}
+
+#pragma mark - MBProgressHUDDelegate
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+    // Remove HUD from screen when the HUD was hidded
+    [HUD removeFromSuperview];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
