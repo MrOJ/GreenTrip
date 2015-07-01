@@ -261,9 +261,16 @@
 -(BOOL)textField:(UITextField *)field shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     //NSLog(@"hello");
+    //NSLog(@"keyboard type = %ld",(long)field.keyboardType);
     textStr = field.text;
     textStr = [textStr stringByReplacingCharactersInRange:range withString:string];     //其中的字符串用string代替
-    //NSLog(@"textStr = %@", textStr);
+    NSLog(@"textStr = %@", textStr);
+    
+    /*
+    if ([textStr isEqualToString:@"，"] || [textStr isEqualToString:@"➋"]|| [textStr isEqualToString:@"➌"]|| [textStr isEqualToString:@"➍"]|| [textStr isEqualToString:@"➎"]|| [textStr isEqualToString:@"➏"]|| [textStr isEqualToString:@"➐"]|| [textStr isEqualToString:@"➑"]|| [textStr isEqualToString:@"➒"]|| [textStr isEqualToString:@"➐"]) {
+        
+    }
+    */
     
     if ([textStr isEqualToString:@""]) {
         tipsResultTableView.hidden = YES;
@@ -309,6 +316,17 @@
 - (BOOL)textFieldShouldReturn:(UITextField *) textField
 {
     [textField resignFirstResponder];
+    
+    //构造AMapPlaceSearchRequest对象，配置关键字搜索参数
+    AMapPlaceSearchRequest *poiRequest = [[AMapPlaceSearchRequest alloc] init];
+    poiRequest.searchType = AMapSearchType_PlaceKeyword;
+    poiRequest.keywords = textField.text;
+    poiRequest.city = @[[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]];                 //暂定
+    poiRequest.requireExtension = YES;
+    
+    //发起POI搜索
+    [search AMapPlaceSearch: poiRequest];
+    
     return YES;
 }
 
@@ -360,6 +378,7 @@
     nameArray = [[NSMutableArray alloc] init];
     districtArray =[[NSMutableArray alloc] init];
     
+    /*
     if(response.tips.count == 0)
     {
         //NSLog(@"未找到目标站点，请重试");
@@ -375,17 +394,9 @@
         searchTextField.text = @"";
         [tipsResultTableView setHidden:YES];
         
-        //复原为busButton
-        /*
-        [busButton       setBackgroundColor:myColor];
-        [bikePlaceButton setBackgroundColor:[UIColor whiteColor]];
-        [busButton       setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [bikePlaceButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        buttonFlag = 0;
-        */
-        
         return;
     }
+    */
     
     for (AMapTip *p in response.tips) {
         [nameArray addObject:p.name];
@@ -413,8 +424,9 @@
     
     if (response.pois.count == 0) {
         //NSLog(@"附近未找到公共自行车站点！");
-        myAlert = [[UIAlertView alloc] initWithTitle:@"查找失败" message:@"附近未找到公共自行车站点" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil, nil];
+        myAlert = [[UIAlertView alloc] initWithTitle:@"查找失败" message:@"附近未找到站点" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil, nil];
         [myAlert show];
+        tipsResultTableView.hidden = YES;
     } else {
         for (AMapPOI *poi in response.pois) {
             MAPointAnnotation *pointAnn = [[MAPointAnnotation alloc] init];

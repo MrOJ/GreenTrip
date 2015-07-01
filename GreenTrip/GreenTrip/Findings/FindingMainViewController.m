@@ -113,6 +113,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     if (indexPath.section == 0) {
         collectionViewController *collectionVC = [[collectionViewController alloc] init];
         [self.navigationController pushViewController:collectionVC animated:YES];

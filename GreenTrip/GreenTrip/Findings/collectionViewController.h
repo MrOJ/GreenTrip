@@ -18,7 +18,9 @@
 
 #import "sendMessagesViewController.h"
 
-@interface collectionViewController : UIViewController <PSCollectionViewDelegate, PSCollectionViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+#import "MBProgressHUD.h"
+
+@interface collectionViewController : UIViewController <PSCollectionViewDelegate, PSCollectionViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,MBProgressHUDDelegate>
 {
     NSMutableArray *itemsArray;
     NSMutableArray *itemsImgArray;     //用于存放实际图片
@@ -46,6 +48,8 @@
     NSInteger porImgNum;
     
     UIActivityIndicatorView *activityIndicatorView;
+    
+    MBProgressHUD *HUD;
     
 }
 

@@ -80,8 +80,6 @@
 }
 
 #pragma mark - Private methods
-
-
 - (IBAction)handleSingleTap:(UITapGestureRecognizer *)tapGestureRecognizer {
     if (self.scrollView.zoomScale == self.scrollView.minimumZoomScale) {
         [self dismissViewControllerAnimated:YES completion:nil];
@@ -109,6 +107,7 @@
 }
 */
 -(void)scale:(UIPinchGestureRecognizer*)sender {
+    
     //当手指离开屏幕时,将lastscale设置为1.0
     if([sender state] == UIGestureRecognizerStateEnded) {
         lastScale = 1.0;

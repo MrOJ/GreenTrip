@@ -116,7 +116,9 @@
                 NSString *getReduceCarbon = [responseObject objectForKey:@"reduce_carbon"];
                 
                 nicknameLabel.text = getNickname;
-                messageLabel.text  = getSignature;
+                //messageLabel.text  = getSignature;
+                
+                //NSLog(@"getTransCount = %@",getTransCount);
                 
                 if (getTransCount) {
                     takingbusNumLabel.text = getTransCount;
@@ -418,7 +420,7 @@
         //NSLog(@"nickname = %@",nicknameStr);
         //NSLog(@"username = %@",[YDConfigurationHelper getStringValueForConfigurationKey:@"username"]);
         //获取本地用户名信息
-        if ([nicknameStr isEqualToString:@"<null>"] || [nicknameStr isEqualToString:@""]) {
+        if ([nicknameStr isEqualToString:@"<null>"] || [nicknameStr isEqualToString:@""] || [nicknameStr isEqualToString:@"-"]) {
             nicknameLabel.text = [YDConfigurationHelper getStringValueForConfigurationKey:@"username"];
         } else {
             nicknameLabel.text = nicknameStr;
@@ -429,28 +431,29 @@
         NSString *getReduce    = [YDConfigurationHelper getStringValueForConfigurationKey:@"reduce_carbon"];
         NSString *getMsg       = [YDConfigurationHelper getStringValueForConfigurationKey:@"signature"];
         
-        if (![getTakingBus isEqualToString:@""]) {
-            takingbusNumLabel.text = takingbusNumLabel.text = [YDConfigurationHelper getStringValueForConfigurationKey:@"trans_count"];
+        if (![getTakingBus isKindOfClass:[NSNull class]] && ![getTakingBus isEqualToString:@""] && ![getTakingBus isEqualToString:@"None"]) {
+            takingbusNumLabel.text = [YDConfigurationHelper getStringValueForConfigurationKey:@"trans_count"];
         } else {
             takingbusNumLabel.text = @"0";
         }
         
-        if (![getBike isEqualToString:@""]) {
-            takingbikeNumLabel.text = takingbusNumLabel.text = [YDConfigurationHelper getStringValueForConfigurationKey:@"bike_distance"];
+        if (![getBike isKindOfClass:[NSNull class]] && ![getBike isEqualToString:@""] && ![getBike isEqualToString:@"None"]) {
+            takingbikeNumLabel.text = [YDConfigurationHelper getStringValueForConfigurationKey:@"bike_distance"];
         } else {
             takingbikeNumLabel.text = @"0.0";
         }
         
-        if (![getReduce isEqualToString:@""]) {
-            reducingLabel.text = takingbusNumLabel.text = [YDConfigurationHelper getStringValueForConfigurationKey:@"reduce_carbon"];
+        if (![getReduce isKindOfClass:[NSNull class]] &&![getReduce isEqualToString:@""] && ![getReduce isEqualToString:@"None"]) {
+            reducingLabel.text = [YDConfigurationHelper getStringValueForConfigurationKey:@"reduce_carbon"];
         } else {
             reducingLabel.text = @"0.0";
         }
         
-        if (![getMsg isEqualToString:@""]) {
-            messageLabel.text = takingbusNumLabel.text = [YDConfigurationHelper getStringValueForConfigurationKey:@"signature"];
-        } else {
+        if ([getMsg isKindOfClass:[NSNull class]] || [getMsg isEqualToString:@""] || [getMsg isEqualToString:@"None"] || [getMsg isEqualToString:@"0"]) {
+            //messageLabel.text  = [YDConfigurationHelper getStringValueForConfigurationKey:@"signature"];
             messageLabel.text = @"这家伙很懒，什么也没留下";
+        } else {
+            messageLabel.text  = [YDConfigurationHelper getStringValueForConfigurationKey:@"signature"];
         }
 
         /*
@@ -477,6 +480,8 @@
             NSLog(@"登录界面");
             LoginView.hidden = NO;
             afterLoginView.hidden = YES;
+            
+            passwordTextField.text = @"";
             
             self.navigationItem.title = @"登录帐号";
             

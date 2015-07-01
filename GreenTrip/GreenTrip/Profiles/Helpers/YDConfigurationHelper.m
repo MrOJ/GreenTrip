@@ -78,8 +78,12 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults synchronize]; //let's make sure the object is synchronized
-    [defaults setValue:_objectkey forKey:_value];
-    [defaults synchronize];//make sure you're synchronized again
+    
+    if (![_objectkey isKindOfClass:[NSNull class]]) {
+        [defaults setValue:_objectkey forKey:_value];
+        [defaults synchronize];//make sure you're synchronized again
+    }
+    
 }
 
 +(void)setDataValueForConfigurationKey:(NSData *)_objectkey withValue:(NSString *)_value
