@@ -68,6 +68,8 @@
 		1817483D1AF0F39F00F1DFE8 /* 选择56x56px.png in Resources */ = {isa = PBXBuildFile; fileRef = 181748371AF0F39F00F1DFE8 /* 选择56x56px.png */; };
 		1817483E1AF0F39F00F1DFE8 /* 选择56x56px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 181748381AF0F39F00F1DFE8 /* 选择56x56px@2x.png */; };
 		1817483F1AF0F39F00F1DFE8 /* 选择56x56px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 181748391AF0F39F00F1DFE8 /* 选择56x56px@3x.png */; };
+		1839910E1B496CBA002220D7 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1839910D1B496CBA002220D7 /* TencentOpenAPI.framework */; };
+		183991101B496CF9002220D7 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1839910F1B496CF9002220D7 /* libiconv.dylib */; };
 		1840802A1AB8449B00E89AB3 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 184080121AB8449B00E89AB3 /* MJRefresh.bundle */; };
 		1840802B1AB8449B00E89AB3 /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 184080151AB8449B00E89AB3 /* MJRefreshComponent.m */; };
 		1840802C1AB8449B00E89AB3 /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 184080171AB8449B00E89AB3 /* MJRefreshConst.m */; };
@@ -473,6 +475,8 @@
 		181748371AF0F39F00F1DFE8 /* 选择56x56px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "选择56x56px.png"; sourceTree = "<group>"; };
 		181748381AF0F39F00F1DFE8 /* 选择56x56px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "选择56x56px@2x.png"; sourceTree = "<group>"; };
 		181748391AF0F39F00F1DFE8 /* 选择56x56px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "选择56x56px@3x.png"; sourceTree = "<group>"; };
+		1839910D1B496CBA002220D7 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TencentOpenAPI.framework; path = GreenTrip/TencentOpenAPI.framework; sourceTree = "<group>"; };
+		1839910F1B496CF9002220D7 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		184080121AB8449B00E89AB3 /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
 		184080131AB8449B00E89AB3 /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
 		184080141AB8449B00E89AB3 /* MJRefreshComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshComponent.h; sourceTree = "<group>"; };
@@ -901,7 +905,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				183991101B496CF9002220D7 /* libiconv.dylib in Frameworks */,
 				18CC77E81B2BF4C600A312F3 /* ImageIO.framework in Frameworks */,
+				1839910E1B496CBA002220D7 /* TencentOpenAPI.framework in Frameworks */,
 				18CC77D81B2BD45A00A312F3 /* libsqlite3.dylib in Frameworks */,
 				18CC77D61B2BD44E00A312F3 /* libstdc++.dylib in Frameworks */,
 				18CC77D41B2BD44200A312F3 /* MessageUI.framework in Frameworks */,
@@ -1281,6 +1287,8 @@
 		18B3413F1AA6D6EE00B19ED4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1839910F1B496CF9002220D7 /* libiconv.dylib */,
+				1839910D1B496CBA002220D7 /* TencentOpenAPI.framework */,
 				18CC77E71B2BF4C600A312F3 /* ImageIO.framework */,
 				18CC77D71B2BD45A00A312F3 /* libsqlite3.dylib */,
 				18CC77D51B2BD44E00A312F3 /* libstdc++.dylib */,
@@ -2377,6 +2385,7 @@
 					"$(PROJECT_DIR)/GreenTrip/ShareSDK/Extend/QQConnectSDK",
 					"$(PROJECT_DIR)/GreenTrip/ShareSDK",
 					"$(PROJECT_DIR)/GreenTrip/ShareSDK/UI",
+					"$(PROJECT_DIR)/GreenTrip",
 				);
 				INFOPLIST_FILE = GreenTrip/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
@@ -2388,7 +2397,10 @@
 					"$(PROJECT_DIR)/GreenTrip/libWeiboSDK",
 				);
 				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-fobjc-arc",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -2409,6 +2421,7 @@
 					"$(PROJECT_DIR)/GreenTrip/ShareSDK/Extend/QQConnectSDK",
 					"$(PROJECT_DIR)/GreenTrip/ShareSDK",
 					"$(PROJECT_DIR)/GreenTrip/ShareSDK/UI",
+					"$(PROJECT_DIR)/GreenTrip",
 				);
 				INFOPLIST_FILE = GreenTrip/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
@@ -2420,7 +2433,10 @@
 					"$(PROJECT_DIR)/GreenTrip/libWeiboSDK",
 				);
 				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-fobjc-arc",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

@@ -18,6 +18,9 @@
 
 #import "VPImageCropperViewController.h"
 
+#import <ShareSDK/ShareSDK.h>
+//#import <Parse/Parse.h>
+
 #define myColor [UIColor colorWithRed:119.0 / 255.0f green:185.0 / 255.0f blue:67.0 / 255.0f alpha:1.0f]
 #define ORIGINAL_MAX_WIDTH 640.0f
 

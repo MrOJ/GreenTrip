@@ -71,7 +71,7 @@
         NSDictionary *dict = @{ @"username":self.nameField.text, @"password":[self.passwordField.text MD5] };
         
         //3.请求
-        [manager GET:@"http://121.40.218.33:1200/login" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+        [manager GET:@"http://192.168.1.104:1200/login" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"GET --> %@", responseObject); //自动返回主线程
             
             NSString *getLogin = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"login"]];

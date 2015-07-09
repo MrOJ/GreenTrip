@@ -92,7 +92,7 @@
         NSDictionary *dict = @{ @"username":self.usernameTextField.text, @"password":[self.passwordTextField.text MD5] };
         
         //3.请求
-        [manager GET:@"http://121.40.218.33:1200/login" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+        [manager GET:@"http://192.168.1.104:1200/login" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"GET --> %@", responseObject); //自动返回主线程
             
             NSString *getLogin = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"login"]];
@@ -131,7 +131,7 @@
                 }
                 
                 //利用SDWenImage下载图片
-                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://121.40.218.33:1200/syncportrait?image=%@",getPortraitImage]];
+                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://192.168.1.104:1200/syncportrait?image=%@",getPortraitImage]];
                 SDWebImageManager *manager = [SDWebImageManager sharedManager];
                 [manager downloadImageWithURL:url options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
                     // progression tracking code
@@ -188,40 +188,18 @@
 }
 
 - (IBAction)useQQ:(id)sender {
-    HUD = [[MBProgressHUD alloc] initWithView:self.view];
-    [self.view addSubview:HUD];
-    HUD.yOffset = -100;     //改变位置
-    HUD.mode = MBProgressHUDModeText;
-    
-    HUD.delegate = self;
-    HUD.labelText = @"接口即将接入，尽请期待！";
-    [HUD show:YES];
-    [HUD hide:YES afterDelay:1];
+    [self thirdPartyLogin:@"4"];
 }
 
 - (IBAction)useWeChat:(id)sender {
-    HUD = [[MBProgressHUD alloc] initWithView:self.view];
-    [self.view addSubview:HUD];
-    HUD.yOffset = -100;     //改变位置
-    HUD.mode = MBProgressHUDModeText;
+    [self thirdPartyLogin:@"3"];
     
-    HUD.delegate = self;
-    HUD.labelText = @"接口即将接入，尽请期待！";
-    [HUD show:YES];
-    [HUD hide:YES afterDelay:1];}
-
+}
 - (IBAction)useWeibo:(id)sender {
-    /*
-    HUD = [[MBProgressHUD alloc] initWithView:self.view];
-    [self.view addSubview:HUD];
-    HUD.yOffset = -100;     //改变位置
-    HUD.mode = MBProgressHUDModeText;
+    //[ShareSDK cancelAuthWithType:ShareTypeSinaWeibo];
     
-    HUD.delegate = self;
-    HUD.labelText = @"接口即将接入，尽请期待！";
-    [HUD show:YES];
-    [HUD hide:YES afterDelay:1];
-    */
+    [self thirdPartyLogin:@"2"];
+
 }
 
 #pragma mark - MBProgressHUDDelegate
@@ -268,44 +246,8 @@
         if (![usernameStr isEqualToString:@""]) {
             dict = @{ @"username":usernameStr};
             
-            /*
-            NSMutableURLRequest *urlrequest = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:@"http://121.40.218.33:1200/upload" parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-                [formData appendPartWithFileData:data name:@"myfile" fileName:fileName mimeType:@"image/png"];
-                
-            } error:nil];
-            
-            AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-            NSProgress *progress = nil;
-            
-            NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:urlrequest progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-                if (error) {
-                    NSLog(@"Error: %@", error);
-                    HUD = [[MBProgressHUD alloc] initWithView:self.view];
-                    [self.view addSubview:HUD];
-                    HUD.yOffset = -100;     //改变位置
-                    HUD.mode = MBProgressHUDModeText;
-                    
-                    HUD.delegate = self;
-                    HUD.labelText = @"头像上传失败，请重试";
-                    [HUD show:YES];
-                    [HUD hide:YES afterDelay:1];
-                } else {
-                    NSLog(@"图片修改成功！");
-                    HUD = [[MBProgressHUD alloc] initWithView:self.view];
-                    [self.view addSubview:HUD];
-                    HUD.yOffset = -100;     //改变位置
-                    HUD.mode = MBProgressHUDModeText;
-                    
-                    HUD.delegate = self;
-                    HUD.labelText = @"头像修改成功";
-                    [HUD show:YES];
-                    [HUD hide:YES afterDelay:1];
-                }
-            }];
-            [uploadTask resume];
-            */
             AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-            [manager POST:@"http://121.40.218.33:1200/upload" parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+            [manager POST:@"http://192.168.1.104:1200/upload" parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                 //[formData appendPartWithFileURL:filePath name:@"image" error:nil];
                 [formData appendPartWithFileData:data name:@"myfile" fileName:fileName mimeType:@"image/png"];
             } success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -506,6 +448,124 @@
         }
         
     }
+}
+
+//第三方登录
+- (void)thirdPartyLogin:(NSString *)platform
+{
+    ShareType type;
+    
+    if ([platform isEqualToString:@"2"]) {
+        type = ShareTypeSinaWeibo;
+    } else if ([platform isEqualToString:@"3"]) {
+        type = ShareTypeWeixiSession;
+    } else {
+        type = ShareTypeQQSpace;
+    }
+    
+    [ShareSDK getUserInfoWithType:type
+                      authOptions:nil
+                           result:^(BOOL result, id<ISSPlatformUser> userInfo, id<ICMErrorInfo> error)
+     {
+         
+         if (result)
+         {
+             NSLog(@"uid = %@",[userInfo uid]);
+             NSLog(@"name = %@",[userInfo nickname]);
+             NSLog(@"profileImage = %@",[userInfo profileImage]);
+             
+             AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+             
+             //2.设置登录参数
+             NSDictionary *dict = @{ @"username":[userInfo uid], @"nickname":[userInfo nickname], @"platform":platform};
+             
+             //3.请求
+             [manager GET:@"http://192.168.1.104:1200/ThirdPartyLogin" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+                 //NSLog(@"GET --> %@", responseObject); //自动返回主线程
+                 
+                 NSString *getLogin = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"login"]];
+                 
+                 //利用SDWenImage下载图片
+                 NSURL *url = [NSURL URLWithString:[userInfo profileImage]];
+                 SDWebImageManager *manager = [SDWebImageManager sharedManager];
+                 [manager downloadImageWithURL:url options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                     // progression tracking code
+                 } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                     if (error) {
+                         NSLog(@"头像下载出错error %@",error);
+                         [portraitButton setImage:[UIImage imageNamed:@"62x62默认头像"] forState:UIControlStateNormal];
+                     } else {
+                         if (image) {
+                             NSLog(@"头像下载成功！");
+                             [portraitButton setImage:[self scaleToSize:CGSizeMake(81, 81) withImae:image] forState:UIControlStateNormal];
+                             //将图片数据存入NSUserDefaults中
+                             NSData *data = UIImagePNGRepresentation([self scaleToSize:CGSizeMake(81, 81) withImae:image]);
+                             [YDConfigurationHelper setDataValueForConfigurationKey:data withValue:@"portrait"];
+                             
+                         }
+                     }
+                 }];
+                 
+                 nicknameLabel.text = [userInfo nickname];
+                 
+                 NSString *getUsername = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"username"]];
+                 NSString *getNickname = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"nickname"]];
+                 
+                 [YDConfigurationHelper setStringValueForConfigurationKey:getUsername withValue:@"username"];
+                 [YDConfigurationHelper setStringValueForConfigurationKey:getNickname withValue:@"nickname"];
+                 
+                 if ([getLogin isEqualToString:@"0"]) {
+                     //-------登录服务器后下载个人资料数据实现----------
+                     //NSString *getPortraitImage = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"portrait_image"]];
+                     NSString *getPhoneNumber = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"phone_number"]];
+                     NSString *getEmail = [responseObject objectForKey:@"email"];
+                     NSString *getSex = [responseObject objectForKey:@"sex"];
+                     NSString *getAge = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"age"]];
+                     NSString *getSignature = [responseObject objectForKey:@"signature"];
+                     NSString *getBirthday = [responseObject objectForKey:@"birthday"];
+                     
+                     NSString *getTransCount= [responseObject objectForKey:@"trans_count"];
+                     NSString *getBikeDistance = [responseObject objectForKey:@"bike_distance"];
+                     NSString *getReduceCarbon = [responseObject objectForKey:@"reduce_carbon"];
+                     [YDConfigurationHelper setStringValueForConfigurationKey:getPhoneNumber withValue:@"phone_number"];
+                     [YDConfigurationHelper setStringValueForConfigurationKey:getEmail withValue:@"email"];
+                     [YDConfigurationHelper setStringValueForConfigurationKey:getSex withValue:@"sex"];
+                     [YDConfigurationHelper setStringValueForConfigurationKey:getAge withValue:@"age"];
+                     [YDConfigurationHelper setStringValueForConfigurationKey:getSignature withValue:@"signature"];
+                     [YDConfigurationHelper setStringValueForConfigurationKey:getBirthday withValue:@"birthday"];
+                     
+                     [YDConfigurationHelper setStringValueForConfigurationKey:getTransCount withValue:@"trans_count"];
+                     [YDConfigurationHelper setStringValueForConfigurationKey:getBikeDistance withValue:@"bike_distance"];
+                     [YDConfigurationHelper setStringValueForConfigurationKey:getReduceCarbon withValue:@"reduce_carbon"];
+                     
+                     //NSData *data = UIImagePNGRepresentation([userInfo profileImage]);
+                     
+                 }
+                 
+                 [self loginState];
+                 
+             } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
+                 [self showErrorWithMessage:@"连接失败，请检测网络"];
+             }];
+         }
+         
+     }];
+}
+
+//改变UIImage大小
+-(UIImage*)scaleToSize:(CGSize)size withImae:(UIImage *)image
+{
+    // 创建一个bitmap的context
+    // 并把它设置成为当前正在使用的context
+    UIGraphicsBeginImageContext(size);
+    // 绘制改变大小的图片
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    // 从当前context中创建一个改变大小后的图片
+    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    // 使当前的context出堆栈
+    UIGraphicsEndImageContext();
+    // 返回新的改变大小后的图片
+    return scaledImage;
 }
 
 #pragma mark - UIImagePickerControllerDelegate

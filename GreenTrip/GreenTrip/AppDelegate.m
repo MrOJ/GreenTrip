@@ -10,6 +10,8 @@
 
 #import <ShareSDK/ShareSDK.h>
 
+//#import <Parse/Parse.h>
+
 //第三方平台的SDK头文件，根据需要的平台导入。
 #import "WXApi.h"
 #import "WeiboSDK.h"
@@ -32,6 +34,9 @@
     
     //2.1 代码初始化社交平台的方法
     [self initializePlat];
+    
+    //[Parse setApplicationId:@"rzYS7RuUV5sKLQk0d9XnBFJsfLWa0A1mNGrIKmf4"
+    //              clientKey:@"Taf1wVwfUeIkXnCVY66kSND9ZLKkZz7dL74CMg8p"];
     
     return YES;
 }

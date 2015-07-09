@@ -93,6 +93,8 @@
     }
     
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    //[ShareSDK cancelAuthWithType:ShareTypeSinaWeibo];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
