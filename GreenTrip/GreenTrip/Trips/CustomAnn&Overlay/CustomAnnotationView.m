@@ -9,7 +9,7 @@
 #import "CustomAnnotationView.h"
 
 #define kCalloutWidth       240.0
-#define kCalloutHeight      40.0
+#define kCalloutHeight      60.0
 
 @implementation CustomAnnotationView
 

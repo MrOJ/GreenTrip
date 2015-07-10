@@ -499,6 +499,7 @@
             annotationView = [[CustomAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pointReuseIndetifier];
         }
         annotationView.canShowCallout= NO;       //设置气泡可以弹出，默认为NO
+        //annotationView.selected = YES;
         //annotationView.animatesDrop = YES;        //设置标注动画显示，默认为NO
         //annotationView.draggable = YES;        //设置标注可以拖动，默认为NO
         //annotationView.pinColor = MAPinAnnotationColorGreen;

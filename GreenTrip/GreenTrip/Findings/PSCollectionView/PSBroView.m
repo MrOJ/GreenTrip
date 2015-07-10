@@ -79,6 +79,7 @@ likeButton = _likeButton;
         //self.releaseTime.text = @"1小时前";
         self.releaseTime.textColor = [UIColor lightGrayColor];
         self.releaseTime.font = [UIFont systemFontOfSize:11.0f];
+        self.releaseTime.textAlignment = NSTextAlignmentLeft;
         [self.profileView addSubview:self.releaseTime];
         
         //设置昵称
@@ -87,6 +88,7 @@ likeButton = _likeButton;
         //self.nickname.text = @"MrOJ";
         self.nickname.textColor = [UIColor blackColor];
         self.nickname.font = [UIFont systemFontOfSize:12.0f];
+        self.nickname.textAlignment = NSTextAlignmentLeft;
         [self.profileView addSubview:self.nickname];
         
         self.likeButton = [[UIButton alloc] initWithFrame:CGRectZero];
@@ -142,8 +144,8 @@ likeButton = _likeButton;
     line.backgroundColor = myColor;
     [self.profileView addSubview:line];
     
-    self.releaseTime.frame = CGRectMake(50, 19, self.frame.size.width - 50 - 38, 15);
-    self.nickname.frame = CGRectMake(50, 34, self.frame.size.width - 50 - 38, 15);
+    self.releaseTime.frame = CGRectMake(40, 35, self.frame.size.width - 50 - 38, 15);
+    self.nickname.frame = CGRectMake(50, 19, self.frame.size.width - 50 - 38, 15);
     
     self.likeButton.frame = CGRectMake(self.frame.size.width - 50, self.profileView.frame.size.height - 36, 48, 14);
     //self.likeButton.backgroundColor = [UIColor redColor];

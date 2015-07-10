@@ -92,7 +92,7 @@
         NSDictionary *dict = @{ @"username":self.usernameTextField.text, @"password":[self.passwordTextField.text MD5] };
         
         //3.请求
-        [manager GET:@"http://192.168.1.104:1200/login" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+        [manager GET:@"http://121.40.218.33:1200/login" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
             NSLog(@"GET --> %@", responseObject); //自动返回主线程
             
             NSString *getLogin = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"login"]];
@@ -131,7 +131,7 @@
                 }
                 
                 //利用SDWenImage下载图片
-                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://192.168.1.104:1200/syncportrait?image=%@",getPortraitImage]];
+                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://121.40.218.33:1200/syncportrait?image=%@",getPortraitImage]];
                 SDWebImageManager *manager = [SDWebImageManager sharedManager];
                 [manager downloadImageWithURL:url options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
                     // progression tracking code
@@ -247,7 +247,7 @@
             dict = @{ @"username":usernameStr};
             
             AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-            [manager POST:@"http://192.168.1.104:1200/upload" parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+            [manager POST:@"http://121.40.218.33:1200/upload" parameters:dict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                 //[formData appendPartWithFileURL:filePath name:@"image" error:nil];
                 [formData appendPartWithFileData:data name:@"myfile" fileName:fileName mimeType:@"image/png"];
             } success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -477,10 +477,16 @@
              AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
              
              //2.设置登录参数
-             NSDictionary *dict = @{ @"username":[userInfo uid], @"nickname":[userInfo nickname], @"platform":platform};
+             NSDictionary *dict = @{ @"username":[userInfo uid],
+                                     @"nickname":[userInfo nickname],
+                                     @"platform":platform,
+                                     @"device":@"iOS",
+                                     @"city":[YDConfigurationHelper getStringValueForConfigurationKey:@"city"]};
+             
+             //manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/plain", nil];
              
              //3.请求
-             [manager GET:@"http://192.168.1.104:1200/ThirdPartyLogin" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+             [manager GET:@"http://121.40.218.33:1200/ThirdPartyLogin" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
                  //NSLog(@"GET --> %@", responseObject); //自动返回主线程
                  
                  NSString *getLogin = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"login"]];
@@ -508,11 +514,11 @@
                  
                  nicknameLabel.text = [userInfo nickname];
                  
-                 NSString *getUsername = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"username"]];
-                 NSString *getNickname = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"nickname"]];
+                 //NSString *getUsername = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"username"]];
+                 //NSString *getNickname = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"nickname"]];
                  
-                 [YDConfigurationHelper setStringValueForConfigurationKey:getUsername withValue:@"username"];
-                 [YDConfigurationHelper setStringValueForConfigurationKey:getNickname withValue:@"nickname"];
+                 [YDConfigurationHelper setStringValueForConfigurationKey:[userInfo uid] withValue:@"username"];
+                 [YDConfigurationHelper setStringValueForConfigurationKey:[userInfo nickname] withValue:@"nickname"];
                  
                  if ([getLogin isEqualToString:@"0"]) {
                      //-------登录服务器后下载个人资料数据实现----------
@@ -545,8 +551,23 @@
                  [self loginState];
                  
              } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
-                 [self showErrorWithMessage:@"连接失败，请检测网络"];
+                 [self showErrorWithMessage:@"授权失败，请重试"];
+                 NSLog(@"error = %@",error);
              }];
+         } else {
+             //NSLog(@"该登录接口需要客户端支持，请下载对应客户端后重试");
+             /*
+             HUD = [[MBProgressHUD alloc] initWithView:self.view];
+             [self.view addSubview:HUD];
+             HUD.yOffset = -100;     //改变位置
+             HUD.mode = MBProgressHUDModeText;
+             
+             HUD.delegate = self;
+             HUD.labelText = @"该登录接口需要客户端支持";
+             HUD.detailsLabelText = @"请下载对应客户端后重试";
+             [HUD show:YES];
+             [HUD hide:YES afterDelay:2];
+             */
          }
          
      }];

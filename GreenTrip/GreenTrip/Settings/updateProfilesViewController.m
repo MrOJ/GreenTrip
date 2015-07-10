@@ -97,7 +97,7 @@
                                     @"phone_number":phoneTextField.text};
             
             //3.请求
-            [manager GET:@"http://192.168.1.104:1200/updateProfiles" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+            [manager GET:@"http://121.40.218.33:1200/updateProfiles" parameters:dict success: ^(AFHTTPRequestOperation *operation, id responseObject) {
                 NSLog(@"GET --> %@", responseObject); //自动返回主线程
                 /*
                 BDKNotifyHUD *hud = [BDKNotifyHUD notifyHUDWithImage:[UIImage imageNamed:@"勾44x32px"] text:@"保存成功！"];  //图片需要改变
@@ -296,14 +296,29 @@
         if (self.datePick.superview) {
             [self.datePick removeFromSuperview];
         }
-        
-        [textField resignFirstResponder];
+        [sexTextField resignFirstResponder];
+        [nicknameTextField resignFirstResponder];
+        [signatureTextField resignFirstResponder];
+        [sexTextField resignFirstResponder];
+        [birthdayTextField resignFirstResponder];
+        [emailTextField resignFirstResponder];
+        [phoneTextField resignFirstResponder];
+
+        //[textField resignFirstResponder];
         
         sexPicker.frame = CGRectMake(0, self.view.bounds.size.height - 180, self.view.bounds.size.width, 180);
         [self.view addSubview:sexPicker];
     }
     
     if (textField.tag == 3) {
+        [sexTextField resignFirstResponder];
+        [nicknameTextField resignFirstResponder];
+        [signatureTextField resignFirstResponder];
+        [sexTextField resignFirstResponder];
+        [birthdayTextField resignFirstResponder];
+        [emailTextField resignFirstResponder];
+        [phoneTextField resignFirstResponder];
+        
         if (self.sexPicker.superview) {
             [self.sexPicker removeFromSuperview];
         }

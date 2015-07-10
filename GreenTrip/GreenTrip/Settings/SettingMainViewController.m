@@ -94,7 +94,9 @@
     
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    //[ShareSDK cancelAuthWithType:ShareTypeSinaWeibo];
+    [ShareSDK cancelAuthWithType:ShareTypeSinaWeibo];
+    [ShareSDK cancelAuthWithType:ShareTypeWeixiSession];
+    [ShareSDK cancelAuthWithType:ShareTypeQQSpace];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
