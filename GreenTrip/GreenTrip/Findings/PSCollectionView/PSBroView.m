@@ -167,13 +167,12 @@ likeButton = _likeButton;
 
 - (void)openImage:(id)sender {
     NSLog(@"open");
-    TGRImageViewController *viewController = [[TGRImageViewController alloc] initWithImage:[self.imageButton imageForState:UIControlStateNormal]];
-    viewController.view.frame = [UIScreen mainScreen].bounds;
-    viewController.transitioningDelegate = self;
+    fullScreenViewController *fullScreenVC = [[fullScreenViewController alloc] init];
+    fullScreenVC.image = self.imageView.image;
     
     UIViewController *VC = [self findViewController:self];
     
-    [VC presentViewController:viewController animated:YES completion:nil];
+    [VC presentViewController:fullScreenVC animated:NO completion:nil];
 }
 
 - (UIViewController *)findViewController:(UIView *)sourceView
@@ -307,22 +306,6 @@ likeButton = _likeButton;
     //NSLog(@"%f",height);
     
     return height;
-}
-
-#pragma mark - UIViewControllerTransitioningDelegate methods
-
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
-    if ([presented isKindOfClass:TGRImageViewController.class]) {
-        return [[TGRImageZoomAnimationController alloc] initWithReferenceImageView:self.imageButton.imageView];
-    }
-    return nil;
-}
-
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-    if ([dismissed isKindOfClass:TGRImageViewController.class]) {
-        return [[TGRImageZoomAnimationController alloc] initWithReferenceImageView:self.imageButton.imageView];
-    }
-    return nil;
 }
 
 -(void)showErrorWithMessage:(NSString *)msg
